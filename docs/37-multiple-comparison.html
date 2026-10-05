@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第37課 快了多少：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 37 課｜快了多少</h1>
+    <div class="sub-title">Sport｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Twice as Fast</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Sport &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 比較省略與倍數：twice as...as ／ no more than
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 我哥哥跑得比我快兩倍，可是他並沒有比我高。每個星期六，我們的教練都會讓我們在學校後面的跑道上練習。他總是贏得那場賽跑，而我通常在到達終點之前就已經累壞了。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我們學校的運動隊伍需要兩名跑者，參加五月舉行的年度競賽。教練選了我和哥哥，因為我們總是一起練習、也一起休息。其他選手都笑了，他們覺得跑得慢的那一個一定會輸。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 在最後一場賽跑裡，哥哥跑得比我更快，但我們的隊伍仍然贏下了競賽。在最後一個彎道，我一口氣超過了三名選手，在那之前沒有人說得出誰才是贏家。他收到一支新球拍當禮物，而我以最佳新人的身分得到了一份小獎品。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My brother <span class="w-tap kw-verb">runs twice as fast as</span> I do, but he <span class="w-tap kw-verb">is no taller than</span> me.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>倍數比較 (twice as + 原級 + as)：</b>twice ＝「兩倍」，後面固定接 <b>as + 原級 + as</b>。<u>✓ 對的：</u>He runs twice as fast as I do.<br> 2. <span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ twice faster than</s> —— twice as fast 已經是「兩倍」，twice faster 會被讀成三倍，正式場合不可使用。<br> 3. <b>no + 比較級 + than：</b>be no taller than ＝「沒有比我更高」，等於「和我一樣高」；把「更⋯⋯」的差異直接取消，是會考的固定考點。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Every Saturday</span>, our <span class="w-tap kw-colloc">coach</span> <span class="w-tap kw-verb">makes us practise</span> on the track behind the school.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>make + 人 + 原形 (makes us practise)：</b>make / let / have ＋ 人 ＋ 原形，表示「讓某人做某事」；第三人稱單數的 make 要加 <b>-s</b>（makes）。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ makes us to practise</s>。<br> 2. <b>practise (v) ／ practice (n)：</b>英式拼寫區分清楚——動詞用 <b>practise</b>、名詞用 <b>practice</b>。<u>✓ 對的：</u>We <u>practise</u> every Saturday.／<u>✓ 對的：</u>Practice makes perfect.<br> 3. <b>時間片語置於句首 (Every Saturday)：</b>every ＋ 單數名詞構成的時間片語放句首時要加逗號，後面謂語用一般現在式。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          He <span class="w-tap kw-colloc">always wins the race</span>, and I usually <span class="w-tap kw-verb">get tired</span> before the finish.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>win ＋ 賽事／獎品 (wins the race)：</b>win ＝「贏得」，後面接比賽、獎品等「事物」。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ He won me.</s>要說「贏了某人」得用 <b>beat</b>：He beat me.<br> 2. <b>get + 形容詞 (get tired)：</b>get 與連繫動詞同義，但口語中更常見；tired 描述人的感受，是 A2 Key Sport 主題收錄的詞彙。<br> 3. <b>頻率副詞的位置：</b>放在實義動詞之前、be 動詞之後——He <u>always</u> wins…／She is <u>always</u> late.
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['My brother runs twice as fast as I do, but he is no taller than me.', 'Every Saturday, our coach makes us practise on the track behind the school.', 'He always wins the race, and I usually get tired before the finish.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先鋪陳主角與哥哥之間的落差：兩人身高相仿，速度卻差了一倍，每週六的練習就是這個落差被反覆量出來的時刻。表面上只是兄弟之間的閒聊比較，卻已替下一段埋下伏筆——教練正在挑選能代表學校出賽的人選。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our school <span class="w-tap kw-colloc">team</span> <span class="w-tap kw-verb">needs</span> two runners <span class="w-tap kw-link">for</span> the annual <span class="w-tap kw-colloc">competition</span> in May.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>第三人稱單數 (needs)：</b>主語 Our school team 視為單數單位，need 要加 <b>-s</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ Our school team need two runners.</s><br> 2. <b>數詞 ＋ 複數名詞 (two runners)：</b>two / three 本身就表示複數，後面的名詞要加 <b>-s</b>，而且前面<b>不可再加 a</b>。<br> 3. <b>for ＋ 名詞：</b>for ＝「為了⋯⋯」，這裡說明學校需要跑者的原因，是會考寫作加分的常用結構。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The <span class="w-tap kw-colloc">coach</span> <span class="w-tap kw-verb">chose</span> my brother and me because we <span class="w-tap kw-verb">practise</span> together and <span class="w-tap kw-verb">rest</span> together.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>及物動詞 ＋ 雙受詞 (chose my brother and me)：</b>中文的「選了我和我哥哥」在英文直接用雙受詞，第二個受詞要用賓格 <b>me</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ chose my brother and I</s>。<br> 2. <b>不規則過去式 (chose)：</b>choose 的三態是 choose–chose–chosen，chose 是過去式、chosen 是過去分詞，兩者<u>不同形</u>，必須背熟。<br> 3. <b>because 引導原因 (because we practise... and rest...)：</b>because 後面接完整子句，兩個並列動詞都跟著主詞 we 用原形。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The other <span class="w-tap kw-colloc">players</span> <span class="w-tap kw-verb">laughed</span>, because they thought <span class="w-tap kw-colloc">the slower one</span> <span class="w-tap kw-verb">would lose</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>一般過去式 (laughed ／ thought)：</b>敘述已發生的事用過去式；laugh 是規則變化加 <b>-ed</b>，think 是不規則變化 think–thought–thought。<br> 2. <b>the ＋ 比較級 ＋ one：</b>the slower one 用 <b>one</b> 替代前面出現過的名詞 players，是「替代法」的第一個應用。<br> 3. <b>would ＋ 原形 (would lose)：</b>would 是 will 的過去式，此處表「將會⋯⋯」，後面<b>只能接原形</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ would lost</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Our school team needs two runners for the annual competition in May.', 'The coach chose my brother and me because we practise together and rest together.', 'The other players laughed, because they thought the slower one would lose.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段把焦點轉到校隊選人：教練挑上主角，是因為兩人一起練習、一起休息，代表跑得慢的不一定拖累團隊。第三段就在這份信任上翻轉：哥哥依舊是全場最快的，但真正讓全隊獲勝的關鍵，竟然是跑得慢的那一個。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">In the final race</span>, my brother <span class="w-tap kw-verb">ran faster</span>, but our <span class="w-tap kw-colloc">team</span> still <span class="w-tap kw-verb">won</span> the competition.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>過去式比較級 (ran faster)：</b>過去發生的動作要用過去式；fast 是單音節詞，比較級直接加 <b>-er</b>，<b>不可再加 more</b>。<br> 2. <b>副詞修飾動詞 (ran faster)：</b>faster 在這裡修飾動詞 run，是副詞；修飾名詞時才用原級 fast（a fast runner）。<br> 3. <b>but 表轉折：</b>前半句說哥哥跑得更快，後半句卻說球隊還是贏了，兩者方向相反。<span style="color:#dc2626;">⚠️ 陷阱：</span>but（但是）與 so（所以）方向相反，不可互換。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">Nobody could name the winner</span> <span class="w-tap kw-link">until</span> I <span class="w-tap kw-verb">passed</span> three <span class="w-tap kw-colloc">players</span> on the last bend.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>複合不定代詞作主語 (Nobody)：</b>Nobody ＝ no one，本身就含否定，<b>不可再加 not</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ Nobody didn't know.</s>應寫成 Nobody knew the answer.<br> 2. <b>could ＋ 原形 (could name)：</b>could 是 can 的過去式，後面只能接原形；否定縮寫為 couldn't，後面同樣接原形。<br> 3. <b>until 引導時間 (until I passed...)：</b>until ＝「直到⋯⋯為止」，這裡指「直到我超過選手的那一刻為止，沒有人說得出冠軍是誰」。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          He <span class="w-tap kw-verb">received</span> a new racket, and I <span class="w-tap kw-verb">won</span> a <span class="w-tap kw-colloc">small prize</span> as the best new <span class="w-tap kw-colloc">player</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>receive 與 win 的差別：</b>receive ＝「收到」（事情發生在自己身上），win ＝「贏得」（自己努力得來），兩者語氣來源不同。<br> 2. <b>win ＋ a prize：</b>比賽獎品用 win；禮物才用 receive。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ I won a gift.</s>應寫成 I received a gift.<br> 3. <b>as 引導身分 (as the best new player)：</b>as ＝「以⋯⋯的身分」，說明我得到獎品的原因；最高級 best 前面要加 <b>the</b>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['In the final race, my brother ran faster, but our team still won the competition.', 'Nobody could name the winner until I passed three players on the last bend.', 'He received a new racket, and I won a small prize as the best new player.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 37 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事涵蓋會考最常見的 twice as...as 倍數比較、no more than 否定比較，以及比較子句的省略：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 倍數比較與比較省略句型</h3>
+        <ul class="summary-list">
+<li><b>1. 倍數比較 twice as + 原級 + as：</b><br>twice ＝ 兩倍，後面必須用 as ... as 原級。<br><i>例句：</i> He runs <u>twice as fast as</u> I do.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>twice as fast 已是兩倍，不可再加 -er（✗ twice faster than）。</li>
+<li><b>2. no + 比較級 + than：</b><br>no taller than me ＝「沒有比我高」＝「和我一樣高」，把差異取消。<br>同家族：<u>no more than</u>（一點也不）、<u>not as ... as</u>（不如⋯⋯）。</li>
+<li><b>3. 比較子句的省略：</b><br>as / than 後面相同的動詞、be 動詞一律省略。<br>twice as fast as <u>I do</u>（= as I run）；faster than he <u>does</u>（= than he runs）。</li>
+<li><b>4. 比較級的形式：</b><br>單音節詞直接加 <b>-er</b>（fast–faster、tall–taller），<b>不可加 more</b>。<br>形容詞作定語用 fast（a fast runner），修飾動詞時用副詞 faster（ran faster）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 運動比賽情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>win a race</b>：贏得一場賽跑（win 後直接接受詞，不加 for）。</li>
+<li><b>win a prize</b>：贏得獎品；收到禮物則用 receive a gift。</li>
+<li><b>get tired</b>：感到疲倦；常接 before / after / from＋片語。</li>
+<li><b>no taller than</b>：不比⋯⋯高；同家族 no more than、no longer。</li>
+<li><b>the slower one</b>：比較級 ＋ one，用 one 替代重複出現的名詞。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易寫錯的運動用詞</h3>
+        <ul class="summary-list">
+<li><b>win / beat / winner：</b><br>• <b>win ＋ 事物</b>：贏得比賽、獎品（win the race）。<br>• <b>beat ＋ 人／隊</b>：擊敗對手（beat my brother）。<br>• <span style="color:#dc2626;">✗ win me</span> 是會考最常見錯誤。</li>
+<li><b>practise (v) ／ practice (n)：</b><br>• <b>practise</b> 是動詞：我們每週六練習。<br>• <b>practice</b> 是名詞：練習本身、練球。<br>• 兩者不可互換，寫作時務必先看句子裡的詞性。</li>
+<li><b>tired ／ tiring：</b><br>• <b>tired</b> 描述人的感受：我很累。<br>• <b>tiring</b> 描述事物的性質：這堂課很累人。<br>• 例：I get <u>tired</u> after a long race.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

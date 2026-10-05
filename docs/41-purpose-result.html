@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第41課 為了不要：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 41 課｜為了不要</h1>
+    <div class="sub-title">Hobbies and Leisure｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 So That You Can Learn</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Hobbies and Leisure &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> so that / in order to / so as to / too...to 完整家族
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 去年春天，我新的興趣是露營，於是我加入了家裡附近的一個社團。我們每個月走到營地，在天黑之前把帳篷搭好。我每月都替湖邊拍一張照片，可是我的英文還是很弱。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 所以我又加入了學校的英文社，成為每週五下午的一員。在那裡我認識了來自日本的轉學生 Kenji，他講話很小聲。我們慢慢說話，好讓他聽得清楚，因為他太害怕開口詢問。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 在露營之前，我們替每一件工具畫了圖，好把規定教給他。我們也寫簡短的句子，好讓英文保持簡單清楚。最後的野餐上，Kenji 順利回答了問答比賽，大家都非常開心。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Last spring my <span class="w-tap kw-colloc">new hobby</span> was <span class="w-tap kw-colloc">camping</span>, so I <span class="w-tap kw-verb">joined a club</span> <span class="w-tap kw-link">near my town</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>join + 團體：</b> join ＝「加入」，後面直接接<b>團體名稱</b>（a club），中間不加介系詞。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>join to the club</s>。<br> 2. <b>so（結果）：</b> so 引導結果：因為喜歡露營，所以加入社團；與 because（原因）方向相反。<br> 3. <b>hobby 與 camping：</b> hobby ＝「業餘愛好」，camping ＝「露營」，兩者皆為 A2 Key「Hobbies and Leisure」主題詞彙。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Every month we <span class="w-tap kw-verb">walked</span> to the <span class="w-tap kw-colloc">campsite</span> and <span class="w-tap kw-verb">put up our tent</span> <span class="w-tap kw-link">before dark</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>put up + 搭建物：</b> put up ＝「搭起、架起」；put–put–put 三態同形，且代詞須放中間：put <b>up</b> the tent。<br> 2. <b>before + 單數名詞：</b> before dark ＝「在天黑之前」，此處 dark 作名詞，指「天色變暗」這一刻。<br> 3. <b>to the campsite：</b> 動詞 walk 後接地點用介系詞 to；campsite ＝「露營地」，是 Hobbies and Leisure 主題的固定字。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">took</span> <span class="w-tap kw-colloc">a photograph of</span> the lake every month, but my English <span class="w-tap kw-link">was still weak</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>take a photograph of + 對象：</b> of 引出被拍攝的對象；photograph 可作名詞也可作動詞，take a photograph 是固定搭配。<br> 2. <b>take → took：</b> take–took–taken 為不規則變化；拍照這個動作已完成，必須用過去式 <b>took</b>。<br> 3. <b>but（轉折）：</b> but 與前句相反：照片拍得很多，英文卻還是很弱，為第二段埋下轉折。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last spring my new hobby was camping, so I joined a club near my town.', 'Every month we walked to the campsite and put up our tent before dark.', 'I took a photograph of the lake every month, but my English was still weak.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段交代主角的起點：她原本宅在家裡，因為愛上露營而加入社團，卻在自然與英語能力之間找到落差——照片拍得再多，英文仍然不夠好，這個矛盾自然把讀者帶向加入英文社的第二段。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          So I also <span class="w-tap kw-verb">became</span> <span class="w-tap kw-colloc">a member of</span> <span class="w-tap kw-link">the school English club</span> on Friday afternoons.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>become → became：</b> become–became–become 為不規則變化；表示「成為⋯⋯的一員」時用 become，比 join 更正式。<br> 2. <b>a member of + 團體：</b> of 後接所屬團體，前面須加冠詞：a member of <b>the</b> English club。<br> 3. <b>時間片語放句尾：</b> on Friday afternoons 說明活動時段；on + 星期／日期前不加 the。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          There I <span class="w-tap kw-verb">met</span> Kenji, <span class="w-tap kw-colloc">a new student from Japan</span> <span class="w-tap kw-link">who spoke very quietly</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>meet → met：</b> meet–met–met 為不規則變化，敘述已結束的相遇事件要用過去式 met。<br> 2. <b>同位語 (Kenji)：</b> 逗號後的名詞補充說明前面的 a new student，兩者指同一人。<br> 3. <b>關係子句 who spoke very quietly：</b> who 引導子句說明「是哪一位學生」；先行詞是人用 who，子句後<b>不可再加逗號</b>。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">spoke slowly</span> <span class="w-tap kw-link">so that</span> he <span class="w-tap kw-verb">could hear</span> us, because he <span class="w-tap kw-link">was too afraid to ask</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>so that + 目的子句：</b> so that 引導<b>目的子句</b>，放在主要動作之後，回答「為什麼要慢慢說」：spoke slowly <b>so that</b> he could hear us。<br> 2. <b>could + 原形：</b> could 是 can 的過去式，此處表示「當時能夠聽懂」，後面接<b>原形</b> hear，不可加 -ed。<br> 3. <b>too + 形容詞 + to + 原形：</b> too…to ＝「太⋯⋯而不能⋯⋯」：too afraid <b>to ask</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span>too 後不可再加 very 或 not。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['So I also became a member of the school English club on Friday afternoons.', 'There I met Kenji, a new student from Japan who spoke very quietly.', 'We spoke slowly so that he could hear us, because he was too afraid to ask.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段轉入英文社與 Kenji 的相遇，主角用慢慢說話與畫圖，把英文變成對方聽得懂的東西。第三段則是成果的驗收：Kenji 能在眾人面前回答問題，主角自己也從不敢說，變成教得會別人的人。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Before the camp we <span class="w-tap kw-verb">drew pictures</span> of every tool <span class="w-tap kw-link">in order to</span> <span class="w-tap kw-verb">show</span> him the rules.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>in order to + 原形：</b> in order to ＝「為了⋯⋯」，與 so that 同屬目的表達，但後面<b>直接接原形動詞</b>，不再接句子。<br> 2. <b>draw → drew：</b> draw–drew–drawn 為不規則變化；every tool 是複數，畫的動作已完成，用過去式 <b>drew</b>。<br> 3. <b>a picture 的複數：</b> picture 以 -e 結尾，複數加 <b>-s</b>：pictures（複數才加 -es 的是以 -s / -x / -ch / -sh 結尾的名詞，如 box → boxes、dish → dishes；book 只是子音結尾，仍直接加 -s 變 books）。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">wrote short sentences</span> <span class="w-tap kw-link">so as to</span> <span class="w-tap kw-verb">keep</span> our English <span class="w-tap kw-colloc">simple and clear</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>so as to + 原形：</b> so as to 與 in order to 同義，語氣較正式；兩者後面都<b>直接接原形</b>，不可接整句。<br> 2. <b>目的句中的原形動詞：</b> to 後面的 keep 是原形，後面接<b>形容詞</b> simple and clear 當補語。<br> 3. <b>write → wrote：</b> write–wrote–written 為不規則變化，此處描述已完成的三個過去動作。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          At <span class="w-tap kw-colloc">our end picnic</span>, Kenji <span class="w-tap kw-verb">answered the quiz</span>, and <span class="w-tap kw-verb">everyone was</span> really happy.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>名詞片語 (At our end picnic)：</b> at + 活動名詞，說明活動是在哪一場舉行；end picnic ＝「結業野餐」。<br> 2. <b>answer → answered：</b> answer 是規則動詞，過去式加 <b>-ed</b>；Kenji 順利答題，正是他從「不敢開口」到「敢開口」的轉折。<br> 3. <b>everyone 作主語：</b> 不定代詞 everyone 視為單數，be 動詞用 <b>was</b>，不可寫成 were。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Before the camp we drew pictures of every tool in order to show him the rules.', 'We wrote short sentences so as to keep our English simple and clear.', 'At our end picnic, Kenji answered the quiz, and everyone was really happy.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 41 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事以露營社團與英文社為主軸，聚焦 so that、in order to、so as to、too...to 四種目的與程度表達，並提醒不規則過去式與可分動詞片語的常見失分點：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 目的與結果句型完整家族</h3>
+        <ul class="summary-list">
+<li><b>1. so that + 句子（目的）：</b><br>• 放在主要動作之後，後面接<b>完整句子</b>（主詞＋動詞）。<br><i>例句：</i> We spoke slowly <u>so that</u> he could hear us.</li>
+<li><b>2. in order to + 原形（目的）：</b><br>• ＝「為了⋯⋯」，後面<b>只接原形動詞</b>。<br><i>例句：</i> …<u>in order to</u> show him the rules.</li>
+<li><b>3. so as to + 原形（目的）：</b><br>• 與 in order to 同義、較正式；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 so as to <b>that</b> he could…（多了 that 就變成 so that）。</li>
+<li><b>4. too + 形容詞 + to + 原形（程度）：</b><br>• ＝「太⋯⋯而不能⋯⋯」，too 後面<b>不可加 very / not</b>。<br><i>例句：</i> He was <u>too afraid to</u> ask.</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 休閒與社團情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>join a club</b>：加入社團（後接團體，不加 to）。</li>
+<li><b>a member of + 團體</b>：⋯⋯的一員（of 後接所屬團體）。</li>
+<li><b>put up a tent</b>：搭起帳篷（可分動詞片語，代詞放中間）。</li>
+<li><b>take a photograph of + 對象</b>：替某物拍一張照片。</li>
+<li><b>have a picnic</b>：舉行野餐（at our end picnic＝在結業野餐上）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混淆的社團與興趣用詞</h3>
+        <ul class="summary-list">
+<li><b>join / take part in：</b><br>• <b>join a club</b>＝成為固定會員（可長期）。<br>• <b>take part in an activity</b>＝參加某一次活動。<br>• <span style="color:#dc2626;">✗ join in the picnic</span> 誤用，應為 have a picnic。</li>
+<li><b>camp / camping / campsite：</b><br>• <b>camp</b>＝營地（也可指露營這件事）。<br>• <b>camping</b>＝露營（活動或形容詞：camping club）。<br>• <b>campsite</b>＝露營地點。</li>
+<li><b>listen to / hear：</b><br>• <b>hear</b>＝「聽到（結果）」：hear a word。<br>• <b>listen to</b>＝「聽（動作）」：listen to music。<br>• 口語提醒：聽力要主動，視為 <b>listening</b> 的動作時才用 listen to。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

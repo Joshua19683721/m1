@@ -1,0 +1,16 @@
+# ---- build-time scratch (one-off patch batches, probes, screenshots) ----
+build/_*.py
+build/_*.txt
+build/*.png
+build/fix_*.txt
+build/probe_*.py
+build/scan2.ps1
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+desktop.ini

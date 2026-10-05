@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第11課 家電故障：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 11 課｜家電故障</h1>
+    <div class="sub-title">Appliances｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 The Washing Machine Broke Down</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Appliances &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> should／shouldn't、too...to、there be 句型
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 上週六早上，我們家的洗衣機突然停下來，發出奇怪的聲音。洗衣機門裡塞滿了濕衣服，於是媽媽關掉了瓦斯暖氣。有整整兩天的髒衣服堆著，爸爸說我們不應該再等下去。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我們檢查了瓦斯爐、烤箱和冰箱，發現它們都沒有問題。在客廳裡，爸爸檢查了電視、電腦和我的手機。妹妹把相機帶上樓，發現燈旁邊那座舊鐘走得太慢。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 維修師下午四點來了，發現洗衣機裡面有一個壞掉的零件。他說這臺機器太舊了，修不好，所以我們打電話給店家。星期日一臺新洗衣機送到了，爸爸說我們應該節約用電。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last Saturday morning</span>, our <span class="w-tap kw-colloc">washing machine</span> <span class="w-tap kw-verb">suddenly stopped</span> and <span class="w-tap kw-verb">made a strange noise</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>規則動詞的過去式 (stopped)：</b>stop 是規則動詞，過去式直接加 -ed；本句用過去式是因為敘述的是「上週六」已發生的事情。<br> 2. <b>主詞與謂語一致 (our washing machine → stopped)：</b>washing machine 是一個名詞片語，整體視為單數主語，所以謂語用 stopped，不可寫成 stop。<br> 3. <b>make + 名詞 (made a strange noise)：</b>make ＝「發出、製造」，後接名詞時<b>不加 to</b>；這是 A2 Key 收錄的高頻搭配。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">The door was full of wet clothes</span>, <span class="w-tap kw-link">so</span> my mother <span class="w-tap kw-verb">turned off</span> the <span class="w-tap kw-colloc">gas heating</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be + 形容詞 + 介系詞 (was full of)：</b>full 是形容詞、of 是介系詞，full of ＝「充滿⋯⋯」，後接名詞 wet clothes。<br> 2. <b>結果連接詞 (so)：</b>so 引出「結果」；so 引出「結果」、because 引出「原因」，兩者不可互換；同一個簡單句中只能擇一，但多子句的句子可以並存（He was tired, so he went to bed early because he had to get up at six.）。<br> 3. <b>多字動詞 turn off：</b>＝「關掉（電器、瓦斯）」；<span style="color:#dc2626;">⚠️ 陷阱：</span>off 在此是必須的小品詞，寫成 turned the gas heating off 可以，省成 turn the gas heating 則語意大變。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There were</span> <span class="w-tap kw-colloc">two days of dirty clothes</span>, and my father <span class="w-tap kw-verb">said we shouldn't wait</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>There be 句型 (There were)：</b>＝「有⋯⋯」，were 後面接複數名詞 two days；be 動詞必須與後方名詞一致（There was a problem.／There were two days.）。<br> 2. <b>間接引語 said + 子句：</b>that 可以省略，但子句仍須是完整句子（said we shouldn't wait）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 said we shouldn't to wait。<br> 3. <b>情態動詞否定 (shouldn't + 原形)：</b>should 的否定式把 not 直接接在 should 後面，後面<b>只能接原形</b> wait。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last Saturday morning, our washing machine suddenly stopped and made a strange noise.', 'The door was full of wet clothes, so my mother turned off the gas heating.', 'There were two days of dirty clothes, and my father said we shouldn\'t wait.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先寫「故障發生」：洗衣機停住並發出異聲，媽媽趕緊關掉暖氣，爸爸也明確表示不應該繼續等。下一段自然把焦點從「發生問題」轉向「找出問題」，於是全家人分頭檢查廚房與客廳裡的每一件電器，讓原本抽象的麻煩變成一連串具體的排查動作。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">checked</span> the <span class="w-tap kw-colloc">cooker</span>, the <span class="w-tap kw-colloc">oven</span> and the <span class="w-tap kw-colloc">fridge</span>, and <span class="w-tap kw-verb">there was no problem</span> with them.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>check + 賓語 (checked the cooker)：</b>check ＝「檢查」，可直接接名詞；若要接動作則用 check + doing（check the washing），不可寫成 check to check。<br> 2. <b>A、B and C 的列舉：</b>三者以上並列時，通常<b>只在最後一項前加 and</b>，中間各項之間只用逗號連接。<br> 3. <b>指示代詞 (them)：</b>them 是 they 的賓格，代替前文的 cooker、oven 與 fridge；若放主語位置就必須改用 they。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">In the living room</span>, my father <span class="w-tap kw-verb">checked</span> the <span class="w-tap kw-colloc">television</span>, the <span class="w-tap kw-colloc">computer</span> and my <span class="w-tap kw-colloc">mobile phone</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>地點片語置於句首：</b>介系詞片語放句首後要加逗號，逗號之後才是主詞與謂語，語序不可倒裝。<br> 2. <b>物主代詞 (my mobile phone)：</b>my 必須置於名詞之前，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 the my mobile phone。<br> 3. <b>電器名稱前的 the：</b>表示家裡特定的那一臺時可加 the（the television）；但泛指「電視這類東西」時也常直接用 television，中文「看電視」也常不加冠詞。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My sister <span class="w-tap kw-verb">took</span> her <span class="w-tap kw-colloc">camera</span> <span class="w-tap kw-link">upstairs</span>, and our old <span class="w-tap kw-colloc">clock near the lamp</span> <span class="w-tap kw-verb">was too slow</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>take + 賓語 + 副詞片語 (took her camera upstairs)：</b>take ＝「拿、帶」，此處是「把相機帶上樓」，upstairs 是副詞片語、不是第二個受詞；take 的雙賓語句型是 take her a camera（把相機給她）；拍照要用 take a photo。<br> 2. <b>形容詞置於名詞前 (our old clock)：</b>英文形容詞通常放在名詞<b>之前</b>（our old clock），與中文「舊的鐘」詞序相反；少數形容詞可置於名詞後（something new、the people present），屬例外。<br> 3. <b>too + 形容詞 (was too slow)：</b>too 修飾 slow 表示程度「太⋯⋯、超出預期」；這裡只說程度，沒有接 to 的不定詞，與本課的 too...to 句型是同一家族。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['We checked the cooker, the oven and the fridge, and there was no problem with them.', 'In the living room, my father checked the television, the computer and my mobile phone.', 'My sister took her camera upstairs, and our old clock near the lamp was too slow.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段以「檢查完畢卻沒發現問題」作結，暗示真正的故障藏在洗衣機內部，必須仰賴專業協助。第三段接著讓維修師上門，指出機器太舊而無法修理，最後以新機送達、全家決定節約用電收尾，完成從「發現問題」到「解決問題」的完整因果閉環。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The <span class="w-tap kw-colloc">repairman</span> <span class="w-tap kw-verb">came at</span> <span class="w-tap kw-link">four o'clock</span> and <span class="w-tap kw-verb">found a broken part</span> in the washing machine.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>特定鐘點用 at：</b>at four o'clock 是確切時；泛指時段才用 in（in the morning）。<br> 2. <b>find + 形容詞 + 名詞 (found a broken part)：</b>broken 是過去分詞作前置定語，相當於 that was broken；這個「形容詞 + 名詞」的複合結構是會考常見得分點。<br> 3. <b>介系詞 in 表內部：</b>in the washing machine ＝「在洗衣機裡面」；on 則表示「在⋯⋯表面上」（on the door）。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          He <span class="w-tap kw-verb">said that</span> the machine <span class="w-tap kw-verb">was too old to repair</span>, <span class="w-tap kw-link">so</span> we <span class="w-tap kw-verb">called the shop</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>間接引語 said that + 子句：</b>say / tell / explain 後接 that 子句；that 可省略，但子句必須維持「主詞 + 動詞」的完整語序。<br> 2. <b>too + 形容詞 + to + 原形：</b><span style="color:#dc2626;">⚠️ 會考核心句型</span>——too old to repair ＝「太舊了以致於不能修」。主動式 to 後面接<b>原形</b> repair；若要表被動須用 <b>to be + 過去分詞</b>（too old to be <b>repaired</b>），✗ 只有 too old to be <b>repair</b>（漏 -ed）才是錯的。<br> 3. <b>時態一致：</b>主句是過去式 said，so 後面的結果子句也用過去式 called，兩句時態保持一致。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">On Sunday</span> a new machine <span class="w-tap kw-verb">arrived</span>, and Dad <span class="w-tap kw-verb">said we should save electricity</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>星期、日期前用 on：</b>On Sunday、on Monday 前置 on；月份用 in（in May），鐘點用 at（at eight）。<br> 2. <b>arrive 是不及物動詞 (a new machine arrived)：</b>arrive 後面<b>不能直接加賓語</b>（✗ the machine arrived home）；要說到達某地必須用 arrive at / arrive in + 場所。<br> 3. <b>should + 原形 (should save)：</b>should ＝「應該」，後接原形 save；這是父親的建議，不是命令，所以用 should 而不用 must 或 have to。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['The repairman came at four o\'clock and found a broken part in the washing machine.', 'He said that the machine was too old to repair, so we called the shop.', 'On Sunday a new machine arrived, and Dad said we should save electricity.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 11 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課將家電故障的排查過程編成一則小故事，聚焦 should／shouldn't 的建議句型、too...to 的結果句型，以及 There be 句型的單複數一致性。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> should／shouldn't、too...to 與 There be</h3>
+        <ul class="summary-list">
+<li><b>1. should／shouldn't（提出建議）：</b><br>• <b>should + 原形</b> ＝ 應該⋯⋯（Dad said we <u>should save electricity</u>.）<br>• <b>shouldn't + 原形</b> ＝ 不應該⋯⋯（we <u>shouldn't wait</u>.）<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>情態動詞後面只能接原形，不可加 to 或 -ed。</li>
+<li><b>2. too + 形容詞 + to + 原形（會考核心句型）：</b><br>too + 形容詞 + to + 原形 ＝「太⋯⋯以致於不能⋯⋯」<br>• <i>例：</i> The machine was <u>too old to repair</u>.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>to 後面若接 <b>be</b>，後面的動詞必須是<u>過去分詞</u>（too old to be <u>repaired</u> ✓／✗ too old to be repair）。</li>
+<li><b>3. There be 句型：</b><br>• <b>There is + 單數／不可數</b>／<b>There were + 複數</b>，be 動詞與後方名詞一致。<br>• <i>例：</i> <u>There were two days</u> of dirty clothes.／<u>There was no problem</u> with them.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>There be 表示「有」，不可與 have 無義地疊用。</li>
+<li><b>4. 其他可遷移的考點：</b><br>• <b>so + 句子</b>（結果）／<b>because + 句子</b>（原因），方向相反不可互換。<br>• <b>find + 形容詞 + 名詞</b>＝找到一個如何如何的東西（found <u>a broken part</u>）。<br>• <b>arrive at / in</b>＋場所；arrive 不可直接帶賓語。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 家電情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>turn off the heating</b>：關掉暖氣（off 不可省略）。</li>
+<li><b>pull out the plug</b>：拔掉插頭（pull out ＝「拔出來」）。</li>
+<li><b>check the cooker / the fridge</b>：檢查爐灶／冰箱。</li>
+<li><b>two days of dirty clothes</b>：兩天的髒衣服（of 表所有關係）。</li>
+<li><b>save electricity</b>：節約用電（save ＋不可數名詞）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 電器名詞與易混搭配辨析</h3>
+        <ul class="summary-list">
+<li><b>cooker / oven 的分工：</b><br>• <b>cooker</b> ＝ 爐灶（做菜用的爐與爐架，可燒瓦斯或用電）。<br>• <b>oven</b> ＝ 烤箱（多半在 cooker 下方或內建，用來烘烤）。兩者功能不同，不可互換。</li>
+<li><b>lamp / light：</b><br>• <b>lamp</b> 指單盞燈具（含燈座與燈罩），可開關：turn on the <u>lamp</u>。<br>• <b>the lights</b> ＝「家裡所有的燈」的集合用法，偏向英式日常說法。</li>
+<li><b>electricity / gas：</b><br>• <b>electricity</b> ＝ 電（不可數名詞）。<br>• <b>gas</b> 在英式英語指「瓦斯」，常見搭配為 <b>gas heating</b>（瓦斯暖氣）與 <b>gas cooker</b>（瓦斯爐）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

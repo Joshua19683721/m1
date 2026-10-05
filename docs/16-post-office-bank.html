@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第16課 郵局與銀行：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 16 課｜郵局與銀行</h1>
+    <div class="sub-title">Services｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 At the Post Office and the Bank</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Services &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 祈使句、Could you...?、it 作虛主語、指示地點的 there be
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 星期六早上，媽媽給我一封信和二十英鎊。她說：「請幫我把這封信寄到郵局，並替我把這張帳單付清。」接著她說：「然後到銀行去，我們會在那裡繳水電費。」
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我先向一位女士打聽：「不好意思，請問旅遊服務中心在哪裡？」圖書館旁邊有一間咖啡館，博物館就在它隔壁。我又看見同一條街上還有電影院、旅館和一家餐廳。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 我們小鎮上有醫院、牙醫診所和運動中心。那個游泳池其實很難找，幸好友人帶我繞了過去。最後我在銀行付清帳單，路上還走過了加油站。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">On Saturday morning</span> my mother <span class="w-tap kw-verb">gave me</span> <span class="w-tap kw-colloc">a letter</span> and <span class="w-tap kw-colloc">twenty pounds</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>give – gave – given：</b> give 的過去式是 gave；此處是「雙受語」句型 give somebody something。<br> 2. <b>英式金額寫法 (twenty pounds)：</b> pound 放在數字後面，並依數量加 s：twenty <u>pounds</u>（＝£20）。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ twenty pound</s>，數量大於一時須加 s。<br> 3. <b>時間介系詞 (On Saturday morning)：</b> 星期名稱前用 <b>on</b>，morning／afternoon／evening 前也常接 on（in the morning 亦可）。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          '<span class="w-tap kw-colloc">Please</span> <span class="w-tap kw-verb">take this letter to the post office</span> and <span class="w-tap kw-verb">pay this bill</span> for me.'
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>祈使句 + please：</b> 祈使句以<b>原形動詞</b>起頭，句首加 please 更客氣：Please <u>take</u>…／<u>pay</u>…。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ Please taking…</s>。<br> 2. <b>複合名詞的重音 (POST office / SPORTS centre)：</b> 這類複合名詞的重音落在<b>第一個字</b>，聽力測驗常利用這個重音差異設題。<br> 3. <b>pay + 費用 + for + 人 (pay this bill for me)：</b> pay 表「付款」時後接<b>費用</b>（pay the bill）；要說明「替誰付」才加 for me。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          '<span class="w-tap kw-link">Then</span> <span class="w-tap kw-verb">come to the bank</span>, and we <span class="w-tap kw-verb">will pay</span> the electricity bill there.'
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>祈使句省略主詞 (Then come…)：</b> 祈使句用原形動詞開頭、主詞 you 省略；句首的 Then 表示「接著、然後」。<br> 2. <b>will + 原形 (will pay)：</b> will 是純粹的未來助動詞，後面<b>只能接原形</b>；否定縮寫為 won't。<br> 3. <b>副詞 there：</b> 此處 there ＝「在那裡」，指前面提到的 the bank；與「表示存在」的 there be 用法不同。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['On Saturday morning my mother gave me a letter and twenty pounds.', '\'Please take this letter to the post office and pay this bill for me.\'', '\'Then come to the bank, and we will pay the electricity bill there.\''])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段全是媽媽交代的「任務清單」：寄信、繳費，語氣直接又口語。主角手裡握著信與英鎊站在街口，下一步該往哪走立刻成了問題——於是第二段自然切到「問路」，把整條街的線索拉開。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          '<span class="w-tap kw-colloc">Excuse me</span>, <span class="w-tap kw-verb">could you tell me</span> <span class="w-tap kw-colloc">where the tourist information office is</span>?'
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>Could you...? 的禮貌請求：</b> could 是 can 的過去式，語氣更客氣，後面接<b>原形動詞</b>；用來請人提供訊息或幫忙。<br> 2. <b>間接問句語序 (where the office is)：</b> 引導的疑問詞子句必須「疑問詞 + 主詞 + 動詞」，<b>不倒裝、也不加 do/does</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ where is the office</s>。<br> 3. <b>複合名詞 (tourist information office)：</b> tourist information ＝「旅遊資訊」，office 為中心字，合成服務處所的名稱。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There is</span> a <span class="w-tap kw-colloc">cafe beside the library</span>, and the museum <span class="w-tap kw-verb">is next to it</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>指示地點的 there be (There is a cafe)：</b> there be 用來說明「某處有什麼」；後接單數 a cafe，故用 <b>is</b>，若換成 cafes 就得寫 there are。<br> 2. <b>beside 與 next to：</b> 兩者都表示「在⋯旁邊」；next to 語氣更接近「緊接著」，beside 較通用。<br> 3. <b>代詞 it：</b> it 取代前面出現過的單數名詞 a cafe，避免重複敘述。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">also saw</span> a <span class="w-tap kw-colloc">cinema, a hotel and a restaurant</span> <span class="w-tap kw-colloc">on the same street</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>see 的過去式 (saw)：</b> see – saw – seen；此處 saw 是<b>過去式</b>，不可與同名名詞 saw（鋸子）混淆。<br> 2. <b>A、B and C 的列舉：</b> 英文列舉只在最後一項前加 and：a cinema, a hotel and a restaurant。<br> 3. <b>also 的位置：</b> also 放在 be 動詞之後、主要動詞之前：I <u>also</u> saw…／She is <u>also</u> late。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['\'Excuse me, could you tell me where the tourist information office is?\'', 'There is a cafe beside the library, and the museum is next to it.', 'I also saw a cinema, a hotel and a restaurant on the same street.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段一路靠旁人指路，才把鎮上的服務處所一一串起來：旅遊服務中心、圖書館、博物館、電影院、旅館、餐廳。掌握方向之後，第三段回到主角身上——游泳池雖難找，但有人帶路，兩項任務終於一件件完成。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          In my town <span class="w-tap kw-verb">there is</span> a <span class="w-tap kw-colloc">hospital, a dentist and a sports centre</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>there be 看第一個名詞：</b> be 動詞只跟<b>緊接在後面</b>的名詞一致：a hospital 是單數，所以用 is；後面兩項都接 a 是英式常見的簡潔列舉法。<br> 2. <b>a dentist / a sports centre：</b> 處所名詞前照樣要加冠詞 a；sports centre 是英式常用拼法，重音在第一字。<br> 3. <b>前置片語 (In my town)：</b> 地點片語放在句首，後面加逗號；這是 there be 句型最常見的語序。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">It was not easy to find</span>, <span class="w-tap kw-link">but</span> my friend <span class="w-tap kw-verb">showed me</span> the <span class="w-tap kw-colloc">swimming pool</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>it 作虛主語 (It was not easy to find)：</b> 這裡的 it 只是形式上的主語，本身沒有意義；真正的主語是不定式片語 <b>to find</b>。<br> 2. <b>easy / difficult + to + 原形：</b> <u>It is easy to learn</u>；<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ It is easy for me learn</s>。easy 本身已含「容易」之意，不可再加 very。<br> 3. <b>show + 人 + 物 (showed me the swimming pool)：</b> 雙受語最常見的順序是 show somebody something（也可說 show something to somebody）；<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ showed the swimming pool me</s>。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">At last</span> I <span class="w-tap kw-verb">paid the bill at the bank</span> and walked <span class="w-tap kw-colloc">past the petrol station</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>固定副詞片語 (At last)：</b> ＝「最後、終於」，放在句首後加逗號，用來收束一段波折。<br> 2. <b>pay the bill at the bank：</b> pay + 費用是固定搭配；at the bank 指明付款的地點。<br> 3. <b>pass 與 past：</b> walked past 中 past 是介系詞（經過）；<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ walked passed</s>，passed 是過去式動詞。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['In my town there is a hospital, a dentist and a sports centre.', 'It was not easy to find, but my friend showed me the swimming pool.', 'At last I paid the bill at the bank and walked past the petrol station.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 16 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課以寄信繳費為主線，練習祈使句、Could you...? 請求句型、it 虛主語與 there be 四組句型：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 祈使句、Could you...? 與 there be</h3>
+        <ul class="summary-list">
+<li><b>1. 祈使句（請你做某事）：</b><br>• 直接用<b>原形動詞</b>起頭，主詞 you 省略（Please <u>take</u> the letter）。<br><span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ Please taking / Please you take</s>。</li>
+<li><b>2. Could you...? 的禮貌請求：</b><br>could 是 can 的過去式，語氣更客氣，後接原形（Could you <u>tell me</u> the way?）。<br>引導的間接問句要用「疑問詞 + 主語 + 動詞」，不倒裝、不加 do/does。</li>
+<li><b>3. it 作虛主語：</b><br>it 只擔任形式主語，真正的主語是後面的 to + 原形：<u>It was not easy to find</u>。<br><span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ It is easy for me learn</s>。</li>
+<li><b>4. 指示地點的 there be：</b><br>There <u>is</u> a cafe beside the library.（a cafe 是單數 → is）<br><span style="color:#dc2626;">⚠️ 陷阱：</span>✗ There have a bank（there be ≠ have）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 服務處所情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>pay the bill / pay for something</b>：付款、繳費（pay the bill 與 pay for the bill 都可以；pay for + 物品是另一個常見說法）。</li>
+<li><b>excuse me</b>：請問、打擾一下——問路或借過時的必備用語。</li>
+<li><b>beside / next to</b>：在⋯旁邊／緊接著⋯，兩者皆可互換，next to 更強調緊鄰。</li>
+<li><b>on the same street</b>：在同一條街上，描述地點相對位置的高頻說法。</li>
+<li><b>walk past / pass</b>：走過、經過；past 是介系詞，passed 是過去式動詞，兩者不可混用。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混用的服務處所詞</h3>
+        <ul class="summary-list">
+<li><b>library / bookshop / museum：</b><br>• <b>library</b> ＝ 圖書館（借書、看書）。<br>• <b>bookshop</b> ＝ 書店（買書）。<br>• <b>museum</b> ＝ 博物館（展示文物）。</li>
+<li><b>café / restaurant：</b><br>• <b>café</b> ＝ 咖啡館，賣飲料、蛋糕與輕食。<br>• <b>restaurant</b> ＝ 餐廳，有服務生與完整菜單（含 main course）。</li>
+<li><b>post office / bank：</b><br>• <b>post office</b> ＝ 郵局，寄信、寄包裹、買郵票。<br>• <b>bank</b> ＝ 銀行，存錢、領錢、繳費；bill（帳單）通常拿到 bank 付款。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

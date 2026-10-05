@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第34課 五句型總整理：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 34 課｜五句型總整理</h1>
+    <div class="sub-title">Personal Feelings, Opinions and Experiences｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 The Five Basic Patterns</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Personal Feelings, Opinions and Experiences &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 五大句型與句型擴展
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 上週一，吳老師展開了一個關於英文句型的新單元。眾人都知道練習會帶來進步，而我們的老師也常常這樣說。米亞已經準備好要應付這場考試了，雖然對她來說，寫出好句子一直很困難。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 她試著只用第三句型，所以她的句子很長，卻又不一樣。舉例來說，她寫下「The dog chases」，因為她並不知道其他的句型。吳老師很和善，但米亞覺得很抱歉，因為她的答案並不夠清楚。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 接著他展示那五種重要的句型，並說它們非常實用。「Birds fly」是第一句型，「My sister is tall」是第二句型，他說道。米亞仔細地把它們寫下來，覺得自己很勇敢，也為自己那些清楚的新規則感到高興。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last Monday</span>, <span class="w-tap kw-colloc">Mr. Wu</span> <span class="w-tap kw-verb">started</span> an <span class="w-tap kw-verb">interesting new unit</span> about English sentence patterns.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時間片語置於句首 (Last Monday)：</b> 具體時間放在句首時後面要加逗號；這裡講已經結束的事，謂語用過去式 started。<br> 2. <b>冠詞 a / an 的判斷：</b> 看緊接的形容詞——<b>an</b> interesting（母音音素開頭）、<b>a</b> new unit（子音音素開頭），是會考常見細節。<br> 3. <b>複合名詞 (sentence patterns)：</b> 名詞修飾名詞時用單數：<u>✓</u> two sentence patterns；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 *two sentences pattern。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Everyone <span class="w-tap kw-verb">knows that</span> <span class="w-tap kw-colloc">practice makes progress</span>, and our teacher <span class="w-tap kw-verb">often says so</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>knows that + 肯定子句：</b> 間接敘述用「動詞 + that + 主詞 + 動詞」，語序不可倒裝：knows <u>that practice makes</u> progress。<br> 2. <b>so 作代詞：</b> 此處 so 單獨使用，代替前面已出現過的整個句子，意思相當於「如此、這麼說」；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可再加任何內容。<br> 3. <b>頻率副詞的位置 (often says)：</b> 頻率副詞放在實義動詞之前：he <u>often says</u>；若動詞是 be，則放在後面：He is <u>often</u> late。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Mia <span class="w-tap kw-verb">was ready</span> for the test, although <span class="w-tap kw-link">writing good sentences</span> <span class="w-tap kw-colloc">felt hard to</span> her.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be 動詞 + 形容詞 (was ready)：</b> ready 是形容詞，表示「準備好的」；後面接名詞時須用 be ready <u>for</u> the test。<br> 2. <b>讓步連詞 although：</b> although ＝「雖然」，已經含有讓步意味，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可再與 but 同時出現在同一句中。<br> 3. <b>動名詞片語作主語 (writing good sentences)：</b> writing good sentences 是動名詞片語，在 although 引導的子句中作主語；主詞要用 V-ing，不能用 to ＋ 動詞原形（不可寫成 *to write good sentences）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last Monday, Mr. Wu started an interesting new unit about English sentence patterns.', 'Everyone knows that practice makes progress, and our teacher often says so.', 'Mia was ready for the test, although writing good sentences felt hard to her.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先點出本課主軸：吳老師用「練習才會進步」這句話揭開五句型單元，並交代米亞既期待又覺得困難的心情。第二段隨即寫出她的實際困難——她只會用第三句型，句子因此又長又彆扭，讓原本輕鬆的學習氛圍一下子沉了下來。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">tried to use only</span> the third pattern, so her sentences <span class="w-tap kw-verb">were</span> long but <span class="w-tap kw-colloc">different</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>try to do sth：</b> try ＋ to ＋ 動詞原形，表示「試著做某事」，這一句本身就是第三句型 S＋V＋O。<br> 2. <b>so 表結果：</b> so 後面接結果子句，說明「只用第三句型」造成的後果；because 表原因，兩者方向相反。<br> 3. <b>形容詞並列 (long but different)：</b> but 連接兩個並列的形容詞 long 與 different，說明句子「很長，卻又與平常不一樣」。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">For example</span>, she <span class="w-tap kw-verb">wrote</span> 'The dog chases', because she <span class="w-tap kw-verb">did not know</span> the other patterns.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>舉例引導詞 (For example)：</b> 置於句首後加逗號，是會考作文拿分的常用引導詞。<br> 2. <b>直接引語必須加引號：</b> 說出別人講的原文時，要用引號包住，且引號內必須是完整句子。<br> 3. <b>the other + 複數名詞：</b> one … the other … 表示「其中一個…其餘幾個」；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 *the another patterns。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Mr. Wu <span class="w-tap kw-verb">was kind</span>, but Mia <span class="w-tap kw-colloc">felt sorry</span> because her answers <span class="w-tap kw-verb">were not clear</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be + 形容詞 (was kind)：</b> kind 是形容詞，直接接在 be 動詞後，屬於第二句型 S＋V＋C。<br> 2. <b>feel + 形容詞：</b> feel sorry ＝「感到抱歉」，後面直接接形容詞，不加 to；<span style="color:#dc2626;">⚠️ 陷阱：</span>*felt sorry of not clear（of 後要接名詞）；另注意 feel sorry to + 完整句子（I feel sorry to hear that…）本身正確，不要誤判。<br> 3. <b>because 表原因：</b> because 引出原因子句 her answers were not clear，說明她為什麼覺得抱歉。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['She tried to use only the third pattern, so her sentences were long but different.', 'For example, she wrote \'The dog chases\', because she did not know the other patterns.', 'Mr. Wu was kind, but Mia felt sorry because her answers were not clear.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】有了吳老師的示範，米亞照著五種句型重寫句子，從只會一種句型到能靈活運用，這個轉折讓她找回信心。最後她覺得勇敢又高興，也體會到清楚的規則確實有用，全班因此重新喜歡上英文。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Then</span> he <span class="w-tap kw-verb">showed her</span> five <span class="w-tap kw-colloc">important patterns</span> and <span class="w-tap kw-verb">said</span> they were really useful.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>show sb sth：</b> show 屬第五句型（雙受詞），也可改寫成 show sth to sb，兩者意思相同。<br> 2. <b>said + 陳述子句：</b> 轉述時用 they 代替前面的 five patterns，避免重複主詞。<br> 3. <b>really + 形容詞：</b> really 放在形容詞 useful 之前加強語氣；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 *useful really。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          '<span class="w-tap kw-verb">Birds fly</span>' is pattern one, and 'My sister <span class="w-tap kw-verb">is tall</span>' is pattern two, he said.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>第一、第二句型的差別：</b> "Birds fly" 沒有受詞，是 <b>S＋V</b>；"My sister is tall" 有系動詞和補語，是 <b>S＋V＋C</b>。<br> 2. <b>數詞作主語：</b> one、two 當主語時，謂語一律用單數 is。<br> 3. <b>he said 放在句尾：</b> 書寫時常把說話標記放在引號之後、句末，屬英文敘事的標準寫法。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Mia <span class="w-tap kw-verb">wrote them down carefully</span>, <span class="w-tap kw-colloc">felt brave</span>, and <span class="w-tap kw-verb">was happy about</span> her <span class="w-tap kw-link">clear new rules</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>write down 的代名詞位置：</b> 代名詞必須放在 down 之前：<u>✓</u> write them down；<span style="color:#dc2626;">⚠️ 陷阱：</span>*write down them 是最常見的錯誤。<br> 2. <b>並列動詞共用主語：</b> wrote、felt、was 共用同一個主語 Mia，後面都不再重複 he 或 she。<br> 3. <b>feel brave / be happy about：</b> 連繫動詞 feel 後接形容詞；be 動詞 was 後也接形容詞 happy，兩種結構不可混用。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Then he showed her five important patterns and said they were really useful.', '\'Birds fly\' is pattern one, and \'My sister is tall\' is pattern two, he said.', 'Mia wrote them down carefully, felt brave, and was happy about her clear new rules.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 34 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事帶出國中會考最常考的五大基本句型，並示範同一個句子只要調整「主詞加動詞後面接什麼」，就能變成五種不同的結構。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 五大句型與句型擴展</h3>
+        <ul class="summary-list">
+<li><b>1. 五大句型一覽：</b><br>① <b>S＋V</b>：Birds fly.<br>② <b>S＋V＋C</b>：My sister is tall.（C＝名詞或形容詞）<br>③ <b>S＋V＋O</b>：He kicks the ball.<br>④ <b>S＋V＋O＋OC</b>：The news made me happy.<br>⑤ <b>S＋V＋OO</b>：I gave him a book.</li>
+<li><b>2. 第五句型雙受詞的順序：</b><br>• 兩個名詞同時作受詞時<b>人先物後</b>：<u>✓</u> I gave him a book。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>*I gave a book him 是會考常見錯誤。</li>
+<li><b>3. 系動詞後面接什麼：</b><br>• <b>接名詞</b>：He is a doctor.（表身分）<br>• <b>接形容詞</b>：She is tall.（表狀態）<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>is very kindness</s> 或 <s>is go home</s>。</li>
+<li><b>4. 句型擴展：附加問句與 tag 問句：</b><br>• 有 be 動詞就用同一個 be 動詞：You are ready, <u>aren't you</u>?<br>• 沒有 be 動詞就用助動詞 do／does／did：She writes well, <u>doesn't she</u>?</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 課堂情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>feel + 形容詞</b>：感到⋯⋯（feel sorry／feel happy），後接形容詞，不加 to。</li>
+<li><b>write down</b>：寫下來；代名詞放中間（write it down），不可寫成 write down it。</li>
+<li><b>the other + 複數名詞</b>：one … the other …（一個與其餘幾個），不可用 another。</li>
+<li><b>be kind to sb</b>：對某人友善；<b>be sorry about sth</b>：對某事感到抱歉。</li>
+<li><b>find + 受詞 + 形容詞</b>：find the rules useful（發現規則很有用），後面接的是補語，屬第四句型 S＋V＋O＋OC，不是雙受詞。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混淆的說法與用詞</h3>
+        <ul class="summary-list">
+<li><b>practise / practice：</b><br>• <b>practise</b> 是動詞（英式），後接 V-ing：practise writing。<br>• <b>practice</b> 是名詞：Practice makes perfect.</li>
+<li><b>hard / difficult：</b><br>• <b>hard</b> 偏「費力、辛苦」：It is hard work。<br>• <b>difficult</b> 偏「困難、不容易」：The test is difficult。</li>
+<li><b>other / another / others：</b><br>• <b>another</b> ＝另一個（單數）：another pattern。<br>• <b>the others</b> ＝其餘的人或物：the other patterns。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

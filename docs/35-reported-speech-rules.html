@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第35課 怎麼轉述：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 35 課｜怎麼轉述</h1>
+    <div class="sub-title">Documents and Texts｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 How to Report What Others Say</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Documents and Texts &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 間接引語完整規則與報導動詞選擇
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 我們學校的校報叫作 The Corner，凱文是這學期的新主編。每逢星期一，他都會請社團成員把他們的答案寫在一張小表格上。他把收到的每一則訊息和每一封電子郵件都逐字記了下來。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 當他交出第一篇文章時，李老師笑了起來，只問了他一個問題。「沒有人像你這樣講英文的，凱文。」她說道，社團裡頓時安靜下來。她解釋說，真正的校報必須轉述別人說的話。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 於是凱文把筆記改寫成間接引語，每個字都仔細檢查過。「我已經完成訪談了。」他說，接著又告訴我們他很累。他的文章刊登在雜誌上，讀者寄給他許多信件與明信片。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our <span class="w-tap kw-colloc">school newspaper</span> <span class="w-tap kw-verb">is called</span> The Corner, and Kevin <span class="w-tap kw-verb">is</span> the new editor this term.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>被動語態 (is called)：</b> 只有 newspaper 是動作的承受者，用 be ＋ 過去分詞，表示「校報被稱為 The Corner」；後面的 Kevin is the new editor 是 be 動詞 ＋ 名詞的身分句，不是被動語態。<br> 2. <b>專有名詞的大小寫：</b> The Corner 是報紙名稱，<b>每一個字的首字母都須大寫</b>，包括 the 後面的 Corner。<br> 3. <b>並列句用 and 連接：</b> 兩個完整句子各有一個主詞與謂語，不能只共用一個謂語。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Every Monday</span> he <span class="w-tap kw-verb">asked the club members to write</span> their answers <span class="w-tap kw-colloc">on a small form</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>頻率片語 (Every Monday)：</b> 置於句首時這裡不加逗號，直接接主詞 he；既然是「每週都這樣」，謂語用一般過去式 asked。<br> 2. <b>ask sb to do sth：</b> ask ＋ 人 ＋ to ＋ 動詞原形，表示「要求某人做某事」，後面不可再加 that 子句。<br> 3. <b>write sth on a form：</b> 「把答案寫在表格上」，介系詞用 on；<span style="color:#dc2626;">⚠️ 陷阱：</span>*in the form 語意不同，不可混用。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          He <span class="w-tap kw-verb">wrote down</span> every <span class="w-tap kw-colloc">message and email</span> he received, <span class="w-tap kw-link">word for word</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>write down sth：</b> ＝「寫下來」，代名詞必須置於 down 之前：write it down。<br> 2. <b>every + 單數可數名詞：</b> every message、every email 的名詞一律用單數形式，這是會考送分細節。<br> 3. <b>省略關係代詞的定語子句：</b> he received 修飾前面的 message and email，關係代詞 who／that 在此可省略。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Our school newspaper is called The Corner, and Kevin is the new editor this term.', 'Every Monday he asked the club members to write their answers on a small form.', 'He wrote down every message and email he received, word for word.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先交代場景與人物：校報 The Corner 的新主編凱文，為了寫社團報導，忠實地逐字記下訪談內容。然而當他把第一篇文章交出時，第二段立刻迎來轉折——李老師只用一句話就點出核心問題，直接引語並不能直接刊登。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">When he showed his first article</span>, Ms. Lee <span class="w-tap kw-verb">laughed and asked</span> him <span class="w-tap kw-colloc">one question</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時間狀語子句置於句首：</b> When he showed his first article 後加逗號，主句為 Ms. Lee laughed and asked him one question。<br> 2. <b>laugh 與 laugh at：</b> laugh 單獨使用是「笑」；<span style="color:#dc2626;">⚠️ 陷阱：</span>laugh at 才表示「取笑某人」，此處老師只是笑，並非取笑。<br> 3. <b>ask sb one question：</b> 這裡是敘述句，不是問句，所以不寫成 asked him what question。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          '<span class="w-tap kw-colloc">Nobody speaks English like you</span>, Kevin,' she <span class="w-tap kw-verb">said</span>, and the club <span class="w-tap kw-verb">became very quiet</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>直接引語加說話標記：</b> 說話內容用引號包住，she said 放在引號外，這是口語與寫作中最自然的順序。<br> 2. <b>人稱代詞 you 不隨報導動詞改變：</b> 對方當面講話時，you 仍指說話的對象，這點和 I → he／she 的規則不同。<br> 3. <b>become + 形容詞：</b> become quiet ＝「變得安靜」，強調變化過程；be quiet 只表示當下的狀態。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">explained that</span> a real <span class="w-tap kw-colloc">newspaper must report</span> <span class="w-tap kw-verb">what people say</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>explain that + 子句：</b> explain 不可像 say 那樣只接內容，必須寫成 explain (to sb) that…，或 explain sth to sb。<br> 2. <b>must + 動詞原形 (must report)：</b> 情態動詞後面只能接動詞原形，表示「必須、應該」。<br> 3. <b>what 引導的名詞性子句：</b> what people say ＝「人們說的話」；主語是 people（複數），所以 say 保持原形，不加 s。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['When he showed his first article, Ms. Lee laughed and asked him one question.', '\'Nobody speaks English like you, Kevin,\' she said, and the club became very quiet.', 'She explained that a real newspaper must report what people say.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】在老師的解釋之後，故事進入第三段的解決：凱文把筆記整個改寫成間接引語，時態、人稱與報導動詞都調整到位。最終文章成功刊登並收到大量回信，這也呼應他開頭時一字不漏記下每一則訊息的細心。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          So Kevin <span class="w-tap kw-verb">changed</span> his <span class="w-tap kw-colloc">notes into reported speech</span> and <span class="w-tap kw-verb">checked every word carefully</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>change A into B：</b> ＝「把 A 變成 B」，change 屬第五句型 S＋V＋OO，也可用 change A to B。<br> 2. <b>reported speech：</b> 間接引語又稱 reported speech，正式文章中幾乎不直接引用別人的原話。<br> 3. <b>every + 單數名詞 + 副詞：</b> carefully 修飾 checked，置於句末時最容易得分。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          '<span class="w-tap kw-verb">I have finished it</span>,' he <span class="w-tap kw-verb">said</span>, and then he <span class="w-tap kw-verb">told us that</span> he was tired.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時態後退 have → had：</b> 報導過去說過的內容時，現在完成式 have finished 變成 <b>had finished</b>。<br> 2. <b>已是過去式的動詞不再後退：</b> 原句若是 was tired，轉述後仍是 was tired；只有「比過去更早」才變 had ＋ 過去分詞。<br> 3. <b>say 與 tell 的選擇：</b> say 後面直接接內容，tell 必須接人：<u>✓</u> told us that…；<span style="color:#dc2626;">⚠️ 陷阱：</span>*He told that… 缺少受詞。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          His <span class="w-tap kw-colloc">text appeared in the magazine</span>, and readers <span class="w-tap kw-verb">sent him</span> many <span class="w-tap kw-colloc">letters and postcards</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>媒體用語 in the magazine：</b> 「刊登在某雜誌上」用 in the magazine，報紙也可用 in the newspaper。<br> 2. <b>send sb sth：</b> 第五句型雙受詞，<b>人先物後</b>：<u>✓</u> sent him many letters；也可寫成 sent many letters to him。<br> 3. <b>letter 與 postcard：</b> letter 是信件，postcard 是郵寄明信片，兩者都能與 readers 搭配作受詞。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['So Kevin changed his notes into reported speech and checked every word carefully.', '\'I have finished it,\' he said, and then he told us that he was tired.', 'His text appeared in the magazine, and readers sent him many letters and postcards.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 35 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事帶出間接引語的兩大難點：說話內容的「時態後退」，以及報導動詞與人稱、時間詞的配合，整理成可以直接套用的完整規則。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 間接引語完整規則</h3>
+        <ul class="summary-list">
+<li><b>1. 時態後退表（報導過去的說話）：</b><br>• am／is／are → <u>was／were</u><br>• have／has → <u>had</u><br>• will → <u>would</u>　• can → <u>could</u><br>• was／were（已是過去）→ <u>had ＋ 過去分詞</u></li>
+<li><b>2. 完全不後退的動詞：</b><br>• must／might／should／could／would／had better 後面<b>直接接原形</b>。<br>• 過去完成式 had finished 不再後退，仍是 had finished。</li>
+<li><b>3. 人稱與時間詞的變化：</b><br>• I → he／she，my → his／her，here → there，this → that，now → then。<br>• tonight → that night，yesterday → the day before，tomorrow → the next day，last week → the week before。</li>
+<li><b>4. 報導動詞的選擇：</b><br>• say ＋ 內容／tell ＋ 人 ＋ 內容／explain (to sb) that…／ask sb if／whether…<br>• suggest (that) sb (should) do／advise sb to do／warn sb to do<br>• 一般問句用 if 或 whether，<b>不用問號、不用 do／does</b>。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 採訪與轉述高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>say that + 子句</b>：說明某件事，不需受詞（He said that…）。</li>
+<li><b>tell sb sth</b>：告訴某人某事，必須有人；<span style="color:#dc2626;">⚠️ 陷阱：</span>*tell that… 缺少受詞。</li>
+<li><b>word for word</b>：逐字地、一字不漏地（記錄訪談時很好用）。</li>
+<li><b>fill in / write on a form</b>：在表格上填寫，介系詞用 on，不用 in。</li>
+<li><b>change A into B</b>：把 A 變成 B（把筆記改成間接引語）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易說錯的報導用詞</h3>
+        <ul class="summary-list">
+<li><b>say / tell：</b><br>• <b>say</b> 強調「說出內容」，可直接接 that 子句。<br>• <b>tell</b> 強調「告訴某人」，<b>必須接人</b>：tell us that…</li>
+<li><b>speak / talk：</b><br>• <b>speak</b> 強調「開口、發言」，speak English／speak to sb。<br>• <b>talk</b> 強調「交談」，talk with sb／talk about sth。</li>
+<li><b>a text / a message / an email：</b><br>• <b>message</b> 最短，指一則訊息。<br>• <b>text</b> 可指一段文字或文章片段。<br>• <b>email</b> 專指電子郵件。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

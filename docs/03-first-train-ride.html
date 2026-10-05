@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第3課 第一次搭火車：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 3 課｜第一次搭火車</h1>
+    <div class="sub-title">Travel and Transport ／ Places: Buildings｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 The First Train Ride</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Travel and Transport ／ Places: Buildings &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 規則與不規則過去式、過去進行式、arrive at / in
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 七月，學校舉辦了一次新竹之旅，我非常興奮。我們七點整抵達火車站，並在三號月台等候火車。等待的同時，老師向我們介紹這條老鐵路的歷史。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 火車延誤了二十分鐘，於是我們坐下來喝了一些水。有些同學在拍照，但我的朋友 Ken 因為熬夜而睡著了。突然，廣播說我們應該在下一站下車。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 我們下車的時候，陽光正照耀著，風也很溫暖。我們沿著一條小路走到一個小村莊，並在那裡吃了午餐。我雖然疲倦但很開心，於是決定隔年夏天再搭火車旅行。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">In July</span>, my school <span class="w-tap kw-verb">organised</span> a <span class="w-tap kw-colloc">trip to</span> Hsinchu, and I <span class="w-tap kw-verb">was really excited</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>過去式 (organised)：</b>此段開始切換到過去時制；organise 為規則動詞，直接加 -ed（美式拼法 organized 另計）。<br> 2. <b>名詞片語 (a trip to + 目的地)：</b>a trip to ＋ 城市 ＝「前往⋯的旅行」，to 後接地點不加冠詞。<br> 3. <b>be + 副詞 + 形容詞 (was really excited)：</b>修飾形容詞的應用 really 置於 be 動詞之後、形容詞之前。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">arrived at</span> the railway station <span class="w-tap kw-link">at seven o'clock</span> and <span class="w-tap kw-verb">waited for</span> the train <span class="w-tap kw-colloc">on platform three</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>arrive at / arrive in：</b><br>• <b>arrive at</b> ＋ 小地點（station / school / airport）<br>• <b>arrive in</b> ＋ 大地方（city / country）<br>• 此處 railway station 為小地點，故用 <b>at</b>。<span style="color:#dc2626;">✗ arrive to</span> 是常見錯誤。 2. <b>時間表達 (at seven o'clock)：</b>具體鐘點前一律加 at，與第 2 課的 Last Saturday（this／last／next + 星期或特定日皆不加介詞）形成對照。<br> 3. <b>wait for + 對象：</b>wait 後接受詞時<b>必須加 for</b>；「等候」某人是 wait for sb。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">While we were waiting</span>, our teacher <span class="w-tap kw-verb">told us about</span> the history of the old railway.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>While + 進行式 (were waiting)：</b>While 引導的子句常用「過去進行式」，表示漫長且持續的背景動作。<br> 2. <b>tell sb about + 對象：</b>與第 1 課的 tell sb that… 同屬「tell + 人 + 內容」的架構。<br> 3. <b>抽象歷史表達：</b>the history of + 對象 ＝「⋯的歷史」，of 後接被描述的對象。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['In July, my school organised a trip to Hsinchu, and I was really excited.', 'We arrived at the railway station at seven o\'clock and waited for the train on platform three.', 'While we were waiting, our teacher told us about the history of the old railway.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段以時間與地點的交代建立旅行的起點，「車站、月台、月台號」等具體細節讓讀者彷彿置身候車室。第二段轉為旅途中的小插曲：火車誤點、朋友睡著，讀者的注意力自然被廣播聲拉住，為轉折做鋪陳。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The train <span class="w-tap kw-verb">was delayed</span> <span class="w-tap kw-colloc">by twenty minutes</span>, so we <span class="w-tap kw-verb">sat down</span> and <span class="w-tap kw-verb">drank</span> some water.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>被動語態 (was delayed)：</b>was/were + 過去分詞，表示「被⋯⋯」。注意 delayed 是 <b>延誤</b>，cancel 是「取消」，二者不可混用。<br> 2. <b>by + 時間量 (by twenty minutes)：</b>by 引出「差距量」＝「遲了二十分鐘」，by 後不可加「晚」等中文詞。<br> 3. <b>lie – sit 對比（會考語意題）：</b><span style="color:#dc2626;">✗ lie down（躺下）</span>　✓ sit down（坐下）；本句是坐在月台上，故用 sit down。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Some students <span class="w-tap kw-verb">took photos</span>, but my friend Ken <span class="w-tap kw-verb">fell asleep</span> because he <span class="w-tap kw-verb">had stayed up late</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>不規則過去式 (took / fell)：</b>take–took–taken、fall–fell–fallen，兩者皆為會考必背高頻不規則動詞。<br> 2. <b>stay up late：</b>「熬夜到很晚」，up 在此不表示「往上」，是固定片語。<br> 3. <b>過去完成式 (had stayed)：</b>had + 過去分詞，表示「在他睡著<b>之前</b>就已經熬夜了」——兩個過去動作的先後關係。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Suddenly</span>, the announcement <span class="w-tap kw-verb">said that</span> we <span class="w-tap kw-verb">should get off at</span> the next station.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>轉折副詞 (Suddenly)：</b>置於句首加逗號，標示情境的突然轉變，是敘事文常見的訊號詞。<br> 2. <b>should + 原形 (should get off)：</b>should 為情態動詞，表建議「應該」，後面<b>必須接原形動詞</b>。<br> 3. <b>交通搭配 (get off)：</b>get on 上車／get off 下車；對比 get out of（小車）與 get out of bed（起床）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['The train was delayed by twenty minutes, so we sat down and drank some water.', 'Some students took photos, but my friend Ken fell asleep because he had stayed up late.', 'Suddenly, the announcement said that we should get off at the next station.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第三段寫下車後的風景與心情，為整趟旅行畫下句點。標題雖是「第一次搭火車」，結尾卻說「明年還要再搭」，暗示這次的經驗讓主角愛上了旅行，也為後續的延伸閱讀留下空間。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">When we left</span> the train, the sun <span class="w-tap kw-verb">was shining</span> and the wind <span class="w-tap kw-verb">was warm</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>When + 短暫過去式 (When we left)：</b>When 引導的「短暫」子句常用一般過去式，與主句的進行式形成「短動作 vs. 長背景」的對比。<br> 2. <b>進行式描寫畫面 (was shining)：</b>過去進行式常用來描寫背景、景色與氛圍，使畫面感更強。<br> 3. <b>感官形容詞 (was warm)：</b>wind 為不可數名詞，warm 為形容詞修飾它，二者不可加 a。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">walked along</span> a path <span class="w-tap kw-colloc">to a small village</span> and <span class="w-tap kw-verb">ate</span> our lunch <span class="w-tap kw-colloc">there</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>介系詞 (along)：</b>along a path ＝「沿著一條小路」，為 A2 Key「Places: Countryside」主題的地點描述詞。<br> 2. <b>不規則過去式 (ate)：</b>eat–ate–eaten，同類變化如第 1 課的 lose–lost–lost，須成組記憶。<br> 3. <b>指示代詞 (there)：</b>there ＝「那裡」，可單獨使用代替前述地點，避免重複名詞。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">was tired but happy</span>, and I <span class="w-tap kw-verb">decided to travel</span> by train again <span class="w-tap kw-link">next summer</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>轉折連接詞 (but)：</b>but 表「但是、然而」，前後語意相反；對照第 1 課的 so（結果）與 because（原因）。<br> 2. <b>by + 交通工具：</b>by bus / by train / by bike ＝「搭乘⋯⋯」，by 後不加冠詞 the。<br> 3. <b>again 與時間狀語 (again next summer)：</b>again 再次 ＋ next summer（依全文過去敘事，指該年暑假之後的<b>隔年夏天</b>，不是「明年」），兩者並用即會考常見的「時間＋頻率」寫作組合。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['When we left the train, the sun was shining and the wind was warm.', 'We walked along a path to a small village and ate our lunch there.', 'I was tired but happy, and I decided to travel by train again next summer.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 3 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事大量使用過去式，是會考「閱讀理解＋改寫句子」的必考場景。主軸在<b>不規則過去式</b>與<b>過去進行式</b>的正確判斷。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 過去式三大類與時態判斷</h3>
+        <ul class="summary-list">
+<li><b>1. 三態不規則變化（必背）：</b><br>go–<u>went</u>–gone｜take–<u>took</u>–taken｜eat–<u>ate</u>–eaten<br>fall–<u>fell</u>–fallen｜lose–<u>lost</u>–lost｜come–<u>came</u>–come</li>
+<li><b>2. 過去進行式（背景動作）：</b><br>was / were + V-ing<br>• 用於 While / When 引導的背景子句：<b>While we were waiting</b>, the train arrived.<br>• 用於描寫景色氛圍：the sun <b>was shining</b>.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>was / were 不可漏寫，會考常故意漏掉 be 動詞。</li>
+<li><b>3. 被動語態與 by：</b><br>was / were + 過去分詞 ＝「被⋯⋯」<br>The train <u>was delayed</u> <b>by</b> twenty minutes.（遲了二十分鐘）</li>
+<li><b>4. 過去完成式 had + 過去分詞：</b><br>表示「過去某時點之前已完成」，用來說明兩件過去事件的先後：<br>He <u>had stayed up</u> late, so he <b>fell asleep</b>.</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 旅行與交通高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>arrive at + 小地點</b>／<b>arrive in + 大地方</b>。</li>
+<li><b>wait for + 對象</b>（等待某人某物）。</li>
+<li><b>get on / get off</b>：上車 / 下車（公車、火車）。</li>
+<li><b>stay up late</b>：熬夜到很晚。</li>
+<li><b>by + 交通工具</b>：by train / by bus / by bike（不加 the）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 高頻不規則動詞與易混淆片語</h3>
+        <ul class="summary-list">
+<li><b>sit down / lie down：</b><br>• <b>sit down</b> ＝ 坐下（sit–sat–sat）<br>• <b>lie down</b> ＝ 躺下（lie–lay–lain）<br>• <b>stand up</b> ＝ 站起<br><span style="color:#dc2626;">⚠️ 常誤：把 sit down 寫成 lie down。</span></li>
+<li><b>delayed / cancelled：</b><br>• <b>delayed</b> ＝ 延誤、遲到（still will arrive）<br>• <b>cancelled</b> ＝ 取消（不再運行）<br>• <b>on time</b> ＝ 準時</li>
+<li><b>delay / cancel / miss：</b><br>• <b>delay</b> ＝ 延誤（train was delayed by…）<br>• <b>cancel</b> ＝ 取消（班車停駛）<br>• <b>miss</b> ＝ 錯過（miss the bus / miss the train）</li>
+<li><b>by + 單位的三種用法：</b><br>• <b>by + 時間量</b>：遲了多久（delayed <b>by</b> twenty minutes）<br>• <b>by + 單位</b>：相差多少（won <b>by</b> two points）<br>• <b>by + 地點</b>：車站旁邊（sit <b>by</b> the window）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

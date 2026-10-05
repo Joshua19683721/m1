@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第5課 看醫生記：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 5 課｜感冒看醫生</h1>
+    <div class="sub-title">Health, Medicine and Exercise｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 A Visit to the Doctor</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Health, Medicine and Exercise &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> should／shouldn't、must 與 have to、too...to 句型
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 上週一，我醒來時喉嚨痛、頭痛得厲害。我覺得非常不舒服，而且累到無法去上學。媽媽說我應該去看醫生，於是她帶我到住家附近的醫院。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我們九點以前就到了，但候診室裡已經有許多人。護士幫我量了體溫，並告訴我我有發燒。醫生說我必須每天服藥三次，並多喝水。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 他還告訴我一週內不可以吃冰淇淋。我遵從他的建議，留在家裡兩天。到了星期五，我完全好了，可以正常回學校上課。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last Monday</span>, I <span class="w-tap kw-verb">woke up with</span> a <span class="w-tap kw-colloc">sore throat</span> and a bad <span class="w-tap kw-colloc">headache</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>不規則過去式 (woke)：</b>wake–woke–woken，且 <b>wake up</b> 後接 with ＋ 症狀，是「帶著⋯⋯醒來」的固定搭配。<br> 2. <b>病名搭配 (a sore throat / a headache)：</b>症狀名詞前須加冠詞 a；throat 為可數名詞用單數，headache 也是單數（✗ <s>headaches</s> 在此不合語意）。<br> 3. <b>bad 加在名詞前：</b>bad 作形容詞<b>置於名詞之前</b>修飾 headache（嚴重的頭痛），不可寫成 a headache bad。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">felt terrible</span>, and I <span class="w-tap kw-verb">was too tired to go to</span> school.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>連繫動詞 + 形容詞 (felt terrible)：</b>feel ＋ 形容詞 ＝「感到⋯⋯」，felt 為不規則過去式；terrible 為 A2 Key「Personal Feelings」形容詞。<br> 2. <b>too...to + 原形：</b><span style="color:#dc2626;">⚠️ 會考核心句型</span>——too + 形容詞 + to + 原形 ＝「太⋯⋯以至於不能⋯⋯」。<b>此結構中的不定詞是句子的「目標」，後面不能再接 be 動詞</b>（✗ too tired to be go to school）。<br> 3. <b>too 與 very 的差別：</b>very ＋ 形容詞 ＝「很⋯⋯」（客觀程度）；too ＋ 形容詞 ＝「太⋯⋯（超出預期）」，通常帶有負面或結果義。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My mother <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">should see a doctor</span>, so she <span class="w-tap kw-verb">took me to</span> the hospital <span class="w-tap kw-colloc">near our home</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>should + 原形 (should see)：</b>should 為情態動詞，表<b>建議</b>「應該」，後面<b>只能接原形</b> see，不可寫 saw 或 to see。<br> 2. <b>take sb to + 場所：</b>take ＝「帶某人去⋯⋯」，句型為「動詞＋受詞＋介詞 to＋地點」；與第 2 課的 give sb sth（動詞＋雙受詞）不同，take 後的 to 是<b>介系詞</b>而非不定詞。<br> 3. <b>間接引語 + so (said that... so...)：</b>先轉述建議，再以 so 連結結果，是會考寫作「提出建議並說明後果」的標準結構。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last Monday, I woke up with a sore throat and a bad headache.', 'I felt terrible, and I was too tired to go to school.', 'My mother said that I should see a doctor, so she took me to the hospital near our home.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段從「身體不適」寫起，用 woke up、felt、was too tired 這些簡單卻精準的動詞與句型，讓讀者立刻進入情境。第二段切入醫院現場，將抽象的「不舒服」具體化成量體溫、拿藥等可觀察的行為。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">arrived before</span> nine o'clock, but <span class="w-tap kw-verb">there were already</span> many people <span class="w-tap kw-colloc">in the waiting room</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>before + 時間點：</b>before ＝「在⋯之前」，可接鐘點（before nine）也可接事件（before we left）。<br> 2. <b>already 的位置：</b>already 為副詞，置於 be 動詞之後：there <b>were already</b> many people；置於一般動詞之前：He <b>already finished</b> it.<br> 3. <b>There be 的一般過去式呼應：</b>與第 2 課 there were 一致，複數名詞 people 配 were；people 本身即為複數，表示「人們」時不可寫 peoples（peoples 另指「民族」）。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The nurse <span class="w-tap kw-verb">checked my temperature</span> and <span class="w-tap kw-verb">told me that</span> I <span class="w-tap kw-verb">had a fever</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>所有格 (my temperature)：</b>my 須置於名詞前，不可寫 the my temperature；temperature 為 A2 Key「Measurements」與「Health」主題的核心詞。<br> 2. <b>tell sb that + 子句：</b>對照第 1 課的 said that；<b>tell 後必須有人（me）</b>，是本課句型組合的關鍵。<br> 3. <b>have a fever：</b>have ＋ 冠詞 a ＋ 病名 ＝「發⋯⋯燒／患⋯⋯」，與 have a cold、have a toothache 同屬固定搭配。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The doctor <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">must take the medicine</span> <span class="w-tap kw-colloc">three times a day</span> and <span class="w-tap kw-verb">drink more water</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>must + 原形 (must take)：</b>must 表示「必須」<b>（來自說者的強調或醫囑）</b>，後接原形 take。<br> 2. <b>次數表達 (three times a day)：</b>「三次／一天」，a day 在此相當於中文的「每一天」，整個片語置於句尾。<br> 3. <b>more + 不可數名詞：</b>drink <b>more</b> water ＝「喝更多水」，more 後接不可數名詞且不可加複數。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['We arrived before nine o\'clock, but there were already many people in the waiting room.', 'The nurse checked my temperature and told me that I had a fever.', 'The doctor said that I must take the medicine three times a day and drink more water.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第三段回到康復的結果，並把第二段醫囑一條條兌現（忍住不吃冰淇淋、留在家裡兩天）。這種「照著建議做」的收束方式，讓全文形成一個完整的因果閉環，也讓句型記憶更牢。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          He <span class="w-tap kw-verb">also told me that</span> I <span class="w-tap kw-verb">shouldn't eat any ice cream for a week</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>shouldn't + 原形：</b>＝「不應該⋯⋯」，情態動詞的否定只需在 <b>should 後加 not</b>，不須另加助動詞。<br> 2. <b>any 在否定句中：</b>本句是否定句，故用 <b>any</b> ice cream（對照第 2 課的 some fruit）。<br> 3. <b>期間長度 (for a week)：</b>for ＋ 一段時間，表示「持續一週」；此時不用 during。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">followed his advice</span> and <span class="w-tap kw-verb">stayed at home</span> for two days.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>不可數名詞 (advice)：</b><span style="color:#dc2626;">⚠️ 會考超高頻陷阱</span>——advice 是<b>不可數名詞</b>，不可加 a/an，也不可加 s（✗ <s>an advice</s>／✗ <s>advices</s>）。<br> 2. <b>過去式 (followed / stayed)：</b>兩者皆為規則動詞直接加 -ed。<br> 3. <b>stay at + 場所：</b>stay ＝「停留」；<b>at home / at school</b> 為固定搭配、不加冠詞，但 <b>at the hotel</b>、at the office 必須<b>加 the</b>，不可一概省略。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">By Friday</span>, I <span class="w-tap kw-verb">was completely better</span> and <span class="w-tap kw-verb">could go back to school</span> normally.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>by + 時間點：</b>by ＝「到⋯⋯為止」，意為「到了星期五已經⋯⋯」；對照前文的 delayed <b>by</b> twenty minutes（同為 by，但語意依搭配決定）。<br> 2. <b>比較級 (better)：</b>good 的比較級為 <b>better</b>（good–better–best），且為不規則變化，不可寫 more good。<br> 3. <b>could + 原形 (could go back)：</b>could 表「能夠、得以」，後接原形，與第 1 課 couldn't open 的結構相同。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['He also told me that I shouldn\'t eat any ice cream for a week.', 'I followed his advice and stayed at home for two days.', 'By Friday, I was completely better and could go back to school normally.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 5 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課把<b>情態動詞</b>的三個成員（should 建議／must 強調義務／have to 外在規定）放進同一個生活情境，並搭配國中會考必考的 <b>too...to</b> 句型與不可數名詞陷阱。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 情態動詞三分法與 too...to</h3>
+        <ul class="summary-list">
+<li><b>1. should / shouldn't（建議）：</b><br>• <b>should + 原形</b> ＝ 應該⋯⋯（提出建議）<br>• <b>shouldn't + 原形</b> ＝ 不應該⋯⋯<br>• <i>例：</i> You <u>should drink more water</u>.</li>
+<li><b>2. must vs. have to（義務的來源）：</b><br>• <b>must</b> ＝ 說者／醫囑的<b>堅持</b>（I <u>must</u> go.／The doctor said I <u>must</u> rest.）<br>• <b>have to</b> ＝ <b>外在規定</b>造成的義務（We <u>have to</u> wear uniforms.）<br>• <b>mustn't</b> ＝ 禁止；<b>don't have to</b> ＝ 不必，兩者意義完全不同。</li>
+<li><b>3. too...to + 原形（會考核心句型）：</b><br>too + 形容詞 + to + 原形 ＝「太⋯⋯以致於不能⋯⋯」<br>• <i>例：</i> I was <u>too tired to go</u> to school.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>too...to 後面<b>不能再加 be 動詞</b>（✗ too tired to be go to school）。</li>
+<li><b>4. for + 時間段 / by + 時間點：</b><br>• <b>for a week / for two days</b> ＝ 持續多久<br>• <b>by Friday</b> ＝ 到⋯⋯為止<br>• <b>before nine o'clock</b> ＝ 在⋯之前</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 就醫情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>woke up with a sore throat</b>：帶著喉嚨痛醒來。</li>
+<li><b>have a fever / a cold / a toothache</b>：發燒／感冒／牙痛（have ＋ a ＋ 病名）。</li>
+<li><b>check my temperature</b>：量體溫。</li>
+<li><b>take the medicine three times a day</b>：一天服藥三次。</li>
+<li><b>follow advice / stay at home</b>：遵從建議／待在家裡。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 不可數名詞與易混詞辨析</h3>
+        <ul class="summary-list">
+<li><b>advice / information / furniture：</b><br>皆為<b>不可數名詞</b>。<br>• ✗ <s>an advice</s>　✓ some advice<br>• ✗ <s>advices</s>　✓ a piece of advice<br>• ✗ <s>an information</s>　✓ some information</li>
+<li><b>advice（n.）vs. advise（v.）：</b><br>• <b>advice</b> ＝ 建議（名詞，不可數）<br>• <b>advise</b> ＝ 建議（動詞），句型為 <b>advise sb to + 原形</b><br>• 注意拼寫差異：名詞 -ce、動詞 -se。</li>
+<li><b>ill / sick / bad：</b><br>• <b>ill</b> ＝ 生病的（<b>be ill</b>，英式常見）<br>• <b>sick</b> = 生病的（<b>feel sick</b>，也指「噁心想吐」）<br>• <b>bad</b> ＝ 壞的／嚴重的（a bad headache 嚴重的頭痛）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

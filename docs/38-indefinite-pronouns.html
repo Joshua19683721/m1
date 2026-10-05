@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第38課 誰都可以：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 38 課｜誰都可以</h1>
+    <div class="sub-title">Communication and Technology｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Anyone Can Join</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Communication and Technology &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 不定代詞全面：some- ／ any- ／ no- ／ every- 複合詞
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 上個星期一，我們學校開了一個新的社團網站，任何人都可以在線上加入。我點了螢幕上的連結，填上自己的名字和電子郵件地址。我的朋友 Mina 請我幫她處理鍵盤和滑鼠。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 上個星期五，有人下載了一個音樂檔案，並把它放上我們的網頁。沒有人知道是誰傳的，但人人都想要一份音樂的副本。到了隔天早上，那個檔案已經出現在電腦教室裡的每一個螢幕上。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 接著社團社長要求大家，不要在沒有密碼的情況下分享任何檔案。我傳了一則簡訊給社長，問那個檔案究竟是誰的。現在我班上的每個人都知道那條規則，而這個網站對任何人都是開放的。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our school <span class="w-tap kw-verb">opened a new club website</span> <span class="w-tap kw-link">last Monday</span>, and <span class="w-tap kw-verb">anyone can join</span> it <span class="w-tap kw-verb">online</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>複合不定代詞 (anyone)：</b>some- ／ any- ／ no- ／ every- 加 <b>one / body / thing / where</b>，組成<u>四個一組（共十六個）</u>的複合不定代詞。<br> 2. <b>any- 的語氣 (anyone can join)：</b>any- 常用在否定句與疑問句，但表示「任何人都可以」的<b>歡迎語氣</b>例外，此處正是如此。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>複合不定代詞作主語時<b>前面不加 a / an</b>：<s>✗ An anyone can join.</s>應寫成 Anyone can join.
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">clicked the link</span> on the <span class="w-tap kw-colloc">screen</span> and typed my name and <span class="w-tap kw-colloc">email address</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>click 的兩種用法：</b>click 可直接接受詞（click the link），也可寫成 <b>click on</b> the link，兩種都正確。<br> 2. <b>on the screen：</b>screen ＝「螢幕」；「在螢幕上」固定用 <b>on</b>，不用 in。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ in the screen</s>。<br> 3. <b>email (n &amp; v)：</b>email 兼作名詞與動詞——my email address（我的電子郵件地址）／I emailed her.（我寄了郵件給她）。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My friend Mina <span class="w-tap kw-verb">asked me to help her</span> with the <span class="w-tap kw-colloc">keyboard</span> and the <span class="w-tap kw-colloc">mouse</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>ask ＋ 人 ＋ to ＋ 原形 (asked me to help her)：</b>ask somebody to do something ＝「請某人做某事」，to 後面接<b>原形</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ asked me helping her</s>。<br> 2. <b>help sb with sth：</b>with 後面接「事物」；也可以說 help sb do sth（此時不寫 with）。<br> 3. <b>不規則複數 (mouse → mice)：</b>keyboard 的複數是 keyboards，但 mouse 的複數必須寫成 <b>mice</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ two mouses</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Our school opened a new club website last Monday, and anyone can join it online.', 'I clicked the link on the screen and typed my name and email address.', 'My friend Mina asked me to help her with the keyboard and the mouse.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先交代新社團網站開站，主角一行人依序完成加入流程：點連結、填資料、熟悉鍵盤與滑鼠，並用 anyone can join it online 點題「人人都可以參加」。下一段立刻是第一個麻煩——有人擅自下載檔案，還把它公開分享出去。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last Friday</span> <span class="w-tap kw-verb">somebody downloaded</span> a song <span class="w-tap kw-colloc">file</span> and put it on our <span class="w-tap kw-colloc">web page</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>some- 用於肯定句 (somebody)：</b>some- 複合詞專門用在<b>肯定句</b>，表示「某個人」。<span style="color:#dc2626;">⚠️ 陷阱：</span>作主語時視為<b>單數</b>——<s>✗ Somebody download a file.</s>應寫成 somebody <u>downloaded</u> a file。<br> 2. <b>download (n &amp; v)：</b>動詞直接接受詞（download a file），名詞則指「下載」這個動作（A2 Key 兩種詞性都收錄）。<br> 3. <b>web page ／ website ／ the web：</b>web page ＝ 一個網頁，website ＝ 整個網站，the web ＝ 網路整體，三者層級不同，不可混用。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">Nobody knew</span> <span class="w-tap kw-colloc">who sent it</span>, but <span class="w-tap kw-verb">everybody wanted</span> a copy of the music.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>間接問句 (who sent it)：</b>這是陳述句，疑問詞後面直接用<b>主詞 ＋ 動詞</b>（保持原時態），不倒裝、也不加 did。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ Nobody knew who did send it</s>。<br> 2. <b>no- 與 every- 的分工：</b>no- 複合詞（nobody / nothing / nowhere）＝「一個也沒有」，<u>本身即否定</u>；every- 複合詞（everybody / everything / everywhere）＝「每一個、全部」。<br> 3. <b>but 表對比：</b>前句說沒人知道是誰傳的，後句說人人都想要一份，兩者意思相反，因此用 but 連接。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">By the next morning</span>, the <span class="w-tap kw-colloc">file</span> was on <span class="w-tap kw-colloc">every screen</span> in the <span class="w-tap kw-colloc">computer</span> room.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be 動詞表狀態 (was on)：</b>這裡 <b>was on</b> 只是描述檔案「在哪裡」，屬於 be 動詞＋介系詞 片語，<b>不是</b>被動語態。<br> 2. <b>every ＋ 單數可數名詞 (every screen)：</b>every 後面的名詞一定要用<b>單數</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ every screens</s>。<br> 3. <b>by ＋ 過去時間點：</b>by the next morning ＝「到了隔天早上已經⋯⋯」，常搭配完成式；這裡用一般過去式敘述當時的狀態即可。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last Friday somebody downloaded a song file and put it on our web page.', 'Nobody knew who sent it, but everybody wanted a copy of the music.', 'By the next morning, the file was on every screen in the computer room.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段描寫檔案被擴散後的亂象：來源無人知曉，人人卻都想要一份。第三段則從這場混亂反推出新規則——沒有密碼就不要分享檔案，先問清楚主人是誰，網站也因此重新回到「人人可加入、但人人要守規矩」的狀態。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Then the club president <span class="w-tap kw-verb">asked everyone not to share</span> <span class="w-tap kw-verb">any file</span> <span class="w-tap kw-link">without</span> a <span class="w-tap kw-colloc">password</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>ask sb (not) to do sth：</b>否定不定式時，<b>not 要放在 to 的前面</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ asked everyone to not share</s>應寫成 asked everyone <u>not to share</u>。<br> 2. <b>any ＋ 單數可數名詞 (any file)：</b>否定句裡用 <b>any</b> ＋ 單數名詞，不用 some。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ not share some file</s>。<br> 3. <b>without ＋ 名詞／V-ing：</b>without ＝「沒有⋯⋯」，後面接名詞或動名詞。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ without share／✗ without to share</s>，應寫成 without sharing。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">sent a text</span> to the club president and <span class="w-tap kw-verb">asked who owned</span> the <span class="w-tap kw-colloc">file</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>send a text：</b>text (n &amp; v) ＝「簡訊」與「傳簡訊」，send a text to somebody 是固定搭配，介詞固定用 to。<br> 2. <b>間接問句 (who owned the file)：</b>在陳述句中用「疑問詞 ＋ 主詞 ＋ 動詞」，<b>不倒裝、不加 do / does / did</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ asked who did own the file</s>。<br> 3. <b>時態一致 (sent ... asked ...)：</b>兩個並列動詞發生在同一過去時間，因此都用過去式 sent 與 asked。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Now <span class="w-tap kw-verb">everyone knows the rule</span>, and the site <span class="w-tap kw-verb">is open to anyone</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>every- 作主語視為單數 (everyone knows)：</b>everyone / everybody / everything / everywhere 在會考一律視為<b>單數</b>，謂語用第三人稱單數。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ Everyone know the rule.</s>應寫成 Everyone <u>knows</u> the rule。<br> 2. <b>be open to ＋ 人：</b>be open to ＝「對⋯⋯開放」，to 在此是介系詞；open 在這裡是<b>形容詞</b>。<br> 3. <b>anyone else：</b>else 放在 anyone / anything / somebody 的<b>後面</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ else anyone</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Then the club president asked everyone not to share any file without a password.', 'I sent a text to the club president and asked who owned the file.', 'Now everyone knows the rule, and the site is open to anyone.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 38 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事涵蓋 some-、any-、no-、every- 四組複合不定代詞的選擇，以及作主語時的單數規則：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 複合不定代詞四大句型</h3>
+        <ul class="summary-list">
+<li><b>1. some- ／ any- 的選擇：</b><br>• <b>some-</b> 用於<b>肯定句</b>（<u>Somebody sent</u> a file.）<br>• <b>any-</b> 用於<b>否定句與疑問句</b>（Did <u>anyone</u> call?）<br>• 表示「任何人都可以」的歡迎語氣也用 anyone。</li>
+<li><b>2. no- ／ every- 的語氣：</b><br>• <b>no-</b> ＝ 一個也沒有，<u>本身即否定</u>（Nobody knew.）<br>• <b>every-</b> ＝ 每一個、全部（Everybody wanted a copy.）<br>• <span style="color:#dc2626;">✗ Nobody didn't know.</span> no- 後面絕不可再加 not。</li>
+<li><b>3. 三組構件：</b><br>some/any/no/every ＋ <b>one / body / thing / where</b> → 一個人、一件事、一個地方。<br>one / body 指人、thing 指事物、where 指地方；這些複合不定代詞<u>後面不可直接再接名詞</u>（✗ someone student，應說 some student）。</li>
+<li><b>4. 作主語時的單數規則：</b><br>everyone / everybody / everything / everyone in my class 都視為<b>單數</b>。<br><span style="color:#dc2626;">⚠️ 陷阱：</span>✗ Everyone <b>are</b> ready. → <u>✓ Everyone is</u> ready.</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 網路通訊情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>download a file</b>：下載一個檔案（動詞直接接受詞）。</li>
+<li><b>click the link</b>：點選連結；也可說 click <b>on</b> the link。</li>
+<li><b>on the screen</b>：在螢幕上（固定用 on，不用 in）。</li>
+<li><b>send a text to somebody</b>：傳簡訊給某人（介詞固定用 to）。</li>
+<li><b>be open to anyone</b>：對任何人開放；to 後面接對象。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混淆的不定代詞</h3>
+        <ul class="summary-list">
+<li><b>somebody / someone ／ anybody / anyone：</b><br>• <b>some-</b> ＝ 某人（我心中知道是誰，或在肯定句中）。<br>• <b>any-</b> ＝ 任何人（不知道是誰，或在否定、疑問句中）。</li>
+<li><b>no one ／ none vs. not ... any：</b><br>• <b>No one came.</b>（一個也沒來，否定已含在詞裡）<br>• <b>He didn't see anyone.</b>（他沒看到任何人，否定由句子負責）<br>• 兩種寫法都合法，但<b>同一句不可重複否定</b>。</li>
+<li><b>website ／ web page ／ the web：</b><br>• <b>website</b> ＝ 一整個網站<br>• <b>web page</b> ＝ 網站裡的一頁<br>• <b>the web</b> ＝ 網路整體（on the web）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第51課 網路安全：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 51 課｜網路安全</h1>
+    <div class="sub-title">Communication and Technology｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Staying Safe Online</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Communication and Technology &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 情態動詞與保護個資的建議句型：should／must／mustn't／never
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 上個月，表姐把她淘汰的手機和一組密碼交給我。我用它跟同學聊天，還下載了一個免費的應用程式。她叮嚀我，我必須每隔幾個月就更換一次密碼。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 一天晚上，我點了一個奇怪的連結，畫面上出現一份網路贈品。螢幕要求我填入住址、年齡和學校名稱。表姐一把攔住我，還說這類資訊非常危險。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 現在我絕不把自己的電話號碼或住址貼到網路上。我一定會先檢查網站和每個檔案，然後才敢點下去。表姐說，細心的學生在網路上都能保持安全。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last month</span> my cousin <span class="w-tap kw-verb">gave me</span> her <span class="w-tap kw-colloc">old mobile phone</span> and <span class="w-tap kw-colloc">a password</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時間片語與過去式 (Last month)：</b>last month 是過去時間，敘述句用一般過去式 gave（give 的不規則過去式 give–gave–given）。<br> 2. <b>give + 人 + 物 (gave me her mobile phone)：</b>me 是「給誰」，mobile phone 是「給什麼」，兩個受詞的順序不可互換。<br> 3. <b>mobile phone / cell phone：</b>兩者都是「手機」，英式教材常用 mobile phone。<span style="color:#dc2626;">⚠️ 陷阱：</span>複合名詞不可拆開（<s>✗ a phone mobile</s>）。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">used it to chat</span> <span class="w-tap kw-colloc">with my classmates</span> and <span class="w-tap kw-verb">download</span> a <span class="w-tap kw-colloc">free app</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>use A to do B：</b>use it to chat… ＝「用它來聊天」；to 之後只能接原形 chat。<br> 2. <b>download 與 chat 的詞性：</b>download 在此是動詞「下載」，作名詞時指「下載的內容」；chat 作動詞「聊天」、作名詞「聊天記錄」。<br> 3. <b>a free app：</b>app 是 application 的簡寫。<span style="color:#dc2626;">⚠️ 陷阱：</span>母音音素開頭的名詞前用 an，不可寫 <s>✗ a app</s>，也不可寫 <s>✗ a app free</s>。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">told me that</span> I <span class="w-tap kw-verb">must change</span> my <span class="w-tap kw-colloc">password every few months</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>tell sb that + 子句 (told me that…)：</b>tell 必須接人當受詞；轉述別人的指示時，子句裡的 must <b>不隨主句的過去式改變</b>。<br> 2. <b>must + 原形 (must change)：</b>must 是情態動詞，後面只接原形，而且沒有人稱與數的變化（<s>✗ musts change</s>）。<br> 3. <b>every few months：</b>every few ＝「每隔幾⋯⋯」，是 A2 高頻時間片語。<span style="color:#dc2626;">⚠️ 陷阱：</span>every 後的名詞用<b>複數</b>（months），不可寫 <s>✗ every few month</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last month my cousin gave me her old mobile phone and a password.', 'I used it to chat with my classmates and download a free app.', 'She told me that I must change my password every few months.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先交代故事的起點：表姐把手機與密碼交給主角，並立下第一條規矩。第二段沿著「使用新手機」自然推到手滑點擊連結，兩段之間由同一部手機串起，也帶出好奇心正是風險的入口。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">One evening</span> I <span class="w-tap kw-verb">clicked a strange link</span> and <span class="w-tap kw-verb">saw</span> a <span class="w-tap kw-colloc">free gift online</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>click 與介系詞：</b>click 可直接接受詞（click a link），也可說 click <b>on</b> a link。<br> 2. <b>see 的過去式 saw：</b>see–saw–seen，本句 saw a free gift 是一般過去式。<br> 3. <b>strange ＝「奇怪的、可疑的」：</b>a strange link 是網路安全主題的關鍵詞。<span style="color:#dc2626;">⚠️ 陷阱：</span>線上看到免費贈品時要先停手，英文常說 it is <u>too good to be true</u>。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The <span class="w-tap kw-colloc">screen</span> <span class="w-tap kw-verb">asked for</span> my <span class="w-tap kw-colloc">address</span>, my age, and my school name.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>ask for + 名詞：</b>ask for ＝「要求⋯⋯」；本句把 screen 當擬人化的主語，寫作「螢幕要求填資料」。<br> 2. <b>address ＝「地址」：</b>a home address、an e-mail address；說地址時用介系詞 at。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><u>✓ I live at this address.</u>／<s>✗ I live in this address.</s>；另外三個以上並列名詞之間要加逗號，最後一項前加 and。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My cousin <span class="w-tap kw-verb">stopped me</span> and <span class="w-tap kw-verb">said that</span> <span class="w-tap kw-colloc">such information</span> is <span class="w-tap kw-verb">dangerous</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>stop sb (from) doing：</b>stop me ＝「攔住我」；完整寫法是 stop me <b>from</b> posting，from 可以省略。<br> 2. <b>指示形容詞 such (such information)：</b>such ＝「像這樣的」，後面可接不可數名詞（such information）或複數名詞（such books）；接單數可數名詞時前面一定要加 a／an（✗ such book，✓ such a book）。本句接不可數名詞 information，<b>不加 a</b>。<br> 3. <b>information 是不可數名詞：</b>可數用法寫 pieces of information。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ an information / many informations</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['One evening I clicked a strange link and saw a free gift online.', 'The screen asked for my address, my age, and my school name.', 'My cousin stopped me and said that such information is dangerous.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段停在螢幕索要個資的危機時刻，第三段則是主角把教訓轉成三條具體規則。這三條規則分別對應前面出現過的電話、連結與檔案，讓故事的教訓落在可以執行的動作上，而不是空泛的口號。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Now I <span class="w-tap kw-verb">must never post</span> my <span class="w-tap kw-colloc">phone number or my address</span> <span class="w-tap kw-link">online</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>must never + 原形：</b>must never ＝「絕對不可以」，語氣最強；後面接原形 post，不加 to，也不加 -s。<br> 2. <b>phone number / mobile number：</b>phone number ＝「電話號碼」，是不可拆開的複合名詞。<br> 3. <b>online 作副詞：</b>post … online ＝「在網路上貼出」；作形容詞時修飾名詞（an online form）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ my number phone</s>（複合名詞須前修飾、後中心）。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-link">always</span> <span class="w-tap kw-verb">check the website and every file</span> <span class="w-tap kw-verb">before I click</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>頻率副詞 always 的位置：</b>放在主要動詞之前（I <u>always</u> check…）；若謂語是 be 動詞，則放在 be 動詞之後（She is always late）。<br> 2. <b>before + 子句 (before I click)：</b>before 引導時間子句，子句用一般現在式表示未來會發生的事。<br> 3. <b>a website / a web page / the internet：</b>website 是可數名詞（複數 websites）；上網固定說 on the internet。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ a internet</s>，也不可寫 <s>✗ in the internet</s>。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My cousin <span class="w-tap kw-verb">says that</span> <span class="w-tap kw-colloc">careful students</span> <span class="w-tap kw-verb">stay safe</span> <span class="w-tap kw-colloc">on the internet</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>一般現在式表示普遍事實：</b>這是給所有學生的一般建議，兩個子句都用一般現在式；主語 students 是複數，故用 stay。<br> 2. <b>stay + 形容詞 (stay safe)：</b>stay 可直接接形容詞表示「保持某狀態」，相當於 keep / remain + 形容詞。<br> 3. <b>on the internet：</b>這是固定介系詞片語，定冠詞 the 不可省略。<span style="color:#dc2626;">⚠️ 陷阱：</span>上網說 be <b>on</b> the internet，不可寫 <s>✗ in the internet</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Now I must never post my phone number or my address online.', 'I always check the website and every file before I click.', 'My cousin says that careful students stay safe on the internet.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 51 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課以一次差點被騙的經驗帶出網路安全守則，重點在 should、must、never 的用法差別。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 情態動詞的建議與強制</h3>
+        <ul class="summary-list">
+<li><b>1. must ＝「必須」：</b><br><i>例句：</i>You <u>must change</u> your password every few months.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>must 只有<b>肯定句</b>；要表示禁止請改用 mustn't。</li>
+<li><b>2. mustn't ＝「不可以」：</b><br><i>例句：</i>You <u>mustn't post</u> your phone number online.<br>• mustn't ＝「禁止」／don't have to ＝「不必」，兩者意思正好相反。</li>
+<li><b>3. should ＝「應該」（建議）：</b><br><i>例句：</i>You <u>should tell</u> a parent or a teacher about it.<br>• 語氣比 must 柔和，適合用來提供建議（Why don't you…／You'd better…）。</li>
+<li><b>4. never + 原形：</b><br>• <i>例句：</i>I <u>never post</u> my address online.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>never 後面只接原形，<s>✗ I never to post / I nevers post.</s></li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 網路情境高頻搭配</h3>
+        <ul class="summary-list">
+<li><b>change a password</b>：更換密碼（change + 名詞，動詞後不加 to）。</li>
+<li><b>a strange link / a free gift</b>：可疑的連結／免費贈品（看到免費贈品要提高警覺）。</li>
+<li><b>on the internet ／ post … online</b>：在網路上（介系詞片語）／在網路上貼出（副詞用法）。</li>
+<li><b>stop sb from + V-ing</b>：阻止某人做某事（from 可省略：stop me posting）。</li>
+<li><b>personal information</b>：個人資料（住址、電話、就讀學校等）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混淆的近義詞辨析</h3>
+        <ul class="summary-list">
+<li><b>on the internet ／ website：</b><br>• <b>on the internet</b> ＝ 在網際網路上（固定介系詞 on）。<br>• <b>a website</b> ＝ 一個具體的網站，可數（two websites）。<br>• <span style="color:#dc2626;">⚠️</span> 不可寫 <s>✗ a internet</s>。</li>
+<li><b>screen / web page：</b><br>• <b>screen</b> ＝ 螢幕（裝置或畫面皆可）：The screen asked for…<br>• <b>web page</b> ＝ 網站裡的一頁：a page of a website。<br>• 固定搭配：click on / tap on。</li>
+<li><b>address 的兩種用法：</b><br>• <b>地址</b>：This is my home address.（介系詞用 at）<br>• <b>處理、面對</b>：She addressed the problem calmly.<br>• <span style="color:#dc2626;">⚠️</span> <b>e-mail address</b> 才是「電子郵件信箱」。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

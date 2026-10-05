@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第58課 看懂標籤：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 58 課｜看懂標籤</h1>
+    <div class="sub-title">Food and Drink ／ Measurements｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Reading a Food Label</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Food and Drink ／ Measurements &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> less／fewer／more 比較句型、than 與 as...as 的比較、how much／how many 的提問
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 上週五，我們班為校外教學準備午餐，每一瓶飲料上面都有標籤。Mia 那瓶的正面只印著「Light」兩個大字，所以她並沒有打開來喝。我那瓶是一公升的果汁，我把背面的每一個字都讀完了。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 這一瓶的糖比那一瓶少，所以學生提著它比較輕。Mia 那瓶可樂喝起來是甜的，於是她想買那一瓶當午餐。她那個三明治的盒子上寫著二十克糖，所以她又把它放了下來。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 後來 Mia 發現她那瓶 Light 飲料的糖比我這瓶還多，看起來有點擔心。於是我們再比一次數字，選出糖比較少、脂肪也比較少的那一瓶。老師說，閱讀食品標籤比從包裝正面亂猜要簡單得多。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last Friday</span>, our class <span class="w-tap kw-verb">packed lunch</span> for a school trip, and every <span class="w-tap kw-colloc">bottle had a label</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>一般過去式 (packed)：</b>packed 是 pack 的過去式（pack–packed–packed）；句首 Last Friday 已把時間點放在過去，謂語用過去式。<br> 2. <b>every + 單數名詞 (every bottle)：</b>every 後接<b>單數</b>可數名詞 bottle，意思相當於 each bottle。<br> 3. <b>have / has / had + 名詞 (had a label)：</b>have 表示「有」；主語 every bottle 視為單數，過去式要用 <b>had</b>。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">The front of</span> Mia's bottle <span class="w-tap kw-verb">only said</span> Light, <span class="w-tap kw-link">so</span> she <span class="w-tap kw-verb">did not try</span> it.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>單數人名的所有格 (Mia's bottle)：</b>表示「Mia 自己的那一瓶」，單數人名後加 <b>'s</b>。<br> 2. <b>only 修飾主要動詞 (only said)：</b>only 放在主要動詞前面，強調「只有⋯⋯而已」；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可說成 *said only Light。<br> 3. <b>so 表結果 + 否定過去式 (did not try)：</b>so 引出前句造成的結果；否定用 <b>did not + 原形</b> try，✗ 不可寫 did not tried。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My bottle <span class="w-tap kw-verb">was</span> <span class="w-tap kw-colloc">one litre of juice</span>, and I <span class="w-tap kw-verb">read</span> every word <span class="w-tap kw-link">on the back</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>量的表達：one + 單位名詞 + of + 內容物：</b>one litre of juice ＝「一公升的果汁」，of 後面接真正被裝盛的東西。<br> 2. <b>不可數名詞前的單位 (one litre)：</b>litre 是容積單位；juice 為不可數名詞，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可數名詞前要靠 <b>of</b> 引導數量。<br> 3. <b>過去式 (read)：</b>此處 read 是「讀」的過去式，讀音與原形相同（read–read–read）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last Friday, our class packed lunch for a school trip, and every bottle had a label.', 'The front of Mia\'s bottle only said Light, so she did not try it.', 'My bottle was one litre of juice, and I read every word on the back.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段從校外教學的準備寫起，用「每瓶都有標籤」與「我讀完背面的字」帶出主題：主角的注意力放在數字，不在包裝正面。第二段順著這個焦點展開，把兩瓶飲料的糖分放上天平比較，less sugar than that one 的句型就這樣自然出現。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">This bottle</span> <span class="w-tap kw-verb">has less sugar than</span> that one, <span class="w-tap kw-link">so</span> it <span class="w-tap kw-verb">is lighter</span> for students to carry.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>less + 不可數名詞 + than：</b>sugar 是不可數名詞，用 <b>less</b>；than 後面一定要接「被比較的對象」，不可省略。<br> 2. <b>one 作代詞 (that one)：</b>one 可代替前面出現過的名詞，避免重複：that one ＝「那一瓶」。<br> 3. <b>be 動詞 + 比較級 (is lighter) + for sb to do：</b>it 指 this bottle；for students to carry 為不定詞片語，說明「比較輕、比較好提」。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Her cola <span class="w-tap kw-verb">tasted sweet</span>, <span class="w-tap kw-link">so</span> she <span class="w-tap kw-verb">wanted to buy</span> that one <span class="w-tap kw-colloc">for lunch</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>taste + 形容詞 (tasted sweet)：</b>taste 是連繫動詞，後接形容詞表示「嚐起來⋯⋯」；tasted 由規則動詞加 -ed。<br> 2. <b>so 表結果：</b>so 引出「因為甜，所以想買」的結果；✗ 不可寫成 buyed，buy 的過去式是不規則的 <b>bought</b>。<br> 3. <b>want to + 原形 (wanted to buy)：</b>want ＋ to do 表示「想要」，後接原形。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">The box of her sandwich</span> <span class="w-tap kw-verb">said</span> 20 <span class="w-tap kw-colloc">grams of sugar</span>, so she <span class="w-tap kw-verb">put it down</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>「容器 + of + 內容物」：</b>the box of her sandwich ＝「裝三明治的盒子」，of 後接被裝著的東西。<br> 2. <b>數字 + 單位 + of + 名詞 (20 grams of sugar)：</b>數字大於 1 時 unit 要用複數 <b>grams</b>；of 後面接真正被計量的名詞 sugar。<br> 3. <b>put down：</b>put 是三態同形的不規則動詞（put–put–put），put down ＝「放下」。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['This bottle has less sugar than that one, so it is lighter for students to carry.', 'Her cola tasted sweet, so she wanted to buy that one for lunch.', 'The box of her sandwich said 20 grams of sugar, so she put it down.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段的比較在第三段出現轉折——Mia 誤以為正面那個大字「Light」就代表比較健康，結果數字顯示她那瓶的糖更多。最後老師把結論拉回課堂：包裝正面的廣告詞不可靠，背面的小字與數字才是判斷依據，也呼應第一段主角認真讀完背面的動作。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Then</span> Mia <span class="w-tap kw-verb">found that</span> her Light drink <span class="w-tap kw-verb">had more sugar than</span> mine, and she <span class="w-tap kw-verb">felt worried</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>find that + 子句：</b>find ＝「發現」，後接 that 子句，語序為「主詞 + 動詞」，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 *found that had her Light drink...。<br> 2. <b>mine 代替 my juice：</b>mine ＝「我的（東西）」，可單獨使用；<b>my</b> 則只能放在名詞前面。<br> 3. <b>feel + 形容詞 (felt worried)：</b>feel 是連繫動詞，後接形容詞；felt 為 feel 的不規則過去式（feel–felt–felt）。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">So</span> we <span class="w-tap kw-verb">compared</span> the numbers and <span class="w-tap kw-verb">chose the bottle</span> <span class="w-tap kw-colloc">with half the sugar</span> and less fat.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>compare A with B：</b>compare ＝「把 A 與 B 相比較」，A、B 前都要用 the。<br> 2. <b>choose 的過去式 (chose)：</b>choose–chose–chosen 為不規則變化；此句受詞是 the bottle，後半接 with 片語。<br> 3. <b>with + 名詞／短語：</b>with 在此是「帶有」＝ with half the sugar，等同 with less sugar。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our teacher <span class="w-tap kw-verb">said that</span> reading a food label <span class="w-tap kw-verb">is easier than</span> guessing <span class="w-tap kw-link">from the front</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>動名詞作主語 (reading / guessing)：</b>read 與 guess 的 -ing 形式放在句首當主語，兩邊形式一致，謂語用單數 is。<br> 2. <b>say that + 子句：</b>say 後面接 that 引導的名詞子句；that 可省略，課本保留以便檢查。<br> 3. <b>be 動詞 + 比較級 + than (is easier than)：</b>than 後面接被比較的對象 guessing，✗ 不可寫 easier to guess。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Then Mia found that her Light drink had more sugar than mine, and she felt worried.', 'So we compared the numbers and chose the bottle with half the sugar and less fat.', 'Our teacher said that reading a food label is easier than guessing from the front.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 58 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課聚焦營養標示判讀：比較級 less／more 搭配 than，以及 how much 與 how many 的提問選擇。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 比較級與 as...as 的判讀句型</h3>
+        <ul class="summary-list">
+<li><b>1. less／more + 名詞 + than（比較「量」的多寡）：</b><br>• This bottle has <u>less sugar</u> than that one.<br>• Her cola has <u>more sugar</u> than my juice.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>than 後面一定要接被比較的對象，不可省略。</li>
+<li><b>2. less 與 fewer 的選擇：</b><br>• <b>less</b> + 不可數名詞：less sugar／less fat<br>• <b>fewer</b> + 可數名詞複數：fewer bottles<br>• 另記：a few ＝「一些」（可數），few ＝「很少」。</li>
+<li><b>3. 同等比較 as...as / not as...as：</b><br>• Reading a label is <u>as useful as</u> looking at the front.<br>• My juice is <u>not as sweet as</u> her cola.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>否定用 <b>not as...as</b>，✗ 不可寫 not as...than。</li>
+<li><b>4. how much／how many 的提問：</b><br>• <b>How much</b> sugar is in this bottle?（不可數）<br>• <b>How many</b> bottles are in the box?（可數複數）<br>• 回答用 too much／not enough（不可數）、too many／a few（可數）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 食品與包裝情境搭配詞</h3>
+        <ul class="summary-list">
+<li><b>read a food label</b>：閱讀食品標籤（read the label on the bottle）。</li>
+<li><b>on the back／on the front</b>：在包裝的背面／正面。</li>
+<li><b>20 grams of sugar</b>：二十克的糖（數字＋單位＋of）。</li>
+<li><b>one litre of juice</b>：一公升的果汁（數量單位 + of 的結構）。</li>
+<li><b>choose the one with less sugar</b>：選出糖比較少的那一個。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混淆的食品與數量用詞</h3>
+        <ul class="summary-list">
+<li><b>sugar／sweet：</b><br>• <b>sugar</b> ＝「糖」，不可數名詞（less sugar）。<br>• <b>sweet</b> 作形容詞＝「甜的」（too sweet）；作名詞＝「糖果」（a sweet）。</li>
+<li><b>bottle／cup／glass：</b><br>• <b>bottle</b>：有瓶蓋的瓶子（500 ml、one litre）。<br>• <b>cup</b>：杯子（a cup of coffee）。<br>• <b>glass</b>：玻璃杯（a glass of milk）。</li>
+<li><b>gram／kg／litre：</b><br>• <b>gram</b> 重量（公克）、<b>litre</b> 容積（公升）、<b>kg</b> 是 kilogram 的簡寫。<br>• 比大小時要看「每 100 公克／每 100 毫升」的數字，不要只看總量。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

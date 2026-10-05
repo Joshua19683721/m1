@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第53課 海上的塑膠：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 53 課｜海上的塑膠</h1>
+    <div class="sub-title">The Natural World｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 The Plastic in Our Ocean</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> The Natural World &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 環境議題的描述與建議句型
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 去年暑假，我們全家到我們這個國家附近的一個小島去旅行。海在夏日陽光下湛藍而灼熱。我在沙灘上看到水裡有綠色的瓶子與白色的塑膠袋。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 一位女士告訴我們，每年有數百萬個瓶子從河川流進海裡。海中的塑膠不會消失，它會在水裡存在很多年。魚類與植物在那樣的髒水裡根本長不好。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 於是我們班沿著沙灘走，把垃圾裝進大袋子裡。短短兩個小時，我們就撿到超過一百個瓶子。現在我隨身帶著一個布袋，因為我們的世界需要一片更乾淨的海。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last summer</span> my family <span class="w-tap kw-verb">went to</span> a <span class="w-tap kw-colloc">small island</span> <span class="w-tap kw-colloc">near our country</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>go 的過去式 (went)：</b>go–went–gone（不規則），敘述暑假已發生的行程用 went。<br> 2. <b>go to + 地點：</b>go ＝「到⋯⋯去」，後面接地點，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ went at the island</s>。<br> 3. <b>last + 時間名詞 (Last summer)：</b>last summer ＝「去年夏天」，前不加 the；指示用法要加 the（the last summer I went there）。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The sea <span class="w-tap kw-verb">was blue and hot</span> <span class="w-tap kw-link">under the summer sun</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be 動詞 + 並列形容詞 (was blue and hot)：</b>be 後面接<b>形容詞</b>作表語，blue 與 hot 可用 and 並列。<br> 2. <b>天氣說法 (hot)：</b>描述天氣用 <b>The weather is hot</b>；weather 不可數，不可寫成 <s>✗ The weathers are hot</s>。<br> 3. <b>under the sun：</b>under the sun ＝「在陽光之下」，是固定搭配，under 後接無生命的名詞。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">On the beach</span> I <span class="w-tap kw-verb">saw</span> green bottles and white bags <span class="w-tap kw-colloc">in the water</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>see 的過去式 (saw)：</b>see–saw–seen（不規則），此處敘述當下已完成的一次觀察。<br> 2. <b>顏色 + 複數名詞 (green bottles and white bags)：</b>顏色形容詞直接置於名詞之前，且 and 兩邊都用複數以保持一致。<br> 3. <b>in 與 on 的差別：</b>on the beach ＝「在沙灘表面上」，in the water ＝「在水裡面」，介系詞不可混用。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last summer my family went to a small island near our country.', 'The sea was blue and hot under the summer sun.', 'On the beach I saw green bottles and white bags in the water.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段是單純的度假場景：藍海、烈日與沙灘上的瓶瓶袋袋，看起來只是風景的一部分。第二段由那位女士的說法把視角拉遠——從「我看到的幾個瓶子」擴大到「每年數百萬個」，環境議題的規模感就此建立。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          A woman <span class="w-tap kw-verb">told us that</span> millions of bottles <span class="w-tap kw-verb">go from rivers into the sea</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>tell + 人 + that 子句 (told us that …)：</b>tell 必須先接<b>間接受詞</b>（us）才能接 that 子句；say 之後不能先放「人」再接 that 子句（✓ She said that…／✗ She said us that…）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ told that millions of bottles…</s>。<br> 2. <b>millions of + 複數名詞：</b>millions of ＝「數百萬個」，後面一定要接<b>複數</b>名詞 bottles。<br> 3. <b>一般現在式表長久事實 (go)：</b>go 在此不是敘述過去，而是說明<b>年年如此</b>的事實，故用原形。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The plastic in the sea <span class="w-tap kw-verb">does not disappear</span> <span class="w-tap kw-link">for many years</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>助動詞 does not + 原形 (does not disappear)：</b>第三人稱單數的否定要用 does not，後面的動詞<b>還原成原形</b> disappear，不寫 disappears。<br> 2. <b>for + 時間長度 (for many years)：</b>for 後接「多長」的時間；since 則接「從哪個時間點」（since 2015），兩者不可互換。<br> 3. <b>主語中心詞 (The plastic)：</b>in the sea 只是修飾片語，中心詞是不可數的 plastic，所以用 does。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Fish and plants <span class="w-tap kw-verb">cannot grow well</span> <span class="w-tap kw-link">in that dirty water</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>cannot + 原形 (cannot grow)：</b>cannot 是 can not 的合寫，後面只能接原形 grow。<br> 2. <b>副詞修飾動詞 (grow well)：</b>well 在此是<b>副詞</b>，修飾動詞 grow，必須放在動詞之後。<br> 3. <b>and 連接的主語：</b>Fish and plants 是複數主語，動詞同樣視為複數；跟在情態動詞後仍一律用原形。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['A woman told us that millions of bottles go from rivers into the sea.', 'The plastic in the sea does not disappear for many years.', 'Fish and plants cannot grow well in that dirty water.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段說明塑膠不會消失、魚與植物也長不好，危機已經成形。第三段主角用 So 立刻採取行動，淨灘兩小時撿到一百多個瓶子是最有力的證據；最後一句用 because 把個人習慣拉回環境責任，為故事收尾。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">So</span> my class <span class="w-tap kw-verb">walked along the beach</span> and <span class="w-tap kw-verb">put the rubbish into big bags</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>put + 賓語 + 介系詞片語 (put the rubbish into big bags)：</b>put ＝「放」，可與 into／in／on 搭配；其過去式仍是 put（put–put–put）。<br> 2. <b>walk along：</b>walk along ＝「沿著⋯⋯走」，是描述淨灘行動的高頻片語。<br> 3. <b>句首的 so：</b>So 在句首接續完整句子時，會考寫作建議加逗號：<u>✓ So, my class walked…</u>。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">found</span> <span class="w-tap kw-colloc">more than a hundred bottles</span> <span class="w-tap kw-link">in only two hours</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>more than + 數量：</b>more than ＝「超過」，後面接數量；詢問此類數量要用 How many + 複數名詞。<br> 2. <b>find 的過去式 (found)：</b>find–found–found（不規則），注意與 find out（查明結果）的差別。<br> 3. <b>only 的位置 (in only two hours)：</b>only 修飾時間狀語時要放在數詞<b>之前</b>，表示「僅僅兩小時」。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Now</span> I <span class="w-tap kw-verb">carry a cloth bag</span>, <span class="w-tap kw-verb">because</span> our world <span class="w-tap kw-verb">needs a cleaner sea</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>原因連接詞 because：</b>because ＝「因為」，後面接<b>原因</b>，與 so（結果）方向相反，會考常兩者互換出題。<br> 2. <b>一般現在式表習慣 (carry)：</b>carry 描述「我每天的固定做法」，主語 I 謂語用原形。<br> 3. <b>比較級作定語 (a cleaner sea)：</b>clean 加 -er 變 cleaner，形容詞前須加冠詞 a／the。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['So my class walked along the beach and put the rubbish into big bags.', 'We found more than a hundred bottles in only two hours.', 'Now I carry a cloth bag, because our world needs a cleaner sea.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 53 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事聚焦環境議題的描述與建議句型：millions of 的數量感、can not 的能力否定，以及因果連接詞的正確使用。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 環境描述與建議句型</h3>
+        <ul class="summary-list">
+<li><b>1. 數量表達 millions of / more than：</b><br><i>例句：</i> Millions of bottles <u>go from rivers into the sea</u>.<br>• <b>millions of</b> 後接複數名詞。<br>• <b>more than +</b> 數量，後面接數量名詞。<br><span style="color:#dc2626;">⚠️ 陷阱：</span>✗ millions bottle。</li>
+<li><b>2. 建議句型三種表達：</b><br>• <b>情態動詞</b>：We <u>should use fewer</u> plastic bottles。<br>• <b>Let's + 原形</b>：<u>Let's clean</u> the beach together。<br>• <b>祈使句</b>：<u>Carry</u> a cloth bag every day。<br>三者意思相同，都是提出行動建議。</li>
+<li><b>3. 因果連接詞 so 與 because：</b><br>• <b>so</b> 接結果（So my class walked along the beach）。<br>• <b>because</b> 接原因（because our world needs a cleaner sea）。<br><span style="color:#dc2626;">⚠️ 陷阱：</span>不可在同一組因果句中同時使用 Because… and so…。</li>
+<li><b>4. 否定與情態動詞：</b><br>• <b>cannot</b> ＝ can not，表示「無法、不能」（cannot <u>grow</u> well）。<br>• <b>can</b> 表能力，<b>may</b> 表允許，<b>should</b> 表建議，語意不可混用。<br>• 情態動詞後一律接<b>原形</b>動詞。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 海岸與自然生態高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>on the beach</b>：在沙灘上（介系詞 on 表表面接觸）。</li>
+<li><b>go from A into B</b>：從 A 流入 B（描述廢棄物流向）。</li>
+<li><b>put the rubbish into bags</b>：把垃圾裝進袋子裡。</li>
+<li><b>walk along the beach</b>：沿著沙灘走。</li>
+<li><b>carry a cloth bag</b>：自備布袋（環保習慣的固定說法）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 自然與環境用詞辨析</h3>
+        <ul class="summary-list">
+<li><b>sea / river / island：</b><br>• <b>sea</b> ＝「海」，in the sea。<br>• <b>river</b> ＝「河川」，in the river。<br>• <b>island</b> ＝「島嶼」，on a small island。<br>三者的介系詞搭配都出現在本課故事中。</li>
+<li><b>plant 作動詞與名詞：</b><br>• <b>名詞</b>：plants ＝「植物」（複數）。<br>• <b>動詞</b>：to plant ＝「種植」。<br><span style="color:#dc2626;">⚠️ 陷阱：</span>本句中的 plants 是名詞，不能加 to。</li>
+<li><b>water / sea / world：</b><br>• <b>water</b> 不可數（the water）。<br>• <b>sea</b> 可數（the sea）。<br>• <b>world</b> 前須加 the（our world）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

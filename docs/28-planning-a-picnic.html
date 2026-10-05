@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第28課 籌備野餐：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 28 課｜籌備野餐</h1>
+    <div class="sub-title">Food and Drink ／ Hobbies and Leisure｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Planning a Picnic</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Food and Drink ／ Hobbies and Leisure &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> some／any／no／every、a few／a little／few／little、both／all／either／neither
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 我們班下星期五要在公園舉辦野餐，全班三十位學生都可以參加。班長給每一組一張採買清單和一些錢。我們組需要每位學生一個盤子，還有足夠讓每個人喝的飲用水。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> Kevin 買了非常多的三明治，卻只帶來幾支叉子。沒有人帶飲料的瓶子過來，所以籃子裡的水果也很少。大家都很餓，於是兩組之中任何一組都可以再去買一點吃的。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 中午我們清點了每一樣物品，缺的東西不多。我們倆都沒有帶小刀，所以只能用叉子和紙杯。兩組都吃得很好，水果真的很好吃。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Our class</span> <span class="w-tap kw-verb">is having</span> a <span class="w-tap kw-colloc">picnic in the park</span>, and <span class="w-tap kw-link">all</span> thirty students can come.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>現在進行式表已安排好的未來 (is having)：</b> be + V-ing 除了「此刻正在做」，也可表示「已確定、馬上要做的安排」，與一般現在式 (has) 意思相近。<br> 2. <b>can + 動詞原形 (can come)：</b> 情態動詞 can 表示可能性「可以來」，後面只能接動詞原形 come。<br> 3. <b>all + 複數名詞 (all thirty students)：</b> all 可放在「數詞 + 複數名詞」前表示「全部三十位學生」；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ all thirty student</s>。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">The class monitor</span> <span class="w-tap kw-verb">gave</span> <span class="w-tap kw-link">each group</span> a <span class="w-tap kw-colloc">shopping list</span> and <span class="w-tap kw-link">some</span> money.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>一般過去式 (gave)：</b> give 的過去式是不規則形式 <b>gave</b>（give–gave–given），是會考必背三態。<br> 2. <b>each + 單數名詞 (each group)：</b> each 放在單數可數名詞前強調「每一個」，後面的名詞一律用<b>單數</b>。<br> 3. <b>some + 不可數名詞 (some money)：</b> some 用於<b>肯定句</b>表示「一些」；money 是不可數名詞，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可加 -s。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Our group</span> <span class="w-tap kw-verb">needed a plate</span> <span class="w-tap kw-link">for each student</span> and <span class="w-tap kw-link">enough water for everyone</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>need + 受詞 (needed a plate)：</b> need 後面直接接名詞當受詞；主語 Our group 為單數，一般現在式須寫 <u>needs</u>。<br> 2. <b>enough + 不可數名詞 (enough water)：</b> enough 修飾名詞時放在名詞<b>之前</b>，此處表示數量「足夠的水」。<br> 3. <b>everyone 的用法：</b> everyone 是代詞，後面<b>不加 of</b>；要寫 every one of the students 才可加 of，兩者不可混用。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Our class is having a picnic in the park, and all thirty students can come.', 'The class monitor gave each group a shopping list and some money.', 'Our group needed a plate for each student and enough water for everyone.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先把野餐的準備工作攤開：班長把任務分成幾組，每組拿到清單和經費，並依人數算出需要的餐具與飲水份量。這為第二段「有人買太多、有人忘買」的混亂埋下伏筆。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Kevin <span class="w-tap kw-verb">bought</span> <span class="w-tap kw-link">plenty of</span> <span class="w-tap kw-colloc">sandwiches</span>, <span class="w-tap kw-link">but</span> he <span class="w-tap kw-verb">brought only a few forks</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>buy 的過去式 (bought)：</b> buy–bought–bought 三態不同形，會考常與 bring (brought) 一起出題，兩者意思相近（買／帶來）。<br> 2. <b>plenty of + 複數名詞 (plenty of sandwiches)：</b> plenty of ＝「非常多的」，語氣肯定，與 a lot of 意思相近。<br> 3. <b>a few + 複數名詞 (a few forks)：</b> a few 表示「有一些」；<span style="color:#dc2626;">⚠️ 陷阱：</span>表否定要用 few，兩者不可互換。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Nobody</span> <span class="w-tap kw-verb">brought</span> <span class="w-tap kw-link">any bottles of juice</span>, and <span class="w-tap kw-verb">there was</span> <span class="w-tap kw-link">little</span> fruit <span class="w-tap kw-colloc">in our basket</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>否定句用 any (any bottles of juice)：</b> some 用於肯定句，any 用於否定與疑問句；本句已有 Nobody，故用 <b>any</b>。<br> 2. <b>there be 的過去式 (there was)：</b> there be 句型的 be 動詞過去式不隨名詞變；<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ there were a little fruit</s> 應作 <u>✓ there was a little fruit</u>。<br> 3. <b>little + 不可數名詞 (little fruit)：</b> little 是否定語氣「幾乎沒有」，與 a little（有一點）相反，此處強調水果嚴重不足。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Everyone</span> <span class="w-tap kw-verb">was hungry</span>, so <span class="w-tap kw-link">either group</span> <span class="w-tap kw-verb">could buy a little more</span> food.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>either + 單數名詞 (either group)：</b> either ＝「兩者之一」，修飾單數名詞；<span style="color:#dc2626;">⚠️ 陷阱：</span>若修飾複數名詞須寫 either of the two groups。<br> 2. <b>could + 動詞原形 (could buy)：</b> could 表示「可以、可能」，後面接動詞原形 buy。<br> 3. <b>a little more + 名詞 (a little more food)：</b> more 放在不可數名詞前修飾（more food），a little 再加上一層「再多一點點」。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Kevin bought plenty of sandwiches, but he brought only a few forks.', 'Nobody brought any bottles of juice, and there was little fruit in our basket.', 'Everyone was hungry, so either group could buy a little more food.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段先寫採買失控的窘境：Kevin 買了過量三明治，卻只帶了幾支叉子；飲料一瓶也沒有，籃子裡的水果也所剩不多。於是第三段轉為清點與補救，最後順利野餐成功。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">At noon</span> we <span class="w-tap kw-verb">checked every item</span>, and <span class="w-tap kw-link">few</span> things <span class="w-tap kw-verb">were still missing</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>every + 單數名詞 (every item)：</b> every 強調「每一個」，後面必須接<b>單數</b>可數名詞 item；all the 後面才接複數名詞。<br> 2. <b>few + 複數名詞 (few things)：</b> 否定語氣「幾乎沒有」，此處表示所剩物資極少，與 a few 相反。<br> 3. <b>be + 形容詞 (were still missing)：</b> missing 是形容化的現在分詞，放在 were 後當表語；still ＝「仍然」。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Neither of us</span> <span class="w-tap kw-verb">had a knife</span>, so we <span class="w-tap kw-verb">used</span> forks <span class="w-tap kw-colloc">and paper cups</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>neither of + 複數代詞 (neither of us)：</b> neither ＝「兩者都不」，of 後接複數代詞 us，謂語用複數 had / used。<br> 2. <b>have 的過去式 (had)：</b> have 的過去式 had 在此不變形；主語 neither of us 視為複數，所以用 <b>had</b>。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>neither 本身已含「都不」的否定意思，<u>✓ Neither of us had</u>；不可再加 not 造成重複否定。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Both groups</span> <span class="w-tap kw-verb">ate well</span>, and the fruit <span class="w-tap kw-verb">was really delicious</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>both + 複數名詞 (both groups)：</b> both ＝「兩者都」，後面必須接<b>複數</b>名詞，且本身已含「都」，不可再加 all。<br> 2. <b>eat 的過去式 (ate)：</b> eat–ate–eaten，過去式 ate 不加 -d，是會考常考的不規則拼寫。<br> 3. <b>副詞修飾形容詞 (really delicious)：</b> delicious 是形容詞「美味的」，really 是副詞，須放在形容詞<b>之前</b>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['At noon we checked every item, and few things were still missing.', 'Neither of us had a knife, so we used forks and paper cups.', 'Both groups ate well, and the fruit was really delicious.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 28 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事用一場野餐把 some／any／no／every、a few／little 與 both／all／either／neither 三組數量詞一次講清楚：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 數量詞與限定詞全解析</h3>
+        <ul class="summary-list">
+<li><b>1. some / any / no / every：</b><br>• <b>some</b> 用於<b>肯定句</b>（some money）。<br>• <b>any</b> 用於否定與疑問句（Nobody brought <u>any</u> juice）。<br>• <b>no</b> ＝ not any，後直接接名詞。<br>• <b>every</b> + <u>單數</u>名詞，強調每一個。
+<li><b>2. a few / a little / few / little：</b><br>• <b>a few</b> + 複數：有幾個（肯定）　　• <b>few</b> + 複數：幾乎沒有（否定）<br>• <b>a little</b> + 不可數：有一點（肯定）　• <b>little</b> + 不可數：幾乎沒有（否定）<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>a 決定語氣，不可隨意增刪。</li>
+<li><b>3. both / all / either / neither：</b><br>• <b>both</b> + 複數：兩者都　　• <b>all</b> + 複數：全部都<br>• <b>either</b> + 單數：兩者之一　　• <b>neither</b> of + 複數：兩者都不<br>• either / neither 限定「兩個」，三者以上要用 any / none。</li>
+<li><b>4. 數量詞與 be 動詞的一致：</b><br>• there be 句型的 be 動詞<b>不隨名詞變</b>：there was a little fruit。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ there were a little fruit</s> → <u>✓ there was a little fruit</u>。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 野餐情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>have a picnic</b>：舉辦野餐（be having a picnic ＝ 正在野餐）。</li>
+<li><b>a shopping list</b>：採買清單（go shopping ＝ 去購物，shopping 此處作動名詞）。</li>
+<li><b>plenty of + 名詞</b>：非常多的（後接可數複數或不可數皆可）。</li>
+<li><b>be hungry</b>：肚子餓；對應的 <b>be thirsty</b>（口渴），介詞一律用 be。</li>
+<li><b>paper cups / a water bottle</b>：紙杯／水瓶（名詞前加材質或內容物作修飾）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混用的數量詞</h3>
+        <ul class="summary-list">
+<li><b>a few 與 few：</b><br>• <b>a few</b> ＝「有一些」，語氣<b>肯定</b>（I have a few forks）。<br>• <b>few</b> ＝「幾乎沒有」，語氣<b>否定</b>（Few things were missing）。<br>• 一個 a 之差，語意完全相反。</li>
+<li><b>both 與 all：</b><br>• <b>both</b> 只限「兩個之中都」（Both groups ate well）。<br>• <b>all</b> 可指「三者以上全部」（All thirty students came）。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ all both</s>，兩者語意重疊會打架。</li>
+<li><b>either 與 neither：</b><br>• <b>either</b> ＝「其中一個」（either group），是肯定。<br>• <b>neither</b> ＝「兩個都沒有」（neither of us），是否定。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>neither 不可再加 not，也不可修飾不可數名詞。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

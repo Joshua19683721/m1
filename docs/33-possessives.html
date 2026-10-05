@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第33課 誰的誰：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 33 課｜誰的誰</h1>
+    <div class="sub-title">Family and Friends｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Whose Is It?</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Family and Friends &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 名詞所有格 N's、of + 名詞片語、複合名詞與句尾省略
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 星期六下午，我在媽媽的床底下撿到一個紅色袋子。我問了全家每一個人，卻沒有人知道那是誰的。於是我小心地把它打開，仔細看裡面的每一樣東西。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 袋子裡有祖母的眼鏡、叔叔的舊相機，還有一張母親的照片。姊姊說，紙條上的字跡看起來像鄰居的。爸爸接著想起來，說來作客的那位客人女兒用過一個紅袋子。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 我們打電話給表姊，她的家人聽完這件事都笑了。原來那個袋子就是她的，是她忘記帶回去的。我們向她道歉，她則笑著對我們每個人點了點頭。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">One Saturday afternoon</span>, I <span class="w-tap kw-verb">found</span> a red bag <span class="w-tap kw-colloc">under my mother's bed</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>一般過去式 (found)：</b>find 的過去式是 found（find–found–found），三態拼字相同，是會考必背的不規則動詞。<br> 2. <b>名詞所有格 N's：</b>mother's ＝「媽媽的」，單數名詞直接加 's；英文所有格在中文裡只能用「的」來表達。<br> 3. <b>方位介系詞的選擇：</b>under ＝ 在⋯下面；on ＝ 在⋯上面；in ＝ 在⋯裡面，三者不可混用。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">asked</span> everyone in the <span class="w-tap kw-colloc">family</span>, <span class="w-tap kw-link">but</span> nobody <span class="w-tap kw-verb">knew whose bag it was</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>間接問句 (whose + 名詞 + it was)：</b>在陳述句中，疑問詞後面<b>不倒裝、也不加助動詞</b>：whose bag it was（✗ whose was the bag）。<br> 2. <b>nobody 視為單數：</b>nobody 作主語時，後面的動詞要用<b>第三人稱單數</b> knew（✗ know / knowed）。<br> 3. <b>Whose 問「誰的」：</b>Whose 可單獨使用（Whose bag?），也可接名詞形成間接問句，是本課的核心疑問詞。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">So</span> I <span class="w-tap kw-verb">opened it carefully</span> and <span class="w-tap kw-verb">looked at everything inside</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>So 引導結果：</b>So ＋ 完整句子 ＝「所以⋯⋯」，與 because（原因）方向相反，是會考因果句型的標準配對。<br> 2. <b>look at + 名詞：</b>look at 是及物片語，後面<b>必須接賓語</b>：looked at everything；不可說成 looked everything。<br> 3. <b>everything 作受詞：</b>everything 是<b>不定代詞</b>，作主語時謂語用單數（Everything is here.）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['One Saturday afternoon, I found a red bag under my mother\'s bed.', 'I asked everyone in the family, but nobody knew whose bag it was.', 'So I opened it carefully and looked at everything inside.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先立起「這是誰的」這個疑問：星期六下午在媽媽床底撿到紅包，問遍全家沒人知道，主角只好自己動手打開，懸念一路留到第二段才慢慢拆開。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Inside</span>, I <span class="w-tap kw-verb">saw</span> my <span class="w-tap kw-colloc">grandmother's glasses</span> and my <span class="w-tap kw-colloc">uncle's old camera</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>所有格 + 名詞片語：</b>grandmother's glasses（眼鏡是複數）與 uncle's old camera（單數）都直接加 's，後面照常接名詞。<br> 2. <b>old 的兩種位置：</b>old camera 中 old 放在名詞前作<b>定語</b>；The camera is old. 中 old 放在 be 動詞後作表語。<br> 3. <b>glasses 恆用複數：</b>「一副眼鏡」是 <b>a pair of glasses</b>，不可寫成 a glass（a glass 是「一杯」）。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">sister</span> <span class="w-tap kw-verb">said</span> the handwriting in the note <span class="w-tap kw-colloc">looked like</span> our neighbour's.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>said + 從句（that 可省略）：</b>引述內容較長時 that 可以省略，但從句<b>不可倒裝</b>：said the handwriting… looked…<br> 2. <b>look like + 名詞：</b>look like ＝「看起來像⋯⋯」，後面接<b>名詞</b>，不用進行式，也不用 be 動詞。<br> 3. <b>省略名詞時 's 不可省：</b>our neighbour's（後面沒有名詞重複出現）＝「鄰居的（那個東西）」，這種省略形式<b>一定要保留 's</b>。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Then</span> my <span class="w-tap kw-colloc">father</span> <span class="w-tap kw-verb">remembered that</span> our <span class="w-tap kw-colloc">guest's daughter</span> had used a red bag.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>remember that + 子句：</b>remember 可接 that 子句（記得某件事）或 V-ing（記得做過某事），兩者不可混用。<br> 2. <b>had + 過去分詞（過去完成式）：</b>「用過紅包」發生在「爸爸想起來」之前，因此用 had used。<br> 3. <b>複合所有格：</b>our guest's daughter ＝「我們那位客人的女兒」，只有 guest 加 's，daughter 是被擁有的名詞、不再加 's；只有兩個名詞先後都帶有所屬時才會出現兩層 's（如 our guest's daughter's bag）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Inside, I saw my grandmother\'s glasses and my uncle\'s old camera.', 'My sister said the handwriting in the note looked like our neighbour\'s.', 'Then my father remembered that our guest\'s daughter had used a red bag.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段從袋內物件追查所有者——祖母的眼鏡、叔叔的相機、母親的照片，一層層指向親友；第三段才揭曉答案原來就是來作客的表姊，一場尋物在道歉與笑聲裡收尾。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">called</span> my <span class="w-tap kw-colloc">cousin</span>, <span class="w-tap kw-verb">whose family was visiting</span> us that week.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>whose 引導定語關係子句：</b>whose family was visiting us… 用來說明「是哪一位表姊」，whose 後面接<b>名詞 + 完整子句</b>。<br> 2. <b>cousin 的中文對應：</b>cousin ＝ 堂兄弟姊妹或表兄弟姊妹，是「family」主題的核心親屬詞彙。<br> 3. <b>call + 人：</b>call sb ＝「打電話給某人」；本句 call my cousin ＝「打電話給表姊」，呼應全課追問袋子主人的主線。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">It turned out that</span> the bag <span class="w-tap kw-colloc">was hers</span>, and she <span class="w-tap kw-verb">had left</span> it here.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>It turned out that + 子句：</b>「結果⋯⋯是」。it 是<b>虛主語</b>，真正的主語放在 that 子句裡面。<br> 2. <b>名詞性物主代詞 hers：</b>hers ＝「她的（東西）」，等同 her bag，前面<b>不再重複名詞</b>。<br> 3. <b>had + 過去分詞：</b>「她把袋子留在這裡」比「結果揭曉」更早發生，所以用過去完成式 had left。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-colloc">said sorry to her</span>, and she <span class="w-tap kw-verb">gave us</span> a <span class="w-tap kw-colloc">friendly smile</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>say sorry to sb：</b>say sorry to ＋ 人 ＝「向某人道歉」，是口語中最自然的說法（✗ say sorry her）。<br> 2. <b>give sb sth（雙受詞）：</b>give ＋ 人 ＋ 物，中間<b>不加介詞</b>；兩個受詞皆為代詞時須加 to（gave it to me）。<br> 3. <b>friendly 是形容詞：</b>由動詞加 -ly 構成的<b>形容詞</b>，放在名詞前修飾 smile；此處不可用副詞形。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['We called my cousin, whose family was visiting us that week.', 'It turned out that the bag was hers, and she had left it here.', 'We said sorry to her, and she gave us a friendly smile.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 33 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課整理所有格的兩種寫法：N's 與 of + N，並延伸到複合名詞、句尾省略名詞，以及 Whose 問句的完整用法。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 所有格兩種寫法的規則</h3>
+        <ul class="summary-list">
+<li><b>1. 單數名詞 + 's：</b><br>• <b>有生命者</b>：my mother's photo、my grandmother's glasses<br>• <b>無生命者</b>也可：the school's library、today's news<br><span style="color:#dc2626;">⚠️</span>以 s 結尾的複數名詞只加 '：the girls' locker（girls 是複數，詳見第 2 點）。</li>
+<li><b>2. 複數名詞 + '（不加 s）：</b><br>the girls' locker（女生們的置物櫃）／my parents' room（我父母的房間）<br><span style="color:#dc2626;">⚠️</span>不規則複數只加 '：the children's room。</li>
+<li><b>3. of + 名詞片語（無生命者正式寫法）：</b><br>the door <b>of</b> the classroom（教室的門）／the <b>end</b> of the film<br>• of 後接單數或片語皆可：the colour of your eyes。<br>• <b>活人（人）一律用 's，不用 of。</b></li>
+<li><b>4. 複合名詞與句尾省略：</b><br>• <b>複合名詞</b>：my father's car ＝「父親的車（那輛車）」。<br>• <b>句尾省略</b>：That is my cousin's.（＝ That is my cousin's bag）<br>• <b>代詞</b>：Whose is this? — It's <u>hers</u>.</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 親友與居家情境的搭配詞</h3>
+        <ul class="summary-list">
+<li><b>find / look for：</b>找到（結果）／尋找（動作）：I <u>found</u> it. ／ I <u>looked for</u> it.</li>
+<li><b>ask sb whose... / call sb</b>：問某人那是誰的／打電話給某人。</li>
+<li><b>look like：</b>看起來像⋯⋯（後接名詞）：It looks like her handwriting.</li>
+<li><b>belong to / turn out：</b>屬於⋯⋯／結果證明是⋯⋯。</li>
+<li><b>say sorry to sb：</b>向某人道歉（say 後直接接內容，say sorry to her）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 's 與 of 該怎麼選</h3>
+        <ul class="summary-list">
+<li><b>'s 與 of 怎麼選：</b><br>• <b>人 → 用 's</b>：my aunt's car<br>• <b>無生命 → 用 of</b>：the window of the room<br><br><span style="color:#dc2626;">⚠️</span>✗ <s>the car of my aunt</s>（能用但極不自然）</li>
+<li><b>family / parents / relative：</b><br>• <b>family</b> ＝ 家庭或家人（整體）：my family.<br>• <b>parents</b> ＝ 父母（僅指爸媽）：my parents.<br>• <b>relatives</b> ＝ 親戚（較正式）：our relatives.</li>
+<li><b>cousin / neighbour / guest：</b><br>• <b>cousin</b> ＝ 堂（表）兄弟姊妹，有親緣關係。<br>• <b>neighbour</b> ＝ 鄰居，沒有親緣關係。<br>• <b>guest</b> ＝ 客人，短暫到訪的人。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第17課 我的日常作息：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 17 課｜我的日常作息</h1>
+    <div class="sub-title">Time｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 My Daily Schedule</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Time &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> in／on／at + 時間、一般現在時描述作息、How often
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 我每天早上六點半起床。我通常七點吃早餐，但上學的日子我六點半就吃。我的第一堂課八點鐘開始，所以我七點二十分出門。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 放學後我通常打一小時的籃球，功課則從五點做到七點。中午我在學校和同學一起吃午餐，有時我們在食堂吃。睡覺之前，我晚上會讀半小時的書。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 週末的作息就不一樣了；我常常睡到九點。我有一本日記，所以看得出自己每個月有多忙。好的作息表幫我在時間內完成作業，也留給我足夠的休息時間。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">get up at</span> <span class="w-tap kw-colloc">half past six every morning</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時間點用 at：</b>at ＋ 具體時刻（at half past six）。對照：in ＋ 月／年／季節（in July），on ＋ 星期／日期（on Monday）。<br> 2. <b>half past six ＝ 6:30：</b><span style="color:#dc2626;">⚠️ 陷阱：</span>half past 為「半過」，<b>a quarter past</b> 為「一刻過」（6:15），<b>to</b> 為「差」（ten to seven ＝ 6:50）。<br> 3. <b>一般現在時描述習慣：</b>get up 的第三人稱單數仍是 <b>gets</b>（讀作 /ɡets/）。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">usually have breakfast at</span> seven, but <span class="w-tap kw-link">on school days</span> I <span class="w-tap kw-verb">eat it at</span> six thirty.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>頻率副詞的位置 (usually)：</b>置於<b>主要動詞之前、be 動詞之後</b>：I usually have…／I am usually late。<br> 2. <b>on + 星期／特定日 (on school days)：</b>on 用於星期與特定日子；對照 in the morning。<br> 3. <b>六點半的簡寫 (six thirty)：</b>這是日常口語的簡說；正式寫作為 <b>6:30</b> 或 half past six。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">first class begins at</span> eight o'clock, so I <span class="w-tap kw-verb">leave home at</span> seven twenty.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>序數詞 (first)：</b>first class ＝「第一堂課」；序數詞前通常要加 <b>the</b>（the first day），但若前面已有 my／his／her 等物主代詞，就不再加 the（my first class）。<br> 2. <b>so 表結果：</b>因為八點上課，所以七點二十出門——因果關係的標準連接。<br> 3. <b>o'clock：</b>o'clock ＝「⋯點」，前面必須用<b>數字</b>（eight o'clock），不可寫成 eight clock。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['I get up at half past six every morning.', 'I usually have breakfast at seven, but on school days I eat it at six thirty.', 'My first class begins at eight o\'clock, so I leave home at seven twenty.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先把一天切成幾個時間點，六點半、七點、八點、七點二十分，全部用最簡潔的句型寫出，讓讀者立刻感受到「時間表」的節奏。第二段延伸到放學後與睡前，作息由「上學模式」擴大為「整天模式」。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">After school</span> I usually <span class="w-tap kw-verb">play basketball for an hour</span>, and I <span class="w-tap kw-verb">do my homework from five to seven</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>for + 一段時間 (for an hour)：</b>for 表持續多久；對照 at（時間點）。<br> 2. <b>from...to...：</b>from ＋ 起始時間 <b>to</b> ＋ 結束時間 ＝「從⋯到⋯」，是一天之中最實用的時間表達。<br> 3. <b>do one's homework：</b>homework 是不可數名詞，須加<b>物主代詞</b>（my／his homework），不可寫成 my homeworks。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">At noon</span> I <span class="w-tap kw-verb">have lunch at school with</span> my classmates, and we <span class="w-tap kw-verb">sometimes eat in</span> the canteen.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>noon（正午）：</b>noon 前不加 the（at noon）；此處用 at 是因為 noon 是「時刻」，若換成 in the evening（本課 P2.3）這類「時段」才用 in。<br> 2. <b>with + 人：</b>with my classmates ＝「和同學一起」，表同行關係。<br> 3. <b>sometimes 的位置：</b>置於主要動詞 eat 之前；與 always / usually / often / never 構成頻率階梯。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">In the evening</span> I <span class="w-tap kw-verb">read for half an hour before</span> I <span class="w-tap kw-verb">go to bed</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>before + 子句：</b>before 引導時間從屬子句，主句與子句都可用一般現在式描述習慣。<br> 2. <b>for half an hour：</b>half 作為「半」時，後接單數名詞 a / an hour。<br> 3. <b>go to bed：</b>bed 前不加 the，此時 bed 作「睡覺處所」解，是會考固定搭配。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['After school I usually play basketball for an hour, and I do my homework from five to seven.', 'At noon I have lunch at school with my classmates, and we sometimes eat in the canteen.', 'In the evening I read for half an hour before I go to bed.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第三段出現轉折：週末作息不同，說明時間表並非一成不變。最後兩句把個人的作息提升為方法論——好的作息表讓你在時間內完成作業，也留足休息時間，正好呼應 Time 主題延伸出的生活應用。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">On weekends</span> my <span class="w-tap kw-colloc">schedule is different</span>; I <span class="w-tap kw-verb">often sleep until</span> nine.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be 動詞 + 形容詞 (is different)：</b>different 為 A2 Key「Personal Feelings」形容詞，用來比較兩種狀態的差異。<br> 2. <b>until 九點：</b>until ＝「直到⋯⋯」，後面接時間點或事件。<br> 3. <b>分號 (;) 的用法：</b>分號連接兩個意義相關但相對獨立的句子，是會考標點寫作的重點。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">keep a diary</span>, so I <span class="w-tap kw-verb">can see how busy I am every month</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>keep + 慣例 (keep a diary)：</b>keep a diary ＝「寫日記」，來自 A2 Key「Time」主題。<br> 2. <b>so + 句子：</b>so 表示後果，連接前後兩個分句；<span style="color:#dc2626;">⚠️</span>中文的「所以不⋯⋯」在英文要改用 <b>because</b>，不可用 so。<br> 3. <b>間接問句 (how busy I am)：</b>「疑問詞 + 主詞 I + 動詞 am」，<b>不倒裝、不加 do/does</b>（✗ I can see how busy am I；注意直接問句 How busy am I? 本身完全正確）。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          A <span class="w-tap kw-colloc">good schedule helps me finish</span> my work <span class="w-tap kw-colloc">on time</span> and <span class="w-tap kw-verb">leaves me enough time to rest</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>help sb (to) + 原形：</b>help 後的 to 可以省略，但正式寫作建議保留：help me <b>to</b> finish。<br> 2. <b>enough to + 原形：</b><b>形容詞 + enough + to + 原形</b> ＝「足以⋯⋯」，是與 too...to 相對的必考結構。<br> 3. <b>on time ＝ 準時；in time ＝ 及時。</b>兩者語意接近但固定用法不同，是會考易混組。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['On weekends my schedule is different; I often sleep until nine.', 'I keep a diary, so I can see how busy I am every month.', 'A good schedule helps me finish my work on time and leaves me enough time to rest.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 17 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課把 <b>Time</b> 主題的時段詞彙與國中會考的 <b>時間介系詞</b>、<b>一般現在時描述習慣</b>結合，並帶出 <b>too...to</b> 的對應句型 <b>enough to</b>。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> in／on／at + 時間、too...to 與 enough to</h3>
+        <ul class="summary-list">
+<li><b>1. 時間介系詞三選一：</b><br>• <b>at</b> ＋ <b>時刻</b>：at seven (o'clock)／at half past six<br>• <b>on</b> ＋ <b>星期、日期、特定的日</b>：on Monday／on school days／on 5 May<br>• <b>in</b> ＋ <b>月、年、季節、時段</b>：in July／in the morning／in 2020<br><span style="color:#dc2626;">⚠️ 陷阱：</span>at night 是例外（夜晚用 at）。</li>
+<li><b>2. too...to 與 enough...to 的對比：</b><br>• <b>too + 形容詞 + to + 原形</b> ＝ 太⋯⋯以致不能⋯⋯（否定）<br>• <b>形容詞 + enough + to + 原形</b> ＝ 足以⋯⋯（肯定）<br>• <span style="color:#dc2626;">⚠️</span>enough <b>後</b>接形容詞，too <b>前</b>接形容詞，位置絕不可互換。</li>
+<li><b>3. 常見時刻說法：</b><br>• <b>half past six</b> ＝ 6:30　• <b>a quarter past six</b> ＝ 6:15<br>• <b>a quarter to seven</b> ＝ 6:45　• <b>ten to seven</b> ＝ 6:50<br>• 6:30 也可口語說成 <b>six thirty</b>。</li>
+<li><b>4. 頻率副詞階梯與位置：</b><br><b>always &gt; usually &gt; often &gt; sometimes &gt; never</b><br>• 一般動詞前：I <b>usually</b> have breakfast.<br>• be 動詞後：I am <b>usually</b> late.（口語中 I usually am late. 也可成立，但會考以 I am usually late. 為標準寫法）</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 作息與校園情境搭配詞</h3>
+        <ul class="summary-list">
+<li><b>get up / go to bed / go to school</b>：起床／上床睡覺／上學（三個 go / get 的固定搭配）。</li>
+<li><b>have breakfast / lunch / dinner</b>：吃早餐／午餐／晚餐（前不加冠詞）。</li>
+<li><b>for + 一段時間</b>：for an hour／for half an hour（對照 at = 時刻）。</li>
+<li><b>from...to...</b>：從⋯到⋯（from five to seven）。</li>
+<li><b>keep a diary / keep a calendar</b>：寫日記／把行程記在行事曆上（若只是「查閱」，用 check／consult a calendar）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 近義時間詞辨析</h3>
+        <ul class="summary-list">
+<li><b>on time / in time：</b><br>• <b>on time</b> ＝ <b>準時</b>（不早不晚）：The train arrived <u>on time</u>.<br>• <b>in time</b> ＝ <b>及時</b>（還來得及）：We arrived <u>in time</u> to catch the bus.<br>• 兩者只差一個介詞，語意完全不同。</li>
+<li><b>day / days：</b><br>• <b>day</b> ＝ 一整天、一天（可數）<br>• <b>days</b>（複數）＝ 時代、時期：in those <u>days</u>.<br>• <span style="color:#dc2626;">⚠️ 常誤：</span>把 everyday（每天的）與 every day（每一天）混用。</li>
+<li><b>morning / afternoon / evening / night 的介系詞：</b><br>• in the morning／afternoon／evening<br>• <b>at night</b>（唯一用 at 的時段）<br>• 夜間特指「上床睡覺」時用 <b>at bedtime</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

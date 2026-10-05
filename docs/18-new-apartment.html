@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第18課 我們的新家：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 18 課｜我們的新家</h1>
+    <div class="sub-title">House and Home｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Our New Apartment</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> House and Home &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> There be 句型與家具數量、方位介系詞、some／any
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 上個月，我們家搬到一間位於五樓的新公寓。那裡有兩間臥室、一間客廳、一間廚房和一間小浴室。我最喜歡的房間是餐廳，因為它就在廚房隔壁。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 客廳裡有一張沙發、一張大餐桌和兩張扶手椅。窗上還沒有窗簾，房間看起來有點空蕩蕩的。爸爸在廚房放了一臺新冰箱，媽媽則為我的臥室買了幾個架子。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 走廊裡還有三個紙箱，但我們的新家已經開始有家的感覺。我們的地址在五樓，而租金比之前的房子高。每個週日晚上，我們都坐在起居室裡談論這一週發生的事。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last month</span>, our family <span class="w-tap kw-verb">moved into a new apartment on</span> the <span class="w-tap kw-colloc">fifth floor</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>move into + 場所：</b>move ＝「搬進」，後接地點要用 <b>into</b>；對照 move out（搬出）。<br> 2. <b>序數詞 + 樓層 (the fifth floor)：</b>樓層前必須加 <b>the</b>；英式樓層數法為 the fifth floor，美式則把樓層計為 first floor，兩者差一層，是會考文化差異題。<br> 3. <b>一般過去式 (moved)：</b>與時間副詞 last month 搭配，表示已完成的動作。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There are two bedrooms</span>, a <span class="w-tap kw-colloc">living room</span>, a <span class="w-tap kw-colloc">kitchen</span> and a small <span class="w-tap kw-colloc">bathroom</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>There be + 複數名詞 (There are two bedrooms)：</b>本句重點在 be 動詞與名詞的<b>一致</b>——後方列舉的第一個名詞為複數 bedrooms，故用 <b>are</b>。<br> 2. <b>不可說的錯誤：</b><span style="color:#dc2626;">✗ There have two bedrooms.</span>　✓ There <u>are</u> two bedrooms.（此處只能用 be 動詞）<br> 3. <b>複合房間名稱：</b>living room / dining room / sitting room / bedroom / bathroom 皆來自 A2 Key House and Home 主題；修飾語（形容詞或數詞）一律置於整個複合名詞<b>之前</b>：a <b>small</b> bathroom／a two-bedroom apartment。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-verb">favourite room is the dining room</span>, because it <span class="w-tap kw-verb">is next to the kitchen</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>favourite + 名詞：</b>favourite（英式）／favorite（美式）＝「最喜愛的」，後直接接名詞，前面<b>不加 the</b>。<br> 2. <b>because 引導原因：</b>說明「為什麼最喜歡餐廳」，與 because it is near… 構成因果。<br> 3. <b>方位介系詞 next to：</b>next to ＝「緊鄰」，與 beside、near 同義但更強調緊貼，是會考高頻介系詞。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last month, our family moved into a new apartment on the fifth floor.', 'There are two bedrooms, a living room, a kitchen and a small bathroom.', 'My favourite room is the dining room, because it is next to the kitchen.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段以「搬到新公寓」為起點，逐間介紹房間，正好示範 There be 句型單複數的交替；最後用「最喜歡的房間」帶出主觀感受，讓介紹不只是清單而已。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There is a sofa</span>, a big table and <span class="w-tap kw-verb">two armchairs in the living room</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>There is + 單數名詞 (There is a sofa)：</b>be 動詞與<b>緊接其後的第一個名詞</b>保持一致，故用 is。<br> 2. <b>a / one / two 的數量表達：</b>a sofa（泛指一張）、two armchairs（確切數量）並列，顯示客廳的實際配置。<br> 3. <b>方位片語置於句尾 (in the living room)：</b>把地點資訊放在句尾，句子重心留在家具上。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There are no curtains on</span> the windows yet, and the rooms <span class="w-tap kw-verb">look rather bare</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>There be + no + 複數名詞 (There are no curtains)：</b>否定句最常用 <b>no</b>（There are <b>no</b> curtains），也可寫 <b>not any</b>（There are <b>not any</b> curtains.）；不論用哪個，be 動詞都仍與後面的複數名詞保持一致。<br> 2. <b>yet 的位置：</b>yet 置於 be 動詞之後、句末：<b>are no curtains yet</b>，表示「還（沒）⋯⋯」。<br> 3. <b>look + 形容詞 (look rather bare)：</b>look 為連繫動詞；rather ＝「頗為」，是 A2 程度常見的弱化副詞。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My father <span class="w-tap kw-verb">put a new fridge in</span> the kitchen, and my mother <span class="w-tap kw-verb">bought some shelves for</span> my bedroom.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>put + 受詞 + 介系詞 + 地點 (put a new fridge in the kitchen)：</b>put 放置某物到某處，中間的介系詞不可省略。<br> 2. <b>不規則過去式 (bought)：</b>buy–bought–bought，為會考必背高頻動詞。<br> 3. <b>some + 可數複數名詞 (some shelves)：</b>some 用於肯定句，此處指買了幾個架子；shelf 的複數為 shelves（f → ves 變化）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['There is a sofa, a big table and two armchairs in the living room.', 'There are no curtains on the windows yet, and the rooms look rather bare.', 'My father put a new fridge in the kitchen, and my mother bought some shelves for my bedroom.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段把視角拉進室內細節：家具、窗簾、冰箱、架子。有東西與沒東西的對比（there is／there are no）讓讀者看見「家還沒整理好」的過渡狀態。第三段以「還有三個紙箱，但已經有家的感覺」收束，完成搬家主題的轉身。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There are still three boxes in</span> the hall, but our <span class="w-tap kw-colloc">new home already feels warm</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>still 的位置：</b>still 放在<b>主語之後</b>，接在 be 動詞之後最自然：<b>There are still three boxes</b>，表示「還剩下三個」。<br> 2. <b>but 表轉折：</b>「箱子還沒收完」對比「家已經有溫度」，是本課的收束與點睛之處。<br> 3. <b>連繫動詞 + 形容詞 (feels warm)：</b>feel + 形容詞 ＝「感到⋯⋯」，warm 在此是情感描述而非溫度量測。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our <span class="w-tap kw-colloc">address is on the fifth floor</span>, and the <span class="w-tap kw-colloc">rent is higher than</span> our old place.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>address（地址）：</b>是 A2 Key House and Home 主題核心詞，前面通常加所有格（our address）。<br> 2. <b>比較級 + than (higher than)：</b>high 的比較級為 higher，屬「子音＋母音＋y → 變 i 再加 -er」規則（high–higher）；對照多音節形容詞加 more（expensive → more expensive）。<br> 3. <b>rent（租金）：</b>rent 在此作<b>名詞</b>「租金」；作動詞時則是「租用」，是會考一詞多義的高頻字。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">Every Sunday evening</span> we <span class="w-tap kw-verb">sit in the sitting room and talk about our week</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時間狀語置於句首：</b>Every Sunday evening ＋ 主句（本句時間狀語較短，不加逗號也是正確的）；若時間狀語較長，才須在其後加逗號。<br> 2. <b>talk about + 對象：</b>talk about 後接談論的主題，此處是「這一週的事」。<br> 3. <b>in + 室內場所：</b>sit in the sitting room 表示坐在室內；對照 sit on the chair（坐在椅子上，強調接觸面）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['There are still three boxes in the hall, but our new home already feels warm.', 'Our address is on the fifth floor, and the rent is higher than our old place.', 'Every Sunday evening we sit in the sitting room and talk about our week.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 18 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課是 <b>There be 句型</b>的完整演練：單數、複數、否定、剩餘數量四種型態全數出現，並結合 <b>House and Home</b> 主題詞彙與方位介系詞。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> There be 句型四種型態、方位介系詞</h3>
+        <ul class="summary-list">
+<li><b>1. There be 的四種型態：</b><br>• <b>There is + 單數／不可數</b>：There <u>is</u> a sofa.（不可用 have）<br>• <b>There are + 複數</b>：There <u>are</u> two armchairs.<br>• <b>There is/are + no + 名詞</b>：There <u>are no</u> curtains.（否定用 no，不用 not any）<br>• <b>There are still + 複數</b>：There <u>are still</u> three boxes.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>be 動詞看的是<b>緊接其後的第一個名詞</b>的單複數。</li>
+<li><b>2. 方位介系詞（描述房屋位置）：</b><br>• <b>in</b> ＝ 在⋯內部：in the kitchen<br>• <b>on</b> ＝ 在⋯表面：on the windows；用於樓層時表「位於某層」：on the fifth floor ＝「在五樓」<br>• <b>next to / beside / near</b> ＝ 在⋯旁邊<br>• <b>between A and B</b> ＝ 在 A 與 B 之間</li>
+<li><b>3. some 與 any：</b><br>• <b>some</b> 用於肯定句與請求（bought <b>some</b> shelves）<br>• <b>any</b> 用於否定與疑問（There aren't <b>any</b> curtains.）<br>• <span style="color:#dc2626;">⚠️</span>There be 句型的否定直接用 <b>no</b>，不用 not any。</li>
+<li><b>4. 序數詞與樓層：</b><br>• 序數詞前加 <b>the</b>：the fifth floor<br>• 英式：the ground floor ＝ 一樓；the first floor ＝ 二樓<br>• 美式：the first floor ＝ 一樓——差一層，是會考文化差異題。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 居家情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>move into / move out</b>：搬進／搬出。</li>
+<li><b>put + 物 + 介系詞 + 地點</b>：把某物放在某處（put a fridge in the kitchen）。</li>
+<li><b>talk about + 對象</b>：談論⋯⋯。</li>
+<li><b>look + 形容詞 (look bare)</b>：看起來⋯⋯。</li>
+<li><b>feel + 形容詞 (feels warm)</b>：感到⋯⋯。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 一詞多義與易混詞辨析</h3>
+        <ul class="summary-list">
+<li><b>rent 的一詞多義：</b><br>• <b>rent (n.)</b> ＝ 租金：the <u>rent</u> is high.<br>• <b>rent (v.)</b> ＝ 租用：We <u>rent</u> a flat.<br>• 對照 <b>hire</b>（租車、聘請）；「租屋」指承租人時英美皆用 rent，而 <b>rent out</b> 是房東把房子租出去，語意相反，不可混用。</li>
+<li><b>shelf / shelves：</b><br>• 複數為 <b>shelves</b>（f → ves 的不規則變化），不可寫成 shelfs。<br>• 同類：knife → knives、wife → wives、leaf → leaves。</li>
+<li><b>living room / sitting room / dining room：</b><br>三者都是英式常見房名，功能相近但不完全等同：<b>living room</b> 主要客廳、<b>sitting room</b> 偏小客廳、<b>dining room</b> 餐廳。使用時不可混用。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第42課 修飾語的順序：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 42 課｜修飾語的順序</h1>
+    <div class="sub-title">Clothes and Accessories｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 The Order of Words</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Clothes and Accessories &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 形容詞語序：opinion-size-age-shape-colour-origin
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 我們的學校要為冬季話劇準備戲服，所以我們班從九月就開始動手。我的朋友 Daniel 每天穿著不同的新外套和白色運動鞋到學校。那天他很得意地描述一件「黑色的、舊舊的、好可愛的」外套，整間教室都笑了。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 美術老師笑著替我們把形容詞排好順序：先說意見，再說大小、年齡、形狀、顏色，最後才是材質或來源。於是 Daniel 穿上一件可愛的、小小的、舊的、黑色外套，全班都為他喝采。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 那天晚上我請妹妹試穿一條長長的灰色圍巾和一頂帽子。她很擔心，但一條小小的銀項鍊給了她真正的自信。話劇演出那晚，她簡單的服裝贏得了全校熱烈的掌聲。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our school <span class="w-tap kw-verb">needed</span> <span class="w-tap kw-colloc">costumes for a winter play</span>, so our class <span class="w-tap kw-verb">began making</span> them in September.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>make → made：</b> make–made–made 為不規則變化；「動手做戲服」這個動作已完成，用過去式 <b>made</b>。<br> 2. <b>costume（n）：</b> costume ＝「戲服、服裝」，指表演或特殊場合穿的衣服，屬 A2 Key「Clothes and Accessories」主題詞彙。<br> 3. <b>need + 名詞：</b> need 後直接接需要的對象：needed costumes；這裡接過去式是因為要表達「當時需要」。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My friend Daniel <span class="w-tap kw-verb">wore</span> <span class="w-tap kw-colloc">a new jacket and white trainers</span> <span class="w-tap kw-link">every single day</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>wear → wore：</b> wear–wore–worn 為不規則變化；wear 是「穿著」，三態不規則，會考常考。<br> 2. <b>every single day：</b> every single ＝「每一天、無一例外」，比 every day 語氣更強，常與 already／still 連用。<br> 3. <b>並列衣物不加 and 重複名詞：</b> jacket 與 trainers 是兩個不同名詞，直接用 and 連接即可，不必重複 a／white。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Then he <span class="w-tap kw-colloc">proudly described</span> <span class="w-tap kw-verb">a black old lovely coat</span>, and <span class="w-tap kw-verb">the whole room laughed</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>describe + 描述的對象：</b> describe 後直接接被描述的名詞（a coat），中間不加 about。<br> 2. <b>形容詞語序錯誤（本課重點）：</b> 英文形容詞依「<b>意見—大小—年齡—形狀—顏色—質地／來源</b>」排列；black old lovely 把顏色擺在最前面是錯的，應為 <u>✓</u> a lovely old black coat。<br> 3. <b>the whole room：</b> the + 形容詞 + 名詞＝「整間屋子的人」，whole 強調「全部、整個」。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Our school needed costumes for a winter play, so our class began making them in September.', 'My friend Daniel wore a new jacket and white trainers every single day.', 'Then he proudly described a black old lovely coat, and the whole room laughed.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段用 Daniel 每天換衣服的日常鋪陳，再讓他說錯一次形容詞順序而引發全場大笑，把課文要講的規則變成一個笑點。這種先製造錯誤再加以解釋的安排，讓抽象的語序規則有了具體畫面。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our art teacher <span class="w-tap kw-verb">smiled and put</span> the adjectives <span class="w-tap kw-link">in the right order</span> for us.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>put + 賓語 + 方位片語：</b> put the adjectives <b>in the right order</b>，中文思維常把方位放在前面，但英文是「動詞—受詞—位置」。<br> 2. <b>並列動詞共用主語：</b> smiled and put 由同一主語 Our art teacher 發出，後一個動詞直接用原形 put。<br> 3. <b>for us：</b> for 後接對象，表示「替我們（把順序排好）」，for + 人是會考常見介系詞。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">said</span> <span class="w-tap kw-verb">opinion comes first</span>, <span class="w-tap kw-link">then size, age, shape, colour</span>, and material.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>引述句不倒裝：</b> say 後接賓語子句，that 可省略，但語序不可顛倒：She said opinion <b>comes</b> first.（<s>✗ said does opinion come first</s>）<br> 2. <b>first / then：</b> 用來標示順序，放在對應名詞之前；列舉多項時，最後一項前要加 <b>and</b>。<br> 3. <b>material 為不可數名詞：</b>「材質」不可數，所以不加 -s；若要說多種材質才用 materials。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          So Daniel <span class="w-tap kw-verb">wore</span> <span class="w-tap kw-colloc">a lovely small old black coat</span>, and everyone <span class="w-tap kw-colloc">cheered for</span> him.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>形容詞語序（正確示範）：</b> lovely（意見）＋ small（大小）＋ old（年齡）＋ black（顏色）＝ a lovely small old black coat，順序不可隨意調換。<br> 2. <b>cheer for somebody：</b> cheer for ＝「為某人加油」，介系詞 for 不可漏掉（<s>✗ cheered him</s>）。<br> 3. <b>so（結果）：</b> 句首的 So 是承接上文的結果連接詞：老師把順序排好之後，所以 Daniel 穿上了順序正確的外套；後面的「全班喝采」則由 and 連接。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Our art teacher smiled and put the adjectives in the right order for us.', 'She said opinion comes first, then size, age, shape, colour, and material.', 'So Daniel wore a lovely small old black coat, and everyone cheered for him.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段由老師直接點出正確順序並讓 Daniel 改口，形成明確的轉折；第三段則把學到的規則交給妹妹實際運用，讓她從緊張一路走到獲得掌聲，收束成一次完整的學習與運用，讀者也能看見規則被真正用出來的樣子。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          That evening I <span class="w-tap kw-verb">asked my sister to</span> <span class="w-tap kw-colloc">try on</span> <span class="w-tap kw-colloc">a long grey scarf and a hat</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>ask somebody to + 原形：</b> ask 後接「人 + to + 原形」：asked my sister <b>to try</b>；口語常縮成 ask her to。<br> 2. <b>try on（動詞片語）：</b> try on ＝「試穿」，代詞須置於中間：try <b>it</b> on；不可寫成 *try on it。<br> 3. <b>long grey scarf：</b> 長短（long）先於顏色（grey），再一次用一個名詞 scarf 同時修飾兩者。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">worried a lot</span>, but <span class="w-tap kw-colloc">a small silver necklace</span> <span class="w-tap kw-verb">gave her</span> real confidence.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>a small silver necklace：</b> 語序為 size（small）→ 顏色兼材質（silver）→ 名詞 necklace；此處只有一個前置形容詞，順序不論大小仍是正確的，且依本課規則「意見—大小—年齡—形狀—顏色—質地／來源」，材質詞若與顏色並列須排在顏色之後。<br> 2. <b>give somebody + 抽象名詞：</b> give sb confidence ＝「給某人信心」，後面直接接名詞，且不加冠詞。<br> 3. <b>but（轉折）：</b> but 把「很擔心」翻轉成「有自信」，是本課故事情節轉折的關鍵連詞。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          On the play night her <span class="w-tap kw-colloc">simple clothes</span> <span class="w-tap kw-verb">won loud cheers</span> <span class="w-tap kw-link">from the whole school</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>on + the + 夜晚：</b> on the night ＝「在⋯⋯那晚」，night 前須加 the；常見搭配為 on the night of the play。<br> 2. <b>win → won：</b> win–won–won 為不規則變化；主語 her simple clothes 是單數片語，用 <b>won</b>（clothes 雖是複數形式，義為「衣服」整體時當單數）。<br> 3. <b>loud cheers：</b> 「熱烈的掌聲」是固定說法；cheer 可作可數名詞，用複數 cheers。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['That evening I asked my sister to try on a long grey scarf and a hat.', 'She worried a lot, but a small silver necklace gave her real confidence.', 'On the play night her simple clothes won loud cheers from the whole school.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 42 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事以班級製作戲服為主軸，聚焦形容詞語序 opinion、size、age、shape、colour、origin，並延伸材質可數性與搭配的一致性考點：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 形容詞語序規則與陷阱</h3>
+        <ul class="summary-list">
+<li><b>1. 形容詞語序總表：</b><br>• <b>意見 → 大小 → 年齡 → 形狀 → 顏色 → 質地／來源</b>。<br><i>例句：</i> <u>✓</u> a <b>lovely small old black leather</b> coat／<span style="color:#dc2626;">✗</span> a black lovely old coat.</li>
+<li><b>2. 質地與來源的寫法：</b><br>• 質地（如 leather、woollen）與<b>本國製、made in</b> 類來源詞放在最後，緊鄰名詞。<br>• material 為<b>不可數名詞</b>，不可加 -s。</li>
+<li><b>3. 可分動詞片語：</b><br>• try on ＝ 試穿：try <b>it</b> on（代詞放中間）。<br><span style="color:#dc2626;">⚠️ 陷阱：</span>不要寫成 *try on it。</li>
+<li><b>4. 主詞與動詞的一致：</b><br>• <b>clothes</b> 在英式用法中整體視為單數（課文句：her simple clothes），後面的動詞用單數形式。<br>• ask somebody to + <b>原形</b>：asked my sister to try on…</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 衣物與配件情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>costumes for a play</b>：話劇的戲服（介系詞 for 表示用途）。</li>
+<li><b>wear a jacket / trainers</b>：穿著外套／運動鞋（wear 表日常穿，put on 表動作）。</li>
+<li><b>try on</b>：試穿（口語常用來挑選服裝）。</li>
+<li><b>cheer for somebody</b>：為某人加油、喝采（介系詞不可漏）。</li>
+<li><b>on the night of the play</b>：在話劇演出那晚（the night 前須加 the）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易寫錯的衣物用詞</h3>
+        <ul class="summary-list">
+<li><b>coat / jacket：</b><br>• <b>coat</b>＝較長的外套、大衣（冬天穿）。<br>• <b>jacket</b>＝短外套、夾克（春秋穿）。<br>• <span style="color:#dc2626;">✗</span> 兩者不可互換，會考常以圖片題分辨。</li>
+<li><b>dress / suit / costume：</b><br>• <b>dress</b>＝洋裝、連衣裙。<br>• <b>suit</b>＝一套西裝（上衣加長褲）。<br>• <b>costume</b>＝戲服、特殊服裝。</li>
+<li><b>scarf / tie / belt：</b><br>• <b>scarf</b>＝圍巾（複數 scarves 或 scarfs 都可，會考以 scarves 為主）。<br>• <b>tie</b>＝領帶；<b>belt</b>＝皮帶，都用單數形。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

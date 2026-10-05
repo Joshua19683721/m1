@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第49課 除非與條件：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 49 課｜除非與條件</h1>
+    <div class="sub-title">Personal Feelings, Opinions and Experiences｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Only If and Provided That</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Personal Feelings, Opinions and Experiences &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> provided that／as long as／even if／otherwise 條件連接詞、unless 的第一句型用法
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 英文老師告訴我們，她的新計畫真的很有意思。起初我又擔心又有點害怕，不敢一個人在班上開口。老師說，只要我天天練習，我就會有進步。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我覺得自己準備好再試一次，於是能練多久就練多久。同桌告訴我，我的錯誤其實很有用，一點也不糟糕。她還提醒我，否則我會一模一樣地停在原地。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 即使我的聲音在發抖，我還是站起來朗讀了一小段文章。全班都很興奮，老師也給了我一個大大的微笑。現在我很開心，也確信自己用心的努力真的會有回報。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My English teacher <span class="w-tap kw-verb">told us that</span> her <span class="w-tap kw-colloc">new plan</span> was <span class="w-tap kw-verb">really interesting</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>間接敘述 (told us that + 子句)：</b>tell 必須接「人」當受詞（tell <b>us</b> that…），後面接 that 子句；子句仍用主詞 her + 動詞 was，不倒裝。<br> 2. <b>be 動詞 + 形容詞 (was really interesting)：</b>interesting 是形容詞，用來修飾前面的 plan；really 這類程度副詞必須放在形容詞<b>之前</b>。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>say 與 tell 的分界：</b><u>✓ tell us that...</u>／<s>✗ tell that...</s>（缺少受詞），要改成 say that... 或 tell sb that...。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">At first</span> I <span class="w-tap kw-verb">felt worried</span> and <span class="w-tap kw-verb">afraid of speaking</span> <span class="w-tap kw-colloc">alone in class</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>心理動詞 + 形容詞 (felt worried)：</b>feel + 形容詞＝「感到⋯⋯」，felt 是 feel 的不規則過去式（feel–felt–felt）。<br> 2. <b>be afraid of + 名詞／V-ing (afraid of speaking)：</b>afraid 是形容詞，必須放在 be 動詞之後；of 後面接動名詞，<s>✗ afraid of speak</s>。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>alone 與 by yourself：</b>alone 是副詞，修飾動詞（speak <u>alone</u>）；by yourself 強調「靠你自己」；lonely 是形容「寂寞的」，本句不可用 lonely。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">would improve provided that</span> I <span class="w-tap kw-colloc">practised every day</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>間接敘述與時態 (said that I would improve)：</b>主句用過去式 said，但引述的內容仍是「將來一定會發生的事」，因此用 would + 原形 improve。<br> 2. <b>provided that + 一般現在式：</b>provided that ＝ provided + that ＝「只要⋯⋯就⋯⋯」，後面接一般現在式（practise），表示將來的條件。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>會考寫作時，provided that／as long as／unless 都接<b>一般現在式</b>：<u>✓ provided that I practise</u>；<s>✗ provided that I will practise</s>（口語可通，正式作答以一般現在式為標準）。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['My English teacher told us that her new plan was really interesting.', 'At first I felt worried and afraid of speaking alone in class.', 'She said that I would improve provided that I practised every day.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先寫老師提出新計畫，主角的情緒也從好奇轉為不安；「只要⋯⋯就⋯⋯」的 provided that 把老師的期望講成一個明確的交換條件。第二段緊接著描寫主角如何實踐這個條件，讓第一段立下的承諾在下一段有了具體回應。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">felt ready to try again</span>, and I <span class="w-tap kw-verb">practised as long as I could</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be ready to + 原形 (felt ready to try again)：</b>ready 是形容詞，須置於 be 動詞之後；to 之後只能接原形 try。<br> 2. <b>as long as + 子句 (as long as I could)：</b>as long as ＝「只要、在⋯⋯範圍之內」；此處 could 是「盡可能」的意思，整句等於 I practised for as long as I could。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>as long as 與 as soon as：</b><u>✓ I will call you as soon as I arrive.</u>／<s>✗ ...as long as I arrive.</s>（只要⋯⋯／一旦⋯⋯就⋯⋯，意思完全不同）。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">desk partner</span> <span class="w-tap kw-verb">said that</span> my mistakes <span class="w-tap kw-verb">were useful, not terrible</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>名詞片語 (my mistakes)：</b>mistake 是可數名詞，複數在詞尾加 -s；前面已有 my 這個限定詞，就不能再加 a。<br> 2. <b>were + 形容詞, not + 形容詞：</b>否定另一個形容詞時用 not 保留原級，<u>✓ useful, not terrible</u>；不可寫 <s>✗ not usefully</s>。<br> 3. <b>useful 與 useless 的字尾：</b>useful（有用的）＝ use + -ful；useless（沒用的）＝ use + -less。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 *helpfull（-ful 結尾只留一個 l）。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">warned me that</span> <span class="w-tap kw-verb">otherwise</span> I would <span class="w-tap kw-colloc">stay exactly the same</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>warn sb (that) + 子句 (warned me that…)：</b>warn 可以直接接人當受詞（warn <b>me</b>），後接子句說明警告的內容。<br> 2. <b>otherwise ＝「否則、不然的話」：</b>otherwise 自己不帶句子，只接<b>後果</b>，通常放在主詞之後；也可置於句首加逗號（<u>Otherwise, you will stay the same.</u>）。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>otherwise 不能和 because、so 同時塞進一句：<u>✓ ...otherwise I would stay the same.</u>／<s>✗ ...because I was lazy, so otherwise...</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['I felt ready to try again, and I practised as long as I could.', 'My desk partner said that my mistakes were useful, not terrible.', 'She warned me that otherwise I would stay exactly the same.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段結尾用 otherwise 拉出反面後果，把「不練就一樣」的危機說得清清楚楚。第三段立刻用 even if 讓主角在最害怕的情境下仍然開口，完成態度的轉折；最後一句以 sure 與 pays off 收束全課的主旨。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Even if my voice shook</span>, I <span class="w-tap kw-verb">stood up and read</span> a <span class="w-tap kw-colloc">short text</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>even if ＝「即使、就算」：</b>even if 引導<b>讓步</b>子句，表示「條件不成立，句子仍然成立」；後面接完整句子。<br> 2. <b>讓步子句的時態：</b>此處 voice shook 用一般過去式，描述「當時真的發抖」；if 不必與 would 配對，兩句各自完整即可。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>even if 之後<b>不可</b>再加 but：<u>✓ Even if I was afraid, I read it aloud.</u>／<s>✗ Even if I was afraid, but I read it aloud.</s>（but 只能連兩個對等的完整句子）。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The class <span class="w-tap kw-verb">was excited</span>, and my teacher <span class="w-tap kw-colloc">gave me a big smile</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be + 形容詞 (was excited)：</b>excited 形容「感到興奮的」，用來修飾人；主語 the class 視為單數，所以用 was。<br> 2. <b>give + 人 + 物 (gave me a big smile)：</b>give ＋ 人 ＋ 物＝「給某人某物」；a big smile 這個名詞片語不可拆開。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>-ing 與 -ed 形容詞：</b>exciting 形容「令人興奮的」，修飾事物（an exciting story）；<s>✗ The class was exciting.</s>，應寫 <u>✓ The class was excited.</u>。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Now I <span class="w-tap kw-verb">feel happy and sure that</span> my <span class="w-tap kw-colloc">careful effort</span> really <span class="w-tap kw-colloc">pays off</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>feel + 形容詞 + that 子句 (feel happy and sure that…)：</b>feel 之後可以同時接形容詞與 that 子句，子句用來補充「確定什麼」；sure that + 子句是固定用法。<br> 2. <b>effort 的可數用法 (my careful effort)：</b>effort 是可數名詞，複數為 efforts（They made great efforts to improve.）；本句只需單數的 effort，前面用 my 這類限定詞。<br> 3. <b>pay off ＝「有回報、值得」：</b>pay off 是可分開的片語（pay it off），指先前的努力產生好結果。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ pay off it</s>，代詞必須放中間。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Even if my voice shook, I stood up and read a short text.', 'The class was excited, and my teacher gave me a big smile.', 'Now I feel happy and sure that my careful effort really pays off.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 49 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課帶出 provided that、as long as、even if、otherwise 四個條件連接詞的分工。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 條件連接詞的語意分工</h3>
+        <ul class="summary-list">
+<li><b>1. provided that ＝「只要⋯⋯就⋯⋯」：</b><br><i>例句：</i>You will improve <u>provided that</u> you practise every day.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>後接<b>一般現在式</b>，不可寫 <s>✗ provided that you will practise</s>。</li>
+<li><b>2. as long as ＝「只要、在⋯⋯之內」：</b><br>• 條件用法：as long as 與 if / provided that 同義。<br>• 範圍用法：I practised <u>as long as I could</u> ＝ 能練多久就練多久。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>別和 as soon as（一旦⋯⋯就）混用。</li>
+<li><b>3. even if ＝「即使、就算」：</b><br>• 引導<b>讓步</b>子句，條件不成立時句子照樣成立。<br>• <i>例句：</i><u>Even if</u> my voice shook, I stood up and read.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>even if 後面不可再加 but。</li>
+<li><b>4. otherwise 與 unless：</b><br>• <b>otherwise</b> 接「後果」：Practise, otherwise you will stay the same.<br>• <b>unless</b> ＝「除非」＝ if not：<u>✓ Unless you practise, you will stay the same.</u><br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>unless 是條件，otherwise 是結果，兩者不可互換。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 口語練習的高頻搭配</h3>
+        <ul class="summary-list">
+<li><b>keep + V-ing</b>：持續做某事（keep practising、keep trying）。</li>
+<li><b>make a mistake / make mistakes</b>：犯錯（用 make，不用 do）。</li>
+<li><b>stay the same</b>：維持原樣、沒有任何改進。</li>
+<li><b>be ready to + 原形</b>：準備好做某事（felt ready to try again）。</li>
+<li><b>pay off</b>：付出得到回報（my careful effort really pays off）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混淆的條件與形容詞</h3>
+        <ul class="summary-list">
+<li><b>excited / exciting：</b><br>• <b>-ing</b> 形容「令人⋯⋯的」→ exciting（修飾事物）。<br>• <b>-ed</b> 形容「感到⋯⋯的」→ excited（修飾人）。<br>• <span style="color:#dc2626;">⚠️</span> <s>✗ The class was exciting.</s>／<u>✓ The class was excited.</u></li>
+<li><b>worried / afraid：</b><br>• be worried <b>about</b> + 名詞（worried about the test）。<br>• be afraid <b>of</b> + 名詞或 V-ing（afraid of speaking）。<br>• <span style="color:#dc2626;">⚠️</span> <s>✗ be afraid for speaking</s> 應改為 of。</li>
+<li><b>useful / useless：</b><br>• <b>useful</b> ＝ 有用的（use + -ful）；<b>useless</b> ＝ 沒用的（use + -less）。<br>• <span style="color:#dc2626;">⚠️</span> 不可寫 *helpfull；-ful 結尾只保留一個 l。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

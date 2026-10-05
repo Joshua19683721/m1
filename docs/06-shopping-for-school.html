@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第6課 買文具：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 6 課｜開學買文具</h1>
+    <div class="sub-title">Shopping｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Shopping for School</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Shopping &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> can／could／couldn't、間接問句 which、a lot of／much／many
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 開學之初，我們班需要一些新的文具用品。老師要求我們買一本筆記本、一支筆和一把尺子。我和同學 Tom 一起去了學校附近的文具店。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 那裡有各種各樣的筆，但我無法決定哪一支才是最好的。Tom 說我們應該向店員求助。她推薦了一支便宜卻很好的筆，售價只要十五元。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 我本來可以買最貴的那一支，但我並不需要它。回家路上，我們數了數錢，發現還剩下一些。媽媽很高興，因為我存下了一些錢可以用來買一本新書。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">At the beginning of</span> term, our class <span class="w-tap kw-verb">needed</span> <span class="w-tap kw-colloc">some new stationery</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時間片語 (At the beginning of term)：</b>the beginning of + 單數名詞 ＝「⋯的開頭」，介系詞 of 後接名詞或動名詞。<br> 2. <b>some + 不可數名詞 (some stationery)：</b>stationery 為不可數名詞（文具總稱），不可加 -s。<br> 3. <b>過去式 (needed)：</b>故事切換到過去時制，規則動詞直接加 -ed。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our teacher <span class="w-tap kw-verb">asked us to buy</span> a notebook, a pen and a <span class="w-tap kw-colloc">ruler</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>ask sb to + 原形 (asked us to buy)：</b>ask ＋ 人 ＋ to do ＝「要求某人做某事」，不定詞 to 不可省略。<br> 2. <b>A／an 的選擇：</b>a notebook、a pen 用 a；<b>a ruler</b> 也用 a，因 ruler 以<b>子音音素</b> /r/ 開頭——判斷依據是<b>讀音</b>而非字母。<br> 3. <b>並列名詞 (a notebook, a pen and a ruler)：</b>ruler 屬 A2 Key「Education」主題，notebook、pen 屬「Documents and Texts」主題；三者都是會考常以清單式出題、測驗單複數與冠詞的高頻名詞。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">went to</span> a stationery shop <span class="w-tap kw-colloc">near</span> my school with my classmate Tom.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>不規則過去式 (went)：</b>go–went–gone，搭配地點介系詞 to。<br> 2. <b>複合名詞 (stationery shop)：</b>修飾詞 + 中心詞，中英文皆為「修飾詞在前、中心詞在後」（中文「文具店」、英文 stationery shop），不可寫成 shop stationery。<br> 3. <b>with + 人：</b>＝「和某人一起」，說明同行者。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['At the beginning of term, our class needed some new stationery.', 'Our teacher asked us to buy a notebook, a pen and a ruler.', 'I went to a stationery shop near my school with my classmate Tom.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先把購物的「任務」與「清單」交代清楚，筆記本、筆、尺子三樣物件正好對應 A2 Key Shopping 主題的核心詞。第二段進入抉擇的細節，用 couldn't decide 把讀者的注意力集中在「選哪一個」這個真實難題上。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There were</span> <span class="w-tap kw-colloc">many kinds of</span> pens, but I <span class="w-tap kw-verb">couldn't decide which one was the best</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>kind of / kinds of：</b>＝「⋯的種類」，kinds 須用複數並搭配 many；此片語後接複數名詞 pens。<br> 2. <b>couldn't + 原形 (couldn't decide)：</b>否定情態動詞 couldn't 後接原形 decide。<br> 3. <b>間接問句 (which one was the best)：</b>「疑問詞 + 主詞 one + 動詞」，語序<b>不倒裝</b>；此處不可寫成 <s>which one the best was</s>，也不可加 did。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Tom <span class="w-tap kw-verb">said that</span> we <span class="w-tap kw-verb">should ask the shop assistant for help</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>間接引語 (said that + 子句)：</b>主語 we 為複數，後接 should（不隨人稱變化），再接原形 ask。<br> 2. <b>ask sb for + 對象：</b>ask somebody for something ＝「向某人請求某物」；ask for help 為 A2 Key 固定搭配。<br> 3. <b>複合名詞 (shop assistant)：</b>來自 A2 Key「Shopping」主題，為購物情境必備角色名詞。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">recommended</span> a cheap but very good pen, and it <span class="w-tap kw-verb">cost only fifteen yuan</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>recommend + 受詞：</b>recommend 後直接接受詞（recommend a pen），<b>不加介詞 to</b>；表示「建議某人做某事」要用 <b>recommend doing</b> 或 <b>recommend that sb (should) do</b>，標準參考資料並不列 recommend sb to do。<br> 2. <b>並列形容詞 (cheap but very good)：</b>but 連接兩個語意相對照（而非相反）的形容詞，兩者共同修飾 pen；兩者順序可以對調（a very good but cheap pen），語意不變。<br> 3. <b>only 的加強作用：</b>only fifteen yuan ＝「只要十五元」，only 置於數字前以強調金額之低。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['There were many kinds of pens, but I couldn\'t decide which one was the best.', 'Tom said that we should ask the shop assistant for help.', 'She recommended a cheap but very good pen, and it cost only fifteen yuan.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第三段回應了第二段的猶豫：主角沒有買最貴的，反而把錢留下來。故事的價值不在「買了什麼」，而在「懂得不亂買」，這也是會考寫作中「有理有據的取捨」常見的素材方向。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">could have bought</span> <span class="w-tap kw-colloc">the most expensive one</span>, but I <span class="w-tap kw-verb">didn't need</span> it.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>最高級 (the most expensive)：</b>expensive 為多音節形容詞，最高級為 <b>the most expensive</b>，前面必須有 the。<br> 2. <b>could have + 過去分詞：</b>表示「本來可以⋯⋯（但實際沒有）」，與第 5 課的 could + 原形 語意不同。<br> 3. <b>didn't need (do 的過去式助動詞)：</b>本句主語為 I，故 did 是 do 的<b>過去式</b>助動詞（不是第三人稱單數），後接<b>原形</b> need，不可寫成 didn't needed。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">On the way home</span>, we <span class="w-tap kw-verb">counted our money</span> and <span class="w-tap kw-verb">found that</span> we <span class="w-tap kw-verb">still had some left</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>on the way home：</b>此處 home 為<b>副詞</b>，前面<b>不加 to、不加 the</b>；對照第 1 課的 on the way <b>to</b> the office。<br> 2. <b>間接引語 (found that + 子句)：</b>find / find out 後可接 that 子句，是會考閱讀常見的「發現」句型。<br> 3. <b>some + 形容詞／分詞 (some left)：</b>some 在此<b>獨立作代詞</b>，後面接<b>過去分詞</b> left（剩下的），即「剩下一些」；另注意 had some money <b>left</b> 是另一個句型，left 後置修飾 money，兩者不可混。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My mother <span class="w-tap kw-verb">was pleased</span> because I <span class="w-tap kw-verb">had saved some money for</span> a new book.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>連繫動詞 + 形容詞 (was pleased)：</b>be 為連繫動詞，後接<b>形容詞</b> pleased ＝「感到高興」，與第 3 課的 I was tired but happy 同屬「be + 形容詞」；另注意 please 作<b>及物動詞</b>才是「使⋯⋯高興」（She pleased me.）。<br> 2. <b>過去完成式 (had saved)：</b>had + 過去分詞，表示「在媽媽感到高興之前，就已經存好了錢」。<br> 3. <b>save + 金錢 + for + 用途：</b>save ＝「儲蓄」，save money <b>for</b> a new book ＝「為了買新書而存錢」，此時不可把 for 改成 to。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['I could have bought the most expensive one, but I didn\'t need it.', 'On the way home, we counted our money and found that we still had some left.', 'My mother was pleased because I had saved some money for a new book.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 6 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課以最貼近國中生的購物情境，訓練三組會考高頻結構：<b>情態動詞 can / could</b>、<b>間接問句 which</b>，以及 <b>a lot of / much / many</b> 的數量表達。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 情態動詞與間接問句</h3>
+        <ul class="summary-list">
+<li><b>1. can / could / couldn't：</b><br>• <b>can + 原形</b> ＝ 能夠、會（能力）<br>• <b>could + 原形</b> ＝ 能夠（過去）/ 委婉的請求（<b>Could I…?</b>）<br>• <b>couldn't + 原形</b> ＝ 無法（過去）<br>• <b>could have + 過去分詞</b> ＝ 本來可以⋯⋯（但沒有）</li>
+<li><b>2. 間接問句（陳述句語序）：</b><br>疑問詞 + <b>主詞 + 動詞</b>，不倒裝、不加 do／does／did。<br>• ✓ I couldn't decide <b>which one was the best</b>.<br>• ✗ which one the best was　✗ which one did be the best</li>
+<li><b>3. a lot of / much / many：</b><br>• <b>a lot of + 可數複數或不可數</b>＝許多（a lot of <b>pens</b> / a lot of <b>money</b>）<br>• <b>many + 可數複數</b>（many pens）<br>• <b>much + 不可數</b>（much money）</li>
+<li><b>4. a / an 的判斷看「讀音」：</b><br>• a ruler（/r/ 子音開頭）、a university（/j/ 母音開頭）<br>• an hour（h 不發音）<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>不可只看字母，須以讀音為準。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 購物情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>ask sb for help</b>：向某人求助（ask 後不加 to）。</li>
+<li><b>ask sb to do sth</b>：要求某人做某事（ask 後<b>要</b> to do）。</li>
+<li><b>recommend + 受詞</b>：推薦某物；recommend doing／recommend that sb (should) do ＝ 建議某人做某事。</li>
+<li><b>on the way home</b>：在回家的路上（home 為副詞，前面不加 the／to）。</li>
+<li><b>save money for + 用途</b>：為了⋯⋯而存錢。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 比較級最高級與易混用法</h3>
+        <ul class="summary-list">
+<li><b>expensive / cheap：</b><br>• <b>expensive</b> ＝ 昂貴的　• <b>cheap</b> ＝ 便宜的<br>• 高頻比較級：more expensive → <b>the most expensive</b>；cheaper → <b>the cheapest</b>。</li>
+<li><b>some 作代詞 vs. 形容詞：</b><br>• <b>some + 名詞</b>：some <b>pens</b> / some <b>money</b><br>• <b>some + 形容詞</b>（代詞用法）：had some <b>left</b>（剩下一些）<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>some + 形容詞／分詞（<b>some left</b>）不可在中間插入名詞變成 had some left money。</li>
+<li><b>need / want / have to：</b><br>• <b>need to do</b> ＝ 需要做（主觀需求）<br>• <b>want to do</b> ＝ 想要做（主觀意願）<br>• <b>have to do</b> ＝ 不得不做（外在規定）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

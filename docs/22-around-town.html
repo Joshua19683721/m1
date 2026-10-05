@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第22課 城鎮裡的一天：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 22 課｜城鎮裡的一天</h1>
+    <div class="sub-title">Places: Town and City｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Getting Around Town</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Places: Town and City &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 問路與指路的句型、by／on foot、How do I get to...?
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 我的朋友班從加拿大來我們這個小鎮玩。星期六早上，我們沿著綠色街道走到市中心。廣場上有一座很大的市場，附近則是一間醫院。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 他問我要怎麼去橋對面的鐵路車站。我告訴他在路口左轉，再沿著這條路走。我們還在一家銀行、一間電影院與旅館附近的小公園停下來看看。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 接著我們步行到地鐵站附近的超級市場。班想找一家餐廳，所以我們在巴士站附近叫了一輛計程車。最後我們送他到旅館，他雖然很累，卻非常開心。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My friend Ben <span class="w-tap kw-verb">came from</span> Canada <span class="w-tap kw-verb">to visit</span> our <span class="w-tap kw-colloc">small town</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>come from + 來源：</b>come from ＝ 來自（說人或物來自哪裡）；be from 意義相同，但多用於持續狀態（Ben is from Canada.）。<br> 2. <b>句末不定詞表目的：</b>to visit 說明「他為什麼來」，相當於 in order to／so that he could；此處不可加 for（✗ for visit）。<br> 3. <b>town 與 city：</b>town ＝ 鎮（人口較少），city ＝ 城市（人口較多）。<span style="color:#dc2626;">⚠️ 陷阱：</span>city 的複數是 <u>cities</u>（變 y 為 i 再加 -es），不是 citys。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">walked down</span> <span class="w-tap kw-colloc">Green Street</span> <span class="w-tap kw-colloc">to the city centre</span> <span class="w-tap kw-link">on Saturday morning</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>walk down 與 walk along：</b>down ＝ 沿著街道往某方向走（walk down the street）；along ＝ 順著一條線行走（walk along the road）。兩者都表示方向，可互換。<br> 2. <b>街道名要用大寫：</b>英式街道名以專有名詞處理，第一個字母<b>必須大寫</b>（Green Street、King Road）；英式常用 Road／Street／Lane，美式常用 Street／Avenue。<br> 3. <b>the city centre：</b>centre ＝ 中心，city centre ＝ 市中心，前面一般加 the；英式拼 centre，美式拼 center，會考以英式拼法為準。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-verb">There is</span> a <span class="w-tap kw-colloc">big market on the square</span>, and <span class="w-tap kw-verb">there is</span> a <span class="w-tap kw-colloc">hospital near it</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>There be 的就近一致：</b>There is a big market on the square 中，離 is 最近的單數名詞是 a market，所以用 is；句末出現 the square 不影響判斷。<br> 2. <b>A and B 並列要用複數：</b>若把兩項合併成主語"There are a market and a hospital."，be 動詞就必須改成 are；此句分成兩小句，各自用 is 才是正確寫法。<br> 3. <b>it 代替上文名詞：</b>it 代替前面已提過的 the market，避免重複；market 是可數單數，所以用 it 而不是 they。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['My friend Ben came from Canada to visit our small town.', 'We walked down Green Street to the city centre on Saturday morning.', 'There is a big market on the square, and there is a hospital near it.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段從班抵達小鎮寫起，用兩句就把廣場、市場與醫院的位置關係鋪好，讓讀者先建立城鎮的地圖感。第二段轉成問路情節，班一開口問路，主角便用左轉、沿著這條路走等指令回答，段落之間因此有了清楚的因果。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          He <span class="w-tap kw-verb">asked</span> me, <span class="w-tap kw-colloc">"How do I get to</span> the <span class="w-tap kw-colloc">railway station</span> <span class="w-tap kw-verb">across the bridge?"</span>
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>How do I get to + 場所?：</b>問路最常用的句型，get to ＝「到達」，後面接地點；回答通常是祈使句（Go straight on.／Take the number three bus.）。<br> 2. <b>直接引語的標點：</b>引述對方原話時，asked 之後<b>先逗號再開引號</b>，句末的問號放在引號<b>內</b>；陳述句則改用句號。<br> 3. <b>across the bridge：</b>across ＝ 橫過（從這邊到對邊，指橋的寬度方向）；若是沿著橋面走，則用 along the bridge。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">told him to turn left</span> <span class="w-tap kw-colloc">at the corner</span> and <span class="w-tap kw-verb">walk along</span> <span class="w-tap kw-colloc">this road</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>tell sb to do：</b>tell 後面接「人＋to＋原形」：told him <b>to turn left</b>；否定式是 tell sb not to do。<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ told him turn left（漏掉 to）。<br> 2. <b>指路祈使句的動詞搭配：</b>turn left／turn right <b>不加介詞</b>（✗ turn to left）；go straight on ＝「一直往前走」；take the second turning ＝「在第二個轉彎處轉彎」。<br> 3. <b>this road vs. the road：</b>指示眼前的路線用 this／that（this road）；若雙方都清楚、或前面已提過，才用 the road。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          We <span class="w-tap kw-verb">stopped at</span> a <span class="w-tap kw-colloc">bank</span>, a cinema and a <span class="w-tap kw-colloc">small park near the hotel</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>stop at + 場所：</b>stop at ＝「在某處停下來」，其中 at 用於某一點；「在某地短暫停留」則用 stop in。<br> 2. <b>park 作場所名稱：</b>park ＝ 公園，是<b>可數名詞</b>，前面要加 a／the（a small park）；「停車」這個動作才用 parking，不可數。<br> 3. <b>stop 與 stay 的差別：</b>stop at the bank ＝「在銀行前停下」，stay at the hotel ＝「住在旅館」；指路、敘述移動時用 stop，表達住宿時才用 stay。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['He asked me, "How do I get to the railway station across the bridge?"', 'I told him to turn left at the corner and walk along this road.', 'We stopped at a bank, a cinema and a small park near the hotel.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段結尾還在步行看景，第三段則正式進入大眾運輸與送客的部分：先走路到超級市場，再叫計程車，最後把班安全送到旅館，正好完成「認識市區 → 順利抵達」的主線。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Then</span> we <span class="w-tap kw-verb">went on foot</span> <span class="w-tap kw-colloc">to the supermarket</span> <span class="w-tap kw-colloc">near the underground station</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>on foot：</b>「步行」固定用 <b>on foot</b>，中間不加 the、a。<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ by foot．<br> 2. <b>by + 交通工具：</b>by bus／by taxi／by underground 後面的交通工具名稱<b>不加冠詞</b>；若要指「搭三號公車」才說 take the number three bus。<br> 3. <b>the underground (n.)：</b>英式 underground ＝ 地下鐵，可作不可數名詞（by underground、the underground station）；美式通常說 the subway 或 the metro。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Ben <span class="w-tap kw-verb">wanted a restaurant</span>, <span class="w-tap kw-link">so</span> we <span class="w-tap kw-verb">called a taxi</span> <span class="w-tap kw-colloc">near the bus stop</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>want sth 與 want to do：</b>want 後接<b>名詞</b>表示「想要某物」（wanted a restaurant）；接 <b>to + 原形</b>表示「想做某事」（wanted to eat）。<br> 2. <b>so 引導結果：</b>so ＝ 因此，前句是原因、後句是結果；此處「他想找餐廳，所以我們叫車」，因果方向不可顛倒。<br> 3. <b>固定複合名詞 bus stop：</b>bus stop ＝ 巴士站（候車處），複合名詞已固定，不加 s；搭車用 take／catch／call，寫法依交通工具而定。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">At last</span>, we <span class="w-tap kw-verb">reached</span> his hotel, <span class="w-tap kw-link">and</span> he <span class="w-tap kw-verb">was tired but very happy</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>at last：</b>at last ＝「最後、終於」，是句子副詞，可放句首或句尾；與 at first（起初）構成固定對比，屬會考常見副詞配對。<br> 2. <b>reach + 場所（不接介詞）：</b>reach 是及物動詞，後面直接接地點（reached his hotel），<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ reached to his hotel；這與 arrive at／arrive in 要搭配介詞的規則不同。<br> 3. <b>but 連接對比：</b>but ＝ 但是，連接語意相反的兩部分；「很累」與「非常開心」同時成立，用 but 呈現轉折，符合真實情境。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Then we went on foot to the supermarket near the underground station.', 'Ben wanted a restaurant, so we called a taxi near the bus stop.', 'At last, we reached his hotel, and he was tired but very happy.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 22 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事聚焦國中會考最常出現的問路與指路句型、交通工具的表達方式，以及 How do I get to...? 這個超高頻句型：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 問路指路與交通表達</h3>
+        <ul class="summary-list">
+<li><b>1. 問路句型 How do I get to + 場所?：</b><br><i>例句：</i> <b>How do I get to</b> the railway station?<br>回答用祈使句或 can：Go straight on.／You can <u>take</u> the bus.／It's next to the bank.</li>
+<li><b>2. 指路祈使句：</b><br>• Turn left／right <u>at</u> the corner.（<span style="color:#dc2626;">✗ turn to left</span>）<br>• Go straight on.（一直往前走）<br>• Take the second turning.（第二個轉彎）<br>• Cross the road.（過馬路）</li>
+<li><b>3. by + 交通工具／on foot：</b><br>• <b>by</b> bus／by taxi／by underground → 交通工具<b>不加冠詞</b>。<br>• <b>on foot</b> ＝ 步行 → <span style="color:#dc2626;">⚠️ 陷阱：✗ by foot</span>。<br>• 動詞片語才需要冠詞：take <b>a</b> bus、call <b>a</b> taxi、get on <b>the</b> underground。</li>
+<li><b>4. there be 句型與 here／there：</b><br><i>例句：</i> <b>There is</b> a market on the square.／<b>There are</b> many banks in the city.<br>be 動詞跟後方最近的名詞一致；here 指說話者的位置，there 指對方或某個存在的事實。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 市區情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>walk along + 路線</b>：順著路走（walk along this road）。</li>
+<li><b>cross the road／the bridge</b>：橫過馬路／橋梁。</li>
+<li><b>turn left／right at the corner</b>：在路口左轉／右轉（不加 to）。</li>
+<li><b>get on／get off</b>：上車／下車（公車、火車、地鐵）。</li>
+<li><b>wait at the bus stop</b>：在公車站等車。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易寫錯的城鎮用詞</h3>
+        <ul class="summary-list">
+<li><b>road / street：</b><br>• <b>street</b> ＝ 街道，兩側通常是房屋與商店（Green Street）。<br>• <b>road</b> ＝ 道路，著重「通行」的通道（this road）。<br>• 英式以 Street／Road 為主，美式多用 Street／Avenue。</li>
+<li><b>by / on：</b><br>• <b>by</b> + 交通工具（by bus）→ 不加冠詞。<br>• <b>on foot</b> ＝ 步行 → <span style="color:#dc2626;">✗ by foot</span>。<br>• 其他搭配用 <b>in</b>（in a taxi、in the car）。</li>
+<li><b>arrive in / arrive at：</b><br>• <b>arrive in</b> + 城市、國家（arrive in the city）。<br>• <b>arrive at</b> + 具體地點（arrive at the station）。<br>• <b>reach</b> 後接城市、國家或具體地點都可用，且<b>一律不加介詞</b>（reach the city／reach the station）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

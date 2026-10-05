@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第19課 我的家人與朋友：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 19 課｜我的家人與朋友</h1>
+    <div class="sub-title">Family and Friends｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 My Family and My Friends</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Family and Friends &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> 所有格、所有格代詞（mine／yours）、描述人的形容詞
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 每個星期天下午，我們全家都會坐在客廳裡，一起看牆上的那面照片牆。爸爸是一名醫生，媽媽則在一所小學教音樂。那面牆上，爺爺和奶奶站在我父母的身旁，那是好多年以前拍的照片。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我的哥哥現在是青少年，妹妹則是個安靜又喜歡畫畫的孩子。湯姆叔叔和莉莉阿姨常常帶著我的表弟班恩來我們家玩。他們家的房子就在我們家隔壁，所以我們經常互相借糖和工具。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 上個星期六，我的同學妮娜來我家作客吃晚飯。住在隔壁的肯也是我的朋友，那天晚上大家都很開心。李太太還帶來一個蛋糕，熱鬧的客廳一下子變得溫暖起來。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Every Sunday afternoon</span>, our family <span class="w-tap kw-verb">sits</span> <span class="w-tap kw-colloc">in the living room</span> and <span class="w-tap kw-colloc">looks at</span> the photo wall.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>時間片語置於句首：</b>Every + 單數名詞（Sunday afternoon）構成時間片語，放句首後<b>加逗號</b>；敘述每週重複的習慣要用一般現在式。<br> 2. <b>並列動詞共用一個主語 (sits ... and looks)：</b>our family 後面接兩個動作謂語，<b>兩個動詞都要用第三人稱單數</b>（sits … and <b>looks</b>，looks 不是原形），且<b>不重複主語</b>。<br> 3. <b>look at + 物：</b>look 本身是<b>不及物動詞</b>，不能直接接受詞，必須靠介系詞 <b>at</b> 才能接東西：look <u>at</b> the photo wall。<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ <s>look the photo wall</s>（漏掉 at）。另請注意，「認為」這個意思要用 <b>see</b> 而非 look：She <b>saw</b> <u>that</u> I was right.（✗ <s>She looked that I was right.</s>）
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">My father</span> <span class="w-tap kw-verb">is</span> a doctor, and <span class="w-tap kw-verb">my mother teaches</span> <span class="w-tap kw-colloc">music at a small school</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be 動詞作身分說明 (is a doctor)：</b>a + 單數可數名詞可作主語的補語，說明身分職業；doctor 以 -or 結尾，複數才是 doctors。<br> 2. <b>第三人稱單數 (teaches)：</b>主語 my mother 是第三人稱單數，teach 須變成 <b>teaches</b>（teach–taught–taught），這是會考必考的不規則變化。<br> 3. <b>at / in + 場所：</b>at a school ＝「在一所學校裡工作」，in a hall ＝「在大廳裡面」；工作地點 <b>at 與 in 都可以</b>（in a small school 亦正確，強調「在這所學校內」），依語意與場合選擇。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">On the wall</span>, my <span class="w-tap kw-colloc">grandfather and grandmother</span> <span class="w-tap kw-verb">stand next to</span> my <span class="w-tap kw-colloc">parents</span> in an old photo.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>介系詞三兄弟 (on / in / at)：</b>on 表示「貼在某物表面」，in 表示「在某物內部」，at 表示「落在某一點」；照片掛在牆上用 <b>on the wall</b>。<br> 2. <b>A and B + 複數動詞 (stand)：</b>grandfather and grandmother 是 A and B 結構，會合起來視為<b>複數</b>，所以用原形 stand，不用 stands。<br> 3. <b>next to + 人或物：</b>next to ＝「緊挨著」，可接親人也可接場所；它的反義說法是 far from（離⋯很遠）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>next from</s> 或 <s>next to my parents side</s>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Every Sunday afternoon, our family sits in the living room and looks at the photo wall.', 'My father is a doctor, and my mother teaches music at a small school.', 'On the wall, my grandfather and grandmother stand next to my parents in an old photo.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段從每個星期天下午的家庭日常切入，用客廳牆上的照片牆帶出爺爺、奶奶與父母，點出「家」的主題。第二段順著照片牆的視線繼續往下移，把主角換成哥哥、妹妹與叔姨，說明這些親人平常如何來來往往。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">brother</span> <span class="w-tap kw-verb">is a teenager</span> now, and my <span class="w-tap kw-colloc">sister</span> <span class="w-tap kw-verb">is</span> a <span class="w-tap kw-verb">quiet child</span> who loves drawing.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>a + 單數可數名詞：</b>a 用於輔音音素開頭的單數可數名詞（a brother、a sister、a child）；母音音素開頭才用 an（an uncle、an aunt）。<br> 2. <b>副詞 now 的位置：</b>now 是句子副詞，放在 be 動詞與補語之後（is a teenager <b>now</b>）；頻率副詞才放在 be 動詞之後、補語之前（is <u>often</u> late）。<br> 3. <b>限定關係子句 who：</b>who 引導子句修飾前面的 a quiet child，子句缺主語，謂語要用第三人稱單數 <b>loves</b>；先行詞是人時用 who，不用 which。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">uncle Tom</span> and my <span class="w-tap kw-colloc">aunt Lily</span> <span class="w-tap kw-verb">often visit us</span> <span class="w-tap kw-link">with my cousin Ben</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>稱謂 + 名字 (uncle Tom / aunt Lily)：</b>英文的稱謂後面<b>直接接名字、不加逗號</b>；中文「湯姆叔叔」翻成英文要寫成 My uncle Tom。<br> 2. <b>頻率副詞的位置 (often visit)：</b>實義動詞之前、be 動詞之後：She <u>often visits</u> us.／She <u>is often</u> tired at home。<br> 3. <b>visit + 人：</b>visit 是及物動詞，後面直接接人或場所，<b>不加介詞 to</b>。visit us ✓／visit to my uncle ✗。<span style="color:#dc2626;">⚠️ 陷阱：</span>帶 to 的寫法是中文直譯，會考改錯題常出現。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">Their house</span> <span class="w-tap kw-verb">is next to ours</span>, <span class="w-tap kw-link">so</span> we <span class="w-tap kw-verb">borrow sugar and tools from each other</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>所有格代詞單獨使用 (ours)：</b>ours 相當於 our house，後面<b>不可再接名詞</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span>要單獨代替 their house 時用 <u>theirs</u>；而 their 後面一定要接名詞（their house）。<br> 2. <b>so 引導結果句：</b>so ＝「因此、所以」，前句是原因、後句是結果；because ＝「因為」，方向相反，兩者不可互換。<br> 3. <b>borrow sth from sb：</b>borrow ＝「（向人）借入」，後面固定搭配 <b>from</b>；相反 lend sth <b>to</b> sb ＝「借出給某人」，方向絕不可記混。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['My brother is a teenager now, and my sister is a quiet child who loves drawing.', 'My uncle Tom and my aunt Lily often visit us with my cousin Ben.', 'Their house is next to ours, so we borrow sugar and tools from each other.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段停在親人之間的互相幫忙，第三段則把場景移到週末的晚餐：同學妮娜與鄰居肯真的出現，讓「親人」與「朋友」在同一個客廳裡交會，也正好呼應了本課的標題 Family and Friends。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last Saturday</span>, my <span class="w-tap kw-colloc">classmate Nina</span> <span class="w-tap kw-verb">came</span> <span class="w-tap kw-verb">to our house as a guest</span> <span class="w-tap kw-colloc">for dinner</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>不規則過去式 (came)：</b>come 的過去式是 came（come–came–come），<b>過去式與過去分詞同形</b>，與 cut、put 同列；注意 run 是 run–ran–run，過去式<b>並不同</b>形。<br> 2. <b>as a guest（以客人身分）：</b>as 在此是介詞「以⋯身分」，後面一定要接名詞；guest ＝ 被邀請來的客人，主人則是 host。<br> 3. <b>for + 名詞表目的：</b>for dinner ＝「為了吃晚飯」，與 have dinner（吃晚飯）搭配；come for dinner ＝「來吃晚飯」，是 A2 Key 高頻實用句型。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">My friend Ken from next door</span> <span class="w-tap kw-verb">was</span> there <span class="w-tap kw-link">too</span>, and we all <span class="w-tap kw-verb">felt happy</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>there 作副詞 (was there too)：</b>be 動詞後的 there 是「（在）那裡／也在場」的副詞，和句首表示「某處有」的 there be 不同；too 用於肯定句，可放句尾或緊接所修飾的詞。<br> 2. <b>連繫動詞 feel + 形容詞 (felt happy)：</b>feel ＝「感到」，後面直接接形容詞，<b>不再加 be 動詞</b>；felt 為 feel 的不規則過去式（feel–felt–felt）。<br> 3. <b>all 作加語 (we all)：</b>all 表示「都」，可置於<b>主語之後</b>（we all／they all）、動詞之前（all felt happy），或 be 動詞之後、補語之前（We <b>are all</b> happy.）——三種位置都正確，不必改寫。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our <span class="w-tap kw-colloc">neighbour Mrs Lee</span> <span class="w-tap kw-verb">brought</span> a cake, and the <span class="w-tap kw-colloc">noisy room</span> <span class="w-tap kw-verb">became warm</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>英式拼寫 neighbour：</b>英式拼 <b>neighbour</b>（前面有 u），美式拼 neighbor；住在附近的人才是 neighbour，同班同學要用 classmate，兩者不可混用。<br> 2. <b>Mr / Mrs / Ms 的用法：</b>Mr 用於男性，Mrs 用於已婚女性，Ms 用於未婚或不知婚姻狀況的女性；三者縮寫後<b>都不加撇號</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span>只有表示所有格時才寫撇號：Mr <u>Lee&#39;s</u> book。<br> 3. <b>become + 形容詞 (became warm)：</b>become 後接形容詞表示「變得」，後面<b>不可再加 be 動詞</b>（✗ The room became is warm.）；get + 形容詞也可表示「變得」（get warm），兩者語氣略有不同。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last Saturday, my classmate Nina came to our house as a guest for dinner.', 'My friend Ken from next door was there too, and we all felt happy.', 'Our neighbour Mrs Lee brought a cake, and the noisy room became warm.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 19 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事聚焦國中會考最常出現的所有格、所有格代詞與描述人的形容詞三類核心考點：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 所有格與所有格代詞</h3>
+        <ul class="summary-list">
+<li><b>1. 所有格形容詞 + 名詞：</b><br><i>例句：</i> My <u>father</u> is a doctor.<br>my／your／his／her／its／our／their 後面<b>必須接名詞</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span>its（它的）≠ it's（it is），一字之差，別寫成 *'s。</li>
+<li><b>2. 所有格代詞：</b><br><i>例句：</i> Their house is next to <u>ours</u>.<br>mine／yours／his／hers／ours／theirs <b>單獨使用</b>，後面<b>不可再接名詞</b>（<span style="color:#dc2626;">✗ This is mine bag.</span>）。</li>
+<li><b>3. 名詞所有格 ('s)：</b><br><i>例句：</i> my parents<u>'</u> room／Amy's photo<br>單數名詞加 <b>'s</b>（cousin's room）；複數名詞已以 s 結尾時<b>只加撇號</b>（parents' room），這是會考必考的細節。</li>
+<li><b>4. 描述人的形容詞：</b><br><i>例句：</i> My sister is a <u>quiet child</u>.<br>形容詞直接放在 be 動詞之後；程度副詞 very／quite 放在形容詞<b>前面</b>（✗ She very is kind.）；複合名詞形容詞在名詞前（a quiet child、a good friend）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 家庭情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>look at + 物</b>：看著（+ 眼睛的動作）：look at the photo wall。</li>
+<li><b>next to + 人／物</b>：緊挨著（their house is next to ours.）。</li>
+<li><b>borrow sth from sb</b>：向某人借入某物；反向是 lend sth <b>to</b> sb。</li>
+<li><b>visit + 人／場所</b>：拜訪；後面<b>不加介詞 to</b>（visit my uncle）。</li>
+<li><b>feel + 形容詞</b>：感到⋯⋯（felt happy）；對比 be + 形容詞（was happy）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易寫錯的家庭用詞</h3>
+        <ul class="summary-list">
+<li><b>parents / father / mother：</b><br>• <b>parents</b> 是父母兩人的合稱，<b>視為複數</b>：My parents <u>are</u> kind.<br>• <b>father／mother</b> 是單獨稱呼，用單數。✗ My parents is...</li>
+<li><b>uncle / aunt / cousin：</b><br>• uncle、aunt 泛指父母的兄弟姊妹（年齡可能很大）。<br>• <b>cousin</b> 專指「堂／表兄弟姊妹」，年齡通常和自己相近。</li>
+<li><b>friend / neighbour / classmate：</b><br>• <b>friend</b> ＝ 朋友（看情分）。<br>• <b>neighbour</b> ＝ 住在附近的人（看距離，英式拼寫）。<br>• <b>classmate</b> ＝ 同班同學（看班級）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

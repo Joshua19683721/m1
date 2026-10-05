@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第20課 心情與感受：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 20 課｜心情與感受</h1>
+    <div class="sub-title">Personal Feelings, Opinions and Experiences｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 How Do You Feel Today?</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Personal Feelings, Opinions and Experiences &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> be 動詞 + 情緒形容詞、So...／Neither...、be used to／get used to
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 老師發給我們一份情緒問卷，要我們自己寫下答案。她問的第一個問題很簡單：「你今天感覺怎麼樣？」教室裡安靜又舒服，許多同學覺得開心；也有人覺得難過、疲倦或無聊，還有人想到週末的出遊就感到興奮。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我問艾美時，她看起來很驚訝，老師和我都不知道為什麼。於是我問她是不是又擔心又害怕那場數學考試。她說自己很抱歉，父母這個星期也無法來看她。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 我告訴她，我早已習慣感到緊張，還說願意留下來陪她。接著老師說我們要準備好開口談談，也會慢慢習慣。最後艾美很高興了，不再生氣，我們都為這個班感到驕傲。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our teacher <span class="w-tap kw-verb">gave us</span> a <span class="w-tap kw-colloc">feelings survey</span>, and she <span class="w-tap kw-verb">asked, "How do you feel today?"</span>
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>雙賓動詞 give sb sth：</b>give 後面接「人＋物」兩個賓語，順序不可顛倒（✗ give a survey us）；過去式是 gave（give–gave–given）。<br> 2. <b>複合名詞 (a feelings survey)：</b>問卷 survey 是中心詞，說明內容的名詞放在前面修飾，中間不加 of，也<b>不加 s</b>。<br> 3. <b>直接問句用逗號加引號：</b>引述原話時，asked 之後<b>先逗號再開引號</b>，句末的問號放在引號<b>內</b>；這是標點規則的必考細節。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          The classroom <span class="w-tap kw-verb">was</span> <span class="w-tap kw-colloc">quiet and comfortable</span>, and <span class="w-tap kw-colloc">many students</span> <span class="w-tap kw-verb">felt happy</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be + 形容詞 (was quiet)：</b>be 動詞後接形容詞描述狀態；這類描寫感受或環境的句子<b>不用進行式</b>（✗ The classroom was being quiet）。<br> 2. <b>and 連接兩個形容詞：</b>quiet and comfortable 都是形容詞，直接用 and 並列，不需要重複 be 動詞。<br> 3. <b>many + 複數可數名詞 (many students)：</b>many 只能放在<b>可數名詞複數</b>前面；不可數名詞要用 much 或 a lot of（a lot of water）。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Some of them</span> <span class="w-tap kw-verb">were</span> sad, tired or <span class="w-tap kw-colloc">bored</span>, and some <span class="w-tap kw-verb">felt excited about</span> the trip.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>some of + 複數名詞：</b>some of them ＝「其中有些人」；some of + the students ＝「那些學生中的一部分」，這是數量詞的高頻結構。<br> 2. <b>A, B or C 並列形容詞：</b>三者以上並列時，前兩項用逗號，最後一項前加 <b>or</b>（sad, tired or bored）；注意這裡是同一分句內的並列，不可換成 but。<br> 3. <b>be + 形容詞 vs. feel + 形容詞：</b>were bored 描述狀態，felt excited 描述當下的感受；兩種句型都能接情緒形容詞，但 feel 後<b>不可再加 be 動詞</b>。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Our teacher gave us a feelings survey, and she asked, "How do you feel today?"', 'The classroom was quiet and comfortable, and many students felt happy.', 'Some of them were sad, tired or bored, and some felt excited about the trip.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先把「全班心情」的場景鋪開：問卷、教室的氣氛、同學各自寫下的答案。第二段鏡頭突然收斂到艾美一個人身上，她一臉驚訝，老師和主角也都不敢追問，讓原本輕鬆的問卷時刻出現明顯的轉折。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Amy <span class="w-tap kw-verb">looked surprised</span> when I asked, <span class="w-tap kw-link">and neither</span> her teacher nor I <span class="w-tap kw-verb">knew why</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>look + 形容詞 (looked surprised)：</b>look 後接形容詞表示「看起來的樣子」；這裡 surprised 說的是「她臉上顯出驚訝的神色」。<br> 2. <b>neither A nor B + 動詞：</b>neither...nor... 連接兩個主語時，<b>動詞的單複數跟靠近它的那個主語走</b>；此處靠近 knew 的是 I，所以用 knew。<br> 3. <b>疑問副詞 why 作賓語子句：</b>knew why 後面直接接原因，<b>不能再加疑問詞，也不需要助動詞</b>（✗ knew why did she cry）。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">So</span> I <span class="w-tap kw-verb">asked if</span> she <span class="w-tap kw-verb">was worried or afraid</span> <span class="w-tap kw-colloc">of the maths test</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>So 引導結果：</b>So ＝「因此、所以」，前面必須先有原因；在故事段落開頭單獨使用 So，是很自然的敘事銜接方式。<br> 2. <b>引導 Yes/No 問句的 if：</b>ask 後面接 if 引導的間接問句，語序為 if + 主語 + 動詞，<b>不倒裝、不加 do/does</b>（✗ asked if was she worried）。<br> 3. <b>worried 與 afraid of：</b>worried 是「擔心的」，可單獨使用或搭配 about（worried about the test）；afraid 必須搭配 <b>of</b>（afraid of + 名詞／動名詞：afraid of failing）。<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ afraid the test.
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          She <span class="w-tap kw-verb">said that</span> she <span class="w-tap kw-verb">was sorry</span>, <span class="w-tap kw-link">and</span> her parents <span class="w-tap kw-verb">could not visit</span> her.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>間接引語 said that + 子句：</b>轉述他人話語用 that 引導，that 可以省略；子句語序必須是「主語 + 動詞」。<br> 2. <b>人稱與時態要配合：</b>引導詞 that 已代表說話的人，子句主語要改成第三人稱 she，若說話人就是自己，則保留第一人稱 I：She said that <u>she</u> was sorry.／I said that <u>I</u> was sorry.<br> 3. <b>could not + 原形：</b>could 是 can 的過去式，後面<b>只能接原形動詞</b> visit，不可寫 visited；這是情態動詞的固定規則。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Amy looked surprised when I asked, and neither her teacher nor I knew why.', 'So I asked if she was worried or afraid of the maths test.', 'She said that she was sorry, and her parents could not visit her.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第二段末了才交代艾米難過的原因是父母不能前來。第三段主角先分享自己緊張的經驗，再由老師呼籲同學開口談談，讓艾米從獨自難過走到融入班群，完成全課從「各自心情」到「一起面對」的收束。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">told her that</span> I <span class="w-tap kw-verb">am used to feeling nervous</span>, and I <span class="w-tap kw-verb">offered to stay</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be used to + 動名詞：</b>be used to ＝「已經習慣於」，<b>to 在此是介詞</b>，後面必須接名詞或 V-ing（to feeling／to the noise）。<br> 2. <b>offer to + 原形：</b>offer 後接 to + 原形，表示「主動提出要幫忙做某事」；這與 be used to 的「to」性質不同，前者是不定詞，後者是介詞。<br> 3. <b>間接敘述的時態：</b>說話者現在仍然習慣，所以子句保留一般現在式 am used to；只有在習慣已改變時才改用過去式。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Then</span> our teacher <span class="w-tap kw-verb">said that we get ready to talk</span>, and <span class="w-tap kw-verb">get used to it</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>get ready to + 原形：</b>be / get ready to do ＝「準備好做某事」，不定詞後接<b>原形動詞</b>；get ready for + 名詞則是「為⋯做好準備」（ready for the exam）。<br> 2. <b>get used to + 名詞／代詞 (get used to it)：</b>get used to ＝「（慢慢）習慣於」，to 是介詞，後面接代詞 it（指前面 talking 這件事），與 be used to（已經習慣）意思不同。<br> 3. <b>used to do 的第三種用法：</b>used to + <b>原形</b> ＝「過去常常⋯⋯但現在不做了」（I used to be shy.）；三種 used to 只有這一個後面接原形，是會考最高頻的陷阱。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Soon</span> Amy <span class="w-tap kw-verb">was glad, not angry</span>, and we <span class="w-tap kw-verb">were proud of</span> our class.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>省略 be 動詞的對比句：</b>was glad, not angry 兩邊都是形容詞，後一項<b>省略 was</b>，句子仍完整；這是會考省略考法的標準寫法。<br> 2. <b>be proud of + 人／物：</b>proud ＝「驕傲的、自豪的」，表示對某人某物感到自豪時固定搭配 <b>of</b>；相反，「對某人感到抱歉」要說 I'm <b>sorry to</b> you，而 sorry to hear that 是「聽說⋯⋯覺得抱歉」的意思。<br> 3. <b>Soon 作時間副詞：</b>Soon ＝「不久、很快」，位置靈活，可放句首、be 動詞後或句尾；與 at last（最後）、at first（起初）同屬會考常見副詞。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['I told her that I am used to feeling nervous, and I offered to stay.', 'Then our teacher said that we get ready to talk, and get used to it.', 'Soon Amy was glad, not angry, and we were proud of our class.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 20 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課故事聚焦國中會考最常出現的 be 動詞加情緒形容詞、So 與 Neither 的連接用法，以及 used to 系列的差別：</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> 情緒句型與 used to 三兄弟</h3>
+        <ul class="summary-list">
+<li><b>1. 描述心情的兩種句型：</b><br>• <b>be + 形容詞</b>（I <u>am</u> happy.）／• <b>feel + 形容詞</b>（I <u>feel</u> happy.）<br>兩者皆正確，可互換。<span style="color:#dc2626;">⚠️ 陷阱：</span>feel 是實義動詞，後面<b>不能再加 be</b>（✗ I am feel happy）；形容詞也不能改成副詞（✗ I feel happily.）。</li>
+<li><b>2. So 與 neither...nor...：</b><br>• <b>So</b> ＝ 因此，連接因果兩句（So I asked if she was afraid.）。<br>• <b>neither A nor B + 動詞</b>：動詞單複數<b>跟靠近它的主語</b>一致（neither her teacher <u>nor I knew</u> why.）。</li>
+<li><b>3. used to 三兄弟：</b><br>• <b>be used to + 名詞／V-ing</b> ＝ 已經習慣（I <u>am used to feeling</u> nervous.）<br>• <b>get used to + 名詞／V-ing</b> ＝ 將會習慣（we will <u>get used to</u> it.）<br>• <b>used to + 原形</b> ＝ 過去的習慣（I <u>used to be</u> shy.）<br><span style="color:#dc2626;">⚠️ 陷阱：</span>三種 to 後面能接的詞性不同，絕不可互換。</li>
+<li><b>4. 心情問答句型：</b><br><i>例句：</i> <b>How do you feel today?</b> — I feel happy.／I'm happy.<br>特殊疑問句＝疑問詞 How + 助動詞 do + 主語 + 實義動詞，<b>不可省略 do</b>（✗ How you feel today?）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 心情情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>give sb sth</b>：給某人某物（give us a survey）。</li>
+<li><b>look out of the window</b>：望向窗外（He looked out of the window.）。</li>
+<li><b>look + 形容詞</b>：看起來⋯⋯（looked surprised、looks tired）。</li>
+<li><b>get ready to do／get ready for n.</b>：準備好做⋯⋯／為⋯⋯做好準備。</li>
+<li><b>be proud of + 人／物</b>：為某人某物感到自豪（proud of our class）。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易混淆的情緒形容詞</h3>
+        <ul class="summary-list">
+<li><b>bored / boring：</b><br>• <b>-ed</b> 形容人的感受：I am <b>bored</b>.<br>• <b>-ing</b> 形容事物的性質：The film is <b>boring</b>.<br>• 誤用最常見的是把 bored 說成 boring 來形容人。</li>
+<li><b>alone / lonely：</b><br>• <b>alone</b> ＝ 獨自的（客觀狀態）：She lives <u>alone</u>.<br>• <b>lonely</b> ＝ 寂寞的（內心感受）：She felt <u>lonely</u>.<br>• alone 不一定孤單，一個人也可以很快樂。</li>
+<li><b>afraid of / afraid to：</b><br>• <b>afraid of + 名詞／V-ing</b>：害怕某事物（afraid of the test）。<br>• <b>afraid to + 原形</b>：不敢做某事（afraid to speak）。<br>• <span style="color:#dc2626;">✗ afraid the test</span>：afraid 不能單獨接名詞。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

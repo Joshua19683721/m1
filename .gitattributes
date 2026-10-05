@@ -1,0 +1,10 @@
+# 統一換行：倉庫內一律存 LF，Windows 端 checkout 時再轉換
+* text=auto eol=lf
+
+# PowerShell 保持 CRLF
+*.ps1 text eol=crlf
+
+# 產出的靜態頁面不要被任何工具重寫
+docs/*.html -diff
+source/*.pdf binary
+source/*.txt text eol=lf

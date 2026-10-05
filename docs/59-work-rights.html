@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第59課 我的工時：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 59 課｜我的工時</h1>
+    <div class="sub-title">Work and Jobs｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 My First Part-time Job</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Work and Jobs &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> should／shouldn't 義務與建議、that 名詞子句與 so 因果句型、want to be + 職業名詞
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 去年暑假，我在學校附近的咖啡店找到一份兼職工作。經理帶我認識制服，也教我應該怎麼迎接每一位客人。我第一個星期六上了五個小時的班，跟另外兩位店員一起工作。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 我每個星期六都在那裡工作，希望賺到剛好可以買一雙新鞋的錢。我的合約上寫著，我可以在星期日上班，也可以請兩天假。經理很客氣，於是那個星期她幫我調了班。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 有一位客人對我大吼，於是那個星期六結束後我就想辭職。老闆說我應該先休息一下，再把事情告訴經理。現在我星期日也到店裡幫忙，而我希望將來能當一名護士。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last summer</span> I <span class="w-tap kw-verb">got</span> a <span class="w-tap kw-colloc">part-time job</span> <span class="w-tap kw-colloc">in a coffee shop</span> near my school.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>get + 名詞 (got a job)：</b>get 在此是「找到、得到」，過去式為不規則的 got；完整三態為 get–got–gotten（美式也常作 get–got–got）。<br> 2. <b>part-time：</b>「兼職的」由 part + time 合成；兼職工作寫 part-time job，全職工作寫 full-time job。<br> 3. <b>in + 工作場所：</b>in a coffee shop；對照 at school、at work，介系詞要跟著場所的大小選擇。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">manager</span> <span class="w-tap kw-verb">showed me</span> the uniform and <span class="w-tap kw-verb">explained how I should greet</span> <span class="w-tap kw-colloc">each customer</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>show + 人 + 物 (showed me the uniform)：</b>show 後接兩個受詞，中間不加介詞；show 的過去式是不規則的 <b>showed</b>。<br> 2. <b>how 引導的名詞子句 (how I should greet)：</b>作 explained 的受詞，結構為「how + 主詞 + 動詞」，<span style="color:#dc2626;">⚠️ 陷阱：</span>不倒裝、前面不加 to。<br> 3. <b>should + 原形 (should greet)：</b>should 表示義務或建議，後面一定接原形 greet，✗ 不可寫 should greeted。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">On my first Saturday</span> I <span class="w-tap kw-verb">worked five hours</span> <span class="w-tap kw-colloc">with two other staff members</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>worked 是 work 的過去式：</b>work 為規則動詞（work–worked–worked），主語 I 搭配過去式 worked，表示已經完成的班表。<br> 2. <b>數字 + 複數單位 (five hours)：</b>數字大於 1 時 hour 要用複數；five hours 是「五小時的工時」的固定說法。<br> 3. <b>with + 同伴 (with two other staff members)：</b>with ＝「和⋯⋯一起」；other 後接複數名詞，表示「另外兩位」。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last summer I got a part-time job in a coffee shop near my school.', 'My manager showed me the uniform and explained how I should greet each customer.', 'On my first Saturday I worked five hours with two other staff members.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段先用 part-time job、uniform、staff 帶出職場的第一印象：這是一份兼職工作，剛開始要學會規矩與禮貌。第二段把重點放在合約與排班，主角第一次開口替自己請假，經理也主動幫她調班，讓「勞動權益」從名詞走進日常。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          I <span class="w-tap kw-verb">worked there</span> <span class="w-tap kw-link">every Saturday</span>, and I <span class="w-tap kw-verb">hoped to earn</span> <span class="w-tap kw-colloc">enough money for</span> new shoes.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>every + 單數名詞：</b>every Saturday 作時間狀語，表示習慣性動作，謂語用過去式 worked。<br> 2. <b>hope to + 原形 (hoped to earn)：</b>hope 後面接 to + 原形；過去式 hoped 後面仍接原形 earn，✗ 不可寫 hoped earn。<br> 3. <b>earn + 錢：</b>earn ＝「靠工作賺得（收入）」，後接金額或用途：earn enough money for new shoes。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My contract <span class="w-tap kw-verb">says that</span> I <span class="w-tap kw-verb">can work</span> on Sundays and <span class="w-tap kw-colloc">take two days off</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>say that + 子句：</b>say 後接 that 引導的名詞子句，子句用陳述語序（that I can work...）；that 可省略。<br> 2. <b>can + 原形 (can work)：</b>can 是情態動詞，本身已有人稱變化，後面只能接原形 work。<br> 3. <b>take + 數量 + 名詞 + off：</b>「請假 N 天」固定用 <b>take two days off</b>；off 在此是副詞，表示離開工作。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">manager</span> <span class="w-tap kw-verb">was kind</span>, <span class="w-tap kw-link">so</span> she <span class="w-tap kw-verb">changed my shift</span> that week.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>be 動詞 + 形容詞 (was kind)：</b>kind 在此是形容詞，說明人的個性；be 動詞隨主語 My manager 用 was。<br> 2. <b>so 表結果：</b>so 連接原因句與結果句，中文譯作「所以／於是」；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可與 because 同句併用。<br> 3. <b>change + 自己的班表 (changed my shift)：</b>change 為規則動詞，過去式 changed；my shift ＝「我的那一班」。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['I worked there every Saturday, and I hoped to earn enough money for new shoes.', 'My contract says that I can work on Sundays and take two days off.', 'My manager was kind, so she changed my shift that week.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第三段是全篇的轉折：客人無理發脾氣，主角一度想辭職，經過老闆與經理的處理，她不但留下來，還確定自己想當護士。故事因此從「我能不能被善待」延伸到「我將來想做什麼」，也呼應第二段對自身權益的認識。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">One customer</span> <span class="w-tap kw-verb">shouted at</span> me, <span class="w-tap kw-link">so</span> I <span class="w-tap kw-verb">wanted to leave</span> after that Saturday.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>shout at + 人：</b>at 在此指「對著某人」叫喊；shout 是規則動詞，過去式仍寫 shouted（只加 -ed）。<br> 2. <b>want to + 原形 (wanted to leave)：</b>want ＋ to do 表示「想要」；want 的過去式為 wanted。<br> 3. <b>after + 時間點：</b>after 引導的時間狀語可放句尾；after／before 的互換是最常見的會考陷阱。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          My <span class="w-tap kw-colloc">boss</span> <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">should take a break</span> and <span class="w-tap kw-verb">tell the manager</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>say that + 子句的動詞：</b>主句是過去式 said，that 子句若表示建議，<b>should 不變</b>；並列的兩個動詞都接原形。<br> 2. <b>should + 原形 (should take)：</b>should 表示「應該」，後接原形 take，語氣比 must 委婉。<br> 3. <b>take a break：</b>break 在此是不可數名詞「休息」，前不加冠詞、不加 -s；休息之後再把事情說清楚。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Now I <span class="w-tap kw-verb">work there</span> <span class="w-tap kw-link">on Sundays too</span>, and I <span class="w-tap kw-verb">want to be</span> a <span class="w-tap kw-colloc">nurse</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>一般現在式表習慣 (I work there)：</b>Now 與 too 顯示這是現在持續的習慣，主語 I 用原形 work。<br> 2. <b>on + 星期 (on Sundays)：</b>星期前面一律用 on（on Sundays／on Monday），不用 in。<br> 3. <b>want to be + 職業名詞：</b>want to be ＝「想成為」；to 後接<b>原形 be</b>，不能換成 am／is／are。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['One customer shouted at me, so I wanted to leave after that Saturday.', 'My boss said that I should take a break and tell the manager.', 'Now I work there on Sundays too, and I want to be a nurse.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 59 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課以打工故事帶出三個考點：should 表義務與建議、that 名詞子句，以及 so 表結果的因果句型。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> should 表義務與因果句型</h3>
+        <ul class="summary-list">
+<li><b>1. should／shouldn't + 原形（義務與建議）：</b><br>• You <u>should take</u> a break after five hours.<br>• You <u>shouldn't</u> work when you are sick.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>should 後面<b>只能接原形</b>（✗ should took / should to take）。</li>
+<li><b>2. say／tell + that + 子句：</b><br>• <b>say + 內容</b>：My contract says that I <u>can work</u> on Sundays.<br>• <b>tell + 人 + 內容</b>：She told me that I <u>should rest</u>。<br>• <span style="color:#dc2626;">✗</span> tell 後面少了受詞（人）就是常見錯誤。</li>
+<li><b>3. so 表結果／because 表原因：</b><br>• My manager was kind, <u>so</u> she changed my shift.<br>• I felt tired, <u>because</u> I worked ten hours.<br>• <span style="color:#dc2626;">⚠️</span>一句話只選一個：<b>because ＋ so 不可併用</b>。</li>
+<li><b>4. want to be + 職業／工作地點：</b><br>• I want to <u>be a nurse</u> one day.<br>• I <u>work in</u> a coffee shop near my school.<br>• <span style="color:#dc2626;">⚠️</span>work 後接 in（場所）或 at（特定地點），不可混用。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 打工情境高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>part-time job</b>：兼職工作（全職＝full-time job）。</li>
+<li><b>work in a coffee shop</b>：在咖啡店工作（工作地點用 in／at）。</li>
+<li><b>take a break</b>：休息一下（break 為不可數名詞）。</li>
+<li><b>earn money</b>：賺錢（earn 靠工作取得收入）。</li>
+<li><b>change my shift／take two days off</b>：換班／請兩天假。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> 容易搞混的工作用詞</h3>
+        <ul class="summary-list">
+<li><b>job／work：</b><br>• <b>job</b> ＝「一份工作」，可數：a part-time <u>job</u>。<br>• <b>work</b> ＝「工作／上班」，不可數：I <u>work</u> on Saturdays.<br>• <span style="color:#dc2626;">⚠️</span>「我要找工作」＝ I want a job，不是 I want work。</li>
+<li><b>boss／manager：</b><br>• <b>boss</b> ＝「老闆」，指公司的負責人。<br>• <b>manager</b> ＝「經理」，負責管理店務或人員。<br>• 兩者皆可接 with：talk to my <u>manager</u>。</li>
+<li><b>staff／customer／worker：</b><br>• <b>staff</b> ＝「職員（集合名詞）」：two other <u>staff</u> members。<br>• <b>customer</b> ＝「客人」。<br>• <b>worker</b> ＝「勞動者、工作的人」。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A2 Key 與 108 課綱會考英文：60 課索引</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  
+  .idx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;margin-top:20px;}
+  .idx-card{display:flex;gap:15px;background:#fff;border-radius:14px;padding:20px;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,.06);border-left:5px solid var(--primary);transition:all .25s ease;}
+  .idx-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.12);border-left-color:var(--accent-orange);}
+  .idx-no{font-size:2.2rem;font-weight:800;color:#cbd5e1;line-height:1;}
+  .idx-body h3{margin:0 0 4px 0;color:var(--primary);font-size:1.1rem;}
+  .idx-en{color:var(--text-muted);font-size:.9rem;margin-bottom:8px;font-style:italic;}
+  .idx-meta{margin-top:6px;font-size:.82rem;color:#334155;}
+  .cov-table{width:100%;border-collapse:collapse;font-size:.88rem;}
+  .cov-table td{padding:7px 10px;border-bottom:1px solid #e2e8f0;vertical-align:top;}
+  .cov-table tr:nth-child(even){background:#f8fafc;}
+  .cov-topic{font-weight:600;color:#0f172a;width:44%;}
+  .cov-point{font-weight:600;color:#0f172a;width:52%;}
+  .cov-pill{display:inline-block;min-width:26px;text-align:center;margin:2px 3px 2px 0;padding:2px 7px;
+    border-radius:12px;background:#1e3a8a;color:#fff;font-size:.78rem;text-decoration:none;font-weight:600;}
+  .cov-pill:hover{background:#f59e0b;color:#fff;}
+  .idx-section{margin:26px 0 12px;padding-bottom:8px;border-bottom:2px solid #1e3a8a;
+    display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .idx-section h2{margin:0;color:#1e3a8a;font-size:1.25rem;}
+  .idx-section span{color:#64748b;font-size:.86rem;}
+  .idx-tools{position:sticky;top:0;z-index:5;background:#f8fafc;padding:12px 0 6px;}
+  .idx-tools input{width:100%;max-width:380px;padding:9px 14px;border-radius:20px;
+    border:1px solid #cbd5e1;font-size:.95rem;outline:none;}
+  .idx-tools input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.15);}
+  .idx-tools .hint{display:block;color:#64748b;font-size:.82rem;margin-top:6px;}
+  .hidden{display:none !important;}
+
+  .cov-pending{background:#cbd5e1;color:#64748b;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📚 A2 Key 與 108 課綱會考英文：60 課</h1>
+    <div class="sub-title">滑鼠解讀・句中精準解析・中文全文翻譯・可朗讀的單字與句型</div>
+  </header>
+  <div class="summary-card">
+    <p style="color:#475569;margin-top:0;">本設計以 <b>Cambridge A2 Key Vocabulary List</b> 主題清單為詞彙骨架，搭配 <b>108 課綱國中會考</b> 文法單元的命題前提；每課一篇完整故事（三段・逐句解讀）互為體系化清卡，前30課為基礎謚法，後30課為延美句型與議題融入。</p>
+    <div class="idx-tools">
+      <input id="idxSearch" type="search" placeholder="搜尋課次、主題或文法點（例：露營、A2 Key、if）..." oninput="filterLessons()">
+      <span class="hint">搜尋無限制。按「清除」顯示全部。</span>
+    </div>
+<div class="idx-grid">
+      <a class="idx-card" href="01-new-term-at-school.html">
+        <div class="idx-no">01</div>
+        <div class="idx-body">
+          <h3>開學第一天</h3>
+          <div class="idx-en">A New Term at School</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Education ／ Places: Buildings</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">there be 句型、一般現在式 vs. 現在進行式、間接敘述</span></div>
+        </div>
+      </a>
+      <div class="idx-section"><h2>基礎篇｜段考常見句型</h2><span>第 1–10 課（第 10 課）</span></div>
+      <a class="idx-card" href="02-night-market.html">
+        <div class="idx-no">02</div>
+        <div class="idx-body">
+          <h3>週末夜市採買記</h3>
+          <div class="idx-en">A Weekend at the Night Market</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Food and Drink ／ Shopping ／ Places: Town and City</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">可數與不可數名詞、how much / how many、some 與 any</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="03-first-train-ride.html">
+        <div class="idx-no">03</div>
+        <div class="idx-body">
+          <h3>第一次搭火車</h3>
+          <div class="idx-en">The First Train Ride</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Travel and Transport ／ Places: Buildings</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">規則與不規則過去式、過去進行式、arrive at / in</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="04-school-basketball-team.html">
+        <div class="idx-no">04</div>
+        <div class="idx-body">
+          <h3>加入校隊</h3>
+          <div class="idx-en">Joining the School Basketball Team</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Sport</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">動名詞與不定詞、比較級與最高級</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="05-visit-to-the-doctor.html">
+        <div class="idx-no">05</div>
+        <div class="idx-body">
+          <h3>感冒看醫生</h3>
+          <div class="idx-en">A Visit to the Doctor</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Health, Medicine and Exercise</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">should／shouldn't、must 與 have to、too...to 句型</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="06-shopping-for-school.html">
+        <div class="idx-no">06</div>
+        <div class="idx-body">
+          <h3>開學買文具</h3>
+          <div class="idx-en">Shopping for School</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Shopping</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">can／could／couldn't、間接問句 which、a lot of／much／many</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="07-camping-in-the-rain.html">
+        <div class="idx-no">07</div>
+        <div class="idx-body">
+          <h3>雨中的露營</h3>
+          <div class="idx-en">Camping in the Rain</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Weather ／ The Natural World ／ Hobbies and Leisure</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">if 條件句（第一類真實條件／第三類與過去事實相反的假設）、suggested that、because</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="08-school-music-show.html">
+        <div class="idx-no">08</div>
+        <div class="idx-body">
+          <h3>校園音樂會</h3>
+          <div class="idx-en">The School Music Show</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Entertainment and Media ／ Hobbies and Leisure</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">現在完成式（have／has + 過去分詞）、since / for、already / yet / just</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="09-finding-information-online.html">
+        <div class="idx-no">09</div>
+        <div class="idx-body">
+          <h3>線上查資料</h3>
+          <div class="idx-en">Finding Information Online</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Communication and Technology ／ Documents and Texts</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">間接敘述、although / while / however、warn sb not to、which 引導非限定子句</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="10-when-i-grow-up.html">
+        <div class="idx-no">10</div>
+        <div class="idx-body">
+          <h3>我的夢想職業</h3>
+          <div class="idx-en">When I Grow Up</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Work and Jobs ／ Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">特殊疑問詞引導的間接問句、will／be going to、if 條件句、whatever</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="11-appliance-repair.html">
+        <div class="idx-no">11</div>
+        <div class="idx-body">
+          <h3>家電故障</h3>
+          <div class="idx-en">The Washing Machine Broke Down</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Appliances</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">should／shouldn't、too...to、there be 句型</span></div>
+        </div>
+      </a>
+      <div class="idx-section"><h2>主題詞彙｜中級句型深化</h2><span>第 11–30 課（第 20 課）</span></div>
+      <a class="idx-card" href="12-clothes-shop.html">
+        <div class="idx-no">12</div>
+        <div class="idx-body">
+          <h3>買衣服試穿</h3>
+          <div class="idx-en">A Trip to the Clothes Shop</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Clothes and Accessories</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">try on／wear／put on 動詞辨析、too...to、比較級</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="13-colour-painting.html">
+        <div class="idx-no">13</div>
+        <div class="idx-body">
+          <h3>美術課配色</h3>
+          <div class="idx-en">Painting Our Classroom</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Colours</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">顏色形容詞的位置與複合修飾、too + 形容詞與 too...for、比較級</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="14-measurements.html">
+        <div class="idx-no">14</div>
+        <div class="idx-body">
+          <h3>份量與劑量</h3>
+          <div class="idx-en">Reading a Recipe and a Medicine Label</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Measurements</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">too／enough to、數量詞與計量單位、比較級</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="15-countryside-day.html">
+        <div class="idx-no">15</div>
+        <div class="idx-body">
+          <h3>鄉間的一天</h3>
+          <div class="idx-en">A Day in the Countryside</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Places: Countryside</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">不可數名詞、there be 句型、方位介系詞（beside／between／behind）</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="16-post-office-bank.html">
+        <div class="idx-no">16</div>
+        <div class="idx-body">
+          <h3>郵局與銀行</h3>
+          <div class="idx-en">At the Post Office and the Bank</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Services</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">祈使句、Could you...?、it 作虛主語、指示地點的 there be</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="17-daily-schedule.html">
+        <div class="idx-no">17</div>
+        <div class="idx-body">
+          <h3>我的日常作息</h3>
+          <div class="idx-en">My Daily Schedule</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Time</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">in／on／at + 時間、一般現在時描述作息、How often</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="18-new-apartment.html">
+        <div class="idx-no">18</div>
+        <div class="idx-body">
+          <h3>我們的新家</h3>
+          <div class="idx-en">Our New Apartment</div>
+          <div class="idx-meta"><span class="badge badge-vocab">House and Home</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">There be 句型與家具數量、方位介系詞、some／any</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="19-family-and-friends.html">
+        <div class="idx-no">19</div>
+        <div class="idx-body">
+          <h3>我的家人與朋友</h3>
+          <div class="idx-en">My Family and My Friends</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Family and Friends</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">所有格、所有格代詞（mine／yours）、描述人的形容詞</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="20-feelings.html">
+        <div class="idx-no">20</div>
+        <div class="idx-body">
+          <h3>心情與感受</h3>
+          <div class="idx-en">How Do You Feel Today?</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">be 動詞 + 情緒形容詞、So...／Neither...、be used to／get used to</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="21-buildings-tour.html">
+        <div class="idx-no">21</div>
+        <div class="idx-body">
+          <h3>校園導覽</h3>
+          <div class="idx-en">A Tour of Our School</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Places: Buildings</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">方位介系詞（on／in／next to／between）、there be 的單複數、here／there</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="22-around-town.html">
+        <div class="idx-no">22</div>
+        <div class="idx-body">
+          <h3>城鎮裡的一天</h3>
+          <div class="idx-en">Getting Around Town</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Places: Town and City</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">問路與指路的句型、by／on foot、How do I get to...?</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="23-class-rules.html">
+        <div class="idx-no">23</div>
+        <div class="idx-body">
+          <h3>班級公約</h3>
+          <div class="idx-en">Class Rules and Suggestions</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Education ／ Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">祈使句（肯定／否定）、建議句型 Let's／Why don't／How about、反意疑問句</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="24-helping-at-home.html">
+        <div class="idx-no">24</div>
+        <div class="idx-body">
+          <h3>家務與觀察</h3>
+          <div class="idx-en">Helping at Home</div>
+          <div class="idx-meta"><span class="badge badge-vocab">House and Home ／ Health, Medicine and Exercise</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">使役動詞 make／have／let sb do、感官動詞 see／hear／smell sb do／doing</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="25-sports-meet.html">
+        <div class="idx-no">25</div>
+        <div class="idx-body">
+          <h3>校際運動會</h3>
+          <div class="idx-en">The Class Sports Meet</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Sport ／ Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">as...as／not as...as、比較級、the + 比較級, the + 比較級</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="26-place-i-call-home.html">
+        <div class="idx-no">26</div>
+        <div class="idx-body">
+          <h3>記憶中的地方</h3>
+          <div class="idx-en">The Place I Call Home</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Places: Countryside ／ Places: Town and City</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">關係副詞 where／when／why 引導定語從句、名詞性從句</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="27-ways-to-learn.html">
+        <div class="idx-no">27</div>
+        <div class="idx-body">
+          <h3>學好英語的方法</h3>
+          <div class="idx-en">Learning English Takes Time</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Education</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">so that／in order that、too...to、enough to、so...that</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="28-planning-a-picnic.html">
+        <div class="idx-no">28</div>
+        <div class="idx-body">
+          <h3>籌備野餐</h3>
+          <div class="idx-en">Planning a Picnic</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Food and Drink ／ Hobbies and Leisure</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">some／any／no／every、a few／a little／few／little、both／all／either／neither</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="29-my-wish.html">
+        <div class="idx-no">29</div>
+        <div class="idx-body">
+          <h3>明年心願</h3>
+          <div class="idx-en">My Wish for Next Year</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Hobbies and Leisure ／ Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">hope／wish／would like、建議句型、I wish + 過去式</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="30-reporting-the-news.html">
+        <div class="idx-no">30</div>
+        <div class="idx-body">
+          <h3>轉述新聞</h3>
+          <div class="idx-en">Reporting the News</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Communication and Technology ／ Documents and Texts</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">間接引語的時態一致、反意疑問句、It is...that 強調句</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="31-inversion.html">
+        <div class="idx-no">31</div>
+        <div class="idx-body">
+          <h3>倒裝句總整理</h3>
+          <div class="idx-en">讓我來開頭吧</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Education</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">Not only...but also 倒裝、Here comes／Here is 倒裝、Only then 與否定副詞置前倒裝</span></div>
+        </div>
+      </a>
+      <div class="idx-section"><h2>進階句型、寫作升級與議題融入</h2><span>第 31–60 課（第 30 課）</span></div>
+      <a class="idx-card" href="32-participle-phrases.html">
+        <div class="idx-no">32</div>
+        <div class="idx-body">
+          <h3>邊走邊說</h3>
+          <div class="idx-en">Walking and Talking</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Travel and Transport</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">Having + 過去分詞、V-ing 現在分詞、Being + 形容詞（分詞片語作狀語）</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="33-possessives.html">
+        <div class="idx-no">33</div>
+        <div class="idx-body">
+          <h3>誰的誰</h3>
+          <div class="idx-en">Whose Is It?</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Family and Friends</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">名詞所有格 N's、of + 名詞片語、複合名詞與句尾省略</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="34-five-patterns.html">
+        <div class="idx-no">34</div>
+        <div class="idx-body">
+          <h3>五句型總整理</h3>
+          <div class="idx-en">The Five Basic Patterns</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">五大句型與句型擴展</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="35-reported-speech-rules.html">
+        <div class="idx-no">35</div>
+        <div class="idx-body">
+          <h3>怎麼轉述</h3>
+          <div class="idx-en">How to Report What Others Say</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Documents and Texts</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">間接引語完整規則與報導動詞選擇</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="36-modal-perfect.html">
+        <div class="idx-no">36</div>
+        <div class="idx-body">
+          <h3>早就該做了</h3>
+          <div class="idx-en">What I Should Have Done</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">完成式被動、情態動詞完成式 should have done</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="37-multiple-comparison.html">
+        <div class="idx-no">37</div>
+        <div class="idx-body">
+          <h3>快了多少</h3>
+          <div class="idx-en">Twice as Fast</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Sport</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">比較省略與倍數：twice as...as ／ no more than</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="38-indefinite-pronouns.html">
+        <div class="idx-no">38</div>
+        <div class="idx-body">
+          <h3>誰都可以</h3>
+          <div class="idx-en">Anyone Can Join</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Communication and Technology</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">不定代詞全面：some- ／ any- ／ no- ／ every- 複合詞</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="39-substitution-ellipsis.html">
+        <div class="idx-no">39</div>
+        <div class="idx-body">
+          <h3>就是那個</h3>
+          <div class="idx-en">That Is the One</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Education</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">替代與省略：one ／ ones ／ so ／ there ／ such</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="40-linking-words.html">
+        <div class="idx-no">40</div>
+        <div class="idx-body">
+          <h3>說清楚才對</h3>
+          <div class="idx-en">Say It Clearly</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">連詞總整理：unless / until / as soon as / even if</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="41-purpose-result.html">
+        <div class="idx-no">41</div>
+        <div class="idx-body">
+          <h3>為了不要</h3>
+          <div class="idx-en">So That You Can Learn</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Hobbies and Leisure</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">so that / in order to / so as to / too...to 完整家族</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="42-adjective-order.html">
+        <div class="idx-no">42</div>
+        <div class="idx-body">
+          <h3>修飾語的順序</h3>
+          <div class="idx-en">The Order of Words</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Clothes and Accessories</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">形容詞語序：opinion-size-age-shape-colour-origin</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="43-punctuation.html">
+        <div class="idx-no">43</div>
+        <div class="idx-body">
+          <h3>標點決定語意</h3>
+          <div class="idx-en">Punctuation Changes Meaning</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Documents and Texts</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">會考標點符號規範</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="44-sentence-patterns.html">
+        <div class="idx-no">44</div>
+        <div class="idx-body">
+          <h3>換句話說</h3>
+          <div class="idx-en">Say It Another Way</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Documents and Texts</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">too/enough/so...that 三種句型互轉</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="45-subject-verb.html">
+        <div class="idx-no">45</div>
+        <div class="idx-body">
+          <h3>單複數的問題</h3>
+          <div class="idx-en">One or Many</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">主謂一致與數的處理</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="46-dangling-modifiers.html">
+        <div class="idx-no">46</div>
+        <div class="idx-body">
+          <h3>懸空的那句話</h3>
+          <div class="idx-en">The Wrong Ending</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">懸空修飾語（dangling modifier）的辨識與修正、分詞片語與主詞的關係、句子改寫</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="47-emphasis.html">
+        <div class="idx-no">47</div>
+        <div class="idx-body">
+          <h3>重點在哪一句</h3>
+          <div class="idx-en">Where Is the Focus?</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">強調句 It is...that／who、What...is 的強調句型、焦點位置</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="48-expressing-opinion.html">
+        <div class="idx-no">48</div>
+        <div class="idx-body">
+          <h3>我的看法</h3>
+          <div class="idx-en">In My Opinion</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">立場表達：In my opinion／It seems to me／I don't think、委婉表態與讓步</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="49-conditionals-advanced.html">
+        <div class="idx-no">49</div>
+        <div class="idx-body">
+          <h3>除非與條件</h3>
+          <div class="idx-en">Only If and Provided That</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">provided that／as long as／even if／otherwise 條件連接詞、unless 的第一句型用法</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="50-paraphrasing.html">
+        <div class="idx-no">50</div>
+        <div class="idx-body">
+          <h3>用自己的話</h3>
+          <div class="idx-en">In My Own Words</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Documents and Texts</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">摘要改寫 paraphrase 技巧：保留 main idea、同義詞替換與短句化</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="51-online-safety.html">
+        <div class="idx-no">51</div>
+        <div class="idx-body">
+          <h3>網路安全</h3>
+          <div class="idx-en">Staying Safe Online</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Communication and Technology</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">情態動詞與保護個資的建議句型：should／must／mustn't／never</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="52-ai-and-learning.html">
+        <div class="idx-no">52</div>
+        <div class="idx-body">
+          <h3>AI 與學習</h3>
+          <div class="idx-en">Learning with AI</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Communication and Technology ／ Education</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">because / so 論述與科技倫理</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="53-plastic-ocean.html">
+        <div class="idx-no">53</div>
+        <div class="idx-body">
+          <h3>海上的塑膠</h3>
+          <div class="idx-en">The Plastic in Our Ocean</div>
+          <div class="idx-meta"><span class="badge badge-vocab">The Natural World</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">環境議題的描述與建議句型</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="54-extreme-weather.html">
+        <div class="idx-no">54</div>
+        <div class="idx-body">
+          <h3>極端天氣</h3>
+          <div class="idx-en">When the Weather Turns Wild</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Weather</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">天氣預報與氣候描述的句型</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="55-blood-donation.html">
+        <div class="idx-no">55</div>
+        <div class="idx-body">
+          <h3>捐血與志工</h3>
+          <div class="idx-en">Give a Little, Get a Lot</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Services ／ Work and Jobs</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">志願服務的邀請與感謝句型</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="56-reading-news.html">
+        <div class="idx-no">56</div>
+        <div class="idx-body">
+          <h3>判讀新聞</h3>
+          <div class="idx-en">Can I Trust This News?</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Documents and Texts</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">消息來源與可信度判讀</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="57-preventing-injury.html">
+        <div class="idx-no">57</div>
+        <div class="idx-body">
+          <h3>受傷之前</h3>
+          <div class="idx-en">Before You Get Hurt</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Health, Medicine and Exercise</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">健康建議與防護句型</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="58-food-labels.html">
+        <div class="idx-no">58</div>
+        <div class="idx-body">
+          <h3>看懂標籤</h3>
+          <div class="idx-en">Reading a Food Label</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Food and Drink ／ Measurements</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">less／fewer／more 比較句型、than 與 as...as 的比較、how much／how many 的提問</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="59-work-rights.html">
+        <div class="idx-no">59</div>
+        <div class="idx-body">
+          <h3>我的工時</h3>
+          <div class="idx-en">My First Part-time Job</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Work and Jobs</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">should／shouldn't 義務與建議、that 名詞子句與 so 因果句型、want to be + 職業名詞</span></div>
+        </div>
+      </a>
+      <a class="idx-card" href="60-speaking-up.html">
+        <div class="idx-no">60</div>
+        <div class="idx-body">
+          <h3>一起好好說</h3>
+          <div class="idx-en">Speak Up, Speak Kind</div>
+          <div class="idx-meta"><span class="badge badge-vocab">Education ／ Personal Feelings, Opinions and Experiences</span></div>
+          <div class="idx-meta"><span class="badge badge-grammar">if 條件句與 should 求助句型、feel + 形容詞表達情緒、say／tell 的用法差異</span></div>
+        </div>
+      </a>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📗 涵蓋範圍對照表（一）A2 Key 詞彙表附錄 2 全部 25 個主題分組</h2>
+    <p style="color:#475569;font-size:0.92rem;">下列為 Cambridge A2 Key / A2 Key for Schools Vocabulary List 附錄 2 的 <b>全部 25 個 Topic Lists</b>，每個主題皆已指定對應課次，無遺漏。</p>
+    <table class="cov-table">
+      <tbody>
+      <tr><td class="cov-topic">Appliances</td><td><a class="cov-pill" href="11-appliance-repair.html">11</a></td></tr>
+      <tr><td class="cov-topic">Clothes and Accessories</td><td><a class="cov-pill" href="12-clothes-shop.html">12</a></td></tr>
+      <tr><td class="cov-topic">Colours</td><td><a class="cov-pill" href="13-colour-painting.html">13</a></td></tr>
+      <tr><td class="cov-topic">Communication and Technology</td><td><a class="cov-pill" href="09-finding-information-online.html">9</a></td></tr>
+      <tr><td class="cov-topic">Documents and Texts</td><td><a class="cov-pill" href="09-finding-information-online.html">9</a><a class="cov-pill" href="30-reporting-the-news.html">30</a></td></tr>
+      <tr><td class="cov-topic">Education</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="23-class-rules.html">23</a><a class="cov-pill" href="27-ways-to-learn.html">27</a></td></tr>
+      <tr><td class="cov-topic">Entertainment and Media</td><td><a class="cov-pill" href="08-school-music-show.html">8</a></td></tr>
+      <tr><td class="cov-topic">Family and Friends</td><td><a class="cov-pill" href="19-family-and-friends.html">19</a></td></tr>
+      <tr><td class="cov-topic">Food and Drink</td><td><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="28-planning-a-picnic.html">28</a></td></tr>
+      <tr><td class="cov-topic">Health, Medicine and Exercise</td><td><a class="cov-pill" href="05-visit-to-the-doctor.html">5</a><a class="cov-pill" href="24-helping-at-home.html">24</a></td></tr>
+      <tr><td class="cov-topic">Hobbies and Leisure</td><td><a class="cov-pill" href="07-camping-in-the-rain.html">7</a><a class="cov-pill" href="08-school-music-show.html">8</a><a class="cov-pill" href="29-my-wish.html">29</a></td></tr>
+      <tr><td class="cov-topic">House and Home</td><td><a class="cov-pill" href="18-new-apartment.html">18</a><a class="cov-pill" href="24-helping-at-home.html">24</a></td></tr>
+      <tr><td class="cov-topic">Measurements</td><td><a class="cov-pill" href="14-measurements.html">14</a></td></tr>
+      <tr><td class="cov-topic">Personal Feelings, Opinions and Experiences</td><td><a class="cov-pill" href="10-when-i-grow-up.html">10</a><a class="cov-pill" href="20-feelings.html">20</a><a class="cov-pill" href="23-class-rules.html">23</a><a class="cov-pill" href="25-sports-meet.html">25</a><a class="cov-pill" href="29-my-wish.html">29</a></td></tr>
+      <tr><td class="cov-topic">Places: Buildings</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="21-buildings-tour.html">21</a></td></tr>
+      <tr><td class="cov-topic">Places: Countryside</td><td><a class="cov-pill" href="07-camping-in-the-rain.html">7</a><a class="cov-pill" href="15-countryside-day.html">15</a><a class="cov-pill" href="26-place-i-call-home.html">26</a></td></tr>
+      <tr><td class="cov-topic">Places: Town and City</td><td><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="22-around-town.html">22</a><a class="cov-pill" href="26-place-i-call-home.html">26</a></td></tr>
+      <tr><td class="cov-topic">Services</td><td><a class="cov-pill" href="16-post-office-bank.html">16</a></td></tr>
+      <tr><td class="cov-topic">Shopping</td><td><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="06-shopping-for-school.html">6</a></td></tr>
+      <tr><td class="cov-topic">Sport</td><td><a class="cov-pill" href="04-school-basketball-team.html">4</a><a class="cov-pill" href="25-sports-meet.html">25</a></td></tr>
+      <tr><td class="cov-topic">The Natural World</td><td><a class="cov-pill" href="07-camping-in-the-rain.html">7</a><a class="cov-pill" href="15-countryside-day.html">15</a></td></tr>
+      <tr><td class="cov-topic">Time</td><td><a class="cov-pill" href="03-first-train-ride.html">3</a><a class="cov-pill" href="17-daily-schedule.html">17</a></td></tr>
+      <tr><td class="cov-topic">Travel and Transport</td><td><a class="cov-pill" href="03-first-train-ride.html">3</a></td></tr>
+      <tr><td class="cov-topic">Weather</td><td><a class="cov-pill" href="07-camping-in-the-rain.html">7</a></td></tr>
+      <tr><td class="cov-topic">Work and Jobs</td><td><a class="cov-pill" href="10-when-i-grow-up.html">10</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📘 涵蓋範圍對照表（二）108 課綱國中會考文法全範圍</h2>
+    <p style="color:#475569;font-size:0.92rem;">依國中九年一貫英語學習內容之文法與句型範圍，共歸納 <b>67 個考點</b>，每個考點皆可由對應課次的「核心重點解析總整理」複習。</p>
+    <table class="cov-table">
+      <tbody>
+      <tr><td class="cov-point">名詞、冠詞與所有格</td><td><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="05-visit-to-the-doctor.html">5</a><a class="cov-pill" href="06-shopping-for-school.html">6</a><a class="cov-pill" href="12-clothes-shop.html">12</a><a class="cov-pill" href="18-new-apartment.html">18</a><a class="cov-pill" href="19-family-and-friends.html">19</a></td></tr>
+      <tr><td class="cov-point">代詞（人稱／物主／不定／疑問）</td><td><a class="cov-pill" href="06-shopping-for-school.html">6</a><a class="cov-pill" href="19-family-and-friends.html">19</a><a class="cov-pill" href="28-planning-a-picnic.html">28</a></td></tr>
+      <tr><td class="cov-point">數量詞（many/much/a lot of/a few/a little/enough）</td><td><a class="cov-pill" href="06-shopping-for-school.html">6</a><a class="cov-pill" href="14-measurements.html">14</a><a class="cov-pill" href="18-new-apartment.html">18</a><a class="cov-pill" href="28-planning-a-picnic.html">28</a></td></tr>
+      <tr><td class="cov-point">介系詞（時間 in/on/at、地點 at/in/on/next to）</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="03-first-train-ride.html">3</a><a class="cov-pill" href="15-countryside-day.html">15</a><a class="cov-pill" href="16-post-office-bank.html">16</a><a class="cov-pill" href="17-daily-schedule.html">17</a><a class="cov-pill" href="18-new-apartment.html">18</a><a class="cov-pill" href="21-buildings-tour.html">21</a></td></tr>
+      <tr><td class="cov-point">形容詞與副詞（位置、順序）</td><td><a class="cov-pill" href="04-school-basketball-team.html">4</a><a class="cov-pill" href="12-clothes-shop.html">12</a><a class="cov-pill" href="13-colour-painting.html">13</a><a class="cov-pill" href="20-feelings.html">20</a><a class="cov-pill" href="25-sports-meet.html">25</a></td></tr>
+      <tr><td class="cov-point">比較級與最高級</td><td><a class="cov-pill" href="04-school-basketball-team.html">4</a><a class="cov-pill" href="12-clothes-shop.html">12</a><a class="cov-pill" href="14-measurements.html">14</a><a class="cov-pill" href="25-sports-meet.html">25</a></td></tr>
+      <tr><td class="cov-point">比較結構 as...as / not as...as</td><td><a class="cov-pill" href="25-sports-meet.html">25</a></td></tr>
+      <tr><td class="cov-point">一般現在式</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="17-daily-schedule.html">17</a><a class="cov-pill" href="22-around-town.html">22</a></td></tr>
+      <tr><td class="cov-point">現在進行式</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="07-camping-in-the-rain.html">7</a></td></tr>
+      <tr><td class="cov-point">一般過去式（規則／不規則）</td><td><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="03-first-train-ride.html">3</a><a class="cov-pill" href="06-shopping-for-school.html">6</a><a class="cov-pill" href="15-countryside-day.html">15</a></td></tr>
+      <tr><td class="cov-point">過去進行式</td><td><a class="cov-pill" href="03-first-train-ride.html">3</a><a class="cov-pill" href="07-camping-in-the-rain.html">7</a></td></tr>
+      <tr><td class="cov-point">現在完成式（since/for/already/yet）</td><td><a class="cov-pill" href="08-school-music-show.html">8</a></td></tr>
+      <tr><td class="cov-point">過去完成式</td><td><a class="cov-pill" href="03-first-train-ride.html">3</a><a class="cov-pill" href="06-shopping-for-school.html">6</a></td></tr>
+      <tr><td class="cov-point">未來式 will / be going to</td><td><a class="cov-pill" href="10-when-i-grow-up.html">10</a><a class="cov-pill" href="17-daily-schedule.html">17</a></td></tr>
+      <tr><td class="cov-point">間接引語的時態一致</td><td><a class="cov-pill" href="30-reporting-the-news.html">30</a></td></tr>
+      <tr><td class="cov-point">情態動詞 can/could/may/must/should/have to</td><td><a class="cov-pill" href="05-visit-to-the-doctor.html">5</a><a class="cov-pill" href="06-shopping-for-school.html">6</a><a class="cov-pill" href="11-appliance-repair.html">11</a><a class="cov-pill" href="21-buildings-tour.html">21</a><a class="cov-pill" href="51-online-safety.html">51</a></td></tr>
+      <tr><td class="cov-point">動名詞與不定詞</td><td><a class="cov-pill" href="04-school-basketball-team.html">4</a><a class="cov-pill" href="08-school-music-show.html">8</a><a class="cov-pill" href="10-when-i-grow-up.html">10</a><a class="cov-pill" href="20-feelings.html">20</a></td></tr>
+      <tr><td class="cov-point">連綴動詞（be／get／make／keep＋形容詞）</td><td><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="03-first-train-ride.html">3</a><a class="cov-pill" href="07-camping-in-the-rain.html">7</a><a class="cov-pill" href="10-when-i-grow-up.html">10</a></td></tr>
+      <tr><td class="cov-point">祈使句與建議句型</td><td><a class="cov-pill" href="16-post-office-bank.html">16</a><a class="cov-pill" href="21-buildings-tour.html">21</a><a class="cov-pill" href="23-class-rules.html">23</a><a class="cov-pill" href="29-my-wish.html">29</a></td></tr>
+      <tr><td class="cov-point">建議句型 Let's / Why don't / How about</td><td><a class="cov-pill" href="23-class-rules.html">23</a><a class="cov-pill" href="29-my-wish.html">29</a></td></tr>
+      <tr><td class="cov-point">間接敘述與間接問句</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="06-shopping-for-school.html">6</a><a class="cov-pill" href="09-finding-information-online.html">9</a><a class="cov-pill" href="10-when-i-grow-up.html">10</a><a class="cov-pill" href="30-reporting-the-news.html">30</a><a class="cov-pill" href="35-reported-speech-rules.html">35</a></td></tr>
+      <tr><td class="cov-point">條件句 if（第一類／第二類）</td><td><a class="cov-pill" href="07-camping-in-the-rain.html">7</a><a class="cov-pill" href="10-when-i-grow-up.html">10</a><a class="cov-pill" href="29-my-wish.html">29</a><a class="cov-pill" href="49-conditionals-advanced.html">49</a></td></tr>
+      <tr><td class="cov-point">限定關係子句 who/which/that</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="21-buildings-tour.html">21</a></td></tr>
+      <tr><td class="cov-point">關係副詞 where/when/why</td><td><a class="cov-pill" href="26-place-i-call-home.html">26</a></td></tr>
+      <tr><td class="cov-point">名詞性從句</td><td><a class="cov-pill" href="26-place-i-call-home.html">26</a></td></tr>
+      <tr><td class="cov-point">並列句與連接詞（and/but/or/so/because）</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="02-night-market.html">2</a><a class="cov-pill" href="09-finding-information-online.html">9</a><a class="cov-pill" href="40-linking-words.html">40</a></td></tr>
+      <tr><td class="cov-point">讓步與轉折（although/however/while）</td><td><a class="cov-pill" href="09-finding-information-online.html">9</a><a class="cov-pill" href="10-when-i-grow-up.html">10</a><a class="cov-pill" href="49-conditionals-advanced.html">49</a></td></tr>
+      <tr><td class="cov-point">目的與結果 so that/in order that/too...to/so...that</td><td><a class="cov-pill" href="11-appliance-repair.html">11</a><a class="cov-pill" href="27-ways-to-learn.html">27</a><a class="cov-pill" href="41-purpose-result.html">41</a></td></tr>
+      <tr><td class="cov-point">使役動詞 make/have/let sb do</td><td><a class="cov-pill" href="24-helping-at-home.html">24</a></td></tr>
+      <tr><td class="cov-point">感官動詞 see/hear/smell sb do/doing</td><td><a class="cov-pill" href="24-helping-at-home.html">24</a></td></tr>
+      <tr><td class="cov-point">強調句 It is...that</td><td><a class="cov-pill" href="30-reporting-the-news.html">30</a><a class="cov-pill" href="47-emphasis.html">47</a></td></tr>
+      <tr><td class="cov-point">反意疑問句</td><td><a class="cov-pill" href="23-class-rules.html">23</a><a class="cov-pill" href="30-reporting-the-news.html">30</a></td></tr>
+      <tr><td class="cov-point">附加問句</td><td><a class="cov-pill" href="23-class-rules.html">23</a></td></tr>
+      <tr><td class="cov-point">願望句 wish / if I were</td><td><a class="cov-pill" href="29-my-wish.html">29</a></td></tr>
+      <tr><td class="cov-point">被動語態</td><td><a class="cov-pill" href="03-first-train-ride.html">3</a></td></tr>
+      <tr><td class="cov-point">主謂一致</td><td><a class="cov-pill" href="01-new-term-at-school.html">1</a><a class="cov-pill" href="11-appliance-repair.html">11</a><a class="cov-pill" href="21-buildings-tour.html">21</a><a class="cov-pill" href="45-subject-verb.html">45</a></td></tr>
+      <tr><td class="cov-point">否定句與疑問句</td><td><a class="cov-pill" href="23-class-rules.html">23</a><a class="cov-pill" href="28-planning-a-picnic.html">28</a></td></tr>
+      <tr><td class="cov-point">倒裝句（Not only...but also／Here comes／Only then）</td><td><a class="cov-pill" href="31-inversion.html">31</a></td></tr>
+      <tr><td class="cov-point">分詞片語（Having done／Walking／Being）</td><td><a class="cov-pill" href="32-participle-phrases.html">32</a></td></tr>
+      <tr><td class="cov-point">所有格的兩種表示法（N's／of N、複合名詞）</td><td><a class="cov-pill" href="33-possessives.html">33</a></td></tr>
+      <tr><td class="cov-point">五大句型與句型擴展</td><td><a class="cov-pill" href="34-five-patterns.html">34</a></td></tr>
+      <tr><td class="cov-point">間接引語完整規則與報導動詞選擇</td><td><a class="cov-pill" href="35-reported-speech-rules.html">35</a></td></tr>
+      <tr><td class="cov-point">完成式被動與情態動詞完成式 should have done</td><td><a class="cov-pill" href="36-modal-perfect.html">36</a></td></tr>
+      <tr><td class="cov-point">比較的省略與倍數（twice as...as／no more than）</td><td><a class="cov-pill" href="37-multiple-comparison.html">37</a></td></tr>
+      <tr><td class="cov-point">不定代詞複合詞（some-／any-／no-／every-）</td><td><a class="cov-pill" href="38-indefinite-pronouns.html">38</a></td></tr>
+      <tr><td class="cov-point">替代與省略（one／ones／so／there／such）</td><td><a class="cov-pill" href="39-substitution-ellipsis.html">39</a></td></tr>
+      <tr><td class="cov-point">連詞總整理（unless／until／as soon as／even if）</td><td><a class="cov-pill" href="40-linking-words.html">40</a></td></tr>
+      <tr><td class="cov-point">so that／in order to／so as to 的完整家族</td><td><a class="cov-pill" href="41-purpose-result.html">41</a></td></tr>
+      <tr><td class="cov-point">形容詞語序（意見／大小／年齡／形狀／顏色／產地）</td><td><a class="cov-pill" href="42-adjective-order.html">42</a></td></tr>
+      <tr><td class="cov-point">會考標點符號規範</td><td><a class="cov-pill" href="43-punctuation.html">43</a></td></tr>
+      <tr><td class="cov-point">too／enough／so...that 三種句型互轉</td><td><a class="cov-pill" href="44-sentence-patterns.html">44</a></td></tr>
+      <tr><td class="cov-point">主謂一致與數的處理</td><td><a class="cov-pill" href="45-subject-verb.html">45</a></td></tr>
+      <tr><td class="cov-point">懸空修飾語（Dangling Modifiers）的辨識與修正</td><td><a class="cov-pill" href="46-dangling-modifiers.html">46</a></td></tr>
+      <tr><td class="cov-point">強調句 It is...that 與 What...is 的比較</td><td><a class="cov-pill" href="47-emphasis.html">47</a></td></tr>
+      <tr><td class="cov-point">立場表達（In my opinion／It seems to me）</td><td><a class="cov-pill" href="48-expressing-opinion.html">48</a></td></tr>
+      <tr><td class="cov-point">進階條件連接詞（provided that／as long as／otherwise）</td><td><a class="cov-pill" href="49-conditionals-advanced.html">49</a></td></tr>
+      <tr><td class="cov-point">摘要改寫（paraphrase）技巧</td><td><a class="cov-pill" href="50-paraphrasing.html">50</a></td></tr>
+      <tr><td class="cov-point">提供建議的情態動詞句型</td><td><a class="cov-pill" href="51-online-safety.html">51</a></td></tr>
+      <tr><td class="cov-point">科技倫理的論述句型（because／so 的因果與讓步）</td><td><a class="cov-pill" href="52-ai-and-learning.html">52</a></td></tr>
+      <tr><td class="cov-point">環境議題的描述與建議句型</td><td><a class="cov-pill" href="53-plastic-ocean.html">53</a></td></tr>
+      <tr><td class="cov-point">天氣預報與氣候描述句型</td><td><a class="cov-pill" href="54-extreme-weather.html">54</a></td></tr>
+      <tr><td class="cov-point">邀請、接受與感謝句型</td><td><a class="cov-pill" href="55-blood-donation.html">55</a></td></tr>
+      <tr><td class="cov-point">消息來源與可信度判讀</td><td><a class="cov-pill" href="56-reading-news.html">56</a></td></tr>
+      <tr><td class="cov-point">健康建議與防護句型</td><td><a class="cov-pill" href="57-preventing-injury.html">57</a></td></tr>
+      <tr><td class="cov-point">營養標示的比較判讀</td><td><a class="cov-pill" href="58-food-labels.html">58</a></td></tr>
+      <tr><td class="cov-point">勞動權益與職業探索</td><td><a class="cov-pill" href="59-work-rights.html">59</a></td></tr>
+      <tr><td class="cov-point">反霸凌與求助句型</td><td><a class="cov-pill" href="60-speaking-up.html">60</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本），詳附錄 2 Topic Lists：Education、Food and Drink、Health Medicine and Exercise、Sport、Shopping、Weather、The Natural World、Hobbies and Leisure、Entertainment and Media、Communication and Technology、Work and Jobs、Travel and Transport、Places、Time。</li>
+      <li><b>文法維度：</b>108 課綱國中英文程綱內容，對應國中段考與國中會考英語的常見測驗型態，可作為教學時的編排與複習依據。</li>
+      <li><b>下載：</b><a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">A2 Key Vocabulary List (PDF)</a></li>
+    </ul>
+  </div>
+</div>
+<script>
+  function filterLessons() {
+    var q = (document.getElementById('idxSearch').value || '').toLowerCase().trim();
+    var cards = document.querySelectorAll('.idx-card');
+    var secs = document.querySelectorAll('.idx-section');
+    for (var i = 0; i < cards.length; i++) {
+      var hit = !q || cards[i].textContent.toLowerCase().indexOf(q) !== -1;
+      cards[i].classList.toggle('hidden', !hit);
+    }
+    for (var j = 0; j < secs.length; j++) {
+      var any = secs[j].querySelector('.idx-card:not(.hidden)');
+      secs[j].classList.toggle('hidden', !any);
+    }
+    var n = document.querySelectorAll('.idx-card:not(.hidden)').length;
+    var h = document.getElementById('idxCount');
+    if (h) { h.textContent = n; }
+  }
+
+</script>
+</body>
+</html>

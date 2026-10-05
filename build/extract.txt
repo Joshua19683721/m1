@@ -1,0 +1,6 @@
+L37_P2.2_PT2="2. <b>不規則過去式 (chose)：</b>choose 的三態是 choose–chose–chosen，chose 同時是過去式與過去分詞，必須背熟。<br>"
+L38_P1.1_PT1="1. <b>複合不定代詞 (anyone)：</b>some- ／ any- ／ no- ／ every- 加 <b>one / body / thing / where</b>，組成六個一組的複合不定代詞。<br>"
+L38_P2.2_PT1="1. <b>間接問句 (who sent it)：</b>這是陳述句，疑問詞後面直接用<b>主詞 ＋ 動詞</b>原形，不倒裝、也不加 did。<span style=\"color:#dc2626;\">⚠️ 陷阱：</span><s>✗ Nobody knew who did send it</s>。<br>"
+L39_P1.2_PT3="3. <b>雙寫子音再加 -er (thicker)：</b>重讀閉音節以單一子音結尾時，要雙寫子音再加 <b>-er</b>：thin–thicker、big–bigger。"
+L39_P3.1_PT2="2. <b>不規則過去式 (took)：</b>take 的三態是 take–took–taken，過去式與過去分詞同形，務必與 thrown、written 一起背。<br>"
+L38_SUM3="<li><b>3. 三組構件：</b><br>some/any/no/every ＋ <b>one / body / thing / where</b> → 一個人、一件事、一個地方。<br>後接單數可數名詞用 <b>one</b>（someone / something / anywhere），其餘三者皆不可。</li>"

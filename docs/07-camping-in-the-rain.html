@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第7課 雨中的露營：故事與文法懸停解析｜A2 Key × 108課綱國中會考</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      text-align: center;
+      border-top: 6px solid var(--primary);
+    }
+
+    h1 {
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      font-size: 1.8rem;
+    }
+
+    .sub-title {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    /* 控制面板 */
+    .audio-panel {
+      background: #eff6ff;
+      border: 2px solid #bfdbfe;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    /* 說明指標卡 */
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 中文全文翻譯卡片 (開頭新增) */
+    .translation-card {
+      background: #f0fdf4;
+      border: 2px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      color: #166534;
+    }
+
+    .translation-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #15803d;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .translation-content {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #166534;
+    }
+
+    .translation-p {
+      margin-bottom: 10px;
+    }
+    .translation-p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 故事閱讀區 */
+    .story-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+      border-left: 5px solid var(--primary-light);
+      padding-left: 10px;
+      margin: 0 0 20px 0;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* 句子懸停與語法解析樣式 */
+    .sentence-block {
+      position: relative;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .sentence-block:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .sentence-text {
+      font-size: 1.15rem;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    /* 懸停解說框 (ToolTip Card) */
+    .sentence-grammar-pop {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 15px;
+      background: #ffffff;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    .sentence-block:hover .sentence-grammar-pop {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 點擊字詞可發音標籤 */
+    .w-tap {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 1px 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .w-tap:hover {
+      text-decoration: underline;
+    }
+
+    .kw-verb { color: #047857; background: #d1fae5; }
+    .kw-colloc { color: #b45309; background: #fef3c7; }
+    .kw-link { color: #6d28d9; background: #ede9fe; }
+
+    /* 段落銜接框 */
+    .context-bridge {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #92400e;
+    }
+
+    .context-bridge strong {
+      color: #b45309;
+    }
+
+    /* 朗讀按鈕 */
+    .btn-speak {
+      background: var(--primary-light);
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-speak:hover { background: var(--primary); }
+
+    /* 彙整總解析卡片 */
+    .summary-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .summary-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .summary-box h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-list {
+      padding-left: 20px;
+      margin: 8px 0 0 0;
+    }
+
+    .summary-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .badge-grammar { background: var(--accent-purple); }
+    .badge-colloc { background: var(--accent-orange); }
+    .badge-vocab { background: var(--accent-green); }
+
+  /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
+.btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:0.85rem;}
+.btn-tool:hover{background:#115e59;}
+.btn-tool.ghost{background:#fff;color:#0f766e;border:1px solid #99f6e4;}
+body.review .sentence-grammar-pop{display:block;}
+body.review .sentence-block{background:#f0f9ff;}
+
+@media print {
+  @page { margin: 14mm; }
+  body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
+  .container { max-width: 100%; }
+  .audio-panel, .legend-bar, .tool-row, .btn-speak,
+  #backIndex { display:none !important; }
+  header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
+  .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
+  .sentence-block { break-inside:avoid; page-break-inside:avoid; background:#fff; }
+  .translation-card { border-color:#86efac; }
+  .summary-grid { grid-template-columns:1fr; }
+  a[href]:after { content:""; }
+  .w-tap { background:none !important; font-weight:600; }
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📘 第 7 課｜雨中的露營</h1>
+    <div class="sub-title">Weather ／ The Natural World ／ Hobbies and Leisure｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
+    <div class="audio-panel">
+      <div class="control-group">
+        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="control-group">
+        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
+        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+      </div>
+    </div>
+    <div class="legend-bar">
+      <div class="legend-item"><span class="dot" style="background:#10b981;"></span> 核心動詞／動詞片語</div>
+      <div class="legend-item"><span class="dot" style="background:#f59e0b;"></span> 高頻搭配詞 (Collocation)</div>
+      <div class="legend-item"><span class="dot" style="background:#8b5cf6;"></span> 轉折／承接副詞 (Transition)</div>
+      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
+    </div>
+    <div class="tool-row">
+      <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
+      <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+  </header>
+  <div class="story-card">
+    <h2 class="section-title">📖 Camping in the Rain</h2>
+    <div style="margin-bottom:18px;font-size:0.9rem;">
+      <span class="badge badge-vocab">A2 Key 主題</span> Weather ／ The Natural World ／ Hobbies and Leisure &nbsp;｜&nbsp;
+      <span class="badge badge-grammar">108 課綱會考</span> if 條件句（第一類真實條件／第三類與過去事實相反的假設）、suggested that、because
+    </div>
+    <div class="translation-card">
+      <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
+      <div class="translation-content">
+        <div class="translation-p">
+          <b>【第一段】</b> 去年暑假，我們班到山裡的一個湖邊露營。第一天，天氣晴朗，天空湛藍。領隊說，如果第二天早上不下雨，我們就去遠足。
+        </div>
+        <div class="translation-p">
+          <b>【第二段】</b> 下午，山丘上方出現了烏雲，風也變得更強了。如果我們有事先查過天氣預報，我們本來就會待在帳篷裡。他建議我們把食物放進箱子，並把帳篷搬到一個遮蔽處。
+        </div>
+        <div class="translation-p">
+          <b>【第三段】</b> 雨下了大約兩個小時，但沒有人被淋濕，因為我們的帳篷很安全。如果你要去露營，應該隨身帶著地圖、手電筒和保暖衣物。雨停的時候，空氣聞起來清新又乾淨，我們大家都覺得很放鬆。
+        </div>
+      </div>
+    </div>
+    <!-- Paragraph 1 -->
+    <div class="paragraph-container">
+      <!-- Sentence 1.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">Last summer</span>, our class <span class="w-tap kw-verb">went camping beside</span> a lake <span class="w-tap kw-colloc">in the mountains</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>不規則過去式 (went)：</b>go–went–gone，與第 3、6 課的用法相同，可累積記憶。<br> 2. <b>beside + 場所：</b>beside ＝「在⋯旁邊」，與 next to 語意相近但更強調緊貼。<br> 3. <b>go camping：</b>camp 在此是動詞原形，go camping 是 A2 Key「Hobbies and Leisure」主題的固定片語；第 6 課的 stationery（文具）則屬「Shopping」主題，兩者不是同一主題。
+        </div>
+      </div>
+      <!-- Sentence 1.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">On the first day</span>, <span class="w-tap kw-verb">the weather was fine</span> and <span class="w-tap kw-verb">the sky was blue</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>天氣專用句型 (the weather was)：</b>談天氣時<b>不可加 a／an</b>（✗ <s>a fine weather</s>），這是會考單選的固定陷阱。<br> 2. <b>be 動詞 + 形容詞：</b>fine 與 blue 皆為形容詞，直接修飾天氣與天空。<br> 3. <b>How is the weather…? / What's the weather like…?</b>兩種問法皆可，會考聽力與閱讀皆常出現。
+        </div>
+      </div>
+      <!-- Sentence 1.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          Our leader <span class="w-tap kw-verb">said that</span> we <span class="w-tap kw-verb">would go hiking</span> early the next morning <span class="w-tap kw-colloc">if it didn't rain</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>未來式 (would + 原形)：</b>would 後接原形 go，表示「將會⋯⋯」，後續仍可再加 if 條件句。<br> 2. <b>if 條件句第一類（真實條件）：</b><b>if + 現在式, will / would + 原形</b>——「如果⋯⋯就⋯⋯」。<br> 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>第一類條件句的 if 從句中<b>不可用將來式</b>（✗ <s>if it will not rain, we will go</s>，改為 If it <b>doesn't rain</b>, we <b>will go</b>）；本課故事第 2 句之所以出現 if it <b>didn't rain</b>, we <b>would go</b>，是因為它被放進 said that 的<b>間接敘述</b>，will 往過去推移成 would。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['Last summer, our class went camping beside a lake in the mountains.', 'On the first day, the weather was fine and the sky was blue.', 'Our leader said that we would go hiking early the next morning if it didn\'t rain.'])">🔊 朗讀第一段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
+      【情境說明】第一段用「藍天」與「條件句」建立一個近乎完美的期待，讓讀者先相信明天會是好天氣。第二段立刻用「烏雲」與「風更強」打破這個期待，是全篇最大的戲劇轉折。
+    </div>
+    <!-- Paragraph 2 -->
+    <div class="paragraph-container">
+      <!-- Sentence 2.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">In the afternoon</span>, dark clouds <span class="w-tap kw-verb">appeared above</span> the hills and the wind <span class="w-tap kw-verb">became stronger</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>規則過去式 (appeared)：</b>appear 以 e 結尾，只加 -d：appear–appeared–appeared。<br> 2. <b>become 的三態：</b>become–became–become，為會考必背不規則動詞；<b>become + 比較級</b> 表示「變得更⋯⋯」。<br> 3. <b>單音節 CVC 型形容詞比較級 (stronger)：</b>strong 為單音節且是「子音＋母音＋子音」，須<b>重複末尾的輔音</b>再加 -er（strong–stronger）；多音節形容詞則加 more，與第 6 課的 expensive（more expensive）不同，須分組記憶。
+        </div>
+      </div>
+      <!-- Sentence 2.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">If we had checked the weather report</span>, we <span class="w-tap kw-verb">would have stayed in</span> our tents.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>if 條件句第三類（與過去事實相反的假設）：</b><b>if + had + 過去分詞, would have + 過去分詞</b>——「如果（當初）⋯⋯就會⋯⋯（但實際沒有）」。<br> 2. <b>had + 過去分詞 (had checked)：</b>此處不是第 2、3、6 課的「過去某時之前已完成」，而是<b>第三類條件句的假設句型</b>的一部分，兩種用法要分清楚。<br> 3. <b>would have + 過去分詞：</b>表示「本來就會⋯⋯（但實際沒有）」，與第 6 課的 could have bought 屬同一概念。
+        </div>
+      </div>
+      <!-- Sentence 2.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          He <span class="w-tap kw-verb">suggested that</span> we <span class="w-tap kw-verb">put our food into boxes</span> and <span class="w-tap kw-verb">move the tents to</span> a shelter.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>suggest that + (should) + 原形：</b>suggest ＝「建議」時，that 子句用<b>原形動詞</b>（此處省略 should）。<br> 2. <span style="color:#dc2626;">⚠️ 會考超高頻陷阱：</span><b>suggest 表「建議」接原形；suggest 表「暗示／表明」接 that 子句</b>——<br>　• He <b>suggested that we put</b>…（建議 → 原形）<br>　• His face <b>suggested that he was</b> angry.（暗示 → 陳述語序） 3. <b>put – put – put：</b>put 的過去式與過去分詞<b>都不變形</b>，為必背特例；put 後接<b>受詞與地點介系詞</b>，構成 put the food <b>into</b> boxes。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['In the afternoon, dark clouds appeared above the hills and the wind became stronger.', 'If we had checked the weather report, we would have stayed in our tents.', 'He suggested that we put our food into boxes and move the tents to a shelter.'])">🔊 朗讀第二段全文</button>
+    </div>
+    <div class="context-bridge">
+      <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
+      【情境說明】第三段回到結果：雨雖然下了，但因為有準備，眾人都安然無恙。故事用「帶什麼」的建議作結，把個人經驗轉化為可帶走的實用知識，正是閱讀測驗最喜歡的「由敘事歸納原則」考法。
+    </div>
+    <!-- Paragraph 3 -->
+    <div class="paragraph-container">
+      <!-- Sentence 3.1 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          It <span class="w-tap kw-verb">rained heavily for about two hours</span>, but nobody <span class="w-tap kw-verb">got wet</span> because our tents <span class="w-tap kw-verb">were safe</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>it 作虛主語 (It rained)：</b>「下雨」等天氣現象以 It 開頭，it 本身不指任何具體事物。<br> 2. <b>be wet：</b>wet 作形容詞（＝潮濕的），本句要表現「變濕」的<b>動作</b>所以用 <b>got wet</b>；若只描述狀態則用 were wet（be wet ＝ 是濕的）。<br> 3. <b>because 引導原因：</b>與第 4 課的 but（轉折）搭配使用，形成「雖⋯⋯但⋯⋯因為⋯⋯」的完整因果邏輯。
+        </div>
+      </div>
+      <!-- Sentence 3.2 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-colloc">If you go camping</span>, you <span class="w-tap kw-verb">should always take</span> a map, a torch and <span class="w-tap kw-colloc">some warm clothes</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>if 條件句第一類 (If you go, you should take)：</b>if ＋ <b>現在式</b>（不加 s），主句用 <b>should + 原形</b>；兩邊都用原形是此句型的關鍵。<br> 2. <b>always 的位置：</b>置於主要動詞 take <b>之前</b>：you should <b>always take</b>。<br> 3. <b>名詞作賓語 (some warm clothes)：</b>clothes 為<b>只有複數</b>的名詞，永遠加 -s，且不可加 a。
+        </div>
+      </div>
+      <!-- Sentence 3.3 -->
+      <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
+        <div class="sentence-text">
+          <span class="w-tap kw-link">When the rain stopped</span>, the air <span class="w-tap kw-verb">smelled fresh</span>, and we all <span class="w-tap kw-verb">felt relaxed</span>.
+        </div>
+        <div class="sentence-grammar-pop">
+          <strong>🔍 文法與句法結構分析：</strong><br>
+          1. <b>When + 短暫過去式：</b>與第 3 課「When we left…」同型，短動作用一般過去式。<br> 2. <b>感官動詞 + 形容詞 (smelled fresh)：</b>smell 後接形容詞，不加副詞（✗ smelled very freshly）。<br> 3. <b>連繫動詞 + 形容詞 (felt relaxed)：</b>feel + <b>形容詞</b>描述人的感受；relaxed 以 -d 結尾，故用 -ed 形式。
+        </div>
+      </div>
+      <button class="btn-speak" onclick="speakParagraph(['It rained heavily for about two hours, but nobody got wet because our tents were safe.', 'If you go camping, you should always take a map, a torch and some warm clothes.', 'When the rain stopped, the air smelled fresh, and we all felt relaxed.'])">🔊 朗讀第三段全文</button>
+    </div>
+  </div>
+  <div class="summary-card">
+    <h2 class="section-title">📝 第 7 課 核心重點解析總整理 (Mastery Summary)</h2>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課把 <b>if 條件句</b>放進天氣敘事中，是會考「閱讀理解＋文意判斷」的典型考法：讀者必須分辨「真實條件」與「假設條件」。</p>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <h3><span class="badge badge-grammar">文法句型</span> if 條件句：真實條件與過去假設</h3>
+        <ul class="summary-list">
+<li><b>1. 第一類：真實條件句（最常考）</b><br><b>if + 現在式, will / would + 原形</b><br>• <i>例：</i> If it <u>doesn't rain</u>, we <u>will go hiking</u>.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>if 從句<b>不可用將來式</b>，也不可讓第三人稱單數漏掉 -s。</li>
+<li><b>2. 第三類：與過去事實相反的假設</b><br><b>if + had + 過去分詞, would have + 過去分詞</b><br>• <i>例：</i> If we <u>had checked</u> the report, we <u>would have stayed</u> in our tents.<br>• 相當於中文「如果當初⋯⋯，就會⋯⋯（但實際沒有）」。<br>• <span style="color:#dc2626;">⚠️ 別與第二類混淆：</span>第二類＝與<b>現在</b>事實相反，句型為 if + 過去式, <b>would + 原形</b>（If it <u>were</u> fine, we <u>would stay</u> in our tents.）</li>
+<li><b>3. suggest 的兩種句型（超高頻陷阱）：</b><br>• <b>建議</b>：suggest that sb <b>(should) + 原形</b>（suggested that we <u>put</u>…）<br>• <b>暗示</b>：suggest that + <b>陳述語序</b>（His face suggested that he <u>was</u> angry.）<br>• 兩者絕對不可混用。</li>
+<li><b>4. 虛主語 it：</b><br>• <b>天氣</b>：It <b>rained</b> heavily.（下雨）<br>• <b>時間／距離</b>：It is ten kilometres.<br>• <b>形式主語</b>：<b>It is important to</b> learn English.</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-orange);">
+        <h3><span class="badge badge-colloc">搭配詞</span> 露營與天氣高頻搭配詞</h3>
+        <ul class="summary-list">
+<li><b>go camping / go hiking</b>：去露營／去遠足。</li>
+<li><b>beside / above / in + 地點</b>：在⋯旁邊／在⋯上方／在⋯之中。</li>
+<li><b>check the weather report</b>：查看天氣預報。</li>
+<li><b>get wet</b>：變成濕的（be wet ＝ 是濕的，兩者語意層次不同）。</li>
+<li><b>take a map / a torch / warm clothes</b>：攜帶地圖、手電筒、保暖衣物。</li>
+        </ul>
+      </div>
+
+      <div class="summary-box" style="border-left-color: var(--accent-green);">
+        <h3><span class="badge badge-vocab">詞彙辨析</span> suggest 與易混淆字</h3>
+        <ul class="summary-list">
+<li><b>put / put / put：</b>put 的過去式<b>不變</b>（put–put–put），會考常以「是否加 -ed」出題。</li>
+<li><b>wet 與 rained：</b><br>• <b>get wet</b> ＝（人）<b>變濕</b>，強調動作<br>• <b>be wet</b> ＝（狀態）是濕的<br>• <b>rain</b> ＝ 雨（不可數名詞）／下雨（動詞）</li>
+<li><b>clothes 與 clothing：</b><br>• <b>clothes</b> ＝ 衣服（<b>只有複數</b>，不可加 a）<br>• <b>clothing</b> ＝ 服裝（不可數，泛指）<br>• <b>a piece of clothing</b> ＝ 一件衣服</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="summary-card" style="margin-top:25px;">
+    <h2 class="section-title">📚 資料來源與使用說明</h2>
+    <ul class="summary-list" style="color:#475569;">
+      <li><b>詞彙來源：</b>Cambridge English, <i>A2 Key / A2 Key for Schools Vocabulary List</i>（對應的版本，詳附錄 2 Topic Lists）。本課目標詞彙均取自該清單之主題分組。
+        <a href="https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf" target="_blank" style="color:var(--primary-light);">[下載原始 PDF]</a></li>
+      <li><b>文法維度：</b>對照 108 課綱國中英文程綱內容，聚焦國中會考英語科高頻句型、比較級與情態動詞等測驗命題原則。</li>
+      <li><b>文件結構：</b>沿用相同模板：懸停解讀、句中精準解說、Web Speech API 語音朗讀功能。</li>
+      <li><b>使用方式：</b>使用已設定 Web Speech API 的瀏覽器開啟本檔案，點擊任一句子即可進行語音朗讀與對應發音示範。</li>
+    </ul>
+    <div style="margin-top:15px;"><a href="index.html" style="color:var(--primary);font-weight:bold;">⬅ 回到總結果索引</a></div>
+  </div>
+</div>
+<script>
+  // Web Speech API 音訊控制
+  const synth = window.speechSynthesis;
+  let voices = [];
+
+  function populateVoiceList() {
+    voices = synth.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+
+    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    engVoices.forEach((voice) => {
+      const option = document.createElement('option');
+      option.textContent = `${voice.name} (${voice.lang})`;
+      option.setAttribute('data-name', voice.name);
+      
+      // 預設優先選擇 Google US English
+      if (voice.name.includes('Google') && voice.lang === 'en-US') {
+        option.selected = true;
+      }
+      voiceSelect.appendChild(option);
+    });
+
+    if (!voiceSelect.value && engVoices.length > 0) {
+      voiceSelect.selectedIndex = 0;
+    }
+  }
+
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+
+  function updateRateLabel(val) {
+    document.getElementById('rateVal').innerText = val + 'x';
+  }
+
+  function speakText(text) {
+    if (synth.speaking) {
+      synth.cancel();
+    }
+
+    const cleanText = text.replace(/🔍/g, '').trim();
+    const utterThis = new SpeechSynthesisUtterance(cleanText);
+    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    
+    if (selectedVoiceName) {
+      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
+    }
+
+    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    synth.speak(utterThis);
+  }
+
+  function speakParagraph(sentenceArray) {
+    const fullText = sentenceArray.join(' ');
+    speakText(fullText);
+  }
+  /* ---- 列印與複習模式 ---- */
+  function toggleReview() {
+    document.body.classList.toggle("review");
+    var b = document.getElementById('btnReview');
+    if (b) {
+      b.textContent = document.body.classList.contains("review")
+        ? "\u2500\u2576 \u6536\u8d77\u5168\u90e8\u89e3\u6790" : "\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790";
+    }
+  }
+  function printPage() { window.print(); }
+</script>
+
+</body>
+</html>
