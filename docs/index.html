@@ -308,6 +308,29 @@
     .badge-colloc { background: var(--accent-orange); }
     .badge-vocab { background: var(--accent-green); }
 
+    /* 打字練習面板 */
+    .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
+      padding:16px 20px; margin-top:14px; text-align:left; }
+    .type-panel[hidden] { display:none; }
+    .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      font-size:.92rem; color:#134e4a; }
+    .type-count { margin-left:auto; font-weight:700; color:#0f766e; white-space:nowrap; }
+    .type-target { margin:12px 0 10px; padding:12px 15px; background:#fff;
+      border:1px dashed #5eead4; border-radius:8px; font-size:1.02rem;
+      color:#0f172a; line-height:1.7; }
+    .type-input { width:100%; padding:11px 14px; border:2px solid #14b8a6;
+      border-radius:10px; font-size:1.05rem; font-family:inherit; outline:none;
+      background:#fff; color:#0f172a; }
+    .type-input:focus { border-color:#0d9488; box-shadow:0 0 0 3px rgba(20,184,166,.18); }
+    .type-input:disabled { background:#f1f5f9; border-color:#cbd5e1;
+      color:#64748b; cursor:not-allowed; }
+    .type-foot { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px; }
+    .type-foot .hint { font-size:.82rem; color:#475569; }
+    .type-panel kbd { background:#fff; border:1px solid #94a3b8;
+      border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-size:.82rem;
+      font-family:inherit; color:#334155; }
+
   
   .idx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;margin-top:20px;}
   .idx-card{display:flex;gap:15px;background:#fff;border-radius:14px;padding:20px;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,.06);border-left:5px solid var(--primary);transition:all .25s ease;}

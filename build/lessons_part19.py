@@ -74,12 +74,12 @@ LESSONS.append({
 3. <b>as 引導身分 (as the best new player)：</b>as ＝「以⋯⋯的身分」，說明我得到獎品的原因；最高級 best 前面要加 <b>the</b>。'''},
   ],
  ],
- "sum_intro": "本課故事涵蓋會考最常見的 twice as...as 倍數比較、no more than 否定比較，以及比較子句的省略：",
+ "sum_intro": "本課故事涵蓋會考最常見的 twice as...as 倍數比較、no more than 否定比較，以及比較子句的省略。",
  "sum_titles": ["倍數比較與比較省略句型", "運動比賽情境高頻搭配詞", "容易寫錯的運動用詞"],
  "summary": [
   [
    '''<li><b>1. 倍數比較 twice as + 原級 + as：</b><br>twice ＝ 兩倍，後面必須用 as ... as 原級。<br><i>例句：</i> He runs <u>twice as fast as</u> I do.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>twice as fast 已是兩倍，不可再加 -er（✗ twice faster than）。</li>''',
-   '''<li><b>2. no + 比較級 + than：</b><br>no taller than me ＝「沒有比我高」＝「和我一樣高」，把差異取消。<br>同家族：<u>no more than</u>（一點也不）、<u>not as ... as</u>（不如⋯⋯）。</li>''',
+   '''<li><b>2. no + 比較級 + than：</b><br>no taller than me ＝「沒有比我高」＝「和我一樣高」，把差異取消。<br>同家族：<u>no more than</u>（不超過⋯⋯、只不過是⋯⋯）、<u>not as ... as</u>（不如⋯⋯）。</li>''',
    '''<li><b>3. 比較子句的省略：</b><br>as / than 後面相同的動詞、be 動詞一律省略。<br>twice as fast as <u>I do</u>（= as I run）；faster than he <u>does</u>（= than he runs）。</li>''',
    '''<li><b>4. 比較級的形式：</b><br>單音節詞直接加 <b>-er</b>（fast–faster、tall–taller），<b>不可加 more</b>。<br>形容詞作定語用 fast（a fast runner），修飾動詞時用副詞 faster（ran faster）。</li>''',
   ],
@@ -169,13 +169,13 @@ LESSONS.append({
 3. <b>anyone else：</b>else 放在 anyone / anything / somebody 的<b>後面</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ else anyone</s>。'''},
   ],
  ],
- "sum_intro": "本課故事涵蓋 some-、any-、no-、every- 四組複合不定代詞的選擇，以及作主語時的單數規則：",
+ "sum_intro": "本課故事涵蓋 some-、any-、no-、every- 四組複合不定代詞的選擇，以及作主語時的單數規則。",
  "sum_titles": ["複合不定代詞四大句型", "網路通訊情境高頻搭配詞", "容易混淆的不定代詞"],
  "summary": [
   [
    '''<li><b>1. some- ／ any- 的選擇：</b><br>• <b>some-</b> 用於<b>肯定句</b>（<u>Somebody sent</u> a file.）<br>• <b>any-</b> 用於<b>否定句與疑問句</b>（Did <u>anyone</u> call?）<br>• 表示「任何人都可以」的歡迎語氣也用 anyone。</li>''',
    '''<li><b>2. no- ／ every- 的語氣：</b><br>• <b>no-</b> ＝ 一個也沒有，<u>本身即否定</u>（Nobody knew.）<br>• <b>every-</b> ＝ 每一個、全部（Everybody wanted a copy.）<br>• <span style="color:#dc2626;">✗ Nobody didn't know.</span> no- 後面絕不可再加 not。</li>''',
-   '''<li><b>3. 三組構件：</b><br>some/any/no/every ＋ <b>one / body / thing / where</b> → 一個人、一件事、一個地方。<br>one / body 指人、thing 指事物、where 指地方；這些複合不定代詞<u>後面不可直接再接名詞</u>（✗ someone student，應說 some student）。</li>''',
+   '''<li><b>3. 四組構件：</b><br>some/any/no/every ＋ <b>one / body / thing / where</b> → 一個人、一件事、一個地方。<br>one / body 指人、thing 指事物、where 指地方；這些複合不定代詞<u>後面不可直接再接名詞</u>（✗ someone student，應說 some student）。</li>''',
    '''<li><b>4. 作主語時的單數規則：</b><br>everyone / everybody / everything / everyone in my class 都視為<b>單數</b>。<br><span style="color:#dc2626;">⚠️ 陷阱：</span>✗ Everyone <b>are</b> ready. → <u>✓ Everyone is</u> ready.</li>''',
   ],
   [
@@ -264,8 +264,8 @@ LESSONS.append({
 3. <b>最高級前加 the (the best)：</b>good 的最高級是 best，前面必須加 <b>the</b>；the best 再用 the one 替代 book，正是「替代 ＋ 最高級」的組合。'''},
   ],
  ],
- "sum_intro": "本課故事涵蓋 one、ones、so、there、such 五種替代與省略結構，以及比較級與最高級的常見失誤：",
- "sum_titles": ["替代與省略的五大句型", "校園讀書情境高頻搭配詞", "容易寫錯的校園用詞"],
+ "sum_intro": "本課故事涵蓋 one、ones、so、there、such 五種替代與省略結構，以及比較級與最高級的常見失誤。",
+ "sum_titles": ["替代與省略的四大句型", "校園讀書情境高頻搭配詞", "容易寫錯的校園用詞"],
  "summary": [
   [
    '''<li><b>1. one ／ ones 替代名詞：</b><br>名詞已出現過一次，再用 one（單數）／ones（複數）替代。<br><i>例句：</i> <u>One</u> is a dictionary, and this <u>one</u> is thicker than the <u>others</u>.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>this one 後面不可再加名詞。</li>''',

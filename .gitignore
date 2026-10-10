@@ -6,6 +6,9 @@ build/fix_*.txt
 build/probe_*.py
 build/scan2.ps1
 
+# ---- local agent / harness scratch ----
+.opencode/
+
 # ---- Python ----
 __pycache__/
 *.py[cod]

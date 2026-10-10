@@ -43,7 +43,7 @@ LESSONS.append({
   [
    {"text": "We followed a narrow path between two fields, but soon we lost our way.",
     "html": """We <span class="w-tap kw-verb">followed</span> <span class="w-tap kw-colloc">a narrow path between two fields</span>, <span class="w-tap kw-link">but</span> soon we <span class="w-tap kw-verb">lost our way</span>.""",
-    "pop": '''1. <b>between A and B：</b> between 列出<b>兩個不同的對象</b>時才用 and 連接（between the fields and the river）；同一對象含數量詞時也可直接用 between（between two fields）。<br>
+    "pop": '''1. <b>between A and B：</b> between ＝「在 A 和 B 之間」；<b>兩個不同的對象</b>之間要用 and 連接（between the fields and the river），但兩個對象已由<b>數詞 two</b> 點明時，and 可以省略（between two fields ＝ between field A and field B），此時仍是<b>兩個對象</b>，不是「同一對象的數量」。<br>
 2. <b>lose 的過去式 (lost)：</b> lose – lost – lost；our way ＝「我們的路」；way 是可數名詞，前面須用 our／the 等<b>限定詞</b>（lose one's way 就是用 one's 代替冠詞）。<br>
 3. <b>but 表轉折：</b> but 把句子由「郊遊順利」轉到「迷路」，是故事轉折點最典型的訊號詞。'''},
    {"text": "Behind the wood there was a small lake, and a green forest stood beside it.",
@@ -179,7 +179,7 @@ LESSONS.append({
    '''<li><b>4. 指示地點的 there be：</b><br>There <u>is</u> a cafe beside the library.（a cafe 是單數 → is）<br><span style="color:#dc2626;">⚠️ 陷阱：</span>✗ There have a bank（there be ≠ have）。</li>''',
   ],
   [
-   '''<li><b>pay the bill / pay for something</b>：付款、繳費（pay the bill 與 pay for the bill 都可以；pay for + 物品是另一個常見說法）。</li>''',
+   '''<li><b>pay the bill / pay for something</b>：付款、繳費。付「帳單、費用」時 pay 後直接接名詞：<u>pay the bill</u>／pay the electricity bill；pay for + 人＝「替某人付錢」（pay for me），pay for + 事物則是「為某物付錢」（pay for the ticket）。<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ pay for the bill</s>，bill 不放在 pay for 之後。</li>''',
    '''<li><b>excuse me</b>：請問、打擾一下——問路或借過時的必備用語。</li>''',
    '''<li><b>beside / next to</b>：在⋯旁邊／緊接著⋯，兩者皆可互換，next to 更強調緊鄰。</li>''',
    '''<li><b>on the same street</b>：在同一條街上，描述地點相對位置的高頻說法。</li>''',

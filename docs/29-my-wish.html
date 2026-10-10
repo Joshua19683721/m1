@@ -308,6 +308,29 @@
     .badge-colloc { background: var(--accent-orange); }
     .badge-vocab { background: var(--accent-green); }
 
+    /* 打字練習面板 */
+    .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
+      padding:16px 20px; margin-top:14px; text-align:left; }
+    .type-panel[hidden] { display:none; }
+    .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      font-size:.92rem; color:#134e4a; }
+    .type-count { margin-left:auto; font-weight:700; color:#0f766e; white-space:nowrap; }
+    .type-target { margin:12px 0 10px; padding:12px 15px; background:#fff;
+      border:1px dashed #5eead4; border-radius:8px; font-size:1.02rem;
+      color:#0f172a; line-height:1.7; }
+    .type-input { width:100%; padding:11px 14px; border:2px solid #14b8a6;
+      border-radius:10px; font-size:1.05rem; font-family:inherit; outline:none;
+      background:#fff; color:#0f172a; }
+    .type-input:focus { border-color:#0d9488; box-shadow:0 0 0 3px rgba(20,184,166,.18); }
+    .type-input:disabled { background:#f1f5f9; border-color:#cbd5e1;
+      color:#64748b; cursor:not-allowed; }
+    .type-foot { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px; }
+    .type-foot .hint { font-size:.82rem; color:#475569; }
+    .type-panel kbd { background:#fff; border:1px solid #94a3b8;
+      border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-size:.82rem;
+      font-family:inherit; color:#334155; }
+
   /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
 .tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
 .btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
@@ -322,7 +345,7 @@ body.review .sentence-block{background:#f0f9ff;}
   body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
   .container { max-width: 100%; }
   .audio-panel, .legend-bar, .tool-row, .btn-speak,
-  #backIndex { display:none !important; }
+  #backIndex, .type-panel { display:none !important; }
   header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
   .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
     break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
@@ -356,8 +379,27 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
     </div>
     <div class="tool-row">
+      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+    <div class="type-panel" id="typePanel" hidden>
+      <div class="type-head">
+        <span class="badge badge-grammar">打字練習</span>
+        <b>跟讀打字：</b>每打完一個單字按 <kbd>空白鍵</kbd> 就會唸出那個字；
+        整句打完再按一次 <kbd>空白鍵</kbd>，自動跳到下一句開頭。
+        <span class="type-count" id="typeCount">第 1 / 9 句</span>
+      </div>
+      <div class="type-target" id="typeTarget"></div>
+      <input class="type-input" id="typeInput" type="text" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="在這裡照順序打出英文句子⋯">
+      <div class="type-foot">
+        <button class="btn-tool ghost" onclick="typeGo(-1)">← 上一句</button>
+        <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>
+        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>
+        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>
+      </div>
     </div>
   </header>
   <div class="story-card">
@@ -370,7 +412,7 @@ body.review .sentence-block{background:#f0f9ff;}
       <h3>🇨🇳 故事中文全文對照翻譯 (Story Chinese Translation)</h3>
       <div class="translation-content">
         <div class="translation-p">
-          <b>【第一段】</b> 年初的時候，老師請我們寫下自己的願望。我想學一種新的愛好，也希望自己能加入攝影社。我Wish很簡單：我希望每個月都去看望祖父母。
+          <b>【第一段】</b> 年初的時候，老師請我們寫下自己的願望。我想學一種新的愛好，也希望自己能加入攝影社。我的願望很簡單：我希望每個月都去看望祖父母。
         </div>
         <div class="translation-p">
           <b>【第二段】</b> 我的朋友 Tom 說我應該從小處開始，不要輕言放棄。我們每週日下午去拍照好嗎？我同意，而且我們訂了一個能夠持續的計畫。
@@ -423,7 +465,7 @@ body.review .sentence-block{background:#f0f9ff;}
       <!-- Sentence 2.1 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
         <div class="sentence-text">
-          My friend Tom <span class="w-tap kw-verb">said that I should start small and not give up</span>.
+          My friend Tom <span class="w-tap kw-verb">said that I should start small</span> and not <span class="w-tap kw-colloc">give up</span>.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -465,7 +507,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>I wish + 過去式（會考核心句型）：</b><b>I wish + 主詞 + 過去式</b> 表示「與現在事實相反的願望」——希望現在不是這樣。<br>　• <i>例：</i> I wish I <u>were</u> better at maths.（要是我數學更好就好了）<br><span style="color:#dc2626;">⚠️</span>此處<b>不可用 were 以外的動詞過去式</b>來表現在願望，且不能加 to。</span><br> 2. <b>be good at + 對象：</b>at 後接名詞或動名詞：be good at <b>maths</b>／be good at <b>swimming</b>。<br> 3. <b>improving：</b>improve 是動詞「改善」，本句作 can improve。
+          1. <b>I wish + 過去式（會考核心句型）：</b><b>I wish + 主詞 + 過去式</b> 表示「與現在事實相反的願望」——希望現在不是這樣。<br>　• <i>例：</i> I wish I <u>were</u> better at maths.（要是我數學更好就好了）／I wish I <u>knew</u> the answer.（要是我知道答案就好了）<br><span style="color:#dc2626;">⚠️</span>動詞能用 be 的過去式 <b>were</b>（I wish I were…），也能用其他動詞的過去式（I wish I knew…），兩者都表「與現在事實相反」；此時不可再加 to。 2. <b>be good at + 對象：</b>at 後接名詞或動名詞：be good at <b>maths</b>／be good at <b>swimming</b>。<br> 3. <b>improving：</b>improve 是動詞「改善」，本句作 can improve。
         </div>
       </div>
       <!-- Sentence 3.2 -->
@@ -475,13 +517,13 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>if 條件句第一類：</b><b>if + 現在式, will + 原形</b>——「如果⋯⋯就⋯⋯」。if 從句中<b>不可用將來式</b>。<br> 2. <b>review it：</b>review 在此作動詞「複習、檢視」，是 A2 Key「Education」主題詞彙。<br> 3. <b>see + 受詞 + 省略 to 的不定詞：</b>see one's progress ＝「看見自己的進步」。
+          1. <b>if 條件句第一類：</b><b>if + 現在式, will + 原形</b>——「如果⋯⋯就⋯⋯」。if 從句中<b>不可用將來式</b>。<br> 2. <b>review it：</b>review 在此作動詞「複習、檢視」，是 A2 Key「Education」主題詞彙。<br> 3. <b>see + 受詞：</b>see one's progress ＝「看見自己的進步」；省略 to 的原形須接代詞賓語（see him run），本句沒有。
         </div>
       </div>
       <!-- Sentence 3.3 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
         <div class="sentence-text">
-          I <span class="w-tap kw-verb">hope that next year I can show my family a real photo album</span>.
+          I <span class="w-tap kw-verb">hope that next year I can show my family</span> a real <span class="w-tap kw-colloc">photo album</span>.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -493,13 +535,13 @@ body.review .sentence-block{background:#f0f9ff;}
   </div>
   <div class="summary-card">
     <h2 class="section-title">📝 第 29 課 核心重點解析總整理 (Mastery Summary)</h2>
-    <p style="color: var(--text-muted); font-size: 0.95rem;">本課把<b>表達心願</b>的三組動詞（want / would like / hope / wish）與<b>提出建議</b>的句型放進年度計畫，是會考寫作「書信／應用文」最實用的句型組合。</p>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">本課把<b>表達心願</b>的四組動詞（want / would like / hope / wish）與<b>提出建議</b>的句型放進年度計畫，是會考寫作「書信／應用文」最實用的句型組合。</p>
     <div class="summary-grid">
       <div class="summary-box">
         <h3><span class="badge badge-grammar">文法句型</span> hope／wish／would like 與建議句型</h3>
         <ul class="summary-list">
-<li><b>1. I wish + 過去式（表達與現在事實相反的願望）：</b><br>• <b>I wish + 主詞 + <u>were</u></b>：I wish I <u>were</u> taller.（要是我高一點就好了）<br>• <b>I wish + 主詞 + 過去式</b>：I wish I <u>knew</u> the answer.（要是我知道答案就好了）<br>• <span style="color:#dc2626;">⚠️</span>此句型<b>不可加 to</b>（✗ I wish to be...），且表示的是<b>現在不可能</b>的事。<br>• 對照 <b>I wish I will...</b> ＝「我希望（未來）⋯⋯」，可成立。</li>
-<li><b>2. want / would like / hope / wish：</b><br>• <b>want to do</b> ＝ 想要（最直接）<br>• <b>would like to do</b> ＝ 想要（較客氣）<br>• <b>hope to do / hope that + 子句</b> ＝ 希望<br>• <b>wish + 子句</b> ＝ 但願（多帶遺憾語氣）<br><span style="color:#dc2626;">⚠️</span>wish <b>不能</b>直接接 to do 表達實現的可能願望。</li>
+<li><b>1. I wish + 過去式（表達與現在事實相反的願望）：</b><br>• <b>I wish + 主詞 + <u>were</u></b>：I wish I <u>were</u> taller.（要是我高一點就好了）<br>• <b>I wish + 主詞 + 過去式</b>：I wish I <u>knew</u> the answer.（要是我知道答案就好了）<br>• <span style="color:#dc2626;">⚠️</span>此句型（<b>I wish + 過去式</b>）<b>不可再加 to</b>；但 <b>I wish to do</b> 本身是正確的正式用法，相當於 I'd like to do（I wish to be here.）。此句型表示的是<b>與現在事實相反</b>的願望。<br>• 對照 <b>I wish I will...</b> ＝「我希望（未來）⋯⋯」，可成立。</li>
+<li><b>2. want / would like / hope / wish：</b><br>• <b>want to do</b> ＝ 想要（最直接）<br>• <b>would like to do</b> ＝ 想要（較客氣）<br>• <b>hope to do / hope that + 子句</b> ＝ 希望<br>• <b>wish + 子句</b> ＝ 但願（多帶遺憾語氣）<br><span style="color:#dc2626;">⚠️</span>wish 也可接 to do（I wish to see you. ＝ I'd like to see you.）；但表達「與現在事實相反的願望」必須用 <b>I wish + 過去式</b>。</li>
 <li><b>3. 提出建議的五種句型：</b><br>• <b>You should + 原形</b>：You <u>should start</u> small.<br>• <b>Why don't we + 原形?</b>：Why don't we <u>take</u> a photo?<br>• <b>Let's + 原形</b>：Let's <u>go</u> together.<br>• <b>How about + V-ing?</b>：How about <u>going</u> together?<br>• <b>It's a good idea to + 原形</b>：It's a good idea <u>to try</u>.</li>
 <li><b>4. 條件句第一類（if + 現在式）：</b><br><b>if + 現在式, will + 原形</b>＝「如果⋯⋯就⋯⋯」<br>• If I <u>keep</u> a diary, I <u>will see</u> my progress.<br>• <span style="color:#dc2626;">⚠️</span>if 從句<b>不可用 will</b>（✗ If I <s>will keep</s> a diary...）。</li>
         </ul>
@@ -519,7 +561,7 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="summary-box" style="border-left-color: var(--accent-green);">
         <h3><span class="badge badge-vocab">詞彙辨析</span> wish 與 hope 的差異</h3>
         <ul class="summary-list">
-<li><b>hope 與 wish 的三項差異：</b><br>• <b>語氣</b>：hope ＝ 希望（積極）；wish ＝ 但願（多含遺憾）<br>• <b>後接</b>：hope 可接 to do 或子句；<b>wish 不能接 to do</b>（指現在不可能的事）<br>• <b>常見結構</b>：I hope (that) I will...（可成立）／I wish I <u>were</u>...（與現在相反）</li>
+<li><b>hope 與 wish 的三項差異：</b><br>• <b>語氣</b>：hope ＝ 希望（積極）；wish ＝ 但願（多含遺憾）<br>• <b>後接</b>：hope 可接 to do 或子句；<b>wish</b> 可接 to do（正式用法）或 + 過去式（與現在事實相反）／+ could/would（與過去事實相反）<br>• <b>常見結構</b>：I hope (that) I will...（可成立）／I wish I <u>were</u>...（與現在相反）</li>
 <li><b>improve / improvement：</b><br>• <b>improve (v.)</b> ＝ 改善：I can <u>improve</u>.<br>• <b>improvement (n.)</b> ＝ 進步：a big <u>improvement</u>.<br>• 兩者皆可接形容詞：make progress / show improvement。</li>
 <li><b>join / take part in / attend：</b><br>• <b>join</b> ＋ <b>團體</b>：join a club.<br>• <b>take part in</b> ＋ <b>活動</b>：take part in the competition.<br>• <b>attend</b> ＝ 出席（會議、活動）：attend a meeting.</li>
         </ul>
@@ -597,6 +639,93 @@ body.review .sentence-block{background:#f0f9ff;}
     const fullText = sentenceArray.join(' ');
     speakText(fullText);
   }
+
+  /* ---- 打字練習：每按一次空白鍵唸出剛打完的單字；整句打完再按空白鍵跳到下一句 ---- */
+  var TYPE_SENTENCES = [];
+
+  function typeWords(s) {
+    return String(s || '').toLowerCase()
+      .replace(/['\u2018\u2019]/g, '')      // 撇號不影響比對：haven't 與 havent 皆可
+      .replace(/[^a-z0-9]+/g, ' ')         // 標點一律視為分隔，忽略大小寫
+      .trim()
+      .split(' ')
+      .filter(function (w) { return w.length > 0; });
+  }
+
+  function toggleType() {
+    const panel = document.getElementById('typePanel');
+    const btn = document.getElementById('btnType');
+    if (!panel || !btn) return;
+    panel.hidden = !panel.hidden;
+    btn.textContent = panel.hidden ? '⌨️ 開啟打字練習' : '▼ 收起打字練習';
+    if (!panel.hidden) {
+      typeRender();
+      const input = document.getElementById('typeInput');
+      if (input) input.focus();
+    }
+  }
+
+  function typeRender() {
+    const count = document.getElementById('typeCount');
+    const target = document.getElementById('typeTarget');
+    const input = document.getElementById('typeInput');
+    const total = TYPE_SENTENCES.length;
+    if (count) {
+      count.textContent = typeDone ? '全部完成 🎉'
+                                   : '第 ' + (typeIdx + 1) + ' / ' + total + ' 句';
+    }
+    if (target) {
+      target.textContent = typeDone
+        ? '太棒了，' + total + ' 句全部打完！可以按「重頭開始」再練一次。'
+        : (TYPE_SENTENCES[typeIdx] || '');
+    }
+    if (input) {
+      input.disabled = typeDone;
+      input.value = '';
+      if (!typeDone) input.focus();
+    }
+  }
+
+  function typeOnInput() {
+    const input = document.getElementById('typeInput');
+    if (!input || typeDone) return;
+    const raw = input.value;
+    if (!/\s$/.test(raw)) return;            // 只在剛輸入空白（空白鍵）時處理
+
+    const typed = typeWords(raw);
+    const word = typed.length ? typed[typed.length - 1] : '';
+    if (word) speakText(word);               // 1) 唸出剛打完的那個單字
+
+    const target = typeWords(TYPE_SENTENCES[typeIdx]);
+    if (typed.join(' ') === target.join(' ')) {
+      // 2) 整句（寬鬆比對）已完成 → 跳到下一句開頭
+      typeIdx += 1;
+      typeDone = typeIdx >= TYPE_SENTENCES.length;
+      typeRender();
+    }
+  }
+
+  function typeGo(step) {
+    typeIdx = Math.min(Math.max(typeIdx + step, 0), TYPE_SENTENCES.length - 1);
+    typeDone = false;
+    typeRender();
+  }
+
+  function typeRestart() {
+    typeIdx = 0;
+    typeDone = false;
+    typeRender();
+  }
+
+  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
+  var typeIdx = 0;
+  var typeDone = false;
+
+  (function () {
+    const input = document.getElementById('typeInput');
+    if (input) input.addEventListener('input', typeOnInput);
+  })();
+
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {
     document.body.classList.toggle("review");
@@ -607,6 +736,9 @@ body.review .sentence-block{background:#f0f9ff;}
     }
   }
   function printPage() { window.print(); }
+
+  /* 打字練習用的句子清單：與畫面上顯示的完全一致（由 html 推導） */
+  TYPE_SENTENCES = ['At the beginning of the year, our teacher asked us to write down our hopes.', 'I would like to learn a new hobby, and I hope I can join a photography club.', 'My wish is simple: I want to visit my grandparents every month.', 'My friend Tom said that I should start small and not give up.', 'Why don\'t we take a photo every Sunday afternoon?', 'I agreed, and we made a plan that we could keep.', 'I wish I were better at maths, but I know I can improve.', 'If I keep a diary and review it every month, I will see my progress.', 'I hope that next year I can show my family a real photo album.'];
 </script>
 
 </body>

@@ -160,7 +160,7 @@ LESSONS.append({
    {"text": """Our address is on the fifth floor, and the rent is higher than our old place.""",
     "html": '''Our <span class="w-tap kw-colloc">address is on the fifth floor</span>, and the <span class="w-tap kw-colloc">rent is higher than</span> our old place.''',
     "pop": '''1. <b>address（地址）：</b>是 A2 Key House and Home 主題核心詞，前面通常加所有格（our address）。<br>
-2. <b>比較級 + than (higher than)：</b>high 的比較級為 higher，屬「子音＋母音＋y → 變 i 再加 -er」規則（high–higher）；對照多音節形容詞加 more（expensive → more expensive）。<br>
+2. <b>比較級 + than (higher than)：</b>high 的比較級為 higher（high – higher – highest），屬特殊的不規則變化，<b>不可套用</b>「子音＋母音＋y → 變 i 再加 -er」的規則（happy → happier）；對照多音節形容詞加 more（expensive → more expensive）。<br>
 3. <b>rent（租金）：</b>rent 在此作<b>名詞</b>「租金」；作動詞時則是「租用」，是會考一詞多義的高頻字。</li>'''},
    {"text": """Every Sunday evening we sit in the sitting room and talk about our week.""",
     "html": '''<span class="w-tap kw-colloc">Every Sunday evening</span> we <span class="w-tap kw-verb">sit in the sitting room and talk about our week</span>.''',
@@ -173,9 +173,9 @@ LESSONS.append({
  "sum_titles": ["There be 句型四種型態、方位介系詞", "居家情境高頻搭配詞", "一詞多義與易混詞辨析"],
  "summary": [
   [
-   '''<li><b>1. There be 的四種型態：</b><br>• <b>There is + 單數／不可數</b>：There <u>is</u> a sofa.（不可用 have）<br>• <b>There are + 複數</b>：There <u>are</u> two armchairs.<br>• <b>There is/are + no + 名詞</b>：There <u>are no</u> curtains.（否定用 no，不用 not any）<br>• <b>There are still + 複數</b>：There <u>are still</u> three boxes.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>be 動詞看的是<b>緊接其後的第一個名詞</b>的單複數。</li>''',
+   '''<li><b>1. There be 的四種型態：</b><br>• <b>There is + 單數／不可數</b>：There <u>is</u> a sofa.（不可用 have）<br>• <b>There are + 複數</b>：There <u>are</u> two armchairs.<br>• <b>There is/are + no / not any + 名詞</b>：There <u>are no</u> curtains.／There are not any curtains.（<b>no 與 not any 皆正確</b>）<br>• <b>There are still + 複數</b>：There <u>are still</u> three boxes.<br><span style="color:#dc2626;">⚠️ 陷阱：</span>be 動詞看的是<b>緊接其後的第一個名詞</b>的單複數。</li>''',
    '''<li><b>2. 方位介系詞（描述房屋位置）：</b><br>• <b>in</b> ＝ 在⋯內部：in the kitchen<br>• <b>on</b> ＝ 在⋯表面：on the windows；用於樓層時表「位於某層」：on the fifth floor ＝「在五樓」<br>• <b>next to / beside / near</b> ＝ 在⋯旁邊<br>• <b>between A and B</b> ＝ 在 A 與 B 之間</li>''',
-   '''<li><b>3. some 與 any：</b><br>• <b>some</b> 用於肯定句與請求（bought <b>some</b> shelves）<br>• <b>any</b> 用於否定與疑問（There aren\'t <b>any</b> curtains.）<br>• <span style="color:#dc2626;">⚠️</span>There be 句型的否定直接用 <b>no</b>，不用 not any。</li>''',
+   '''<li><b>3. some 與 any：</b><br>• <b>some</b> 用於肯定句與請求（bought <b>some</b> shelves）<br>• <b>any</b> 用於否定與疑問（There aren\'t <b>any</b> curtains.）<br>• <span style="color:#dc2626;">⚠️</span>There be 句型的否定可用 <b>no</b>，也可用 not any（There are no curtains.／There are not any curtains.），兩者都正確。</li>''',
    '''<li><b>4. 序數詞與樓層：</b><br>• 序數詞前加 <b>the</b>：the fifth floor<br>• 英式：the ground floor ＝ 一樓；the first floor ＝ 二樓<br>• 美式：the first floor ＝ 一樓——差一層，是會考文化差異題。</li>''',
   ],
   [

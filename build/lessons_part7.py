@@ -138,7 +138,7 @@ LESSONS.append({
    {"text": """A shop assistant showed me some blue jeans and asked me to try them on.""",
     "html": '''A <span class="w-tap kw-colloc">shop assistant</span> <span class="w-tap kw-verb">showed me some blue jeans</span> and <span class="w-tap kw-verb">asked me to try them on</span>.''',
     "pop": '''1. <b>show sb sth：</b>show ＝「給某人看某物」，兩個受詞之間不加介詞；過去式為規則動詞 showed。<br>
-2. <b>some + 複數可數名詞 (some blue jeans)：</b>jeans 永遠是<b>複數</b>，前面不可加 a；此處用 some 是因為動作尚未發生的肯定語境。<br>
+2. <b>some + 複數可數名詞 (some blue jeans)：</b>jeans 永遠是<b>複數</b>，前面不可加 a；此處用 some 不是因為動作尚未發生，而是因為本句是一般過去式的<b>肯定句</b>——肯定句用 some，否定句與疑問句則改用 any（✗ She didn't show me some jeans.／✓ She didn't show me any jeans.）。<br>
 3. <b>ask sb to + 原形 (asked me to try them on)：</b>ask ＋ 人 ＋ to do；本句把 <b>try...on</b> 拆開夾在受詞後面，代詞 them 必須放中間。'''},
    {"text": """The first pair was too tight, and the second pair was much too long for me.""",
     "html": '''The first <span class="w-tap kw-colloc">pair was too tight</span>, and the second pair <span class="w-tap kw-verb">was much too long for me</span>.''',

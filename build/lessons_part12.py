@@ -37,7 +37,7 @@ LESSONS.append({
     "html": '<span class="w-tap kw-colloc">The sports hall</span> <span class="w-tap kw-verb">is</span> <span class="w-tap kw-verb">between the gym and the main staircase</span>.',
     "pop": '''1. <b>between A and B：</b>between ＝「在兩者之間」，<b>必須搭配 and</b>，中間的三個地點由 and 連接；對應的「三者以上之中間」才用 among。<br>
 2. <b>複合名詞作定語：</b>作修飾用的名詞一律用<b>單數</b>（a <b>sports</b> hall、a <b>swimming</b> pool）；形容詞則照常變化（the <b>main</b> staircase）。<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ a sport hall．<br>
-3. <b>the + 方位形容詞：</b>main、big、old、new 修飾後面的建築物時通常要加 the（the main staircase）；第一次提到用 a，再次提到就用 the 替換。'''},
+3. <b>the 的取用：</b>main、big、old、new 這類<b>放在名詞前面</b>的形容詞，前面不加 the（a big hall、our new library）；the main staircase 之所以有 the，是因為那座樓梯已是雙方都認得的特定建物，第一次提到時要寫 a main staircase，再次提到才用 the 替換。'''},
   ],
   [
    {"text": "From the top floor, we saw many buildings in our small town.",
@@ -87,7 +87,7 @@ LESSONS.append({
    '''<li><b>next to + 人／物</b>：緊鄰著（next to the museum）。</li>''',
    '''<li><b>between A and B</b>：在兩者之間（between the gym and the staircase）。</li>''',
    '''<li><b>across the road／the bridge</b>：橫過馬路／橋梁到對面。</li>''',
-   '''<li><b>on the second floor</b>：在三樓（英式 floor 由一樓起算，別寫 *in the second floor）。</li>''',
+   '''<li><b>on the second floor</b>：樓層前固定用 <b>on</b>，別寫 *in the second floor。<br><b>英式</b>：the ground floor ＝ 一樓、the first floor ＝ 二樓，所以 the second floor 是<b>三樓</b>；<b>美式</b>：the first floor ＝ 一樓，所以 the second floor 是二樓。</li>''',
    '''<li><b>get lost</b>：迷路（multi-word verb，與 lose–lost–lost 同組）。</li>''',
   ],
   [

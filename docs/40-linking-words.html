@@ -308,6 +308,29 @@
     .badge-colloc { background: var(--accent-orange); }
     .badge-vocab { background: var(--accent-green); }
 
+    /* 打字練習面板 */
+    .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
+      padding:16px 20px; margin-top:14px; text-align:left; }
+    .type-panel[hidden] { display:none; }
+    .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      font-size:.92rem; color:#134e4a; }
+    .type-count { margin-left:auto; font-weight:700; color:#0f766e; white-space:nowrap; }
+    .type-target { margin:12px 0 10px; padding:12px 15px; background:#fff;
+      border:1px dashed #5eead4; border-radius:8px; font-size:1.02rem;
+      color:#0f172a; line-height:1.7; }
+    .type-input { width:100%; padding:11px 14px; border:2px solid #14b8a6;
+      border-radius:10px; font-size:1.05rem; font-family:inherit; outline:none;
+      background:#fff; color:#0f172a; }
+    .type-input:focus { border-color:#0d9488; box-shadow:0 0 0 3px rgba(20,184,166,.18); }
+    .type-input:disabled { background:#f1f5f9; border-color:#cbd5e1;
+      color:#64748b; cursor:not-allowed; }
+    .type-foot { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px; }
+    .type-foot .hint { font-size:.82rem; color:#475569; }
+    .type-panel kbd { background:#fff; border:1px solid #94a3b8;
+      border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-size:.82rem;
+      font-family:inherit; color:#334155; }
+
   /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
 .tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
 .btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
@@ -322,7 +345,7 @@ body.review .sentence-block{background:#f0f9ff;}
   body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
   .container { max-width: 100%; }
   .audio-panel, .legend-bar, .tool-row, .btn-speak,
-  #backIndex { display:none !important; }
+  #backIndex, .type-panel { display:none !important; }
   header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
   .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
     break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
@@ -356,8 +379,27 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
     </div>
     <div class="tool-row">
+      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+    <div class="type-panel" id="typePanel" hidden>
+      <div class="type-head">
+        <span class="badge badge-grammar">打字練習</span>
+        <b>跟讀打字：</b>每打完一個單字按 <kbd>空白鍵</kbd> 就會唸出那個字；
+        整句打完再按一次 <kbd>空白鍵</kbd>，自動跳到下一句開頭。
+        <span class="type-count" id="typeCount">第 1 / 9 句</span>
+      </div>
+      <div class="type-target" id="typeTarget"></div>
+      <input class="type-input" id="typeInput" type="text" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="在這裡照順序打出英文句子⋯">
+      <div class="type-foot">
+        <button class="btn-tool ghost" onclick="typeGo(-1)">← 上一句</button>
+        <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>
+        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>
+        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>
+      </div>
     </div>
   </header>
   <div class="story-card">
@@ -399,7 +441,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>過去完成式 had never + 過去分詞：</b> 表示「在過去某時點之前從未⋯⋯」。「宣布比賽」發生在「曾經寫過」之後，故用 <b>had never written</b>。<br> 2. <b>because（原因）：</b> because 說明原因，可放句首或句中；放句中時前後各加一個逗號，用來解釋前面的 worried。<br> 3. <b>own 必須緊接名詞：</b> own 是形容詞性物主代詞，只能作定語：<u>✓</u> my own feelings；不可寫成 *my feelings own。
+          1. <b>過去完成式 had never + 過去分詞：</b> 表示「在過去某時點之前從未⋯⋯」。此句的過去參照點是「宣布比賽」，而「從來沒有寫過」發生在比它更早的過去，當時還沒有寫過；故用 <b>had never written</b>。<br> 2. <b>because（原因）：</b> because 說明原因，可放句首或句中；放句中時前後各加一個逗號，用來解釋前面的 worried。<br> 3. <b>own 必須緊接名詞：</b> own 是形容詞性物主代詞，只能作定語：<u>✓</u> my own feelings；不可寫成 *my feelings own。
         </div>
       </div>
       <!-- Sentence 1.3 -->
@@ -475,7 +517,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>until 的「重複動作」用法：</b> until 也可表示「持續到某個時間點為止」，這裡是「我一直改稿，改到手稿讀起來誠實為止」。<br> 2. <b>even if（即使）：</b> even if 引導<b>讓步條件</b>，表示「就算如此，結果也不變」，語氣比 if 更讓步。<br> 3. <b>it felt + 形容詞：</b> 固定用法，it 是虛主語：it felt honest（讀起來感覺很誠實），後接形容詞不加冠詞。
+          1. <b>until 的「重複動作」用法：</b> until 也可表示「持續到某個時間點為止」，這裡是「我一直改稿，改到手稿讀起來誠實為止」。<br> 2. <b>even if（即使）：</b> even if 引導<b>讓步條件</b>，表示「就算如此，結果也不變」，語氣比 if 更讓步。<br> 3. <b>it felt + 形容詞：</b> 此處的 it 回指前面改寫的那份手稿，指涉明確，不是虛主語（虛主語如 It is important to start early，it 沒有對應的人或物）。it felt honest（讀起來感覺很誠實）；feel 這種連繫動詞後面直接接形容詞，不加冠詞。
         </div>
       </div>
       <!-- Sentence 3.3 -->
@@ -485,7 +527,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>print → printed：</b> print 是規則動詞，過去式加 <b>-ed</b>；主語 The magazine 為單數，敘述已完成的事故用過去式。<br> 2. <b>be interested in + 對象：</b> 興趣用 be interested <b>in</b>，in 後接名詞或 V-ing：readers are interested <b>in</b> my story。<br> 3. <b>that 引導賓語子句：</b> feel happy that… 的 that 子句說明高興的原因；賓語子句的 that 可省略，但保留更清楚。
+          1. <b>print → printed：</b> print 是規則動詞，過去式加 <b>-ed</b>；主語 The magazine 為單數，敘述已完成的事用過去式。<br> 2. <b>be interested in + 對象：</b> 興趣用 be interested <b>in</b>，in 後接名詞或 V-ing：readers are interested <b>in</b> my story。<br> 3. <b>that 引導賓語子句：</b> feel happy that… 的 that 子句說明高興的原因；賓語子句的 that 可省略，但保留更清楚。
         </div>
       </div>
       <button class="btn-speak" onclick="speakParagraph(['My first ending was too careful, so nobody wanted to hear my true feelings.', 'Then I wrote what really happened until it felt honest, even if it was sad.', 'The magazine printed my story, and I feel happy that many readers are interested.'])">🔊 朗讀第三段全文</button>
@@ -597,6 +639,93 @@ body.review .sentence-block{background:#f0f9ff;}
     const fullText = sentenceArray.join(' ');
     speakText(fullText);
   }
+
+  /* ---- 打字練習：每按一次空白鍵唸出剛打完的單字；整句打完再按空白鍵跳到下一句 ---- */
+  var TYPE_SENTENCES = [];
+
+  function typeWords(s) {
+    return String(s || '').toLowerCase()
+      .replace(/['\u2018\u2019]/g, '')      // 撇號不影響比對：haven't 與 havent 皆可
+      .replace(/[^a-z0-9]+/g, ' ')         // 標點一律視為分隔，忽略大小寫
+      .trim()
+      .split(' ')
+      .filter(function (w) { return w.length > 0; });
+  }
+
+  function toggleType() {
+    const panel = document.getElementById('typePanel');
+    const btn = document.getElementById('btnType');
+    if (!panel || !btn) return;
+    panel.hidden = !panel.hidden;
+    btn.textContent = panel.hidden ? '⌨️ 開啟打字練習' : '▼ 收起打字練習';
+    if (!panel.hidden) {
+      typeRender();
+      const input = document.getElementById('typeInput');
+      if (input) input.focus();
+    }
+  }
+
+  function typeRender() {
+    const count = document.getElementById('typeCount');
+    const target = document.getElementById('typeTarget');
+    const input = document.getElementById('typeInput');
+    const total = TYPE_SENTENCES.length;
+    if (count) {
+      count.textContent = typeDone ? '全部完成 🎉'
+                                   : '第 ' + (typeIdx + 1) + ' / ' + total + ' 句';
+    }
+    if (target) {
+      target.textContent = typeDone
+        ? '太棒了，' + total + ' 句全部打完！可以按「重頭開始」再練一次。'
+        : (TYPE_SENTENCES[typeIdx] || '');
+    }
+    if (input) {
+      input.disabled = typeDone;
+      input.value = '';
+      if (!typeDone) input.focus();
+    }
+  }
+
+  function typeOnInput() {
+    const input = document.getElementById('typeInput');
+    if (!input || typeDone) return;
+    const raw = input.value;
+    if (!/\s$/.test(raw)) return;            // 只在剛輸入空白（空白鍵）時處理
+
+    const typed = typeWords(raw);
+    const word = typed.length ? typed[typed.length - 1] : '';
+    if (word) speakText(word);               // 1) 唸出剛打完的那個單字
+
+    const target = typeWords(TYPE_SENTENCES[typeIdx]);
+    if (typed.join(' ') === target.join(' ')) {
+      // 2) 整句（寬鬆比對）已完成 → 跳到下一句開頭
+      typeIdx += 1;
+      typeDone = typeIdx >= TYPE_SENTENCES.length;
+      typeRender();
+    }
+  }
+
+  function typeGo(step) {
+    typeIdx = Math.min(Math.max(typeIdx + step, 0), TYPE_SENTENCES.length - 1);
+    typeDone = false;
+    typeRender();
+  }
+
+  function typeRestart() {
+    typeIdx = 0;
+    typeDone = false;
+    typeRender();
+  }
+
+  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
+  var typeIdx = 0;
+  var typeDone = false;
+
+  (function () {
+    const input = document.getElementById('typeInput');
+    if (input) input.addEventListener('input', typeOnInput);
+  })();
+
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {
     document.body.classList.toggle("review");
@@ -607,6 +736,9 @@ body.review .sentence-block{background:#f0f9ff;}
     }
   }
   function printPage() { window.print(); }
+
+  /* 打字練習用的句子清單：與畫面上顯示的完全一致（由 html 推導） */
+  TYPE_SENTENCES = ['Our English teacher announced a school magazine competition, so I felt very excited.', 'I was worried, because I had never written a story about my own feelings before.', 'My friend Leo said I would not understand it unless I read it twice.', 'As soon as I sat down, I remembered my first week at a new school.', 'Everything felt strange and boring at first, because nobody talked to me.', 'I felt tired and unhappy until a funny girl at my table shared her sandwich.', 'My first ending was too careful, so nobody wanted to hear my true feelings.', 'Then I wrote what really happened until it felt honest, even if it was sad.', 'The magazine printed my story, and I feel happy that many readers are interested.'];
 </script>
 
 </body>

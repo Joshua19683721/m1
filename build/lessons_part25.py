@@ -29,7 +29,7 @@ LESSONS.append({
    {"text": """Last Saturday, our school manager sent an email to every class about a volunteer group.""",
     "html": '''Last Saturday, our <span class="w-tap kw-colloc">school manager</span> <span class="w-tap kw-verb">sent</span> an email to every class <span class="w-tap kw-colloc">about a volunteer group</span>.''',
     "pop": '''1. <b>send 的不規則過去式 (sent)：</b>send–sent–sent，<b>過去式與過去分詞同形</b>；句首有 last Saturday 這個過去時間，所以必須用過去式 <b>sent</b>。<br>
-2. <b>單數名詞作主語 (school manager)：</b>school manager ＝「學校主任」，可數且為單數，因此動詞要第三人稱單數並加 -ed。<br>
+2. <b>單數名詞作主語 (school manager)：</b>school manager ＝「學校主任」，作主語時視為單數，謂語用單數第三人稱；本句的過去式是 send 的不規則過去式 <b>sent</b>。<br>
 3. <b>send something about something：</b>about ＝「關於」，後面接名詞片語 a volunteer group，不可直接接句子。'''},
    {"text": """The message said that we could work in the library every Saturday morning.""",
     "html": '''The message <span class="w-tap kw-verb">said that</span> we <span class="w-tap kw-verb">could work</span> in the <span class="w-tap kw-colloc">library</span> <span class="w-tap kw-link">every Saturday morning</span>.''',
@@ -64,7 +64,7 @@ LESSONS.append({
     "html": '''<span class="w-tap kw-link">Then one Saturday</span>, <span class="w-tap kw-verb">only four of us came</span>, because two classmates <span class="w-tap kw-verb">were ill</span>.''',
     "pop": '''1. <b>only + 數詞 + of us：</b>only four of us ＝「我們之中只有四人」，用 of us 代替 our group，避免名詞重複。<br>
 2. <b>because 引導原因：</b>because 後面接<b>原因</b>（兩位同學生病），語序不可顛倒成 because ill they were。<br>
-3. <b>be + 形容詞 (were ill)：</b>ill ＝「生病的」，只能用 be 動詞（are ill／feel ill），<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ are illness</s>。'''},
+3. <b>be + 形容詞 (were ill)：</b>ill ＝「生病的」，可說 are ill／feel ill／get ill，但不可寫成 <s>✗ are illness</s>。'''},
    {"text": """We cleaned the bank hall and the swimming pool alone, and finished late.""",
     "html": '''We <span class="w-tap kw-verb">cleaned</span> the <span class="w-tap kw-colloc">bank hall</span> and the <span class="w-tap kw-colloc">swimming pool</span> <span class="w-tap kw-link">alone</span>, and finished late.''',
     "pop": '''1. <b>規則動詞過去式 (cleaned)：</b>clean 加 -ed 就是過去式；這一段全用過去式，敘述那天實際發生的事。<br>
@@ -134,7 +134,7 @@ LESSONS.append({
    {"text": """It said that I only had to send my email and my bank card number.""",
     "html": '''It <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">only had to send</span> my <span class="w-tap kw-colloc">email</span> and my <span class="w-tap kw-colloc">bank card number</span>.''',
     "pop": '''1. <b>have to + 原形 (had to send)：</b>have to ＝「必須、不得不」，這裡是過去的 have to，所以寫 <b>had to</b>，後面<b>只能接原形</b> send。<br>
-2. <b>only 的位置：</b>only 修飾 had to，寫成 had <b>only</b> to send，語意是「只要送出就好」，暗示條件可疑。<br>
+2. <b>only 的位置：</b>本句的 only 放在 had to <b>前面</b>（I <b>only had to</b> send），表示「我只要送出就好」；若寫成 had <b>only</b> to send，重點會變成「不過只需要送出」，因此本句用 only had to 更自然。<br>
 3. <b>間接引語 (said that + 子句)：</b>that 後面的子句用陳述語序 that I had to send，不可倒裝成 that did I have to send。'''},
   ],
   [
@@ -284,7 +284,7 @@ LESSONS.append({
    '''<li><b>feel weak / feel ill：</b>覺得沒力／覺得不舒服，後面接的必須是形容詞。</li>''',
   ],
   [
-   '''<li><b>hurt / pain / medicine：</b><br>• <b>hurt (v)</b> ＝「使⋯⋯受傷」（It hurt my knee）。<br>• <b>pain (n)</b> ＝「疼痛」（I felt a pain）。<br>• <b>medicine</b> ＝「藥」，不可數，前面不加 a。</li>''',
+   '''<li><b>hurt / pain / medicine：</b><br>• <b>hurt (v)</b> ＝「使⋯⋯受傷」（It hurt my knee）。<br>• <b>pain (n)</b> ＝「疼痛」（I felt a pain）。<br>• <b>medicine</b> ＝「藥」，一般作不可數名詞（take medicine）；但表示「一種藥」時可數（a medicine），依語境決定。</li>''',
    '''<li><b>ill / sick：</b><br>• <b>be ill</b>（英式）＝ 生病。<br>• <b>be sick</b> ＝ 生病，也可指「噁心想吐」。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>✗ I am illness／✓ I am ill。</li>''',
    '''<li><b>rest / relax / lie down：</b><br>• <b>rest</b> ＝「休息」，可作不可數名詞。<br>• <b>relax</b> ＝「放鬆心情」，是動作。<br>• <b>lie down</b> ＝「躺下」，是動詞片語，<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ rest down／✓ lie down。</li>''',
   ],

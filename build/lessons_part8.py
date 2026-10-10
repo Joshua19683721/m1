@@ -54,7 +54,7 @@ LESSONS.append({
     "html": '''<span class="w-tap kw-link">So</span> we <span class="w-tap kw-verb">mixed our pink with white</span> and <span class="w-tap kw-verb">got a very soft pink</span>.''',
     "pop": '''1. <b>So 表結果：</b>接在上一段因果之後，表示「於是我們⋯⋯」。<br>
 2. <b>mix A with B：</b>mix ＝「混合」，把 A 與 B 混合在一起用 <b>with</b>（mix pink with white）；也可以說 mix A and B（mix red and blue），兩者都能搭配兩個成分。<br>
-3. <b>get + 形容詞 (got a soft pink)：</b>get 在此是連繫動詞「變得、得到」，後接結果。<b>got 為 get 的過去式</b>（get–got–gotten）。'''},
+3. <b>get + 受詞 (got a very soft pink)：</b>本句 got 後面有受詞 a very soft pink，get 在此是<b>及物動詞</b>「得到、獲得」，整句是「得到一種非常柔和的粉紅色」。若作<b>連繫動詞</b>「變得」，後面就不接受詞（The pink got soft.）。<b>got 為 get 的過去式</b>（get–got–gotten）。'''},
   ],
   [
    {"text": """In the afternoon, a golden afternoon light came through the windows.""",
@@ -137,7 +137,7 @@ LESSONS.append({
   [
    {"text": """I put in too much sugar, and the mixture was too sweet to eat.""",
     "html": '''I <span class="w-tap kw-verb">put in too much sugar</span>, and the mixture <span class="w-tap kw-verb">was too sweet to eat</span>.''',
-    "pop": '''1. <b>too much + 不可數名詞 (too much sugar)：</b>too much 後面接<b>不可數名詞</b>；可數名詞複數要用 too many（too much time、too much trouble 等慣用搭配例外）。<br>
+    "pop": '''1. <b>too much + 不可數名詞 (too much sugar)：</b>too much 後面接<b>不可數名詞</b>；可數名詞複數要用 too many。要特別注意 time（時間）、trouble（麻煩）這類詞<b>本身就是不可數名詞</b>，所以 too much time、too much trouble 完全正確，並不是例外。<br>
 2. <b>put in + 對象：</b>put in ＝「放入」，屬動詞片語（put ＋ 副詞 in），後接受詞時不加介詞（put in the sugar）。<br>
 3. <b>too...to + 原形 (too sweet to eat)：</b>too + 形容詞 + to + 原形；<span style="color:#dc2626;">⚠️</span>to 之後接<b>原形動詞</b>，不能用 be ＋ 原形構成假被動（✗ too sweet to be eat；✓ too late to be sorry，be 後接的是形容詞）。'''},
    {"text": """My mother said that I should weigh the ingredients carefully.""",

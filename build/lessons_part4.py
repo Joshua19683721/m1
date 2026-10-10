@@ -42,7 +42,7 @@ LESSONS.append({
   [
    {"text": "There were many kinds of pens, but I couldn't decide which one was the best.",
     "html": '<span class="w-tap kw-verb">There were</span> <span class="w-tap kw-colloc">many kinds of</span> pens, but I <span class="w-tap kw-verb">couldn\'t decide which one was the best</span>.',
-    "pop": '''1. <b>kind of / kinds of：</b>＝「⋯的種類」，kinds 須用複數並搭配 many；此片語後接複數名詞 pens。<br>
+    "pop": '''1. <b>kind of / kinds of：</b>＝「⋯的種類」。kind 的單複數與後面的名詞一致：<b>kind of + 單數名詞</b>（a kind of pen）、<b>kinds of + 複數名詞</b>（many kinds of pens、two kinds of music、different kinds of pens）；前面的數量詞 many / two 也須搭配複數 kinds。<br>
 2. <b>couldn't + 原形 (couldn't decide)：</b>否定情態動詞 couldn't 後接原形 decide。<br>
 3. <b>間接問句 (which one was the best)：</b>「疑問詞 + 主詞 one + 動詞」，語序<b>不倒裝</b>；此處不可寫成 <s>which one the best was</s>，也不可加 did。'''},
    {"text": "Tom said that we should ask the shop assistant for help.",
@@ -135,7 +135,7 @@ LESSONS.append({
     "html": 'Our leader <span class="w-tap kw-verb">said that</span> we <span class="w-tap kw-verb">would go hiking</span> early the next morning <span class="w-tap kw-colloc">if it didn\'t rain</span>.',
     "pop": '''1. <b>未來式 (would + 原形)：</b>would 後接原形 go，表示「將會⋯⋯」，後續仍可再加 if 條件句。<br>
 2. <b>if 條件句第一類（真實條件）：</b><b>if + 現在式, will / would + 原形</b>——「如果⋯⋯就⋯⋯」。<br>
-3. <span style="color:#dc2626;">⚠️ 陷阱：</span>第一類條件句的 if 從句中<b>不可用將來式</b>（✗ <s>if it will not rain, we will go</s>，改為 If it <b>doesn\'t rain</b>, we <b>will go</b>）；本課故事第 2 句之所以出現 if it <b>didn\'t rain</b>, we <b>would go</b>，是因為它被放進 said that 的<b>間接敘述</b>，will 往過去推移成 would。'''},
+3. <span style="color:#dc2626;">⚠️ 陷阱：</span>第一類條件句的 if 從句中<b>不可用將來式</b>（✗ <s>if it will not rain, we will go</s>，改為 If it <b>doesn\'t rain</b>, we <b>will go</b>）；本課故事第 3 句之所以出現 if it <b>didn\'t rain</b>, we <b>would go</b>，是因為它被放進 said that 的<b>間接敘述</b>，will 往過去推移成 would。'''},
   ],
   [
    {"text": "In the afternoon, dark clouds appeared above the hills and the wind became stronger.",
@@ -151,7 +151,7 @@ LESSONS.append({
    {"text": "He suggested that we put our food into boxes and move the tents to a shelter.",
     "html": 'He <span class="w-tap kw-verb">suggested that</span> we <span class="w-tap kw-verb">put our food into boxes</span> and <span class="w-tap kw-verb">move the tents to</span> a shelter.',
     "pop": '''1. <b>suggest that + (should) + 原形：</b>suggest ＝「建議」時，that 子句用<b>原形動詞</b>（此處省略 should）。<br>
-2. <span style="color:#dc2626;">⚠️ 會考超高頻陷阱：</span><b>suggest 表「建議」接原形；suggest 表「暗示／表明」接 that 子句</b>——<br>　• He <b>suggested that we put</b>…（建議 → 原形）<br>　• His face <b>suggested that he was</b> angry.（暗示 → 陳述語序）</li>
+2. <span style="color:#dc2626;">⚠️ 會考超高頻陷阱：</span><b>suggest 後一律接 that 子句，「建議」與「暗示／表明」的差別在子句內的動詞形式</b>——<br>　• He <b>suggested that we put</b>…（建議 → 原形）<br>　• His face <b>suggested that he was</b> angry.（暗示 → 陳述語序）</li>
 3. <b>put – put – put：</b>put 的過去式與過去分詞<b>都不變形</b>，為必背特例；put 後接<b>受詞與地點介系詞</b>，構成 put the food <b>into</b> boxes。'''},
   ],
   [
@@ -162,7 +162,7 @@ LESSONS.append({
 3. <b>because 引導原因：</b>與第 4 課的 but（轉折）搭配使用，形成「雖⋯⋯但⋯⋯因為⋯⋯」的完整因果邏輯。'''},
    {"text": "If you go camping, you should always take a map, a torch and some warm clothes.",
     "html": '<span class="w-tap kw-colloc">If you go camping</span>, you <span class="w-tap kw-verb">should always take</span> a map, a torch and <span class="w-tap kw-colloc">some warm clothes</span>.',
-    "pop": '''1. <b>if 條件句第一類 (If you go, you should take)：</b>if ＋ <b>現在式</b>（不加 s），主句用 <b>should + 原形</b>；兩邊都用原形是此句型的關鍵。<br>
+    "pop": '''1. <b>if 條件句第一類 (If you go, you should take)：</b>if ＋ <b>現在式</b>（主語若為第三人稱單數，動詞仍要加 -s，如 If <b>it rains</b>, we should stay.），主句用 <b>should + 原形</b>；主句的動詞才是原形。<br>
 2. <b>always 的位置：</b>置於主要動詞 take <b>之前</b>：you should <b>always take</b>。<br>
 3. <b>名詞作賓語 (some warm clothes)：</b>clothes 為<b>只有複數</b>的名詞，永遠加 -s，且不可加 a。'''},
    {"text": "When the rain stopped, the air smelled fresh, and we all felt relaxed.",

@@ -56,7 +56,7 @@ LESSONS.append({
     "html": '<span class="w-tap kw-colloc">As soon as</span> we <span class="w-tap kw-verb">started to play</span>, I <span class="w-tap kw-verb">forgot all my worries</span>.',
     "pop": '''1. <b>As soon as + 短暫過去式：</b>as soon as ＝「一⋯⋯就⋯⋯」，本故事為過去式敘述，子句用一般過去式（As soon as we <b>started</b>, …）；只有在描述習慣或尚未發生的未來事件時才用一般現在式（As soon as we <b>start</b>, …）。<br>
 2. <b>不規則過去式 (forgot)：</b>forget–forgot–forgotten，與第 3 課的 went 同屬必背。<br>
-3. <b>連繫動詞 + 內容名詞 (forgot all my worries)：</b>此處 forget 直接接受詞；注意別與 forget <b>to do</b>（忘記要做某事）混淆。'''},
+3. <b>實義動詞 + 受詞 (forgot all my worries)：</b>此處 forget 是實義動詞，直接接受詞 all my worries，不是連繫動詞；注意別與 forget <b>to do</b>（忘記要做某事）混淆。'''},
   ],
   [
    {"text": "The audience clapped for a long time after the song finished.",
@@ -65,7 +65,7 @@ LESSONS.append({
 2. <b>after + 短暫過去式 (the song finished)：</b>對照 When，引導「之後」的時間子句，同樣使用一般過去式。<br>
 3. <b>名詞作受詞 (the song)：</b>the + 單數可數名詞作 finish 的受詞，finish 後<b>不加介詞</b>。'''},
    {"text": "I haven't seen my teacher smile like that for years.",
-    "html": 'I <span class="w-tap kw-verb">haven\'t seen my teacher smile like that for years</span>.',
+    "html": 'I <span class="w-tap kw-verb">haven\'t seen my teacher smile like that</span> <span class="w-tap kw-colloc">for years</span>.',
     "pop": '''1. <b>現在完成式否定 (haven\'t seen)：</b>have not + 過去分詞；主語 I 用 have，seen 為 see 的過去分詞（不規則）。<br>
 2. <b>for + 時間段 (for years)：</b>再次呼應「since 接時間點、for 接時間段」這組會考必考規則。<br>
 3. <b>感官動詞後接省略 to 的不定詞 (see sb smile)：</b>see / hear / watch 後接動詞原形，表示「看見某人做某事」。'''},
@@ -81,7 +81,7 @@ LESSONS.append({
  "summary": [
   [
    '''<li><b>1. 現在完成式結構：</b><b>have / has + 過去分詞</b><br>• I <u>have wanted</u> to play since I was ten.（持續）<br>• I <u>have never played</u> before.（經驗）<br>• She <u>has just finished</u> her homework.（剛完成）</li>''',
-   '''<li><b>2. 時態判斷關鍵：有明確過去時間 → 用過去式</b><br>• ✓ The school <b>held</b> a show <b>last Friday</b>.（過去式）<br>• ✗ The school has held a show last Friday.（錯，last Friday 是已過去時間點）<br>• <b>since / for / yesterday / ago</b> 出現在句中時，多半要用過去式。</li>''',
+   '''<li><b>2. 時態判斷關鍵：有明確過去時間 → 用過去式</b><br>• ✓ The school <b>held</b> a show <b>last Friday</b>.（過去式）<br>• ✗ The school has held a show last Friday.（錯，last Friday 是已過去時間點）<br>• <b>yesterday / ago</b> 出現在句中時用過去式；<b>since / for</b> 則常搭配現在完成式（I have lived here since 2010.／for three months）。</li>''',
    '''<li><b>3. since vs. for：</b><br>• <b>since</b> ＋ <b>時間點／since + 子句</b>：since 2010／since I was ten<br>• <b>for</b> ＋ <b>時間段</b>：for three months／for years</li>''',
    '''<li><b>4. already / yet / just / ever / never 的位置：</b><br>• <b>already（已經）</b>：多用於<b>肯定句</b>（I have <u>already</u> finished.）<br>• <b>yet（還、已經）</b>：多用於<b>否定與疑問句</b>（Have you <u>yet</u> finished?）<br>• <b>just</b> 置於助動詞後（have <u>just</u> seen）<br>• <b>never / ever</b> 表示經驗，置於助動詞與過去分詞之間</li>''',
   ],

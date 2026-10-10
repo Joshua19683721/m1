@@ -308,6 +308,29 @@
     .badge-colloc { background: var(--accent-orange); }
     .badge-vocab { background: var(--accent-green); }
 
+    /* 打字練習面板 */
+    .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
+      padding:16px 20px; margin-top:14px; text-align:left; }
+    .type-panel[hidden] { display:none; }
+    .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      font-size:.92rem; color:#134e4a; }
+    .type-count { margin-left:auto; font-weight:700; color:#0f766e; white-space:nowrap; }
+    .type-target { margin:12px 0 10px; padding:12px 15px; background:#fff;
+      border:1px dashed #5eead4; border-radius:8px; font-size:1.02rem;
+      color:#0f172a; line-height:1.7; }
+    .type-input { width:100%; padding:11px 14px; border:2px solid #14b8a6;
+      border-radius:10px; font-size:1.05rem; font-family:inherit; outline:none;
+      background:#fff; color:#0f172a; }
+    .type-input:focus { border-color:#0d9488; box-shadow:0 0 0 3px rgba(20,184,166,.18); }
+    .type-input:disabled { background:#f1f5f9; border-color:#cbd5e1;
+      color:#64748b; cursor:not-allowed; }
+    .type-foot { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px; }
+    .type-foot .hint { font-size:.82rem; color:#475569; }
+    .type-panel kbd { background:#fff; border:1px solid #94a3b8;
+      border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-size:.82rem;
+      font-family:inherit; color:#334155; }
+
   /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
 .tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
 .btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
@@ -322,7 +345,7 @@ body.review .sentence-block{background:#f0f9ff;}
   body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
   .container { max-width: 100%; }
   .audio-panel, .legend-bar, .tool-row, .btn-speak,
-  #backIndex { display:none !important; }
+  #backIndex, .type-panel { display:none !important; }
   header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
   .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
     break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
@@ -356,8 +379,27 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
     </div>
     <div class="tool-row">
+      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+    <div class="type-panel" id="typePanel" hidden>
+      <div class="type-head">
+        <span class="badge badge-grammar">打字練習</span>
+        <b>跟讀打字：</b>每打完一個單字按 <kbd>空白鍵</kbd> 就會唸出那個字；
+        整句打完再按一次 <kbd>空白鍵</kbd>，自動跳到下一句開頭。
+        <span class="type-count" id="typeCount">第 1 / 9 句</span>
+      </div>
+      <div class="type-target" id="typeTarget"></div>
+      <input class="type-input" id="typeInput" type="text" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="在這裡照順序打出英文句子⋯">
+      <div class="type-foot">
+        <button class="btn-tool ghost" onclick="typeGo(-1)">← 上一句</button>
+        <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>
+        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>
+        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>
+      </div>
     </div>
   </header>
   <div class="story-card">
@@ -409,7 +451,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>between A and B：</b>between ＝「在兩者之間」，<b>必須搭配 and</b>，中間的三個地點由 and 連接；對應的「三者以上之中間」才用 among。<br> 2. <b>複合名詞作定語：</b>作修飾用的名詞一律用<b>單數</b>（a <b>sports</b> hall、a <b>swimming</b> pool）；形容詞則照常變化（the <b>main</b> staircase）。<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ a sport hall．<br> 3. <b>the + 方位形容詞：</b>main、big、old、new 修飾後面的建築物時通常要加 the（the main staircase）；第一次提到用 a，再次提到就用 the 替換。
+          1. <b>between A and B：</b>between ＝「在兩者之間」，<b>必須搭配 and</b>，中間的三個地點由 and 連接；對應的「三者以上之中間」才用 among。<br> 2. <b>複合名詞作定語：</b>作修飾用的名詞一律用<b>單數</b>（a <b>sports</b> hall、a <b>swimming</b> pool）；形容詞則照常變化（the <b>main</b> staircase）。<span style="color:#dc2626;">⚠️ 陷阱：</span>✗ a sport hall．<br> 3. <b>the 的取用：</b>main、big、old、new 這類<b>放在名詞前面</b>的形容詞，前面不加 the（a big hall、our new library）；the main staircase 之所以有 the，是因為那座樓梯已是雙方都認得的特定建物，第一次提到時要寫 a main staircase，再次提到才用 the 替換。
         </div>
       </div>
       <button class="btn-speak" onclick="speakParagraph(['Last Monday morning, I met a new student at the school gate.', 'I showed him the library, and there are many books on its shelves.', 'The sports hall is between the gym and the main staircase.'])">🔊 朗讀第一段全文</button>
@@ -511,7 +553,7 @@ body.review .sentence-block{background:#f0f9ff;}
 <li><b>next to + 人／物</b>：緊鄰著（next to the museum）。</li>
 <li><b>between A and B</b>：在兩者之間（between the gym and the staircase）。</li>
 <li><b>across the road／the bridge</b>：橫過馬路／橋梁到對面。</li>
-<li><b>on the second floor</b>：在三樓（英式 floor 由一樓起算，別寫 *in the second floor）。</li>
+<li><b>on the second floor</b>：樓層前固定用 <b>on</b>，別寫 *in the second floor。<br><b>英式</b>：the ground floor ＝ 一樓、the first floor ＝ 二樓，所以 the second floor 是<b>三樓</b>；<b>美式</b>：the first floor ＝ 一樓，所以 the second floor 是二樓。</li>
 <li><b>get lost</b>：迷路（multi-word verb，與 lose–lost–lost 同組）。</li>
         </ul>
       </div>
@@ -597,6 +639,93 @@ body.review .sentence-block{background:#f0f9ff;}
     const fullText = sentenceArray.join(' ');
     speakText(fullText);
   }
+
+  /* ---- 打字練習：每按一次空白鍵唸出剛打完的單字；整句打完再按空白鍵跳到下一句 ---- */
+  var TYPE_SENTENCES = [];
+
+  function typeWords(s) {
+    return String(s || '').toLowerCase()
+      .replace(/['\u2018\u2019]/g, '')      // 撇號不影響比對：haven't 與 havent 皆可
+      .replace(/[^a-z0-9]+/g, ' ')         // 標點一律視為分隔，忽略大小寫
+      .trim()
+      .split(' ')
+      .filter(function (w) { return w.length > 0; });
+  }
+
+  function toggleType() {
+    const panel = document.getElementById('typePanel');
+    const btn = document.getElementById('btnType');
+    if (!panel || !btn) return;
+    panel.hidden = !panel.hidden;
+    btn.textContent = panel.hidden ? '⌨️ 開啟打字練習' : '▼ 收起打字練習';
+    if (!panel.hidden) {
+      typeRender();
+      const input = document.getElementById('typeInput');
+      if (input) input.focus();
+    }
+  }
+
+  function typeRender() {
+    const count = document.getElementById('typeCount');
+    const target = document.getElementById('typeTarget');
+    const input = document.getElementById('typeInput');
+    const total = TYPE_SENTENCES.length;
+    if (count) {
+      count.textContent = typeDone ? '全部完成 🎉'
+                                   : '第 ' + (typeIdx + 1) + ' / ' + total + ' 句';
+    }
+    if (target) {
+      target.textContent = typeDone
+        ? '太棒了，' + total + ' 句全部打完！可以按「重頭開始」再練一次。'
+        : (TYPE_SENTENCES[typeIdx] || '');
+    }
+    if (input) {
+      input.disabled = typeDone;
+      input.value = '';
+      if (!typeDone) input.focus();
+    }
+  }
+
+  function typeOnInput() {
+    const input = document.getElementById('typeInput');
+    if (!input || typeDone) return;
+    const raw = input.value;
+    if (!/\s$/.test(raw)) return;            // 只在剛輸入空白（空白鍵）時處理
+
+    const typed = typeWords(raw);
+    const word = typed.length ? typed[typed.length - 1] : '';
+    if (word) speakText(word);               // 1) 唸出剛打完的那個單字
+
+    const target = typeWords(TYPE_SENTENCES[typeIdx]);
+    if (typed.join(' ') === target.join(' ')) {
+      // 2) 整句（寬鬆比對）已完成 → 跳到下一句開頭
+      typeIdx += 1;
+      typeDone = typeIdx >= TYPE_SENTENCES.length;
+      typeRender();
+    }
+  }
+
+  function typeGo(step) {
+    typeIdx = Math.min(Math.max(typeIdx + step, 0), TYPE_SENTENCES.length - 1);
+    typeDone = false;
+    typeRender();
+  }
+
+  function typeRestart() {
+    typeIdx = 0;
+    typeDone = false;
+    typeRender();
+  }
+
+  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
+  var typeIdx = 0;
+  var typeDone = false;
+
+  (function () {
+    const input = document.getElementById('typeInput');
+    if (input) input.addEventListener('input', typeOnInput);
+  })();
+
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {
     document.body.classList.toggle("review");
@@ -607,6 +736,9 @@ body.review .sentence-block{background:#f0f9ff;}
     }
   }
   function printPage() { window.print(); }
+
+  /* 打字練習用的句子清單：與畫面上顯示的完全一致（由 html 推導） */
+  TYPE_SENTENCES = ['Last Monday morning, I met a new student at the school gate.', 'I showed him the library, and there are many books on its shelves.', 'The sports hall is between the gym and the main staircase.', 'From the top floor, we saw many buildings in our small town.', 'There is a hospital next to the museum and a bank near the post office.', 'Across the road there are a cinema, a theatre, a hotel and a nice restaurant.', 'We walked to the supermarket and the police station in the afternoon.', 'On the way back here, my new student friend got lost on the second staircase.', 'We found him there and took him to the school office to meet his parents.'];
 </script>
 
 </body>

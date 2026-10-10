@@ -308,6 +308,29 @@
     .badge-colloc { background: var(--accent-orange); }
     .badge-vocab { background: var(--accent-green); }
 
+    /* 打字練習面板 */
+    .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
+      padding:16px 20px; margin-top:14px; text-align:left; }
+    .type-panel[hidden] { display:none; }
+    .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      font-size:.92rem; color:#134e4a; }
+    .type-count { margin-left:auto; font-weight:700; color:#0f766e; white-space:nowrap; }
+    .type-target { margin:12px 0 10px; padding:12px 15px; background:#fff;
+      border:1px dashed #5eead4; border-radius:8px; font-size:1.02rem;
+      color:#0f172a; line-height:1.7; }
+    .type-input { width:100%; padding:11px 14px; border:2px solid #14b8a6;
+      border-radius:10px; font-size:1.05rem; font-family:inherit; outline:none;
+      background:#fff; color:#0f172a; }
+    .type-input:focus { border-color:#0d9488; box-shadow:0 0 0 3px rgba(20,184,166,.18); }
+    .type-input:disabled { background:#f1f5f9; border-color:#cbd5e1;
+      color:#64748b; cursor:not-allowed; }
+    .type-foot { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px; }
+    .type-foot .hint { font-size:.82rem; color:#475569; }
+    .type-panel kbd { background:#fff; border:1px solid #94a3b8;
+      border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-size:.82rem;
+      font-family:inherit; color:#334155; }
+
   /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
 .tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
 .btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
@@ -322,7 +345,7 @@ body.review .sentence-block{background:#f0f9ff;}
   body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
   .container { max-width: 100%; }
   .audio-panel, .legend-bar, .tool-row, .btn-speak,
-  #backIndex { display:none !important; }
+  #backIndex, .type-panel { display:none !important; }
   header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
   .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
     break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
@@ -356,8 +379,27 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
     </div>
     <div class="tool-row">
+      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+    <div class="type-panel" id="typePanel" hidden>
+      <div class="type-head">
+        <span class="badge badge-grammar">打字練習</span>
+        <b>跟讀打字：</b>每打完一個單字按 <kbd>空白鍵</kbd> 就會唸出那個字；
+        整句打完再按一次 <kbd>空白鍵</kbd>，自動跳到下一句開頭。
+        <span class="type-count" id="typeCount">第 1 / 9 句</span>
+      </div>
+      <div class="type-target" id="typeTarget"></div>
+      <input class="type-input" id="typeInput" type="text" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="在這裡照順序打出英文句子⋯">
+      <div class="type-foot">
+        <button class="btn-tool ghost" onclick="typeGo(-1)">← 上一句</button>
+        <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>
+        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>
+        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>
+      </div>
     </div>
   </header>
   <div class="story-card">
@@ -373,7 +415,7 @@ body.review .sentence-block{background:#f0f9ff;}
           <b>【第一段】</b> 上週五，英文老師給了我們一則來自地方報紙的消息。她說：她說：『下個月我們鎮上會有一座新圖書館開幕。』，並要求我們寫一篇相關的報導。我把訊息寫在電腦裡，並把直接引語改成間接引語。
         </div>
         <div class="translation-p">
-          <b>【第二段】</b> 在間接引語裡，我們通常會把時間往後推一個層級。舉例來說，『我很忙』會變成『他說他當時很忙』。我們也學會了在許多情況下，用 said 比用 put 更好，而我的組員把整篇文章寫在了蟾幕上。
+          <b>【第二段】</b> 在間接引語裡，我們通常會把時間往後推一個層級。舉例來說，『我很忙』會變成『他說他當時很忙』。我們也學會了在許多情況下，用 said 比用 put 更好，而我的組員把整篇文章寫在了螢幕上。
         </div>
         <div class="translation-p">
           <b>【第三段】</b> 我開始前其實非常緊張，不是嗎？不過，實際情況比我想像的容易。老師說我們的報導是當中最清楚的一份，這讓我們非常高興。
@@ -385,7 +427,7 @@ body.review .sentence-block{background:#f0f9ff;}
       <!-- Sentence 1.1 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
         <div class="sentence-text">
-          Our English teacher <span class="w-tap kw-verb">asked us to report a short news story from the newspaper to</span> the class.
+          Our English teacher <span class="w-tap kw-verb">asked us to report a short news story</span> from the <span class="w-tap kw-colloc">newspaper</span>.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -412,7 +454,7 @@ body.review .sentence-block{background:#f0f9ff;}
           1. <b>write 的過去式 (wrote)：</b>write–wrote–written，為會考必背不規則動詞。<br> 2. <b>change A into B：</b>change ＝「把 A 變成 B」，into 後接結果；change A to B 則指「改變 A 成為 B」，兩者語意相近但前者強調「轉變」。<br> 3. <b>術語：</b>direct speech ＝ 直接引語；<b>reported speech</b> ＝ 間接引語（美式亦作 indirect speech）。
         </div>
       </div>
-      <button class="btn-speak" onclick="speakParagraph(['Our English teacher asked us to report a short news story from the newspaper to the class.', 'She said, \'A new library will open in our town next month,\' and asked us to write a short report about it.', 'I wrote the message on my computer and changed the direct speech into reported speech.'])">🔊 朗讀第一段全文</button>
+      <button class="btn-speak" onclick="speakParagraph(['Our English teacher asked us to report a short news story from the newspaper.', 'She said, \'A new library will open in our town next month,\' and asked us to write a short report about it.', 'I wrote the message on my computer and changed the direct speech into reported speech.'])">🔊 朗讀第一段全文</button>
     </div>
     <div class="context-bridge">
       <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
@@ -447,7 +489,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>say vs. put（會考高頻辨析）：</b><br>• <b>say sth</b> ＝ 說（<u>不</u>接受詞）：He said that...<br>• <b>say sth to sb</b> ＝ 對某人說<br>• <b>put sth</b> ＝ 放／put it this way ＝ 這樣說<br><span style="color:#dc2626;">⚠️</span>間接引語只用 <b>said</b>，不用 put（put 須有賓語）。<br> 2. <b>learned 的過去式：</b>learn 的過去式直接加 -ed，沒有不規則變化。<br> 3. <b>比較級 better than：</b>better 為 good 的不規則比較級（good–better–best）。
+          1. <b>say vs. put（會考高頻辨析）：</b><br>• <b>say sth</b> ＝ 說（可直接接說話的內容，但<u>不能</u>直接以「人」作受詞）：He said that...<br>• <b>say sth to sb</b> ＝ 對某人說<br>• <b>put sth</b> ＝ 放／put it this way ＝ 這樣說<br><span style="color:#dc2626;">⚠️</span>間接引語只用 <b>said</b>，不用 put（put 須有賓語）。<br> 2. <b>learned 的過去式：</b>learn 的過去式直接加 -ed，沒有不規則變化。<br> 3. <b>比較級 better than：</b>better 為 good 的不規則比較級（good–better–best）。
         </div>
       </div>
       <button class="btn-speak" onclick="speakParagraph(['In reported speech we usually move the words back one step in time.', 'For example, \'I am busy\' becomes \'He said that he was busy.\'', 'We also learned that the word said is often better than put, and wrote the whole article on a screen.'])">🔊 朗讀第二段全文</button>
@@ -498,8 +540,8 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="summary-box">
         <h3><span class="badge badge-grammar">文法句型</span> 間接引語時態一致、反意疑問句與強調句</h3>
         <ul class="summary-list">
-<li><b>1. 時態一致（backshift）對照表：</b><br>| 直接引語 | 間接引語 |<br>| am / is | <b>was</b> |<br>| are / were | <b>were</b> |<br>| will | <b>would</b> |<br>| can | <b>could</b> |<br>| may / might | <b>might</b> |<br>| 規則動詞 | <b>＋ed</b> |<br>| 不規則動詞 | <b>過去分詞</b> |<br><span style="color:#dc2626;">⚠️</span>have/has、had、did 等<b>過去完成形式不再後移</b>（already / yet / just 除外）。</li>
-<li><b>2. 標誌與人稱也要改：</b><br>• now → <b>then / at that time</b>　• today → <b>that day</b>　• tomorrow → <b>the next day</b><br>• this → <b>that</b>　• here → <b>there</b>　• I / me → <b>he / him</b><br>• 地點副詞前常加 <b>here / there</b> 改寫為 that place。</li>
+<li><b>1. 時態一致（backshift）對照表：</b><br>| 直接引語 | 間接引語 |<br>| am / is | <b>was</b> |<br>| are / were | <b>were</b> |<br>| will | <b>would</b> |<br>| can | <b>could</b> |<br>| may / might | <b>might</b> |<br>| 規則動詞 | <b>＋ed</b> |<br>| 不規則動詞 | <b>過去分詞</b> |<br><span style="color:#dc2626;">⚠️</span><b>已是過去完成式的 had 不再後移</b>（had finished 仍是 had finished）；但 have／has 要後移為 had ＋ 過去分詞（I've finished → He said he had finished），do／does／did 後面的動詞則恢復原形（Did you like it? → He asked if I liked it.）。</li>
+<li><b>2. 標誌與人稱也要改：</b><br>• now → <b>then / at that time</b>　• today → <b>that day</b>　• tomorrow → <b>the next day</b><br>• this → <b>that</b>　• here → <b>there</b>　• I / me → <b>he / him</b><br>• <b>this place</b> → <b>that place</b>（原句用 this place，轉述後改為 that place）。</li>
 <li><b>3. 反意疑問句：</b><br>• 肯定陳述 + <b>否定</b>問句：It's cold, <u>isn't it</u>?<br>• 否定陳述 + <b>肯定</b>問句：It isn't cold, <u>is it</u>?<br>• <span style="color:#dc2626;">⚠️</span>代詞與助動詞<b>必須與前句一致</b>：He is → <u>isn't he</u>？（✗ <u>doesn't he</u>）</li>
 <li><b>4. 強調句 It is...that...：</b><br><b>It is / was + 被強調的部分 + that + 其餘部分</b><br>• <i>例：</i> <u>It was my brother</u> that broke the window.<br>• <b>判斷技巧：</b>把 It is/was 和 that 刪掉，剩下的仍是一個完整句子，就證明是強調句。<br>• 強調對象只能是<b>句子的成分</b>（主語、受詞、狀語），不能強調謂語動詞本身。</li>
         </ul>
@@ -597,6 +639,93 @@ body.review .sentence-block{background:#f0f9ff;}
     const fullText = sentenceArray.join(' ');
     speakText(fullText);
   }
+
+  /* ---- 打字練習：每按一次空白鍵唸出剛打完的單字；整句打完再按空白鍵跳到下一句 ---- */
+  var TYPE_SENTENCES = [];
+
+  function typeWords(s) {
+    return String(s || '').toLowerCase()
+      .replace(/['\u2018\u2019]/g, '')      // 撇號不影響比對：haven't 與 havent 皆可
+      .replace(/[^a-z0-9]+/g, ' ')         // 標點一律視為分隔，忽略大小寫
+      .trim()
+      .split(' ')
+      .filter(function (w) { return w.length > 0; });
+  }
+
+  function toggleType() {
+    const panel = document.getElementById('typePanel');
+    const btn = document.getElementById('btnType');
+    if (!panel || !btn) return;
+    panel.hidden = !panel.hidden;
+    btn.textContent = panel.hidden ? '⌨️ 開啟打字練習' : '▼ 收起打字練習';
+    if (!panel.hidden) {
+      typeRender();
+      const input = document.getElementById('typeInput');
+      if (input) input.focus();
+    }
+  }
+
+  function typeRender() {
+    const count = document.getElementById('typeCount');
+    const target = document.getElementById('typeTarget');
+    const input = document.getElementById('typeInput');
+    const total = TYPE_SENTENCES.length;
+    if (count) {
+      count.textContent = typeDone ? '全部完成 🎉'
+                                   : '第 ' + (typeIdx + 1) + ' / ' + total + ' 句';
+    }
+    if (target) {
+      target.textContent = typeDone
+        ? '太棒了，' + total + ' 句全部打完！可以按「重頭開始」再練一次。'
+        : (TYPE_SENTENCES[typeIdx] || '');
+    }
+    if (input) {
+      input.disabled = typeDone;
+      input.value = '';
+      if (!typeDone) input.focus();
+    }
+  }
+
+  function typeOnInput() {
+    const input = document.getElementById('typeInput');
+    if (!input || typeDone) return;
+    const raw = input.value;
+    if (!/\s$/.test(raw)) return;            // 只在剛輸入空白（空白鍵）時處理
+
+    const typed = typeWords(raw);
+    const word = typed.length ? typed[typed.length - 1] : '';
+    if (word) speakText(word);               // 1) 唸出剛打完的那個單字
+
+    const target = typeWords(TYPE_SENTENCES[typeIdx]);
+    if (typed.join(' ') === target.join(' ')) {
+      // 2) 整句（寬鬆比對）已完成 → 跳到下一句開頭
+      typeIdx += 1;
+      typeDone = typeIdx >= TYPE_SENTENCES.length;
+      typeRender();
+    }
+  }
+
+  function typeGo(step) {
+    typeIdx = Math.min(Math.max(typeIdx + step, 0), TYPE_SENTENCES.length - 1);
+    typeDone = false;
+    typeRender();
+  }
+
+  function typeRestart() {
+    typeIdx = 0;
+    typeDone = false;
+    typeRender();
+  }
+
+  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
+  var typeIdx = 0;
+  var typeDone = false;
+
+  (function () {
+    const input = document.getElementById('typeInput');
+    if (input) input.addEventListener('input', typeOnInput);
+  })();
+
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {
     document.body.classList.toggle("review");
@@ -607,6 +736,9 @@ body.review .sentence-block{background:#f0f9ff;}
     }
   }
   function printPage() { window.print(); }
+
+  /* 打字練習用的句子清單：與畫面上顯示的完全一致（由 html 推導） */
+  TYPE_SENTENCES = ['Our English teacher asked us to report a short news story from the newspaper.', 'She said, \'A new library will open in our town next month,\' and asked us to write a short report about it.', 'I wrote the message on my computer and changed the direct speech into reported speech.', 'In reported speech we usually move the words back one step in time.', 'For example, \'I am busy\' becomes \'He said that he was busy.\'', 'We also learned that the word said is often better than put, and wrote the whole article on a screen.', 'I was really nervous before I started, wasn\'t I?', 'Actually, it was not as hard as I had imagined.', 'The teacher said that our report was the clearest one, which made us extremely happy.'];
 </script>
 
 </body>

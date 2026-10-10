@@ -79,7 +79,7 @@ LESSONS.append({
   "summary": [
    [
     '''<li><b>1. 分詞片語放句首時，主詞才是動作主語：</b><br>• 正確：<u>Walking through the park, I saw a dog.</u>（走的人是我）<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ Walking through the park, the rain started.</s> → 雨不會走路，這就是懸空修飾語。</li>''',
-    '''<li><b>2. 兩種修正法（會考寫作改題必用）：</b><br>• <b>甲：片語改子句</b>：<u>While I walked through the park, the rain started.</u><br>• <b>乙：片語後移</b>：<u>The rain started while I walked through the park.</u>／<u>The rain started, walking through the park.</u></li>''',
+    '''<li><b>2. 兩種修正法（會考寫作改題必用）：</b><br>• <b>甲：片語改子句</b>：<u>While I walked through the park, the rain started.</u><br>• <b>乙：換成子句</b>：<u>The rain started while I walked through the park.</u><br>• <span style="color:#dc2626;">⚠️ 陷阱：</span><s>The rain started, walking through the park.</s> 仍然是懸空修飾語，讀起來像「雨在走路」，不可當成修正。</li>''',
     '''<li><b>3. While / When 引導時間子句：</b><br>• 子句放<b>前面</b>，主句放後面，中間加逗號（When I arrived, the class began.）。<br>• while 兩邊都可用；<b>as soon as</b> 必須用「一⋯⋯就⋯⋯」的主句。</li>''',
     '''<li><b>4. 冒號與句末時間狀語：</b><br>• 冒號後接完整句子，用來引出說明（I changed it: While I walked…）。<br>• after that day 這類片語放句末時，其前面<b>不加逗號</b>，句尾才加句號。</li>''',
    ],
@@ -92,7 +92,7 @@ LESSONS.append({
    ],
    [
     '''<li><b>interested / interesting：</b><br>• <b>interested</b> 描述<b>人</b>的感覺（I am interested in music）。<br>• <b>interesting</b> 描述<b>事物</b>（The film is interesting）。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>兩者位置不可對調。</li>''',
-    '''<li><b>different from / different to：</b><br>• <u>different from</u> ＝ 與⋯⋯不同。<br>• <s>✗ different to</s> 在正式英文中不用於此義，會考只認 from。</li>''',
+    '''<li><b>different from / different to：</b><br>• <u>different from</u> ＝ 與⋯⋯不同。<br>• <b>different to</b> 也是標準英文（英式英文常見），意思與 different from 相同；美式英文以 different from 為主，會考寫作用 different from 最穩妥。</li>''',
     '''<li><b>be sure of ／ be sure that：</b><br>• <b>be sure of + 名詞</b>：be sure of the answer。<br>• <b>be sure that + 句子</b>：be sure that I am right。that 可省略。</li>''',
    ],
   ],
@@ -121,7 +121,7 @@ LESSONS.append({
     {"text": '''Our drama club was busy preparing a play for the school festival.''',
      "html": '<span class="w-tap kw-colloc">Our drama club</span> <span class="w-tap kw-colloc">was busy preparing</span> a play <span class="w-tap kw-link">for the school festival</span>.',
      "pop": '''1. <b>be busy + 動名詞：</b>be busy 後接 <b>V-ing</b>，表示「忙於⋯⋯」；敘述過去的事情要用 was busy preparing。<br>
-2. <b>prepare for / prepare a play：</b>prepare for ＝「為⋯⋯做準備」，prepare 後直接接受詞則是「準備做某物」。<br>
+2. <b>prepare for / prepare a play：</b>prepare for ＝「為⋯⋯做準備」，prepare 後直接接受詞則是「把某物準備好」（prepare a play＝把一齣戲準備好）。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>busy 是形容詞，後面接 V-ing 不可用 to do：<s>✗ busy to prepare</s> → <u>✓ busy preparing</u>。'''},
     {"text": '''The play was important to everyone, but nobody could agree on the ending.''',
      "html": 'The play <span class="w-tap kw-colloc">was important to</span> everyone, but <span class="w-tap kw-verb">nobody could agree on</span> the <span class="w-tap kw-colloc">ending</span>.',
@@ -149,14 +149,14 @@ LESSONS.append({
      "html": 'She <span class="w-tap kw-verb">wrote her three words down</span> and <span class="w-tap kw-verb">kept the card</span> <span class="w-tap kw-link">in her bag</span>.',
      "pop": '''1. <b>write down / keep：</b>write down ＝「寫下來」，write 的過去式是 wrote；keep ＝「保存、收好」，過去式 <b>kept</b>（不規則變化）。<br>
 2. <b>共用主語的連貫句：</b>兩個動詞共用同一主語 She 時，第二個動詞直接用過去式 kept，不重複 she。<br>
-3. <b>定冠詞 the card：</b>card 為可數名詞，前面已經提過同一張卡片時才要用 the，再次提及不可直接用 a；本句是卡片在本課第一次出現，前面並未提過。'''},
+3. <b>冠詞 the card：</b>card 為可數名詞，單數前面一定要有冠詞。本句卡片是<b>第一次出現</b>，讀者還不知道是哪一張，所以這裡應該用 <b>a card</b>：She wrote her three words down and kept <u>a card</u> in her bag。只有在卡片已經提過，或雙方都清楚指的是同一張（對話中共知的那張卡片）時，才用 the。'''},
    ],
    [
     {"text": '''On the night of the play, everyone was ready and the hall was full.''',
      "html": '<span class="w-tap kw-link">On the night of the play</span>, everyone <span class="w-tap kw-colloc">was ready</span> and the hall <span class="w-tap kw-colloc">was full</span>.',
      "pop": '''1. <b>be ready for / be ready to：</b>be ready ＝「準備好了」，後接 for ＋ 名詞或 to ＋ 原形。<br>
 2. <b>the night of + 事件：</b>of 後面接事件名詞，表示「⋯⋯的那個晚上」，這個 of 不可省略。<br>
-3. <b>並列 be 動詞句：</b>兩個 be 動詞並列時<b>第二個 be 可以省略</b>：everyone was ready and the hall was full ✓。'''},
+3. <b>並列 be 動詞句：</b>兩個 be 動詞並列，只有在<b>主詞相同</b>時才可以省略第二個 be（He is ready <b>and</b> happy ✓）；主詞不同就必須兩個 be 都留：everyone was ready <b>and the hall was full</b> ✓，不可寫成 <s>everyone was ready and the hall full</s>。'''},
     {"text": '''Only three words changed the play, and it was Nina who said them.''',
      "html": '<span class="w-tap kw-colloc">Only three words</span> <span class="w-tap kw-verb">changed the play</span>, and <span class="w-tap kw-verb">it was Nina who said them</span>.',
      "pop": '''1. <b>Only + 主詞：</b>Only 放在主詞前，加強語氣讓讀者知道重點是「只有三個字」，這是口語強調的第一選擇。<br>
@@ -270,7 +270,7 @@ LESSONS.append({
    [
     '''<li><b>1. 直接表明立場：</b><br>• <u>In my opinion, the best way to learn is to use it.</u><br>• <u>As far as I can see, we should start now.</u>（依我看來）<br>• 後面接完整句子，句首要加逗號。</li>''',
     '''<li><b>2. 委婉表明立場：</b><br>• <u>It seems to me that this idea is better.</u>＝ 在我看來⋯⋯。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>不能刪掉 It：<s>✗ Seems to me this idea is better.</s><br>• 也可說 It appears that…／I tend to think that…。</li>''',
-    '''<li><b>3. 否定式的軟化說法：</b><br>• <u>I don't think that reading is useless.</u>＝「我不認為閱讀沒用」＝「閻讀有用」。<br>• <b>後接句子用陳述語序</b>，不可倒裝（<s>✗ I don't think is reading useless.</s>）。</li>''',
+    '''<li><b>3. 否定式的軟化說法：</b><br>• <u>I don't think that reading is useless.</u>＝「我不認為閱讀沒用」＝「閱讀有用」。<br>• <b>後接句子用陳述語序</b>，不可倒裝（<s>✗ I don't think is reading useless.</s>）。</li>''',
     '''<li><b>4. 讓步與禮貌請求：</b><br>• <u>Although it is hard, we can try it.</u>／<u>It is not easy, but it works.</u><br>• <u>Could I say something?</u>／<u>I'd like to hear your idea.</u></li>''',
    ],
    [

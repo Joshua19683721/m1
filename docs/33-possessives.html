@@ -308,6 +308,29 @@
     .badge-colloc { background: var(--accent-orange); }
     .badge-vocab { background: var(--accent-green); }
 
+    /* 打字練習面板 */
+    .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
+      padding:16px 20px; margin-top:14px; text-align:left; }
+    .type-panel[hidden] { display:none; }
+    .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      font-size:.92rem; color:#134e4a; }
+    .type-count { margin-left:auto; font-weight:700; color:#0f766e; white-space:nowrap; }
+    .type-target { margin:12px 0 10px; padding:12px 15px; background:#fff;
+      border:1px dashed #5eead4; border-radius:8px; font-size:1.02rem;
+      color:#0f172a; line-height:1.7; }
+    .type-input { width:100%; padding:11px 14px; border:2px solid #14b8a6;
+      border-radius:10px; font-size:1.05rem; font-family:inherit; outline:none;
+      background:#fff; color:#0f172a; }
+    .type-input:focus { border-color:#0d9488; box-shadow:0 0 0 3px rgba(20,184,166,.18); }
+    .type-input:disabled { background:#f1f5f9; border-color:#cbd5e1;
+      color:#64748b; cursor:not-allowed; }
+    .type-foot { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px; }
+    .type-foot .hint { font-size:.82rem; color:#475569; }
+    .type-panel kbd { background:#fff; border:1px solid #94a3b8;
+      border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-size:.82rem;
+      font-family:inherit; color:#334155; }
+
   /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
 .tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
 .btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
@@ -322,7 +345,7 @@ body.review .sentence-block{background:#f0f9ff;}
   body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
   .container { max-width: 100%; }
   .audio-panel, .legend-bar, .tool-row, .btn-speak,
-  #backIndex { display:none !important; }
+  #backIndex, .type-panel { display:none !important; }
   header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
   .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
     break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
@@ -356,8 +379,27 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
     </div>
     <div class="tool-row">
+      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+    <div class="type-panel" id="typePanel" hidden>
+      <div class="type-head">
+        <span class="badge badge-grammar">打字練習</span>
+        <b>跟讀打字：</b>每打完一個單字按 <kbd>空白鍵</kbd> 就會唸出那個字；
+        整句打完再按一次 <kbd>空白鍵</kbd>，自動跳到下一句開頭。
+        <span class="type-count" id="typeCount">第 1 / 9 句</span>
+      </div>
+      <div class="type-target" id="typeTarget"></div>
+      <input class="type-input" id="typeInput" type="text" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="在這裡照順序打出英文句子⋯">
+      <div class="type-foot">
+        <button class="btn-tool ghost" onclick="typeGo(-1)">← 上一句</button>
+        <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>
+        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>
+        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>
+      </div>
     </div>
   </header>
   <div class="story-card">
@@ -373,10 +415,10 @@ body.review .sentence-block{background:#f0f9ff;}
           <b>【第一段】</b> 星期六下午，我在媽媽的床底下撿到一個紅色袋子。我問了全家每一個人，卻沒有人知道那是誰的。於是我小心地把它打開，仔細看裡面的每一樣東西。
         </div>
         <div class="translation-p">
-          <b>【第二段】</b> 袋子裡有祖母的眼鏡、叔叔的舊相機，還有一張母親的照片。姊姊說，紙條上的字跡看起來像鄰居的。爸爸接著想起來，說來作客的那位客人女兒用過一個紅袋子。
+          <b>【第二段】</b> 袋子裡有祖母的眼鏡和叔叔的舊相機。姊姊說，紙條上的字跡看起來像鄰居的。爸爸接著想起來，說來作客的那位客人女兒用過一個紅袋子。
         </div>
         <div class="translation-p">
-          <b>【第三段】</b> 我們打電話給表姊，她的家人聽完這件事都笑了。原來那個袋子就是她的，是她忘記帶回去的。我們向她道歉，她則笑著對我們每個人點了點頭。
+          <b>【第三段】</b> 我們打電話給表姊，那個星期她的家人正在我們家作客。原來那個袋子就是她的，是她忘記帶回去的。我們向她道歉，她則笑著對我們每個人點了點頭。
         </div>
       </div>
     </div>
@@ -399,7 +441,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>間接問句 (whose + 名詞 + it was)：</b>在陳述句中，疑問詞後面<b>不倒裝、也不加助動詞</b>：whose bag it was（✗ whose was the bag）。<br> 2. <b>nobody 視為單數：</b>nobody 作主語時，後面的動詞要用<b>第三人稱單數</b> knew（✗ know / knowed）。<br> 3. <b>Whose 問「誰的」：</b>Whose 可單獨使用（Whose bag?），也可接名詞形成間接問句，是本課的核心疑問詞。
+          1. <b>間接問句 (whose + 名詞 + it was)：</b>在陳述句中，疑問詞後面<b>不倒裝、也不加助動詞</b>：whose bag it was（✗ whose was the bag）。<br> 2. <b>nobody 視為單數：</b>nobody 作主語時，後面的動詞要用<b>第三人稱單數</b> knew（✗ know / knowed）。<br> 3. <b>Whose 問「誰的」：</b>Whose 可單獨使用（<b>Whose is this?</b>），也可接名詞形成間接問句（Whose bag is it?），是本課的核心疑問詞。
         </div>
       </div>
       <!-- Sentence 1.3 -->
@@ -416,7 +458,7 @@ body.review .sentence-block{background:#f0f9ff;}
     </div>
     <div class="context-bridge">
       <strong>🌉 段落文意銜接（第一段 ➔ 第二段）：</strong><br>
-      【情境說明】第一段先立起「這是誰的」這個疑問：星期六下午在媽媽床底撿到紅包，問遍全家沒人知道，主角只好自己動手打開，懸念一路留到第二段才慢慢拆開。
+      【情境說明】第一段先立起「這是誰的」這個疑問：星期六下午在媽媽床底撿到紅色袋子，問遍全家沒人知道，主角只好自己動手打開，懸念一路留到第二段才慢慢拆開。
     </div>
     <!-- Paragraph 2 -->
     <div class="paragraph-container">
@@ -447,14 +489,14 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>remember that + 子句：</b>remember 可接 that 子句（記得某件事）或 V-ing（記得做過某事），兩者不可混用。<br> 2. <b>had + 過去分詞（過去完成式）：</b>「用過紅包」發生在「爸爸想起來」之前，因此用 had used。<br> 3. <b>複合所有格：</b>our guest's daughter ＝「我們那位客人的女兒」，只有 guest 加 's，daughter 是被擁有的名詞、不再加 's；只有兩個名詞先後都帶有所屬時才會出現兩層 's（如 our guest's daughter's bag）。
+          1. <b>remember that + 子句：</b>remember 可接 that 子句（記得某件事）或 V-ing（記得做過某事），兩者不可混用。<br> 2. <b>had + 過去分詞（過去完成式）：</b>「用過紅色袋子」發生在「爸爸想起來」之前，因此用 had used。<br> 3. <b>複合所有格：</b>our guest's daughter ＝「我們那位客人的女兒」，只有 guest 加 's，daughter 是被擁有的名詞、不再加 's；只有兩個名詞先後都帶有所屬時才會出現兩層 's（如 our guest's daughter's bag）。
         </div>
       </div>
       <button class="btn-speak" onclick="speakParagraph(['Inside, I saw my grandmother\'s glasses and my uncle\'s old camera.', 'My sister said the handwriting in the note looked like our neighbour\'s.', 'Then my father remembered that our guest\'s daughter had used a red bag.'])">🔊 朗讀第二段全文</button>
     </div>
     <div class="context-bridge">
       <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
-      【情境說明】第二段從袋內物件追查所有者——祖母的眼鏡、叔叔的相機、母親的照片，一層層指向親友；第三段才揭曉答案原來就是來作客的表姊，一場尋物在道歉與笑聲裡收尾。
+      【情境說明】第二段從袋內物件追查所有者——祖母的眼鏡、叔叔的相機，一層層指向親友；第三段才揭曉答案原來就是來作客的表姊，一場尋物在道歉與笑聲裡收尾。
     </div>
     <!-- Paragraph 3 -->
     <div class="paragraph-container">
@@ -597,6 +639,93 @@ body.review .sentence-block{background:#f0f9ff;}
     const fullText = sentenceArray.join(' ');
     speakText(fullText);
   }
+
+  /* ---- 打字練習：每按一次空白鍵唸出剛打完的單字；整句打完再按空白鍵跳到下一句 ---- */
+  var TYPE_SENTENCES = [];
+
+  function typeWords(s) {
+    return String(s || '').toLowerCase()
+      .replace(/['\u2018\u2019]/g, '')      // 撇號不影響比對：haven't 與 havent 皆可
+      .replace(/[^a-z0-9]+/g, ' ')         // 標點一律視為分隔，忽略大小寫
+      .trim()
+      .split(' ')
+      .filter(function (w) { return w.length > 0; });
+  }
+
+  function toggleType() {
+    const panel = document.getElementById('typePanel');
+    const btn = document.getElementById('btnType');
+    if (!panel || !btn) return;
+    panel.hidden = !panel.hidden;
+    btn.textContent = panel.hidden ? '⌨️ 開啟打字練習' : '▼ 收起打字練習';
+    if (!panel.hidden) {
+      typeRender();
+      const input = document.getElementById('typeInput');
+      if (input) input.focus();
+    }
+  }
+
+  function typeRender() {
+    const count = document.getElementById('typeCount');
+    const target = document.getElementById('typeTarget');
+    const input = document.getElementById('typeInput');
+    const total = TYPE_SENTENCES.length;
+    if (count) {
+      count.textContent = typeDone ? '全部完成 🎉'
+                                   : '第 ' + (typeIdx + 1) + ' / ' + total + ' 句';
+    }
+    if (target) {
+      target.textContent = typeDone
+        ? '太棒了，' + total + ' 句全部打完！可以按「重頭開始」再練一次。'
+        : (TYPE_SENTENCES[typeIdx] || '');
+    }
+    if (input) {
+      input.disabled = typeDone;
+      input.value = '';
+      if (!typeDone) input.focus();
+    }
+  }
+
+  function typeOnInput() {
+    const input = document.getElementById('typeInput');
+    if (!input || typeDone) return;
+    const raw = input.value;
+    if (!/\s$/.test(raw)) return;            // 只在剛輸入空白（空白鍵）時處理
+
+    const typed = typeWords(raw);
+    const word = typed.length ? typed[typed.length - 1] : '';
+    if (word) speakText(word);               // 1) 唸出剛打完的那個單字
+
+    const target = typeWords(TYPE_SENTENCES[typeIdx]);
+    if (typed.join(' ') === target.join(' ')) {
+      // 2) 整句（寬鬆比對）已完成 → 跳到下一句開頭
+      typeIdx += 1;
+      typeDone = typeIdx >= TYPE_SENTENCES.length;
+      typeRender();
+    }
+  }
+
+  function typeGo(step) {
+    typeIdx = Math.min(Math.max(typeIdx + step, 0), TYPE_SENTENCES.length - 1);
+    typeDone = false;
+    typeRender();
+  }
+
+  function typeRestart() {
+    typeIdx = 0;
+    typeDone = false;
+    typeRender();
+  }
+
+  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
+  var typeIdx = 0;
+  var typeDone = false;
+
+  (function () {
+    const input = document.getElementById('typeInput');
+    if (input) input.addEventListener('input', typeOnInput);
+  })();
+
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {
     document.body.classList.toggle("review");
@@ -607,6 +736,9 @@ body.review .sentence-block{background:#f0f9ff;}
     }
   }
   function printPage() { window.print(); }
+
+  /* 打字練習用的句子清單：與畫面上顯示的完全一致（由 html 推導） */
+  TYPE_SENTENCES = ['One Saturday afternoon, I found a red bag under my mother\'s bed.', 'I asked everyone in the family, but nobody knew whose bag it was.', 'So I opened it carefully and looked at everything inside.', 'Inside, I saw my grandmother\'s glasses and my uncle\'s old camera.', 'My sister said the handwriting in the note looked like our neighbour\'s.', 'Then my father remembered that our guest\'s daughter had used a red bag.', 'We called my cousin, whose family was visiting us that week.', 'It turned out that the bag was hers, and she had left it here.', 'We said sorry to her, and she gave us a friendly smile.'];
 </script>
 
 </body>

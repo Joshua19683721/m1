@@ -63,12 +63,12 @@ LESSONS.append({
 2. <b>far 構成比較級 (further)：</b>far 的比較級為 <b>farther / further</b>；作形容詞表示「距離更遠」時用 <b>further</b>。<br>
 3. <b>than I did（省略結構）：</b>than I did ＝ than I jumped last year，省略重複動詞，是英文比較句的標準簡化。</li>'''},
    {"text": """My teacher said that trying hard was as important as winning.""",
-    "html": '''My teacher <span class="w-tap kw-verb">said that trying hard was as important as winning</span>.''',
+    "html": '''My teacher <span class="w-tap kw-verb">said that trying hard was as important as</span> <span class="w-tap kw-colloc">winning</span>.''',
     "pop": '''1. <b>間接引語中的主語：</b>that 子句的主語為<b>動名詞</b> trying hard，後面的動詞一律用<b>單數</b> was。<br>
 2. <b>as + 形容詞 + as：</b>as important as winning ＝「跟贏一樣重要」；as...as 兩邊通常要對稱（形容詞 ↔ 形容詞、原級 ↔ 原級），也可一邊接動名詞或名詞，但此例兩邊詞性並不相同（important 是形容詞、winning 是動名詞）。<br>
 3. <b>重要 vs 有趣：</b>important ＝ 重要的（be important to sb）；對照 interesting（be interesting to sb）。'''},
    {"text": """I am as proud of my progress as the winners are.""",
-    "html": '''I <span class="w-tap kw-verb">am as proud of my progress as the winners are</span>.''',
+    "html": '''I <span class="w-tap kw-verb">am as proud of my</span> <span class="w-tap kw-colloc">progress</span> <span class="w-tap kw-verb">as the winners are</span>.''',
     "pop": '''1. <b>as...as 的省略：</b>as proud of… as the winners (are) proud of…，後半句省略重複部分。<br>
 2. <b>be proud of + 名詞：</b>proud 為 A2 Key「Personal Feelings」形容詞，固定搭配為 <b>be proud of</b>。<br>
 3. <b>progress 為不可數名詞：</b><b>make progress</b> ＝「有進展」，不可加 -s（✗ <s>progresses</s>）。</li>'''},
@@ -81,7 +81,7 @@ LESSONS.append({
    '''<li><b>1. as...as 與 not as...as：</b><br>• <b>as + 原級 + as</b> ＝ 和⋯⋯一樣：He is <u>as tall as</u> I am.<br>• <b>not as + 原級 + as</b> ＝ 不如⋯⋯：He is <u>not as tall as</u> I am.<br>• <span style="color:#dc2626;">⚠️</span>兩式都用<b>原級</b>，且第二個必須是 <b>as</b>（✗ <s>not as...than</s>）。</li>''',
    '''<li><b>2. 比較級構成：</b><br>• 單音節：+ er / + est：fast → fast<b>er</b> → the fast<b>est</b><br>• 多音節：+ more / + most：important → more important → <b>the most important</b><br>• <b>修飾語不規則</b>：good/well → <b>better</b> → best；bad → <b>worse</b> → worst；far → <b>farther/further</b><br>• <b>加強</b>：much / far / even / a lot + 比較級。</li>''',
    '''<li><b>3. 「愈是⋯愈是⋯」的三種句型：</b><br>• <b>比較級 + and + 比較級</b> ＝ 越來越⋯⋯：faster <b>and faster</b><br>• <b>The + 比較級…, the + 比較級…</b> ＝ 愈是⋯就愈⋯：<u>The more</u> you practise, <u>the better</u> you get.<br>• <b>the + 比較級 + 名詞, the + 比較級 + 名詞</b> ＝ 愈是那個⋯，就愈⋯：The more time you spend, the better results you get.<br><span style="color:#dc2626;">⚠️</span>三者不可混用，是會考句型判讀高頻題。</li>''',
-   '''<li><b>4. 比較子句的省略：</b><br>• <b>than I did</b> ＝ than I jumped last year（省略重複動詞）<br>• <b>as he (is)</b> ＝ 省略 be 動詞（I am as proud as he <u>is</u>.）<br>• <b>as the winners</b> ＝ 只留受詞，句子已完整（as proud as the winners）。</li>''',
+   '''<li><b>4. 比較子句的省略：</b><br>• <b>than I did</b> ＝ than I jumped last year（省略重複動詞）<br>• <b>as he (is)</b> ＝ 省略 be 動詞（I am as proud as he <u>is</u>.）<br>• <b>as the winners</b> ＝ 省略的是<b>謂語</b>（are proud of…）：I am as proud of my progress as the winners <u>are</u> proud of it.；<b>as proud as the winners</b> 本身沒有動詞，單獨出現並不成句。</li>''',
   ],
   [
    '''<li><b>take part in + 活動</b>：參加（活動）；<b>join + 團體</b>：加入（組織）。</li>''',
@@ -142,11 +142,11 @@ LESSONS.append({
 3. <b>find 的過去式 (found)：</b>find–found–found，<b>過去式與過去分詞同形</b>。'''},
    {"text": """Inside it was a letter that my grandmother had written twenty years ago.""",
     "html": '''<span class="w-tap kw-link">Inside it</span> <span class="w-tap kw-verb">was a letter that my grandmother had written</span> twenty years ago.''',
-    "pop": '''1. <b>地點狀語置前倒裝 (Inside it was a letter...)：</b>為了強調地點而將 <b>Inside it</b> 放在句首，主語 a letter 後置、動詞提到主語之前，是 A2 閱讀常見的文體變化。<br>
+    "pop": '''1. <b>地點狀語置前 (Inside it was a letter...)：</b>把地點狀語 <b>Inside it</b> 提到句首以加強語氣；主語 a letter 仍在動詞 was 之前，本句<b>並未使用倒裝</b>（真正倒裝如 Here came a letter.）。<br>
 2. <b>that 引導定語從句：</b>that 指代前面的 a letter，在句中<b>充當受詞</b>（had written <u>that</u>／<u>it</u>）。<br>
 3. <b>過去完成式 (had written)：</b>had + 過去分詞，表示「在找到箱子<b>之前</b>就已經寫好了」；twenty years ago 為過去時間。</li>'''},
    {"text": """The letter said that she wanted me to remember where we came from.""",
-    "html": '''The letter <span class="w-tap kw-verb">said that she wanted me to remember where</span> we came from.''',
+    "html": '''The letter <span class="w-tap kw-verb">said that she wanted me to remember where</span> we <span class="w-tap kw-colloc">came from</span>.''',
     "pop": '''1. <b>間接引語 (said that + 子句)：</b>子句主語 she，謂語 wanted 保留原時態。<br>
 2. <b>want sb to + 原形 (wanted me to remember)：</b>want ＋ 人 ＋ to do，<b>to 不可省略</b>（對照 make／let／have 接原形）。<br>
 3. <b>間接問句 (where we came from)：</b>「疑問詞 + 主詞 we + 動詞 came」的陳述語序，不可寫成 where did we come from。</li>'''},

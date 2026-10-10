@@ -58,7 +58,7 @@ LESSONS.append({
   ],
   [
    {"text": "The competition was much harder than our practice games.",
-    "html": 'The competition <span class="w-tap kw-verb">was much harder than</span> our practice games.',
+    "html": 'The competition <span class="w-tap kw-verb">was much harder than</span> our <span class="w-tap kw-colloc">practice games</span>.',
     "pop": '''1. <b>程度副詞 much (much harder)：</b>修飾比較級 harder 表示「得多」，是比較級最常見的加強方式。<br>
 2. <b>than 引導比較對象：</b>than 後接名詞 our practice games，在句中作「被比較的對象」；本句也可對調改寫為 Our practice games were easier。<br>
 3. <b>複合名詞 (practice games)：</b>practice 在此作「練習用的」修飾 games，符合「修飾詞＋中心詞」順序。'''},
@@ -153,7 +153,7 @@ LESSONS.append({
     "html": 'The doctor <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">must take the medicine</span> <span class="w-tap kw-colloc">three times a day</span> and <span class="w-tap kw-verb">drink more water</span>.',
     "pop": '''1. <b>must + 原形 (must take)：</b>must 表示「必須」<b>（來自說者的強調或醫囑）</b>，後接原形 take。<br>
 2. <b>次數表達 (three times a day)：</b>「三次／一天」，a day 在此相當於中文的「每一天」，整個片語置於句尾。<br>
-3. <b>more + 不可數名詞：</b>drink <b>more</b> water ＝「喝更多水」，more 後接不可數名詞且不可加複數。'''},
+3. <b>more + 名詞：</b>drink <b>more</b> water ＝「喝更多水」。more 後可接不可數名詞（more water），也可接可數名詞的複數（more books），但不可直接接單數可數名詞（✗ more book）。'''},
   ],
   [
    {"text": "He also told me that I shouldn't eat any ice cream for a week.",

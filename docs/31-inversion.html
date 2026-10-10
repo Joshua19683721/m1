@@ -308,6 +308,29 @@
     .badge-colloc { background: var(--accent-orange); }
     .badge-vocab { background: var(--accent-green); }
 
+    /* 打字練習面板 */
+    .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
+      padding:16px 20px; margin-top:14px; text-align:left; }
+    .type-panel[hidden] { display:none; }
+    .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      font-size:.92rem; color:#134e4a; }
+    .type-count { margin-left:auto; font-weight:700; color:#0f766e; white-space:nowrap; }
+    .type-target { margin:12px 0 10px; padding:12px 15px; background:#fff;
+      border:1px dashed #5eead4; border-radius:8px; font-size:1.02rem;
+      color:#0f172a; line-height:1.7; }
+    .type-input { width:100%; padding:11px 14px; border:2px solid #14b8a6;
+      border-radius:10px; font-size:1.05rem; font-family:inherit; outline:none;
+      background:#fff; color:#0f172a; }
+    .type-input:focus { border-color:#0d9488; box-shadow:0 0 0 3px rgba(20,184,166,.18); }
+    .type-input:disabled { background:#f1f5f9; border-color:#cbd5e1;
+      color:#64748b; cursor:not-allowed; }
+    .type-foot { display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px; }
+    .type-foot .hint { font-size:.82rem; color:#475569; }
+    .type-panel kbd { background:#fff; border:1px solid #94a3b8;
+      border-bottom-width:2px; border-radius:5px; padding:1px 6px; font-size:.82rem;
+      font-family:inherit; color:#334155; }
+
   /* ---- 附加樣式：列印版面 + 全文複習模式 ---- */
 .tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;}
 .btn-tool{background:#0f766e;color:#fff;border:none;padding:7px 14px;border-radius:18px;
@@ -322,7 +345,7 @@ body.review .sentence-block{background:#f0f9ff;}
   body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
   .container { max-width: 100%; }
   .audio-panel, .legend-bar, .tool-row, .btn-speak,
-  #backIndex { display:none !important; }
+  #backIndex, .type-panel { display:none !important; }
   header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
   .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
     break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
@@ -356,8 +379,27 @@ body.review .sentence-block{background:#f0f9ff;}
       <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>
     </div>
     <div class="tool-row">
+      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+    </div>
+    <div class="type-panel" id="typePanel" hidden>
+      <div class="type-head">
+        <span class="badge badge-grammar">打字練習</span>
+        <b>跟讀打字：</b>每打完一個單字按 <kbd>空白鍵</kbd> 就會唸出那個字；
+        整句打完再按一次 <kbd>空白鍵</kbd>，自動跳到下一句開頭。
+        <span class="type-count" id="typeCount">第 1 / 9 句</span>
+      </div>
+      <div class="type-target" id="typeTarget"></div>
+      <input class="type-input" id="typeInput" type="text" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="在這裡照順序打出英文句子⋯">
+      <div class="type-foot">
+        <button class="btn-tool ghost" onclick="typeGo(-1)">← 上一句</button>
+        <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>
+        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>
+        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>
+      </div>
     </div>
   </header>
   <div class="story-card">
@@ -454,7 +496,7 @@ body.review .sentence-block{background:#f0f9ff;}
     </div>
     <div class="context-bridge">
       <strong>🌉 段落文意銜接（第二段 ➔ 第三段）：</strong><br>
-      【情境說明】第二段進入實作：Here is our plan 提出計畫，同學各自選科目、借字典，第三句卻用 However 點出「忙著寫作業」的現實阻力；第三段 Only then 把領悟頂到句首，最後以圖書館裡的安靜畫面收束，完成「轉合」。
+      【情境說明】第二段進入實作：Here is our plan 提出計畫，同學各自選科目、借字典，第三句卻用 However 點出「忙著寫作業」的現實阻力；第三段 Only then 把領悟頂到句首，最後以教室裡的安靜畫面收束，完成「轉合」。
     </div>
     <!-- Paragraph 3 -->
     <div class="paragraph-container">
@@ -475,7 +517,7 @@ body.review .sentence-block{background:#f0f9ff;}
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
-          1. <b>時間片語 + 一般過去式：</b>At the end of term ＝「學期快結束時」，放句首時後面加逗號，謂語用 gave。<br> 2. <b>give sb sth（雙受詞）：</b>give ＋ 人 ＋ 物，中間<b>不加任何介詞</b>；不可寫成 gave a short exam to us class。<br> 3. <b>in class 與 in the classroom：</b>in class ＝「在課堂上（上課期間）」，class 前<b>不加 the</b>，是會考常見的小陷阱。
+          1. <b>時間片語 + 一般過去式：</b>At the end of term ＝「學期快結束時」，放句首時後面加逗號，謂語用 gave。<br> 2. <b>give sb sth（雙受詞）：</b>give ＋ 人 ＋ 物，中間<b>不加任何介詞</b>：<u>✓ gave us a short exam</u>；<span style="color:#dc2626;">✗</span> <s>gave an exam to us</s>。<br> 3. <b>in class 與 in the classroom：</b>in class ＝「在課堂上（上課期間）」，class 前<b>不加 the</b>，是會考常見的小陷阱。
         </div>
       </div>
       <!-- Sentence 3.3 -->
@@ -496,7 +538,7 @@ body.review .sentence-block{background:#f0f9ff;}
     <p style="color: var(--text-muted); font-size: 0.95rem;">本課把會考最常見的倒裝句放進閱讀社的故事：Not only...but also、Here comes、Only then，以及 Never 開頭的否定倒裝。</p>
     <div class="summary-grid">
       <div class="summary-box">
-        <h3><span class="badge badge-grammar">文法句型</span> 三種倒裝句型的造句規則</h3>
+        <h3><span class="badge badge-grammar">文法句型</span> 四種倒裝句型的造句規則</h3>
         <ul class="summary-list">
 <li><b>1. Not only...but also（不只⋯⋯而且⋯⋯）：</b><br>Not only 置於<b>句首</b>時必須倒裝：Not only <b>do</b> I love it, but I also want to save it.<br><span style="color:#dc2626;">⚠️</span>✗ <s>Not only I do love...</s>／✓ <u>Not only do I love...</u>。</li>
 <li><b>2. Here comes／Here is（⋯⋯來了／這就是）：</b><br>• <b>Here comes + 單數名詞</b>：Here <u>comes</u> the news.（消息來了）<br>• <b>Here is + 單數名詞</b>：Here <u>is</u> our plan.（這就是計畫）<br>• <b>Here are + 複數名詞</b>：Here <u>are</u> our bags.<br><span style="color:#dc2626;">⚠️</span>news、information 視為單數。</li>
@@ -521,7 +563,7 @@ body.review .sentence-block{background:#f0f9ff;}
         <ul class="summary-list">
 <li><b>only 的位置決定要不要倒裝：</b><br>• only + <b>副詞</b>（then / after the exam / at nine）→ <b>要倒裝</b>：Only then <u>did we</u> know.<br>• only + <b>名詞／主詞</b> → <b>不倒裝</b>：Only my cousin knew.</li>
 <li><b>hardly / scarcely：</b>兩者皆表「幾乎不」，都要倒裝：Hardly <u>had he</u> sat down when the bell rang.</li>
-<li><b>no sooner...than／hardly...when：</b>皆表「一⋯⋯就⋯⋯」，兩個子句都要倒裝：No sooner <u>had we</u> left than it rained.</li>
+<li><b>no sooner...than／hardly...when：</b>皆表「一⋯⋯就⋯⋯」，<b>只有前一個子句要倒裝</b>，後接 than／when 的子句用陳述語序：No sooner <u>had we</u> left than it rained.</li>
         </ul>
       </div>
     </div>
@@ -597,6 +639,93 @@ body.review .sentence-block{background:#f0f9ff;}
     const fullText = sentenceArray.join(' ');
     speakText(fullText);
   }
+
+  /* ---- 打字練習：每按一次空白鍵唸出剛打完的單字；整句打完再按空白鍵跳到下一句 ---- */
+  var TYPE_SENTENCES = [];
+
+  function typeWords(s) {
+    return String(s || '').toLowerCase()
+      .replace(/['\u2018\u2019]/g, '')      // 撇號不影響比對：haven't 與 havent 皆可
+      .replace(/[^a-z0-9]+/g, ' ')         // 標點一律視為分隔，忽略大小寫
+      .trim()
+      .split(' ')
+      .filter(function (w) { return w.length > 0; });
+  }
+
+  function toggleType() {
+    const panel = document.getElementById('typePanel');
+    const btn = document.getElementById('btnType');
+    if (!panel || !btn) return;
+    panel.hidden = !panel.hidden;
+    btn.textContent = panel.hidden ? '⌨️ 開啟打字練習' : '▼ 收起打字練習';
+    if (!panel.hidden) {
+      typeRender();
+      const input = document.getElementById('typeInput');
+      if (input) input.focus();
+    }
+  }
+
+  function typeRender() {
+    const count = document.getElementById('typeCount');
+    const target = document.getElementById('typeTarget');
+    const input = document.getElementById('typeInput');
+    const total = TYPE_SENTENCES.length;
+    if (count) {
+      count.textContent = typeDone ? '全部完成 🎉'
+                                   : '第 ' + (typeIdx + 1) + ' / ' + total + ' 句';
+    }
+    if (target) {
+      target.textContent = typeDone
+        ? '太棒了，' + total + ' 句全部打完！可以按「重頭開始」再練一次。'
+        : (TYPE_SENTENCES[typeIdx] || '');
+    }
+    if (input) {
+      input.disabled = typeDone;
+      input.value = '';
+      if (!typeDone) input.focus();
+    }
+  }
+
+  function typeOnInput() {
+    const input = document.getElementById('typeInput');
+    if (!input || typeDone) return;
+    const raw = input.value;
+    if (!/\s$/.test(raw)) return;            // 只在剛輸入空白（空白鍵）時處理
+
+    const typed = typeWords(raw);
+    const word = typed.length ? typed[typed.length - 1] : '';
+    if (word) speakText(word);               // 1) 唸出剛打完的那個單字
+
+    const target = typeWords(TYPE_SENTENCES[typeIdx]);
+    if (typed.join(' ') === target.join(' ')) {
+      // 2) 整句（寬鬆比對）已完成 → 跳到下一句開頭
+      typeIdx += 1;
+      typeDone = typeIdx >= TYPE_SENTENCES.length;
+      typeRender();
+    }
+  }
+
+  function typeGo(step) {
+    typeIdx = Math.min(Math.max(typeIdx + step, 0), TYPE_SENTENCES.length - 1);
+    typeDone = false;
+    typeRender();
+  }
+
+  function typeRestart() {
+    typeIdx = 0;
+    typeDone = false;
+    typeRender();
+  }
+
+  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
+  var typeIdx = 0;
+  var typeDone = false;
+
+  (function () {
+    const input = document.getElementById('typeInput');
+    if (input) input.addEventListener('input', typeOnInput);
+  })();
+
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {
     document.body.classList.toggle("review");
@@ -607,6 +736,9 @@ body.review .sentence-block{background:#f0f9ff;}
     }
   }
   function printPage() { window.print(); }
+
+  /* 打字練習用的句子清單：與畫面上顯示的完全一致（由 html 推導） */
+  TYPE_SENTENCES = ['Not only do I love our reading club, but I also want to save it.', 'Here comes the news: our reading club has only ten students now.', 'The teacher decided to change the club this term and asked us for ideas.', 'Here is our plan: we study English in the library every Friday.', 'Every classmate chooses a subject and borrows a dictionary for the project.', 'However, many students were too busy with their homework to join us.', 'Only then did we learn that studying together matters more than marks.', 'At the end of term, our teacher gave us a short exam in class.', 'Now our lessons end with reading, and our classroom is always quiet.'];
 </script>
 
 </body>

@@ -41,13 +41,13 @@ LESSONS.append({
   ],
   [
    {"text": """My friend Amy suggested that we should clean the board after every lesson.""",
-    "html": '''My friend Amy <span class="w-tap kw-verb">suggested that we should clean the board after</span> every lesson.''',
+    "html": '''My friend Amy <span class="w-tap kw-verb">suggested that we should clean the board</span> <span class="w-tap kw-link">after every lesson</span>.''',
     "pop": '''1. <b>suggest + 建議內容：</b><br>• 表「建議」：suggest that sb <b>(should) + 原形</b>（suggested that we <u>should clean</u>）<br>• 表「暗示」：suggest that + <b>陳述語序</b>（His face suggested that he <u>was</u> angry.）<br><span style="color:#dc2626;">⚠️ 兩者絕不可混用。</span><br>
 2. <b>after every lesson：</b>every + 單數名詞 ＋ after，＝「每堂課之後」。<br>
 3. <b>should + 原形 (should clean)：</b>should 表建議，後接原形。'''},
    {"text": """Some students wanted to open the windows more often, while others thought the room was too cold.""",
     "html": '''Some students <span class="w-tap kw-verb">wanted to open the windows more often</span>, while others <span class="w-tap kw-link">thought the room was too cold</span>.''',
-    "pop": '''1. <b>more often：</b>often 的比較級為 <b>more often</b>（多音節副詞加 more），＝「更頻繁地」。<br>
+    "pop": '''1. <b>more often：</b>often 的比較級為 <b>more often</b>，＝「更頻繁地」。副詞比較級的規則：單音節副詞加 -er（如 hard → harder），多音節或 -ly 結尾的副詞前加 <b>more</b> + 原級（如 quietly → more quietly）；often 是特例，雖是單音節卻加 more。<br>
 2. <b>while 作對比：</b>while 在此不表示時間，而表示<b>然而、另一方面</b>，連接兩種相反的意見。<br>
 3. <b>too + 形容詞 (too cold)：</b>too 表「太⋯⋯（超出可接受範圍）」，與 merely very 不同。</li>'''},
    {"text": """So I suggested reading quietly for ten minutes after lunch.""",
@@ -58,14 +58,14 @@ LESSONS.append({
   ],
   [
    {"text": """We decided to try the new rules for a week.""",
-    "html": '''We <span class="w-tap kw-verb">decided to try the new rules for</span> a week.''',
+    "html": '''We <span class="w-tap kw-verb">decided to try the new rules</span> <span class="w-tap kw-link">for a week</span>.''',
     "pop": '''1. <b>decide to + 原形 (decided to try)：</b>decide 後接不定詞，是 A2 Key 必收句型。<br>
 2. <b>try + 名詞：</b>try the rules ＝「試試看新規則」；對照 <b>try to do</b>（試著做某事）與 <b>try out</b>（試訓）。<br>
 3. <b>for a week：</b>表示試行的時間長度。'''},
    {"text": """Let's see the result next Monday, shall we?""",
     "html": '''<span class="w-tap kw-colloc">Let's see the result</span> next Monday, <span class="w-tap kw-colloc">shall we</span>?''',
     "pop": '''1. <b>Let's + 原形 (Let's see)：</b>Let us 的縮寫，後接<b>原形動詞</b>，表示提議「我們來⋯⋯吧」。<br>
-2. <b>附加問句 (shall we?)：</b>對 Let's...、Let us... 的<b>建議</b>，用 shall we? 徵求同意；對 will you? 則用 <b>will you?</b>。<br>
+2. <b>附加問句 (shall we?)：</b>對 Let's...、Let us... 的<b>建議</b>，用 shall we? 徵求同意；對 How about...?／Why don't we...? 的<b>疑問句</b>，回答才用 OK, let's...。<br>
 3. <b>時間副詞置於句中：</b>next Monday 放在動詞 see 與句末問號之間，不影響主句語序。'''},
    {"text": """Don't worry if you forget; just do your best and tell me the next day.""",
     "html": '''<span class="w-tap kw-verb">Don't worry if</span> you forget; <span class="w-tap kw-verb">just do your best and tell me</span> the next day.''',
@@ -136,7 +136,7 @@ LESSONS.append({
   ],
   [
    {"text": """I heard my brother singing in the next room.""",
-    "html": '''I <span class="w-tap kw-verb">heard my brother singing in</span> the next room.''',
+    "html": '''I <span class="w-tap kw-verb">heard my brother singing</span> in the <span class="w-tap kw-colloc">next room</span>.''',
     "pop": '''1. <b>感官動詞 + 賓語 + 現在分詞 (heard sb singing)：</b><span style="color:#dc2626;">⚠️ 核心規則</span>——<b>強調「動作正在進行、還沒結束」</b>時用 <b>-ing</b>。<br>　• <b>hear sb doing</b> ＝ 聽見某人<b>正在</b>做某事<br>　• <b>hear sb do</b> ＝ 聽見某人<b>做了</b>某事（全貌）<br>
 2. <b>進行時強調當下：</b>本句重點是「此刻正在唱」，因此用 singing。<br>
 3. <b>感官動詞範圍：</b>see / hear / smell / feel / watch 皆適用此規則。</li>'''},
@@ -160,7 +160,7 @@ LESSONS.append({
    {"text": """We worked together for two hours, and I felt tired but useful.""",
     "html": '''We <span class="w-tap kw-verb">worked together for two hours</span>, and I <span class="w-tap kw-verb">felt tired but useful</span>.''',
     "pop": '''1. <b>work together：</b>together ＝「一起」，置於動詞後，也可寫 work with each other。<br>
-2. <b>feel + 形容詞 (felt tired but useful)：</b>feel 後接形容詞描述自身感受；對照 <b>feel + -ed 形容詞</b>（I felt worried）描述引發感受的原因。<br>
+2. <b>feel + 形容詞 (felt tired but useful)：</b>feel 後接<b>形容詞</b>描述<b>自身的感受</b>（tired but useful：又累又有成就感）；若接<b>造成感受的事物／原因</b>，感受就來自別處，如 feel worried（感到擔心，擔心的是某件事）、I felt the cold wind.。注意 tired 本身也是 -ed 形容詞，兩者並不是靠「有沒有 -ed」區分，而是看受詞描述的是自己的狀態還是外在的原因。<br>
 3. <b>but 的對比：</b>tired（身體累）與 useful（心理踏實）並列，形成勞動後的雙重收穫。'''},
    {"text": """Now I make my bed every morning and never forget to wash my hands.""",
     "html": '''<span class="w-tap kw-link">Now</span> I <span class="w-tap kw-colloc">make my bed every morning</span> and <span class="w-tap kw-verb">never forget to wash my hands</span>.''',

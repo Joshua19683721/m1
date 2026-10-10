@@ -30,7 +30,7 @@ body.review .sentence-block{background:#f0f9ff;}
   body { background:#fff; padding:0; font-size: 11.5pt; line-height:1.6; }
   .container { max-width: 100%; }
   .audio-panel, .legend-bar, .tool-row, .btn-speak,
-  #backIndex { display:none !important; }
+  #backIndex, .type-panel { display:none !important; }
   header { box-shadow:none; border-top:3px solid #1e3a8a; padding:12px; }
   .story-card, .summary-card { box-shadow:none; border:1px solid #cbd5e1;
     break-inside:avoid; page-break-inside:avoid; margin-bottom:10px; }
@@ -214,8 +214,27 @@ def render(L, idx):
              '      <div class="legend-item">💡 <b>滑鼠移至句子上方</b>：即可顯示文法結構解析</div>\n'
              '    </div>\n'
              '    <div class="tool-row">\n'
-             '      <button class="btn-tool" id="btnReview" onclick="toggleReview()">\u25bc \u5c55\u958b\u5168\u90e8\u89e3\u6790</button>\n'
-             '      <button class="btn-tool ghost" onclick="printPage()">\U0001F5A8 \u5217\u5370\u672c\u7bc0</button>\n'
+             '      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>\n'
+             '      <button class="btn-tool" id="btnReview" onclick="toggleReview()">\u25bc 展開全部解析</button>\n'
+             '      <button class="btn-tool ghost" onclick="printPage()">\U0001F5A8 列印本節</button>\n'
+             '    </div>\n'
+             '    <div class="type-panel" id="typePanel" hidden>\n'
+             '      <div class="type-head">\n'
+             '        <span class="badge badge-grammar">打字練習</span>\n'
+             '        <b>跟讀打字：</b>每打完一個單字按 <kbd>空白鍵</kbd> 就會唸出那個字；\n'
+             '        整句打完再按一次 <kbd>空白鍵</kbd>，自動跳到下一句開頭。\n'
+             '        <span class="type-count" id="typeCount">第 1 / 9 句</span>\n'
+             '      </div>\n'
+             '      <div class="type-target" id="typeTarget"></div>\n'
+             '      <input class="type-input" id="typeInput" type="text" autocomplete="off"\n'
+             '             autocorrect="off" autocapitalize="off" spellcheck="false"\n'
+             '             placeholder="在這裡照順序打出英文句子⋯">\n'
+             '      <div class="type-foot">\n'
+             '        <button class="btn-tool ghost" onclick="typeGo(-1)">← 上一句</button>\n'
+             '        <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>\n'
+             '        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>\n'
+             '        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>\n'
+             '      </div>\n'
              '    </div>\n  </header>\n')
 
     P.append('  <div class="story-card">\n'
@@ -274,7 +293,12 @@ def render(L, idx):
              '    <div class="summary-grid">\n' + "\n\n".join(boxes) + '\n    </div>\n  </div>\n')
 
     P.append(FOOTER)
-    P.append("<script>" + SCRIPT + EXTRA_JS + "</script>\n\n</body>\n</html>\n")
+    sentences = ", ".join(Q + jsq(s["text"]) + Q
+                          for para in t["paragraphs"] for s in para)
+    P.append("<script>" + SCRIPT + EXTRA_JS +
+             "\n  /* 打字練習用的句子清單：與畫面上顯示的完全一致（由 html 推導） */\n"
+             "  TYPE_SENTENCES = [" + sentences + "];\n"
+             "</script>\n\n</body>\n</html>\n")
     return "".join(P)
 
 

@@ -65,11 +65,11 @@ LESSONS.append({
    {"text": "Everyone stopped talking and listened to the lovely song.",
     "html": 'Everyone <span class="w-tap kw-verb">stopped talking</span> and <span class="w-tap kw-verb">listened to</span> the lovely song.',
     "pop": '''1. <b>stop + V-ing (stopped talking)：</b><span style="color:#dc2626;">⚠️ 會考超高頻陷阱</span>——stop V-ing ＝「停止做某事」；stop to V ＝「停下來去的另一件事」（stop talking 停止說話／stop to talk 停下來聊天）。<br>
-2. <b>listen to + 對象：</b>listen 後<b>必須加 to</b> 才能接受詞，是僅此一例的常用動詞。<br>
+2. <b>listen to + 對象：</b>listen 後<b>必須加 to</b> 才能接受詞，to 不可省略。同類「動詞＋介系詞＋受詞」的高頻動詞還有 <b>look at</b>（看）、<b>wait for</b>（等候）、<b>depend on</b>（依靠）、<b>ask for</b>（要求）。<br>
 3. <b>感官形容詞 (lovely)：</b>lovely 為形容詞修飾 song，不可寫成 *the song lovely。'''},
    {"text": "In the end, we spent only forty yuan and took a lot of photos.",
     "html": '<span class="w-tap kw-link">In the end</span>, we <span class="w-tap kw-verb">spent</span> only forty yuan and <span class="w-tap kw-colloc">took a lot of photos</span>.',
-    "pop": '''1. <b>轉折片語 (In the end)：</b>意為「最後」，置於句首加逗號，常用於故事結尾收束全文。<br>
+    "pop": '''1. <b>收束副詞片語 (In the end)：</b>意為「最後」，表示事情依序發展到最後步驟，屬於敘述順序的總結用語（不是轉折），置於句首加逗號，常用於故事結尾收束全文。<br>
 2. <b>spend + 金錢 + on/for + 對象：</b>spend 為 A2 Key「Shopping」主題核心動詞，主語須為人（we spent forty yuan）；<b>cost</b> 也表「花費」但主語為物（it cost forty yuan），兩者不可互換主語。<br>
 3. <b>take photos：</b>take a photo／photo 複數為 photos，是拍照情境的固定搭配。'''},
   ],
@@ -194,7 +194,7 @@ LESSONS.append({
   ],
   [
    [
-    '''<li><b>sit down / lie down：</b><br>• <b>sit down</b> ＝ 坐下（sit–sat–sat）<br>• <b>lie down</b> ＝ 躺下（lie–lay–lain）<br>• <b>stand up</b> ＝ 站起<br><span style="color:#dc2626;">⚠️ 常誤：把 sit down 寫成 lie down。</span></li>''',
+    '''<li><b>sit down / lie down：</b><br>• <b>sit down</b> ＝ 坐下（sit–sat–sat）<br>• <b>lie down</b> ＝ 躺下（lie–lay–lain）<br>• <b>stand up</b> ＝ 站起來<br><span style="color:#dc2626;">⚠️ 常誤：把 sit down 寫成 lie down。</span></li>''',
     '''<li><b>delayed / cancelled：</b><br>• <b>delayed</b> ＝ 延誤、遲到（still will arrive）<br>• <b>cancelled</b> ＝ 取消（不再運行）<br>• <b>on time</b> ＝ 準時</li>''',
    '''<li><b>delay / cancel / miss：</b><br>• <b>delay</b> ＝ 延誤（train was delayed by…）<br>• <b>cancel</b> ＝ 取消（班車停駛）<br>• <b>miss</b> ＝ 錯過（miss the bus / miss the train）</li>''',
    '''<li><b>by + 單位的三種用法：</b><br>• <b>by + 時間量</b>：遲了多久（delayed <b>by</b> twenty minutes）<br>• <b>by + 單位</b>：相差多少（won <b>by</b> two points）<br>• <b>by + 地點</b>：車站旁邊（sit <b>by</b> the window）</li>''',

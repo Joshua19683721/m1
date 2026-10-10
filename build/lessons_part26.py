@@ -37,7 +37,7 @@ LESSONS.append({
     "html": 'My bottle <span class="w-tap kw-verb">was</span> <span class="w-tap kw-colloc">one litre of juice</span>, and I <span class="w-tap kw-verb">read</span> every word <span class="w-tap kw-link">on the back</span>.',
     "pop": '''1. <b>量的表達：one + 單位名詞 + of + 內容物：</b>one litre of juice ＝「一公升的果汁」，of 後面接真正被裝盛的東西。<br>
 2. <b>不可數名詞前的單位 (one litre)：</b>litre 是容積單位；juice 為不可數名詞，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可數名詞前要靠 <b>of</b> 引導數量。<br>
-3. <b>過去式 (read)：</b>此處 read 是「讀」的過去式，讀音與原形相同（read–read–read）。'''},
+3. <b>過去式 (read)：</b>此處 read 是「讀」的過去式，拼字與原形相同，但<b>發音不同</b>（原形 /riːd/、過去 /red/）。'''},
   ],
   [
    {"text": "This bottle has less sugar than that one, so it is lighter for students to carry.",
@@ -64,7 +64,7 @@ LESSONS.append({
 3. <b>feel + 形容詞 (felt worried)：</b>feel 是連繫動詞，後接形容詞；felt 為 feel 的不規則過去式（feel–felt–felt）。'''},
    {"text": "So we compared the numbers and chose the bottle with half the sugar and less fat.",
     "html": '<span class="w-tap kw-link">So</span> we <span class="w-tap kw-verb">compared</span> the numbers and <span class="w-tap kw-verb">chose the bottle</span> <span class="w-tap kw-colloc">with half the sugar</span> and less fat.',
-    "pop": '''1. <b>compare A with B：</b>compare ＝「把 A 與 B 相比較」，A、B 前都要用 the。<br>
+    "pop": '''1. <b>compare A with B：</b>compare ＝「把 A 與 B 相比較」（compare my bottle with hers）；A、B 前的冠詞依是否特指而定（the numbers／my bottle），不是一律加 the。<br>
 2. <b>choose 的過去式 (chose)：</b>choose–chose–chosen 為不規則變化；此句受詞是 the bottle，後半接 with 片語。<br>
 3. <b>with + 名詞／短語：</b>with 在此是「帶有」＝ with half the sugar，等同 with less sugar。'''},
    {"text": "Our teacher said that reading a food label is easier than guessing from the front.",
@@ -161,7 +161,7 @@ LESSONS.append({
     "html": 'My <span class="w-tap kw-colloc">boss</span> <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">should take a break</span> and <span class="w-tap kw-verb">tell the manager</span>.',
     "pop": '''1. <b>say that + 子句的動詞：</b>主句是過去式 said，that 子句若表示建議，<b>should 不變</b>；並列的兩個動詞都接原形。<br>
 2. <b>should + 原形 (should take)：</b>should 表示「應該」，後接原形 take，語氣比 must 委婉。<br>
-3. <b>take a break：</b>break 在此是不可數名詞「休息」，前不加冠詞、不加 -s；休息之後再把事情說清楚。'''},
+3. <b>take a break：</b>break 在此是<b>可數名詞</b>，前面要加冠詞 a（take a break、have a break、a coffee break），也可加 -s（take two breaks）；休息之後再把事情說清楚。'''},
    {"text": "Now I work there on Sundays too, and I want to be a nurse.",
     "html": 'Now I <span class="w-tap kw-verb">work there</span> <span class="w-tap kw-link">on Sundays too</span>, and I <span class="w-tap kw-verb">want to be</span> a <span class="w-tap kw-colloc">nurse</span>.',
     "pop": '''1. <b>一般現在式表習慣 (I work there)：</b>Now 與 too 顯示這是現在持續的習慣，主語 I 用原形 work。<br>
@@ -181,7 +181,7 @@ LESSONS.append({
   [
    '''<li><b>part-time job</b>：兼職工作（全職＝full-time job）。</li>''',
    '''<li><b>work in a coffee shop</b>：在咖啡店工作（工作地點用 in／at）。</li>''',
-   '''<li><b>take a break</b>：休息一下（break 為不可數名詞）。</li>''',
+   '''<li><b>take a break</b>：休息一下（break 在此為可數名詞，前面加 a）。</li>''',
    '''<li><b>earn money</b>：賺錢（earn 靠工作取得收入）。</li>''',
    '''<li><b>change my shift／take two days off</b>：換班／請兩天假。</li>''',
   ],
@@ -203,9 +203,9 @@ LESSONS.append({
  "topic": "Education ／ Personal Feelings, Opinions and Experiences",
  "grammar": "if 條件句與 should 求助句型、feel + 形容詞表達情緒、say／tell 的用法差異",
  "translation": [
-   "第二週開學時，一位叫 Mei 的新同學加入我們的班。她一個人坐在教室靠窗的位置，不跟任何人說話。老師請她下課後留下來談談。",
-   "星期五，Tom 當著所有人的面，對她的畫說了不中聽的話。她看起來又害怕又擔心，我們班有兩個女生還笑她。我覺得很生氣，因為老師早就告訴過我們，要友善地對待每一個人。",
-   "我告訴她，如果有人再說不中聽的話，她應該去找老師，不要動手。她雖然擔心，但星期一還是向 Tom 說了對不起。接著我們把事情告訴老師，她說敢開口把話說出來，是一件勇敢的事。",
+   "第二週開學時，一位叫 Mei 的新同學加入我們的班。她一個人坐在教室裡，不跟任何人說話。老師請她下課後留下來談談。",
+   "星期五，Tom 當著所有人的面，對她的畫說了不中聽的話。她看起來又害怕又擔心，我們班的人還笑她。我覺得很生氣，因為老師早就告訴過我們，要友善地對待每一個人。",
+   "我告訴她，如果有人再說不中聽的話，她應該去找老師。她雖然擔心，但星期一還是向 Tom 說了對不起。接著我們把事情告訴老師，她說敢開口把話說出來，是一件勇敢的事。",
  ],
  "bridges": [
    "第一段先介紹新同學 Mei 的孤立：她一個人坐、不開口說話，讓讀者先覺得不對勁。第二段接著揭開原因——Tom 當眾說了不中聽的話，笑聲讓情況更糟，主角也由旁觀者變成生氣的當事人，為第三段的介入鋪墊。",
@@ -215,25 +215,25 @@ LESSONS.append({
   [
    {"text": "A new student called Mei joined our class in the second week of term.",
     "html": 'A new <span class="w-tap kw-colloc">student called Mei</span> <span class="w-tap kw-verb">joined</span> our <span class="w-tap kw-colloc">class</span> <span class="w-tap kw-link">in the second week of term</span>.',
-    "pop": '''1. <b>後置定語 (a student called Mei)：</b>student 後面的 called Mei 說明是哪一位學生，相當於 the student called Mei。<br>
+    "pop": '''1. <b>後置定語 (a student called Mei)：</b>student 後面的 called Mei（過去分詞片語）說明是哪一位學生，相當於 <b>the student who was called Mei</b>。<br>
 2. <b>join + 團體 (joined our class)：</b>join 後直接接受詞；<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 *join into our class。<br>
 3. <b>in + 一段期間：</b>in the second week of term ＝「這學期第二週」；at 用於時間點（at nine o'clock）。'''},
    {"text": "She sat alone in the classroom and did not speak to anyone.",
     "html": 'She <span class="w-tap kw-verb">sat</span> <span class="w-tap kw-colloc">alone</span> in the <span class="w-tap kw-colloc">classroom</span> and <span class="w-tap kw-verb">did not speak to</span> anyone.',
     "pop": '''1. <b>alone 作副詞 (sat alone)：</b>修飾動詞 sat，表示「獨自地」；要強調「一個人」也常說 all by herself。<br>
-2. <b>in + 大空間 (in the classroom)：</b>大空間用 in，小空間用 at；英文排版教室兩個都能見到，但此處 in 最自然。<br>
+2. <b>in + 大空間 (in the classroom)：</b>大空間用 in，小空間用 at；英文中 in the classroom 與 at the classroom 都能見到，但此處用 <b>in</b> 最自然。<br>
 3. <b>否定句 (did not speak)：</b>一般過去式否定＝<b>did not + 原形</b> speak；✗ 不可寫 did not spoke。'''},
    {"text": "Our teacher asked her to stay after the lesson and talk with her.",
     "html": 'Our <span class="w-tap kw-colloc">teacher</span> <span class="w-tap kw-verb">asked her to stay</span> <span class="w-tap kw-link">after the lesson</span> and <span class="w-tap kw-verb">talk with her</span>.',
     "pop": '''1. <b>ask + 人 + to + 原形 (asked her to stay)：</b>ask sb to do 是 A2 必會句型，不定詞不可省略。<br>
-2. <b>after + 時間點 (after the lesson)：</b>after ＝「在⋯⋯之後」，可放句中或句尾。<br>
+2. <b>after + 時間或事件 (after the lesson)：</b>after ＝「在⋯⋯之後」，可放句中或句尾。<br>
 3. <b>talk with／talk to：</b>兩者皆可，＝「與某人交談」；<span style="color:#dc2626;">⚠️</span>介系詞不可漏掉（✗ talk her）。'''},
   ],
   [
    {"text": "On Friday, Tom said something unkind about her drawing in front of everyone.",
     "html": '<span class="w-tap kw-link">On Friday</span>, Tom <span class="w-tap kw-verb">said something unkind</span> about her drawing <span class="w-tap kw-link">in front of everyone</span>.',
     "pop": '''1. <b>say + 內容：</b>say 後直接接受詞內容（say something unkind）；tell 必須先接人。<br>
-2. <b>something 作代詞：</b>something 是合成代詞，前面不加 a，本身可接受詞 unkind 修飾。<br>
+2. <b>something 作代詞：</b>something 是複合（不定）代詞，前面不加 a，後面可接受形容詞修飾（something unkind ＝「某種不友善的（話）」），此處 unkind 是<b>後置修飾</b>而非受詞。<br>
 3. <b>in front of + 人：</b>in front of ＝「在⋯⋯前面」；in the front of 指「在⋯⋯內部的前面」，兩者不可混用。'''},
    {"text": "She looked afraid and worried, and our class laughed at her.",
     "html": 'She <span class="w-tap kw-verb">looked afraid and worried</span>, and our <span class="w-tap kw-colloc">class</span> <span class="w-tap kw-verb">laughed at</span> her.',
@@ -271,7 +271,7 @@ LESSONS.append({
    '''<li><b>1. if 引導的條件句（if + 過去式／現在式）：</b><br>• if someone <u>was</u> unkind, she <u>should tell</u> a teacher.<br>• if someone <u>is</u> unkind, you can <u>tell</u> a teacher.<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>if 從句不可用 should／will 開頭（✗ if someone <s>should be</s> unkind）。</li>''',
    '''<li><b>2. should + 原形（提出求助與建議）：</b><br>• You <u>should tell</u> a teacher.<br>• You <u>shouldn't fight back</u>.<br>• <span style="color:#dc2626;">⚠️</span>should 後只能接原形，不可寫 should tell to 或 should told。</li>''',
    '''<li><b>3. feel／look + 形容詞（描述情緒）：</b><br>• I <u>felt angry</u>, because she was rude.<br>• She <u>looked afraid</u> and worried.<br>• feel 與 look 都是連繫動詞，後面接形容詞，不能加 to。</li>''',
-   '''<li><b>4. say／tell 的差異：</b><br>• <b>say + 內容</b>：Tom <u>said something</u> unkind.<br>• <b>tell + 人 + 內容</b>：I <u>told her that</u> she should tell a teacher.<br>• 固定用語：say sorry <u>to</u> sb／tell a teacher。</li>''',
+   '''<li><b>4. say／tell 的差異：</b><br>• <b>say + 內容</b>：Tom <u>said something</u> unkind.<br>• <b>tell + 人 + 內容</b>：I <u>told her that</u> she should tell a teacher.<br>• 常見用法：say sorry <u>to</u> sb（固定用語）／tell a teacher（tell 後直接接受詞）。</li>''',
   ],
   [
    '''<li><b>sit alone</b>：一個人坐著（alone 修飾動詞）。</li>''',

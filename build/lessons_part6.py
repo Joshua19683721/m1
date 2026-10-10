@@ -54,7 +54,7 @@ LESSONS.append({
 3. <b>some + of + 複數名詞 (some of the numbers)：</b>of 後接 the + 複數名詞，表示「⋯之中的一些」。'''},
    {"text": "We also emailed a museum and a scientist, and they sent us some useful photographs.",
     "html": 'We <span class="w-tap kw-verb">also emailed a museum and a scientist</span>, and they <span class="w-tap kw-verb">sent us some useful photographs</span>.',
-    "pop": '''1. <b>email 雙用法：</b>• <b>email sb</b> ＝ 寄電子郵件給某人<br>• <b>email sb sth</b> ＝ 寄某東西給某人（本句的用法）<br>來自 A2 Key「Communication and Technology」主題核心詞。<br>
+    "pop": '''1. <b>email 雙用法：</b>• <b>email sb</b> ＝ 寄電子郵件給某人（本句的用法；emailed 後的 a museum and a scientist 就是受詞）<br>• <b>email sb sth</b> ＝ 把某東西以電子郵件寄給某人（I emailed her some photos.）<br>來自 A2 Key「Communication and Technology」主題核心詞。<br>
 2. <b>send sb sth：</b>send 的<b>過去式與過去分詞同形</b>（send–sent–sent），雙受詞順序不可對調。<br>
 3. <b>photograph 的複數：</b>photograph 是<b>可數名詞</b>（a photograph → photographs）；本句用複數是因為前面有 some（some <b>photographs</b> ＝ 一些照片），與 a museum 無關。</li>
 '''},

@@ -33,12 +33,12 @@ LESSONS.append({
 3. <b>for + 名詞 (for homework)：</b>for 表目的「為了」，後面接<b>名詞或動名詞</b>（for homework／for reading），不可直接接原形動詞。'''},
    {"text": """My friend opened the software on her computer and clicked on the first web page.""",
     "html": '''My friend <span class="w-tap kw-verb">opened</span> the <span class="w-tap kw-colloc">software</span> on her computer and <span class="w-tap kw-verb">clicked on</span> the first <span class="w-tap kw-colloc">web page</span>.''',
-    "pop": '''1. <b>click on + 賓格 (clicked on the first web page)：</b>click ＝「點（滑鼠）」，固定搭配 <b>on</b>，後面必須接賓格。<br>
+    "pop": '''1. <b>click (on) + 賓格 (clicked on the first web page)：</b>click ＝「點（滑鼠）」，可說 <u>click a link</u>，也可說 <u>click on a link</u>，兩者都正確。<br>
 2. <b>不可數名詞 software：</b>software 不可數，用 the software／a piece of software，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ a software</s> 或 <s>✗ the softwares</s>。<br>
 3. <b>複合名詞的層級 (web page)：</b>web page ＝「網頁」，website ＝「網站」，web ＝「網路」，三者不可互相替換。'''},
    {"text": """The answers appeared on the screen, and the whole class felt very excited.""",
     "html": '''The answers <span class="w-tap kw-verb">appeared on the screen</span>, and <span class="w-tap kw-link">the whole class</span> <span class="w-tap kw-verb">felt very excited</span>.''',
-    "pop": '''1. <b>連繫動詞 + 形容詞 (felt very excited)：</b>feel ＝「感到」，後面只能接<b>形容詞</b> excited，不可接副詞。<br>
+    "pop": '''1. <b>連繫動詞 + 形容詞 (felt very excited)：</b>feel ＝「感到」，本句後面接<b>形容詞</b> excited；feel 也可接 well／badly 這類描述身體狀況的副詞。<br>
 2. <b>the + 集合名詞 (the whole class)：</b>the whole class ＝「全班」，class 在此視為單數，謂語用單數動詞。<br>
 3. <b>並列完整句 (…, and …)：</b>and 連接兩個各自完整的句子，兩個謂語都要符合各自的主語。'''},
   ],
@@ -189,7 +189,7 @@ LESSONS.append({
    '''<li><b>carry a cloth bag</b>：自備布袋（環保習慣的固定說法）。</li>''',
   ],
   [
-   '''<li><b>sea / river / island：</b><br>• <b>sea</b> ＝「海」，in the sea。<br>• <b>river</b> ＝「河川」，in the river。<br>• <b>island</b> ＝「島嶼」，on a small island。<br>三者的介系詞搭配都出現在本課故事中。</li>''',
+   '''<li><b>sea / river / island：</b><br>• <b>sea</b> ＝「海」，in the sea。<br>• <b>river</b> ＝「河川」，本課故事用 from rivers（也可以說 in the river）。<br>• <b>island</b> ＝「島嶼」，on a small island。<br>這三組介系詞搭配都可從本課故事對照練習。</li>''',
    '''<li><b>plant 作動詞與名詞：</b><br>• <b>名詞</b>：plants ＝「植物」（複數）。<br>• <b>動詞</b>：to plant ＝「種植」。<br><span style="color:#dc2626;">⚠️ 陷阱：</span>本句中的 plants 是名詞，不能加 to。</li>''',
    '''<li><b>water / sea / world：</b><br>• <b>water</b> 不可數（the water）。<br>• <b>sea</b> 可數（the sea）。<br>• <b>world</b> 前須加 the（our world）。</li>''',
   ],
@@ -206,7 +206,7 @@ LESSONS.append({
  "topic": "Weather",
  "grammar": "天氣預報與氣候描述的句型",
  "translation": [
-  "那天早上天氣多雲又有風，但白天仍然很熱。灰色的雲快速地從我們學校上方的天空飄過。風越來越大，於是大家都望向窗外。",
+  "那天早上天氣多雲又有風，但早上仍然很熱。灰色的雲快速地從我們學校上方的天空飄過。風越來越大，於是大家都望向窗外。",
   "到了中午，天空轉成黑色，氣溫下降了十度。廣播說午後會有雷雨。我的老師說，如果颱風再增強，隔天早上學校就會停課。",
   "第二天早上雨仍然很大，街道也濕漉漉的。海岸附近有一棵樹倒下，強風打破兩扇窗戶。颱風過後，太陽出來了，這一天感覺很涼爽。",
  ],
@@ -225,7 +225,7 @@ LESSONS.append({
     "html": '''<span class="w-tap kw-colloc">Grey clouds</span> <span class="w-tap kw-verb">moved fast</span> <span class="w-tap kw-link">across the sky above our school</span>.''',
     "pop": '''1. <b>cloud 的可數與複數 (clouds)：</b>cloud 作「一團雲」時可數，複數為 clouds；指整片雲層時也常見複數。<br>
 2. <b>副詞修飾動詞 (moved fast)：</b>fast 在此為副詞，修飾動詞 moved，必須置於動詞之後。<br>
-3. <b>across vs. through：</b>across ＝「橫過表面」（across the sky），through ＝「穿過立體空間」（through the room），兩者不可互換。'''},
+3. <b>across vs. through：</b>across ＝「橫過表面」（across the sky），through ＝「由一側穿過另一側」（through the room／through the sky）；兩者語意相近，依語境選擇。'''},
    {"text": """The wind became stronger, so everyone looked out of the window.""",
     "html": '''The wind <span class="w-tap kw-verb">became stronger</span>, <span class="w-tap kw-verb">so</span> everyone <span class="w-tap kw-verb">looked out of the window</span>.''',
     "pop": '''1. <b>become 的過去式 (became)：</b>become–became–become（不規則），比 be 更強調「變化」的過程。<br>

@@ -93,7 +93,7 @@ LESSONS.append({
   [
    '''<li><b>practise / practice：</b><br>• <b>practise</b> 是動詞（英式），後接 V-ing：practise writing。<br>• <b>practice</b> 是名詞：Practice makes perfect.</li>''',
    '''<li><b>hard / difficult：</b><br>• <b>hard</b> 偏「費力、辛苦」：It is hard work。<br>• <b>difficult</b> 偏「困難、不容易」：The test is difficult。</li>''',
-   '''<li><b>other / another / others：</b><br>• <b>another</b> ＝另一個（單數）：another pattern。<br>• <b>the others</b> ＝其餘的人或物：the other patterns。</li>''',
+   '''<li><b>other / another / others：</b><br>• <b>another</b> ＝另一個（單數）：another pattern。<br>• <b>the other ＋ 複數名詞</b> ＝其餘的：the other patterns；<b>the others</b> ＝其餘的人或物（後面不接名詞）。</li>''',
   ],
  ],
 })
@@ -160,7 +160,7 @@ LESSONS.append({
    {"text": "'I have finished it,' he said, and then he told us that he was tired.",
     "html": '\'<span class="w-tap kw-verb">I have finished it</span>,\' he <span class="w-tap kw-verb">said</span>, and then he <span class="w-tap kw-verb">told us that</span> he was tired.',
     "pop": '''1. <b>時態後退 have → had：</b> 報導過去說過的內容時，現在完成式 have finished 變成 <b>had finished</b>。<br>
-2. <b>已是過去式的動詞不再後退：</b> 原句若是 was tired，轉述後仍是 was tired；只有「比過去更早」才變 had ＋ 過去分詞。<br>
+2. <b>部分動詞可不後退：</b> 原句若是 said、was tired，轉述後常保留原形；但依完整後退規則，was／were → had ＋ 過去分詞（was tired → had been tired），兩者都屬標準用法。<br>
 3. <b>say 與 tell 的選擇：</b> say 後面直接接內容，tell 必須接人：<u>✓</u> told us that…；<span style="color:#dc2626;">⚠️ 陷阱：</span>*He told that… 缺少受詞。'''},
    {"text": "His text appeared in the magazine, and readers sent him many letters and postcards.",
     "html": 'His <span class="w-tap kw-colloc">text appeared in the magazine</span>, and readers <span class="w-tap kw-verb">sent him</span> many <span class="w-tap kw-colloc">letters and postcards</span>.',
@@ -217,7 +217,7 @@ LESSONS.append({
     "html": '<span class="w-tap kw-link">Last month</span>, Ms. Yang <span class="w-tap kw-verb">planned</span> an <span class="w-tap kw-colloc">important class trip</span> to an English play.',
     "pop": '''1. <b>plan 的兩種詞性：</b> 此處 plan 是動詞「規劃」；作名詞時要寫 a plan（計畫），兩者詞尾相同但詞性不同。<br>
 2. <b>介系詞片語 (to an English play)：</b> 這裡的 to 是介系詞（a trip to…），後面接的是名詞 an English play、沒有動詞，所以不是不定式，也談不上懸掛修飾；整個介系詞片語用來修飾名詞 trip。<br>
-3. <b>形容詞修飾名詞 (important class trip)：</b> important 放在名詞 a class trip 之前，構成形容詞片語。'''},
+3. <b>形容詞修飾名詞 (important class trip)：</b> important 放在名詞 class trip 之前，整體構成<b>名詞片語</b>。'''},
    {"text": "Everyone was happy about it, and it felt different from our usual trips.",
     "html": 'Everyone <span class="w-tap kw-colloc">was happy about</span> it, and it <span class="w-tap kw-verb">felt different from</span> our usual trips.',
     "pop": '''1. <b>be happy about sth：</b> 表示「因某事而高興」，後面接事物；be happy to do sth 則是「很樂意做某事」，<span style="color:#dc2626;">⚠️ 陷阱：</span>兩者不可互換。<br>

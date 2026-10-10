@@ -121,7 +121,7 @@ LESSONS.append({
    {"text": 'Our teacher gave us a feelings survey, and she asked, "How do you feel today?"',
     "html": 'Our teacher <span class="w-tap kw-verb">gave us</span> a <span class="w-tap kw-colloc">feelings survey</span>, and she <span class="w-tap kw-verb">asked, "How do you feel today?"</span>',
     "pop": '''1. <b>雙賓動詞 give sb sth：</b>give 後面接「人＋物」兩個賓語，順序不可顛倒（✗ give a survey us）；過去式是 gave（give–gave–given）。<br>
-2. <b>複合名詞 (a feelings survey)：</b>問卷 survey 是中心詞，說明內容的名詞放在前面修飾，中間不加 of，也<b>不加 s</b>。<br>
+2. <b>複合名詞 (a feelings survey)：</b>問卷 survey 是中心詞，說明內容的名詞放在前面修飾，中間不加 of。作定語的名詞一般用<b>單數</b>（a feeling survey）；本句的 <b>feelings</b> 用了複數，是要強調「各種情緒的」，語意雖然成立，但標準寫法仍以單數 a feeling survey 為準。<br>
 3. <b>直接問句用逗號加引號：</b>引述原話時，asked 之後<b>先逗號再開引號</b>，句末的問號放在引號<b>內</b>；這是標點規則的必考細節。'''},
    {"text": "The classroom was quiet and comfortable, and many students felt happy.",
     "html": 'The classroom <span class="w-tap kw-verb">was</span> <span class="w-tap kw-colloc">quiet and comfortable</span>, and <span class="w-tap kw-colloc">many students</span> <span class="w-tap kw-verb">felt happy</span>.',

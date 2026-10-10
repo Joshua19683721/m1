@@ -167,7 +167,7 @@ LESSONS.append({
     "html": 'She <span class="w-tap kw-verb">was pleased</span> and <span class="w-tap kw-verb">sent me a short email about</span> <span class="w-tap kw-link">it</span>.',
     "pop": '''1. <b>be + 形容詞 (was pleased)：</b>pleased ＝「感到滿意的」，固定搭配 be pleased with 或 be pleased about + 名詞。<br>
 2. <b>send + 人 + 物 (sent me an email)：</b>send 的過去式與原形同形（send–sent–sent），不可寫 sended。<br>
-3. <b>代詞 it 指代前文整件事：</b>about it 中的 it 取代前面已出現的內容，避免重複。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可漏寫前置詞：<u>✓ sent me a short email about it</u>；漏掉 about 才是錯的 <s>✗ sent me a short email</s>。'''},
+3. <b>代詞 it 指代前文整件事：</b>about it 中的 it 取代前面已出現的內容，避免重複。<span style="color:#dc2626;">⚠️ 陷阱：</span><b>about 與 it 要成對出現</b>：<u>✓ sent me a short email about it</u>；漏掉 it 才是錯的 <s>✗ sent me a short email about</s>。但只寫 <u>sent me a short email</u> 本身並沒有錯，about 只是讓指代更明確。'''},
   ],
  ],
  "sum_intro": "本課以一篇報導的改寫練習為主軸，介紹 paraphrase 的四個步驟：抓主旨、刪細節、換同義詞，最後再用自己的句子重組。",

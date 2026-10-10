@@ -30,7 +30,7 @@ LESSONS.append({
 3. <b>可數名詞前加冠詞 (a note / a textbook)：</b>note 與 textbook 都是可數名詞，泛指「一張紙條、一本教科書」要用 a，複數時則去掉冠詞。'''},
    {"text": """Nobody in our class could answer, so we read the message very carefully.""",
     "html": '''<span class="w-tap kw-link">Nobody</span> in our class <span class="w-tap kw-verb">could answer</span>, <span class="w-tap kw-link">so</span> we <span class="w-tap kw-verb">read the message</span> <span class="w-tap kw-colloc">very carefully</span>.''',
-    "pop": '''1. <b>否定代詞 + 情態動詞 (could answer)：</b>nobody 本身就表示否定，後面要接情態動詞或助動詞才能構成完整句子（Nobody <b>can</b> answer.）；could 是 can 的過去式，後面只能接<b>原形</b> answer。<br>
+    "pop": '''1. <b>否定代詞 + 動詞 (could answer)：</b>nobody 本身就表示否定，後面<b>直接接動詞</b>就能構成完整句子（Nobody answered.／Nobody is ready.），不必先接情態動詞或助動詞；此處 could 是 can 的過去式，表示「當時沒有人答得上來」，後面只能接<b>原形</b> answer。<br>
 2. <b>結果連接詞 so：</b>so ＝「所以」，後面接<b>完整的句子</b>（we read the message），不能寫成逗號加原形動詞。<br>
 3. <b>方式副詞的位置 (very carefully)：</b>修飾動詞的<b>方式副詞</b>位置較自由，可放受詞之後（We read the message very carefully.），也可放動詞之前，並非固定要放句末；句號一律落在整句最後。'''},
    {"text": """It only said, 'Please bring a magazine to class on Monday,' with no name.""",
@@ -47,7 +47,7 @@ LESSONS.append({
 3. <b>關係子句可省略引導詞 (every letter we had)：</b>完整寫法是 every letter <b>(that) we had</b>，that 在句中作受詞可以省略；had 是 have 的過去式。'''},
    {"text": """Mina checked her email, and her father checked the old newspaper on the table.""",
     "html": '''Mina <span class="w-tap kw-verb">checked</span> her <span class="w-tap kw-colloc">email</span>, and her father <span class="w-tap kw-verb">checked</span> the old <span class="w-tap kw-colloc">newspaper on the table</span>.''',
-    "pop": '''1. <b>check the email：</b>check ＝「查看、確認」；表示「查看電子郵件」整體時不加冠詞（checked her <b>email</b> ✓）；要指「一封郵件」時才用 an email 或 an email message。<br>
+    "pop": '''1. <b>check + 郵件：</b>check ＝「查看、確認」。email 當「電子郵件（整個信箱／這個系統）」看待時不可數，不加冠詞（checked her <b>email</b> ✓）；當「一封信」看待時就可數，要加冠詞（checked <b>an</b> email ✓、I got an email from Mina）。兩種寫法都正確，看你想表達的意思決定。<br>
 2. <b>兩個句子用 and 連接：</b>前後主詞不同（Mina／her father），各自配自己的動詞 checked，謂語要一一對應。<br>
 3. <b>名詞後置修飾：</b>the newspaper <b>on the table</b> ＝ 桌上那份報紙；介詞片語放在名詞後面補充位置，是英文常見的修飾順序。'''},
    {"text": """The article in it was about our class trip, so we learned nothing.""",
@@ -121,7 +121,7 @@ LESSONS.append({
    {"text": """Our class planned a book sale, so we wrote a message for the notice board.""",
     "html": '''Our class <span class="w-tap kw-verb">planned a book sale</span>, <span class="w-tap kw-link">so</span> we <span class="w-tap kw-verb">wrote a message</span> for the <span class="w-tap kw-colloc">notice board</span>.''',
     "pop": '''1. <b>一般過去式 (planned / wrote)：</b>write–wrote–written 是不規則變化；兩件事先後發生，用一般過去式就夠了，不必用過去完成式。<br>
-2. <b>write a message：</b>write + a + 名詞是固定搭配；此處的 message 指「一段具體的公告文字」，所以加冠詞 a。<br>
+2. <b>write a message：</b>write 後面接要寫的內容，冠詞依名詞而定：此處 message 指「一段具體的公告文字」，是可數名詞單數，所以加 a；但 write <b>messages</b>、write nothing、write a letter 也一樣自然，write 後面不是一定要加 a。<br>
 3. <b>notice board：</b>＝佈告欄（英式），美式叫 bulletin board；表示位置用介詞 on。'''},
    {"text": """We printed forty tickets and left a form on every desk.""",
     "html": '''We <span class="w-tap kw-verb">printed forty tickets</span> and <span class="w-tap kw-verb">left a form</span> on every <span class="w-tap kw-colloc">desk</span>.''',
@@ -143,12 +143,12 @@ LESSONS.append({
    {"text": """Our classroom was not big enough for forty parents to sit down.""",
     "html": '''Our classroom <span class="w-tap kw-verb">was not big enough</span> <span class="w-tap kw-colloc">for forty parents to sit down</span>.''',
     "pop": '''1. <b>not + 形容詞 + enough + to + 原形：</b>否定句把 not 放在<b>形容詞前面</b>（was not big enough），不能寫 enough not big；enough 修飾形容詞時必須緊跟在後面（<b>big enough</b> ✓、<s>✗ enough big</s>）。<br>
-2. <b>adj. + enough + to + 原形</b>：enough 修馺的是前面的<b>形容詞</b> old，後面接<b>to + 原形</b><br>
+2. <b>not + adj. + enough + for + 人 + to + 原形：</b>本句是 was not big enough <b>for forty parents to sit down</b>，enough 修飾的是前面的<b>形容詞</b> big；enough 修飾形容詞時也可以接 to + 原形（old enough to drive），但這裡要帶出「讓誰做」的主詞 forty parents，所以用 <b>for + 人 + to + 原形</b>。<br>
 3. <b>坐下用不及物動詞 (sit down)：</b>sit down 本身已含「坐下來」；要表達「讓家長坐下」才用 have sb sit down。'''},
    {"text": """Our teacher was so worried that she wrote a letter that evening.""",
     "html": '''Our teacher <span class="w-tap kw-verb">was so worried that</span> she <span class="w-tap kw-verb">wrote a letter</span> <span class="w-tap kw-link">that evening</span>.''',
     "pop": '''1. <b>so + 形容詞 + that + 完整句子：</b>so...that 表示「如此⋯⋯以致⋯⋯」，that 後面必須是「主詞 + 動詞」的完整句子（she wrote...）。<br>
-2. <b>同一個意思的換句話說：</b>本句也可改成 too 句型：She was <b>too worried to write</b> a letter.（結果相同）。<br>
+2. <b>換句話說時別改變意思：</b>so worried that she wrote a letter 是「非常擔心，以致於當天寫了信」，結果是「寫了」；若改成 too 句型 She was <b>too worried to write</b> a letter，意思就變成「擔心得寫不下信」，正好相反。<span style="color:#dc2626;">⚠️ 陷阱：</span><b>too...to</b> 的結果一定是「不能」，不能直接和 so...that 互換。<br>
 3. <b>that evening：</b>that 在此是<b>指示詞</b>修飾 evening，不是關係代詞，所以後面不再接句子。'''},
   ],
   [

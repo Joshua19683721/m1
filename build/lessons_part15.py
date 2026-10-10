@@ -49,7 +49,7 @@ LESSONS.append({
     "html": '''I <span class="w-tap kw-verb">look up</span> new words <span class="w-tap kw-colloc">in a dictionary</span> and <span class="w-tap kw-verb">practise</span> <span class="w-tap kw-colloc">reading aloud</span> <span class="w-tap kw-link">every day</span>.''',
     "pop": '''1. <b>look up + 受詞 (look up new words)：</b> 「查字典」是動詞 + 小品詞，in a dictionary 說明查詢的工具，是 A2 Key 高頻搭配。<br>
 2. <b>practice / practise 的分工：</b> 動詞一律寫 <b>practise</b>（practise doing sth.），名詞才寫 <b>practice</b>（do some practice）。<br>
-3. <span style="color:#dc2626;">⚠️ 陷阱：</span>aloud 是副詞「出聲地」，須放在動詞後（<u>✓ read aloud</u>），不可寫成 <s>✗ read loudly</s>。'''},
+3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>read aloud</b> 是固定搭配「出聲地唸出來」，aloud 本身就是副詞，前面不可再加 <b>loud</b> 或 <b>loudly</b>（<s>✗ read loudly aloud</s>）；單獨用 loudly 雖也是正確副詞（read loudly），但朗讀課文時的慣用說法是 <u>✓ read aloud</u>。'''},
    {"text": "I write each new sentence down so that I can pronounce it well.",
     "html": '''I <span class="w-tap kw-verb">write</span> each new <span class="w-tap kw-colloc">sentence</span> <span class="w-tap kw-verb">down</span> <span class="w-tap kw-verb">so that</span> I <span class="w-tap kw-verb">can pronounce</span> it well.''',
     "pop": '''1. <b>write + 受詞 + down (write it down)：</b> down 是小品詞，代詞 it 必須放在 down <b>之前</b>，不可寫成 <s>✗ write down it</s>。<br>
@@ -64,7 +64,7 @@ LESSONS.append({
 3. <b>時間狀語的位置：</b> 表示持續長度的時間狀語可放句尾；移到句首時後面要加逗號。'''},
    {"text": "Every night I do a little practice, and I slowly make real progress.",
     "html": '''<span class="w-tap kw-link">Every night</span> I <span class="w-tap kw-verb">do</span> a <span class="w-tap kw-link">little</span> <span class="w-tap kw-colloc">practice</span>, and I <span class="w-tap kw-link">slowly</span> <span class="w-tap kw-verb">make real progress</span>.''',
-    "pop": '''1. <b>頻率狀語置於句首 (Every night)：</b> every + 單數名詞 + of 是表達「每晚」最自然的結構，後面加逗號，謂語用一般現在式 do。<br>
+    "pop": '''1. <b>頻率狀語置於句首 (Every night)：</b> every + <b>單數名詞</b> (every night)：every 後面直接接單數可數名詞 night，<b>絕不可再加 of</b>（<s>✗ every night of</s>，要加 of 須寫 every one of the nights）；置於句首表示頻率時後面加逗號，謂語用一般現在式 <b>do</b>。<br>
 2. <b>a little + 不可數名詞 (a little practice)：</b> a little 是肯定語氣「一點點」；單用 little 才是否定語氣「幾乎沒有」。<br>
 3. <b>make progress (make + 名詞)：</b> progress 此處為不可數名詞，前面不可加 a；<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ make a progress</s> → <u>✓ make progress</u>。'''},
    {"text": "Last month my test mark was so high that everyone in our class smiled.",
@@ -143,7 +143,7 @@ LESSONS.append({
    {"text": "Nobody brought any bottles of juice, and there was little fruit in our basket.",
     "html": '''<span class="w-tap kw-link">Nobody</span> <span class="w-tap kw-verb">brought</span> <span class="w-tap kw-link">any bottles of juice</span>, and <span class="w-tap kw-verb">there was</span> <span class="w-tap kw-link">little</span> fruit <span class="w-tap kw-colloc">in our basket</span>.''',
     "pop": '''1. <b>否定句用 any (any bottles of juice)：</b> some 用於肯定句，any 用於否定與疑問句；本句已有 Nobody，故用 <b>any</b>。<br>
-2. <b>there be 的過去式 (there was)：</b> there be 句型的 be 動詞過去式不隨名詞變；<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ there were a little fruit</s> 應作 <u>✓ there was a little fruit</u>。<br>
+2. <b>there be 的過去式 (there was)：</b> there be 的 be 動詞<b>要隨後面的名詞變</b>；此處 fruit 是不可數名詞，a little 修飾它仍算單數，所以用 <b>was</b>；<span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ there were a little fruit</s> 應作 <u>✓ there was a little fruit</u>。<br>
 3. <b>little + 不可數名詞 (little fruit)：</b> little 是否定語氣「幾乎沒有」，與 a little（有一點）相反，此處強調水果嚴重不足。'''},
    {"text": "Everyone was hungry, so either group could buy a little more food.",
     "html": '''<span class="w-tap kw-link">Everyone</span> <span class="w-tap kw-verb">was hungry</span>, so <span class="w-tap kw-link">either group</span> <span class="w-tap kw-verb">could buy a little more</span> food.''',
@@ -176,7 +176,7 @@ LESSONS.append({
    '''<li><b>1. some / any / no / every：</b><br>• <b>some</b> 用於<b>肯定句</b>（some money）。<br>• <b>any</b> 用於否定與疑問句（Nobody brought <u>any</u> juice）。<br>• <b>no</b> ＝ not any，後直接接名詞。<br>• <b>every</b> + <u>單數</u>名詞，強調每一個。''',
    '''<li><b>2. a few / a little / few / little：</b><br>• <b>a few</b> + 複數：有幾個（肯定）　　• <b>few</b> + 複數：幾乎沒有（否定）<br>• <b>a little</b> + 不可數：有一點（肯定）　• <b>little</b> + 不可數：幾乎沒有（否定）<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span>a 決定語氣，不可隨意增刪。</li>''',
    '''<li><b>3. both / all / either / neither：</b><br>• <b>both</b> + 複數：兩者都　　• <b>all</b> + 複數：全部都<br>• <b>either</b> + 單數：兩者之一　　• <b>neither</b> of + 複數：兩者都不<br>• either / neither 限定「兩個」，三者以上要用 any / none。</li>''',
-   '''<li><b>4. 數量詞與 be 動詞的一致：</b><br>• there be 句型的 be 動詞<b>不隨名詞變</b>：there was a little fruit。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ there were a little fruit</s> → <u>✓ there was a little fruit</u>。</li>''',
+   '''<li><b>4. 數量詞與 be 動詞的一致：</b><br>• there be 句型的 be 動詞<b>要與後面的名詞一致</b>：fruit 為不可數名詞，a little 修飾它仍算單數，故用 <b>was</b>（there was a little fruit）。<br>• <span style="color:#dc2626;">⚠️ 陷阱：</span><s>✗ there were a little fruit</s> → <u>✓ there was a little fruit</u>。</li>''',
   ],
   [
    '''<li><b>have a picnic</b>：舉辦野餐（be having a picnic ＝ 正在野餐）。</li>''',

@@ -19,7 +19,7 @@ LESSONS.append({
  ],
  "bridges": [
   "第一段連用三種倒裝句，把壞消息直接推到讀者眼前：Not only...but also 先表明主角的決心，Here comes 把消息整句倒出來，最後才回到平敘句交代老師要改組社團，讓全課的「起」有了清楚的觸發點。",
-  "第二段進入實作：Here is our plan 提出計畫，同學各自選科目、借字典，第三句卻用 However 點出「忙著寫作業」的現實阻力；第三段 Only then 把領悟頂到句首，最後以圖書館裡的安靜畫面收束，完成「轉合」。",
+  "第二段進入實作：Here is our plan 提出計畫，同學各自選科目、借字典，第三句卻用 However 點出「忙著寫作業」的現實阻力；第三段 Only then 把領悟頂到句首，最後以教室裡的安靜畫面收束，完成「轉合」。",
  ],
  "paragraphs": [
   [
@@ -65,7 +65,7 @@ LESSONS.append({
    {"text": """At the end of term, our teacher gave us a short exam in class.""",
     "html": '''<span class="w-tap kw-link">At the end of term</span>, our <span class="w-tap kw-colloc">teacher</span> <span class="w-tap kw-verb">gave us</span> a short <span class="w-tap kw-colloc">exam in class</span>.''',
     "pop": '''1. <b>時間片語 + 一般過去式：</b>At the end of term ＝「學期快結束時」，放句首時後面加逗號，謂語用 gave。<br>
-2. <b>give sb sth（雙受詞）：</b>give ＋ 人 ＋ 物，中間<b>不加任何介詞</b>；不可寫成 gave a short exam to us class。<br>
+2. <b>give sb sth（雙受詞）：</b>give ＋ 人 ＋ 物，中間<b>不加任何介詞</b>：<u>✓ gave us a short exam</u>；<span style="color:#dc2626;">✗</span> <s>gave an exam to us</s>。<br>
 3. <b>in class 與 in the classroom：</b>in class ＝「在課堂上（上課期間）」，class 前<b>不加 the</b>，是會考常見的小陷阱。'''},
    {"text": """Now our lessons end with reading, and our classroom is always quiet.""",
     "html": '''Now our <span class="w-tap kw-colloc">lessons</span> <span class="w-tap kw-verb">end with reading</span>, and our classroom <span class="w-tap kw-verb">is always</span> quiet.''',
@@ -75,7 +75,7 @@ LESSONS.append({
   ],
  ],
  "sum_intro": "本課把會考最常見的倒裝句放進閱讀社的故事：Not only...but also、Here comes、Only then，以及 Never 開頭的否定倒裝。",
- "sum_titles": ["三種倒裝句型的造句規則", "校園社團情境的搭配詞", "only／hardly 等倒裝觸發詞"],
+ "sum_titles": ["四種倒裝句型的造句規則", "校園社團情境的搭配詞", "only／hardly 等倒裝觸發詞"],
  "summary": [
   [
    '''<li><b>1. Not only...but also（不只⋯⋯而且⋯⋯）：</b><br>Not only 置於<b>句首</b>時必須倒裝：Not only <b>do</b> I love it, but I also want to save it.<br><span style="color:#dc2626;">⚠️</span>✗ <s>Not only I do love...</s>／✓ <u>Not only do I love...</u>。</li>''',
@@ -93,7 +93,7 @@ LESSONS.append({
   [
    '''<li><b>only 的位置決定要不要倒裝：</b><br>• only + <b>副詞</b>（then / after the exam / at nine）→ <b>要倒裝</b>：Only then <u>did we</u> know.<br>• only + <b>名詞／主詞</b> → <b>不倒裝</b>：Only my cousin knew.</li>''',
    '''<li><b>hardly / scarcely：</b>兩者皆表「幾乎不」，都要倒裝：Hardly <u>had he</u> sat down when the bell rang.</li>''',
-   '''<li><b>no sooner...than／hardly...when：</b>皆表「一⋯⋯就⋯⋯」，兩個子句都要倒裝：No sooner <u>had we</u> left than it rained.</li>''',
+   '''<li><b>no sooner...than／hardly...when：</b>皆表「一⋯⋯就⋯⋯」，<b>只有前一個子句要倒裝</b>，後接 than／when 的子句用陳述語序：No sooner <u>had we</u> left than it rained.</li>''',
   ],
  ],
 })
@@ -159,12 +159,12 @@ LESSONS.append({
 3. <b>the last train：</b>the + 序數詞 + 名詞 ＝「當班的那班」；the last train 即「今天最後一班車」。'''},
    {"text": """Taking the number twelve bus, we talked about our next journey.""",
     "html": '''<span class="w-tap kw-verb">Taking the number twelve bus</span>, we <span class="w-tap kw-verb">talked about</span> our next <span class="w-tap kw-colloc">journey</span>.''',
-    "pop": '''1. <b>Taking + 動名詞：</b>Taking the number twelve bus ＝「搭乘十二號公車時」，分詞片語作狀語，相當於 While we were taking the bus。<br>
+    "pop": '''1. <b>Taking + 現在分詞（V-ing）：</b>Taking the number twelve bus ＝「搭乘十二號公車時」，分詞片語作狀語，相當於 While we were taking the bus。<br>
 2. <b>路線編號的說法：</b>路線用<b>基數詞</b>前加 the：the number twelve bus；不可寫成 the twelfth number bus。<br>
 3. <b>journey 與 trip：</b>journey ＝「（長途的）旅程、路程」，trip ＝「（短程的）旅行、行程」，兩者皆為 A2 Key 旅行主題詞。'''},
    {"text": """Being tired but happy, we reached my street just before dark.""",
     "html": '''<span class="w-tap kw-verb">Being tired but happy</span>, we <span class="w-tap kw-verb">reached</span> my <span class="w-tap kw-colloc">street</span> just <span class="w-tap kw-link">before dark</span>.''',
-    "pop": '''1. <b>Being + 形容詞：</b>Being tired but happy ＝「又累又開心」，being 在此當連繫動詞，相當於 While we were tired but happy。<br>
+    "pop": '''1. <b>Being + 形容詞：</b>Being tired but happy ＝「又累又開心」，being 在此是<b>現在分詞</b>，用來說明主語的狀態，相當於 Because we were tired but happy。<br>
 2. <b>but 連接對比形容詞：</b>tired（累）與 happy（開心）是兩種並列的狀態、形成對比，通常用 <b>but</b> 連接；兩者並非反義詞，用 and 也可以。<br>
 3. <b>before dark：</b>dark 在此作<b>名詞</b>（＝天黑），before 後面的抽象名詞不加 the。'''},
   ],
@@ -204,12 +204,12 @@ LESSONS.append({
  "grammar": "名詞所有格 N's、of + 名詞片語、複合名詞與句尾省略",
  "translation": [
   "星期六下午，我在媽媽的床底下撿到一個紅色袋子。我問了全家每一個人，卻沒有人知道那是誰的。於是我小心地把它打開，仔細看裡面的每一樣東西。",
-  "袋子裡有祖母的眼鏡、叔叔的舊相機，還有一張母親的照片。姊姊說，紙條上的字跡看起來像鄰居的。爸爸接著想起來，說來作客的那位客人女兒用過一個紅袋子。",
-  "我們打電話給表姊，她的家人聽完這件事都笑了。原來那個袋子就是她的，是她忘記帶回去的。我們向她道歉，她則笑著對我們每個人點了點頭。",
+  "袋子裡有祖母的眼鏡和叔叔的舊相機。姊姊說，紙條上的字跡看起來像鄰居的。爸爸接著想起來，說來作客的那位客人女兒用過一個紅袋子。",
+  "我們打電話給表姊，那個星期她的家人正在我們家作客。原來那個袋子就是她的，是她忘記帶回去的。我們向她道歉，她則笑著對我們每個人點了點頭。",
  ],
  "bridges": [
-  "第一段先立起「這是誰的」這個疑問：星期六下午在媽媽床底撿到紅包，問遍全家沒人知道，主角只好自己動手打開，懸念一路留到第二段才慢慢拆開。",
-  "第二段從袋內物件追查所有者——祖母的眼鏡、叔叔的相機、母親的照片，一層層指向親友；第三段才揭曉答案原來就是來作客的表姊，一場尋物在道歉與笑聲裡收尾。",
+  "第一段先立起「這是誰的」這個疑問：星期六下午在媽媽床底撿到紅色袋子，問遍全家沒人知道，主角只好自己動手打開，懸念一路留到第二段才慢慢拆開。",
+  "第二段從袋內物件追查所有者——祖母的眼鏡、叔叔的相機，一層層指向親友；第三段才揭曉答案原來就是來作客的表姊，一場尋物在道歉與笑聲裡收尾。",
  ],
  "paragraphs": [
   [
@@ -222,7 +222,7 @@ LESSONS.append({
     "html": '''I <span class="w-tap kw-verb">asked</span> everyone in the <span class="w-tap kw-colloc">family</span>, <span class="w-tap kw-link">but</span> nobody <span class="w-tap kw-verb">knew whose bag it was</span>.''',
     "pop": '''1. <b>間接問句 (whose + 名詞 + it was)：</b>在陳述句中，疑問詞後面<b>不倒裝、也不加助動詞</b>：whose bag it was（✗ whose was the bag）。<br>
 2. <b>nobody 視為單數：</b>nobody 作主語時，後面的動詞要用<b>第三人稱單數</b> knew（✗ know / knowed）。<br>
-3. <b>Whose 問「誰的」：</b>Whose 可單獨使用（Whose bag?），也可接名詞形成間接問句，是本課的核心疑問詞。'''},
+3. <b>Whose 問「誰的」：</b>Whose 可單獨使用（<b>Whose is this?</b>），也可接名詞形成間接問句（Whose bag is it?），是本課的核心疑問詞。'''},
    {"text": """So I opened it carefully and looked at everything inside.""",
     "html": '''<span class="w-tap kw-link">So</span> I <span class="w-tap kw-verb">opened it carefully</span> and <span class="w-tap kw-verb">looked at everything inside</span>.''',
     "pop": '''1. <b>So 引導結果：</b>So ＋ 完整句子 ＝「所以⋯⋯」，與 because（原因）方向相反，是會考因果句型的標準配對。<br>
@@ -243,7 +243,7 @@ LESSONS.append({
    {"text": """Then my father remembered that our guest's daughter had used a red bag.""",
     "html": '''<span class="w-tap kw-link">Then</span> my <span class="w-tap kw-colloc">father</span> <span class="w-tap kw-verb">remembered that</span> our <span class="w-tap kw-colloc">guest's daughter</span> had used a red bag.''',
     "pop": '''1. <b>remember that + 子句：</b>remember 可接 that 子句（記得某件事）或 V-ing（記得做過某事），兩者不可混用。<br>
-2. <b>had + 過去分詞（過去完成式）：</b>「用過紅包」發生在「爸爸想起來」之前，因此用 had used。<br>
+2. <b>had + 過去分詞（過去完成式）：</b>「用過紅色袋子」發生在「爸爸想起來」之前，因此用 had used。<br>
 3. <b>複合所有格：</b>our guest's daughter ＝「我們那位客人的女兒」，只有 guest 加 's，daughter 是被擁有的名詞、不再加 's；只有兩個名詞先後都帶有所屬時才會出現兩層 's（如 our guest's daughter's bag）。'''},
   ],
   [

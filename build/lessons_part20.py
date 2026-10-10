@@ -30,7 +30,7 @@ LESSONS.append({
 3. <b>feel + 形容詞：</b> 表示「感到⋯⋯」，後面直接接形容詞 excited。<span style="color:#dc2626;">⚠️ 陷阱：</span>excited 描述的是「我」的狀態，不可改成副詞（<s>✗ I felt excitedly.</s>）。'''},
    {"text": "I was worried, because I had never written a story about my own feelings before.",
     "html": 'I <span class="w-tap kw-verb">was worried</span>, because I <span class="w-tap kw-verb">had never written</span> a story about <span class="w-tap kw-colloc">my own feelings before</span>.',
-    "pop": '''1. <b>過去完成式 had never + 過去分詞：</b> 表示「在過去某時點之前從未⋯⋯」。「宣布比賽」發生在「曾經寫過」之後，故用 <b>had never written</b>。<br>
+    "pop": '''1. <b>過去完成式 had never + 過去分詞：</b> 表示「在過去某時點之前從未⋯⋯」。此句的過去參照點是「宣布比賽」，而「從來沒有寫過」發生在比它更早的過去，當時還沒有寫過；故用 <b>had never written</b>。<br>
 2. <b>because（原因）：</b> because 說明原因，可放句首或句中；放句中時前後各加一個逗號，用來解釋前面的 worried。<br>
 3. <b>own 必須緊接名詞：</b> own 是形容詞性物主代詞，只能作定語：<u>✓</u> my own feelings；不可寫成 *my feelings own。'''},
    {"text": "My friend Leo said I would not understand it unless I read it twice.",
@@ -66,10 +66,10 @@ LESSONS.append({
     "html": 'Then I <span class="w-tap kw-verb">wrote</span> what really happened <span class="w-tap kw-link">until</span> it felt honest, <span class="w-tap kw-link">even if</span> it was sad.',
     "pop": '''1. <b>until 的「重複動作」用法：</b> until 也可表示「持續到某個時間點為止」，這裡是「我一直改稿，改到手稿讀起來誠實為止」。<br>
 2. <b>even if（即使）：</b> even if 引導<b>讓步條件</b>，表示「就算如此，結果也不變」，語氣比 if 更讓步。<br>
-3. <b>it felt + 形容詞：</b> 固定用法，it 是虛主語：it felt honest（讀起來感覺很誠實），後接形容詞不加冠詞。'''},
+3. <b>it felt + 形容詞：</b> 此處的 it 回指前面改寫的那份手稿，指涉明確，不是虛主語（虛主語如 It is important to start early，it 沒有對應的人或物）。it felt honest（讀起來感覺很誠實）；feel 這種連繫動詞後面直接接形容詞，不加冠詞。'''},
    {"text": "The magazine printed my story, and I feel happy that many readers are interested.",
     "html": 'The magazine <span class="w-tap kw-verb">printed</span> my story, and I <span class="w-tap kw-verb">feel happy</span> that many readers <span class="w-tap kw-verb">are interested</span>.',
-    "pop": '''1. <b>print → printed：</b> print 是規則動詞，過去式加 <b>-ed</b>；主語 The magazine 為單數，敘述已完成的事故用過去式。<br>
+    "pop": '''1. <b>print → printed：</b> print 是規則動詞，過去式加 <b>-ed</b>；主語 The magazine 為單數，敘述已完成的事用過去式。<br>
 2. <b>be interested in + 對象：</b> 興趣用 be interested <b>in</b>，in 後接名詞或 V-ing：readers are interested <b>in</b> my story。<br>
 3. <b>that 引導賓語子句：</b> feel happy that… 的 that 子句說明高興的原因；賓語子句的 that 可省略，但保留更清楚。'''},
   ],
@@ -126,7 +126,7 @@ LESSONS.append({
    {"text": "Every month we walked to the campsite and put up our tent before dark.",
     "html": 'Every month we <span class="w-tap kw-verb">walked</span> to the <span class="w-tap kw-colloc">campsite</span> and <span class="w-tap kw-verb">put up our tent</span> <span class="w-tap kw-link">before dark</span>.',
     "pop": '''1. <b>put up + 搭建物：</b> put up ＝「搭起、架起」；put–put–put 三態同形，且代詞須放中間：put <b>up</b> the tent。<br>
-2. <b>before + 單數名詞：</b> before dark ＝「在天黑之前」，此處 dark 作名詞，指「天色變暗」這一刻。<br>
+2. <b>before + 不可數名詞：</b> before dark ＝「在天黑之前」，此處 dark 作不可數名詞（意思同 darkness），指「天色變暗」這一刻，不能加冠詞（✗ before a dark）。<br>
 3. <b>to the campsite：</b> 動詞 walk 後接地點用介系詞 to；campsite ＝「露營地」，是 Hobbies and Leisure 主題的固定字。'''},
    {"text": "I took a photograph of the lake every month, but my English was still weak.",
     "html": 'I <span class="w-tap kw-verb">took</span> <span class="w-tap kw-colloc">a photograph of</span> the lake every month, but my English <span class="w-tap kw-link">was still weak</span>.',
@@ -164,7 +164,7 @@ LESSONS.append({
 3. <b>write → wrote：</b> write–wrote–written 為不規則變化，此處描述已完成的三個過去動作。'''},
    {"text": "At our end picnic, Kenji answered the quiz, and everyone was really happy.",
     "html": 'At <span class="w-tap kw-colloc">our end picnic</span>, Kenji <span class="w-tap kw-verb">answered the quiz</span>, and <span class="w-tap kw-verb">everyone was</span> really happy.',
-    "pop": '''1. <b>名詞片語 (At our end picnic)：</b> at + 活動名詞，說明活動是在哪一場舉行；end picnic ＝「結業野餐」。<br>
+    "pop": '''1. <b>名詞片語 (At our end picnic)：</b> at + 活動名詞，說明活動是在哪一場舉行。⚠️ 用詞提醒：end picnic 不是慣用說法，「期末／結業野餐」應寫成 <b>final picnic</b> 或 <b>end-of-term picnic</b>。<br>
 2. <b>answer → answered：</b> answer 是規則動詞，過去式加 <b>-ed</b>；Kenji 順利答題，正是他從「不敢開口」到「敢開口」的轉折。<br>
 3. <b>everyone 作主語：</b> 不定代詞 everyone 視為單數，be 動詞用 <b>was</b>，不可寫成 were。'''},
   ],
@@ -183,10 +183,10 @@ LESSONS.append({
    '''<li><b>a member of + 團體</b>：⋯⋯的一員（of 後接所屬團體）。</li>''',
    '''<li><b>put up a tent</b>：搭起帳篷（可分動詞片語，代詞放中間）。</li>''',
    '''<li><b>take a photograph of + 對象</b>：替某物拍一張照片。</li>''',
-   '''<li><b>have a picnic</b>：舉行野餐（at our end picnic＝在結業野餐上）。</li>''',
+   '''<li><b>have a picnic</b>：舉行野餐（at our final picnic＝在結業野餐上；「期末野餐」也可用 at the end-of-term picnic）。</li>''',
   ],
   [
-   '''<li><b>join / take part in：</b><br>• <b>join a club</b>＝成為固定會員（可長期）。<br>• <b>take part in an activity</b>＝參加某一次活動。<br>• <span style="color:#dc2626;">✗ join in the picnic</span> 誤用，應為 have a picnic。</li>''',
+   '''<li><b>join / take part in：</b><br>• <b>join a club</b>＝成為固定會員（可長期）。<br>• <b>take part in an activity</b>＝參加某一次活動。<br>• <b>join in + 活動</b> ＝「加入進來一起玩」，是標準片語（join in the game、join in the fun）；要說「參加野餐」可用 have a picnic／go on a picnic，或 attend the picnic。</li>''',
    '''<li><b>camp / camping / campsite：</b><br>• <b>camp</b>＝營地（也可指露營這件事）。<br>• <b>camping</b>＝露營（活動或形容詞：camping club）。<br>• <b>campsite</b>＝露營地點。</li>''',
    '''<li><b>listen to / hear：</b><br>• <b>hear</b>＝「聽到（結果）」：hear a word。<br>• <b>listen to</b>＝「聽（動作）」：listen to music。<br>• 口語提醒：聽力要主動，視為 <b>listening</b> 的動作時才用 listen to。</li>''',
   ],
@@ -243,7 +243,7 @@ LESSONS.append({
    {"text": "So Daniel wore a lovely small old black coat, and everyone cheered for him.",
     "html": 'So Daniel <span class="w-tap kw-verb">wore</span> <span class="w-tap kw-colloc">a lovely small old black coat</span>, and everyone <span class="w-tap kw-colloc">cheered for</span> him.',
     "pop": '''1. <b>形容詞語序（正確示範）：</b> lovely（意見）＋ small（大小）＋ old（年齡）＋ black（顏色）＝ a lovely small old black coat，順序不可隨意調換。<br>
-2. <b>cheer for somebody：</b> cheer for ＝「為某人加油」，介系詞 for 不可漏掉（<s>✗ cheered him</s>）。<br>
+2. <b>cheer for somebody：</b> cheer for ＝「為某人加油、喝采」（cheered <b>for</b> him）；cheer 也能直接接受詞（cheered him ＝「替他喝采」），兩種寫法都正確，看語意選擇。<br>
 3. <b>so（結果）：</b> 句首的 So 是承接上文的結果連接詞：老師把順序排好之後，所以 Daniel 穿上了順序正確的外套；後面的「全班喝采」則由 and 連接。'''},
   ],
   [
@@ -254,7 +254,7 @@ LESSONS.append({
 3. <b>long grey scarf：</b> 長短（long）先於顏色（grey），再一次用一個名詞 scarf 同時修飾兩者。'''},
    {"text": "She worried a lot, but a small silver necklace gave her real confidence.",
     "html": 'She <span class="w-tap kw-verb">worried a lot</span>, but <span class="w-tap kw-colloc">a small silver necklace</span> <span class="w-tap kw-verb">gave her</span> real confidence.',
-    "pop": '''1. <b>a small silver necklace：</b> 語序為 size（small）→ 顏色兼材質（silver）→ 名詞 necklace；此處只有一個前置形容詞，順序不論大小仍是正確的，且依本課規則「意見—大小—年齡—形狀—顏色—質地／來源」，材質詞若與顏色並列須排在顏色之後。<br>
+    "pop": '''1. <b>a small silver necklace：</b> 這裡有<b>兩個</b>前置形容詞：size（small）→ 顏色兼材質（silver）→ 名詞 necklace；順序符合本課規則「意見—大小—年齡—形狀—顏色—質地／來源」，材質詞若與顏色並列須排在顏色之後。<br>
 2. <b>give somebody + 抽象名詞：</b> give sb confidence ＝「給某人信心」，後面直接接名詞，且不加冠詞。<br>
 3. <b>but（轉折）：</b> but 把「很擔心」翻轉成「有自信」，是本課故事情節轉折的關鍵連詞。'''},
    {"text": "On the play night her simple clothes won loud cheers from the whole school.",
