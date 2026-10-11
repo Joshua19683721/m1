@@ -50,9 +50,9 @@ check('reuses the badge component', html.includes('class="badge"'));
 check('uses the project card radius', html.includes('border-radius:16px'));
 
 /* ---------- 4. 語速控制與 60 課一致 ---------- */
-check('rate presets are the same three speeds',
-      ['data-rate="0.6"', 'data-rate="0.9"', 'data-rate="1.2"']
-        .every(s => html.includes(s)));
+check('rate control is a draggable slider',
+      /id="rateRange"[\s\S]{0,200}?type="range"/.test(html) ||
+      /type="range"[\s\S]{0,200}?id="rateRange"/.test(html));
 check('setSpeechRate / updateRateLabel / speechRateLabel present',
       html.includes('function setSpeechRate') &&
       html.includes('function updateRateLabel') &&
@@ -84,7 +84,19 @@ function boot(withData) {
       // innerHTML is only a string on the stub, so there are no real child nodes
       // to find; callers already treat a null result as "not present".
       querySelector: () => null,
-      querySelectorAll: () => [],
+      // Elements DO get appended children, so class lookup has to recurse —
+      // answer() calls card.querySelectorAll('.option') to paint the
+      // correct/wrong borders.
+      querySelectorAll(sel) {
+        const want = sel.trim().replace(/^\./, '');
+        const hits = [];
+        const walk = (n) => (n.children || []).forEach(c => {
+          if ((c.className || '').split(/\s+/).includes(want)) hits.push(c);
+          walk(c);
+        });
+        walk(this);
+        return hits;
+      },
       classList: {
         add(c) { this._own && this._own._cls.add(c); },
         remove(c) { this._own && this._own._cls.delete(c); },
@@ -106,22 +118,13 @@ function boot(withData) {
   };
   ['apiKey', 'level', 'qcount', 'generate', 'status', 'articleCard',
    'artTitle', 'artTitleZh', 'artMeta', 'artBody', 'questions', 'scoreCard',
-   'voiceSelect', 'rateVal', 'ratePresets', 'readAll', 'stopRead']
+   'voiceSelect', 'rateVal', 'rateRange', 'readAll', 'stopRead']
     .forEach((id) => { store[id] = mk(id); });
   store.apiKey.value = 'gsk_test';
   store.level.value = 'intermediate';
   store.qcount.value = '4';
   store.rateVal.textContent = '0.9x';
-
-  const presets = mk('ratePresets');
-  presets.children = [];
-  [0.6, 0.9, 1.2].forEach((r) => {
-    const b = mk('btn-rate');
-    b.setAttribute('data-rate', String(r));
-    if (r === 0.9) b.classList.add('is-active');
-    presets.children.push(b);
-  });
-  presets.querySelectorAll = (s) => s === '.btn-rate' ? presets.children : [];
+  store.rateRange.value = '0.9';
 
   const js = html.match(/<script>([\s\S]*?)<\/script>/g)
     .map(s => s.replace(/^<script>/, '').replace(/<\/script>$/, '')).join('\n');
@@ -137,8 +140,7 @@ function boot(withData) {
     });
   };
 
-  // answer() does document.querySelectorAll('.q-card, .card')[qi], so the stub
-  // has to be able to actually find the cards renderQuestions appended.
+  // Real DOM class matching, restricted to one subtree.
   const byClass = (root, want, out) => {
     (root.children || []).forEach(c => {
       if ((c.className || '').split(/\s+/).includes(want)) out.push(c);
@@ -146,6 +148,23 @@ function boot(withData) {
     });
     return out;
   };
+
+  // The page has several .card elements outside #questions (the Groq API key
+  // card, #articleCard, #scoreCard). Before this was modelled, the stub matched
+  // '.card' only inside #questions, which hid a real bug: answer() looked cards
+  // up with document.querySelectorAll('.q-card, .card')[qi] and therefore grabbed
+  // the API key card, found no .option inside, and never drew the red/green
+  // border. So the decoys must hang off the page root exactly as they do in the
+  // real document, and matching must consider every node, not just children.
+  const pageRoot = mk('body');
+  const decoyCards = ['card setup', 'card article', 'card score'].map(cls => {
+    const e = mk(cls);
+    e.className = cls;
+    pageRoot.children.push(e);   // siblings of #questions, earlier in the document
+    return e;
+  });
+  pageRoot.children.push(store.questions);
+
   const synth = {
     speaking: false, onvoiceschanged: undefined,
     getVoices: () => [],
@@ -157,20 +176,25 @@ function boot(withData) {
   // returning null — a real DOM would have created them already.
   const doc = {
     getElementById: (id) => {
-      if (id === 'ratePresets') return presets;
       if (!store[id]) store[id] = mk(id);
       return store[id];
     },
     querySelectorAll: (sel) => {
       const hits = [];
-      sel.split(',').forEach(s => {
-        byClass(store.questions, s.trim().replace(/^\./, ''), hits);
+      sel.split(',').forEach(raw => {
+        const s = raw.trim();
+        // '#questions .card' scopes to the question container; a bare '.card'
+        // searches the whole document, decoys included.
+        const scoped = /^#questions\s+/.test(s);
+        const cls = s.replace(/^#questions\s+/, '').replace(/^\./, '');
+        if (scoped) byClass(store.questions, cls, hits);
+        else byClass(pageRoot, cls, hits);
       });
       return hits;
     },
     createElement: (tag) => mk('created-' + tag),
     addEventListener() {},
-    body: mk('body'),
+    body: pageRoot,
   };
 
   const api = new Function(
@@ -191,7 +215,7 @@ function boot(withData) {
 
   // `fetched` is written later by the fetch stub, so expose it lazily —
   // returning it directly would snapshot the pre-generate null.
-  return { api, store, presets, getFetched: () => fetched, doc };
+  return { api, store, getFetched: () => fetched, doc };
 }
 
 const SAMPLE = {
@@ -227,7 +251,7 @@ try {
   process.exit(1);
 }
 
-const { api, store, presets } = booted;
+const { api, store } = booted;
 
 /* ---------- 6. 出題流程 ---------- */
 api.generate().then(() => {
@@ -243,9 +267,27 @@ api.generate().then(() => {
     check('title rendered', store.artTitle.textContent === 'A Day at the Animal Shelter');
     check('level badge rendered', store.artMeta.textContent === '中級 級');
 
-    /* ---------- 7. 答題 ---------- */
-    api.answer(0, 1);
-    check('answer() records the reply', api.state.answered[0] === 1);
+    /* ---------- 7. 答題：選項必須畫出紅框／綠框 ---------- */
+    // 答錯（選 A，正確是 B）：A 紅框、B 綠框。
+    api.answer(0, 0);
+    check('answer() records the reply', api.state.answered[0] === 0);
+
+    const card = store.questions.children.find(c => (c.className || '') === 'card');
+    const opts = card ? card.querySelectorAll('.option') : [];
+    check('the question card was found inside #questions', !!card);
+    check('its four options are reachable', opts.length === 4, 'n=' + opts.length);
+    check('a wrong pick is marked wrong', opts[0] && opts[0].classList.contains('wrong'),
+          opts[0] && opts[0].className);
+    check('the correct answer is marked correct',
+          opts[1] && opts[1].classList.contains('correct'),
+          opts[1] && opts[1].className);
+    check('an untouched option gets neither class',
+          opts[2] && !opts[2].classList.contains('correct') &&
+                   !opts[2].classList.contains('wrong'),
+          opts[2] && opts[2].className);
+    check('all options are locked after answering',
+          opts.every(o => o.classList.contains('done')));
+
     // The explanation is written into #explain-0, not into #questions.
     const explained = store['explain-0'].innerHTML;
     check('explanation mentions AI disclaimer',
@@ -254,19 +296,30 @@ api.generate().then(() => {
     check('explanation shows the correct answer line',
           explained.includes('為什麼答案是 B'));
 
-    /* ---------- 8. 語速預設 ---------- */
-    const active = () => {
-      for (const b of presets.children) if (b.classList.contains('is-active')) return b;
-      return null;
-    };
-    for (const r of [0.6, 0.9, 1.2]) {
-      api.setSpeechRate(r);
-      check('setSpeechRate(' + r + ') sets the rate', api.SPEECH_RATE === r);
-      check('setSpeechRate(' + r + ') moves the highlight',
-            active() && active().getAttribute('data-rate') === String(r));
+    /* ---------- 8. 語速滑桿 ---------- */
+    const sliderTag = (html.match(/<input[^>]*rateRange[^>]*>/) || [''])[0];
+    check('slider markup is a range input',
+          /type="range"/.test(sliderTag) && /id="rateRange"/.test(sliderTag),
+          sliderTag.slice(0, 90));
+    check('slider spans 0.5 to 1.5',
+          /min="0\.5"/.test(sliderTag) && /max="1\.5"/.test(sliderTag),
+          sliderTag.slice(0, 90));
+    check('preset buttons are gone', !/class="btn-rate"/.test(html));
+    for (const r of [0.5, 0.9, 1.3, 1.5]) {
+      store.rateRange.value = String(r);
+      api.setSpeechRate(store.rateRange.value);
+      check('setSpeechRate(' + r + ') sets the rate', api.SPEECH_RATE === r,
+            'rate=' + api.SPEECH_RATE);
       check('setSpeechRate(' + r + ') updates the label',
-            store.rateVal.textContent === r + 'x', store.rateVal.textContent);
+            store.rateVal.textContent === r.toFixed(1) + 'x',
+            store.rateVal.textContent);
+      check('setSpeechRate(' + r + ') keeps the slider in sync',
+            parseFloat(store.rateRange.value) === r,
+            'slider=' + store.rateRange.value);
     }
+    api.setSpeechRate(99);
+    check('rate above max is clamped', api.SPEECH_RATE === 1.5,
+          'rate=' + api.SPEECH_RATE);
 
     /* ---------- 9. prompt 不含洩漏的答案 ---------- */
     const p = api.buildPrompt();

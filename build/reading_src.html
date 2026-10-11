@@ -41,11 +41,23 @@ select{padding:6px 10px;border-radius:6px;border:1px solid #cbd5e1;font-size:.95
 .btn-tool:hover{background:#115e59;color:#fff;}
 .btn-tool.ghost{background:#fff;color:var(--teal);border:1px solid var(--teal-light);}
 .btn-tool.ghost:hover{background:var(--teal-bg);}
-.rate-presets{display:flex;gap:6px;}
-.btn-rate{background:#fff;color:var(--teal);border:1px solid var(--teal-light);
-  border-radius:15px;padding:3px 12px;cursor:pointer;font-size:.82rem;font-family:inherit;white-space:nowrap;}
-.btn-rate:hover{background:var(--teal-bg);}
-.btn-rate.is-active{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:700;}
+/* .control-group 是橫向 flex，所以滑桿與兩端標籤要包成一個直向容器，
+   否則三個元素會被並排擠在一起。 */
+.rate-wrap{display:flex;flex-direction:column;width:240px;flex:0 0 auto;}
+.rate-range{width:240px;max-width:100%;height:22px;cursor:pointer;
+  accent-color:var(--teal);margin:2px 0 0;display:block;}
+.rate-ends{display:flex;justify-content:space-between;width:100%;
+  font-size:.72rem;color:#94a3b8;margin-top:-2px;}
+
+/* 選項對錯：答錯時使用者選的選項紅框，正確答案綠框 */
+.option.correct{border-color:var(--ok);background:var(--ok-soft);
+  box-shadow:0 0 0 2px rgba(18,161,80,.22);}
+.option.wrong{border-color:var(--bad);background:var(--bad-soft);
+  box-shadow:0 0 0 2px rgba(229,72,77,.22);}
+.option.correct::after,.option.wrong::after{
+  flex:none;margin-left:auto;font-size:15px;font-weight:800;line-height:1;padding-top:3px;}
+.option.correct::after{content:'✓';color:var(--ok);}
+.option.wrong::after{content:'✗';color:var(--bad);}
 
 /* ---------- AI 生成提示 ---------- */
 .ai-note{
@@ -131,8 +143,6 @@ input[type=password]:focus,input[type=text]:focus{border-color:var(--primary-lig
   transition:.16s;line-height:1.55;font-family:inherit;
 }
 .option:not(.done):hover{border-color:var(--teal);background:var(--teal-bg);}
-.option.correct{border-color:var(--ok);background:var(--ok-soft);}
-.option.wrong{border-color:var(--bad);background:var(--bad-soft);}
 .option.done{cursor:default;}
 .opt-letter{flex:none;width:24px;height:24px;border-radius:50%;background:#eef1f8;color:#5a6580;
   display:grid;place-items:center;font-size:12.5px;font-weight:800;margin-top:1px;}
@@ -255,11 +265,11 @@ footer a{color:var(--primary);font-weight:bold;}
       <select id="voiceSelect" aria-label="選擇朗讀語音"></select>
     </div>
     <div class="control-group">
-      <label for="rateVal"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.9x</span></label>
-      <div class="rate-presets" id="ratePresets" role="group" aria-label="朗讀語速">
-        <button type="button" class="btn-rate" data-rate="0.6" onclick="setSpeechRate(0.6)">🐢 慢</button>
-        <button type="button" class="btn-rate is-active" data-rate="0.9" onclick="setSpeechRate(0.9)">正常</button>
-        <button type="button" class="btn-rate" data-rate="1.2" onclick="setSpeechRate(1.2)">⏩ 快</button>
+      <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.9x</span></label>
+      <div class="rate-wrap">
+        <input type="range" id="rateRange" class="rate-range" min="0.5" max="1.5" step="0.1"
+               value="0.9" aria-label="朗讀語速" oninput="setSpeechRate(this.value)">
+        <span class="rate-ends"><span>0.5x 慢</span><span>1.5x 快</span></span>
       </div>
     </div>
     <div class="control-group">
@@ -379,25 +389,29 @@ function parseJSON(text){
 /* ==================== TTS ==================== */
 let voiceList = [];
 let seqAbort = false;
-var SPEECH_RATE = 0.9;   // 與 60 課共用同一組語速預設
+var SPEECH_RATE = 0.9;   // 與 60 課共用同一組語速設定
+var SPEECH_RATE_MIN = 0.5;
+var SPEECH_RATE_MAX = 1.5;
 
 function speechRateLabel(val) { return parseFloat(val).toFixed(1) + 'x'; }
 
 function setSpeechRate(rate) {
-  SPEECH_RATE = parseFloat(rate);
+  var n = parseFloat(rate);
+  if (isNaN(n)) n = SPEECH_RATE;
+  SPEECH_RATE = Math.min(SPEECH_RATE_MAX, Math.max(SPEECH_RATE_MIN, n));
   updateRateLabel(speechRateLabel(SPEECH_RATE));
+  syncRateSlider();
+}
+
+/* 讓滑桿位置永遠反映目前語速（程式改值時不會和畫面不同步）。 */
+function syncRateSlider(){
+  const range = $('rateRange');
+  if (range && parseFloat(range.value) !== SPEECH_RATE) range.value = String(SPEECH_RATE);
 }
 
 function updateRateLabel(val) {
   const el = $('rateVal');
   if (el) el.innerText = val;
-  const group = $('ratePresets');
-  if (!group) return;
-  const btns = group.querySelectorAll('.btn-rate');
-  for (let i = 0; i < btns.length; i++) {
-    const on = parseFloat(btns[i].getAttribute('data-rate')) === parseFloat(val);
-    btns[i].classList.toggle('is-active', on);
-  }
 }
 
 function getRate(){ return SPEECH_RATE; }
@@ -504,6 +518,7 @@ if ('speechSynthesis' in window){
   speechSynthesis.onvoiceschanged = refreshVoices;
 }
 updateRateLabel(speechRateLabel(SPEECH_RATE));
+syncRateSlider();
 
 /* ==================== Groq API ==================== */
 async function callGroq(key, prompt){
@@ -847,11 +862,17 @@ function renderQuestions(data){
 /* ==================== 作答 ==================== */
 function answer(qi, oi){
   if (state.answered[qi] !== undefined) return;
-  state.answered[qi] = oi;
 
   const q = state.data.questions[qi];
   const correctIdx = Number(q.answerIndex) || 0;
-  const card = document.querySelectorAll('.q-card, .card')[qi];
+  // 必須限定在 #questions 裡找。頁面上還有 API Key 卡、articleCard、scoreCard
+  // 也都帶 .card 類別，用 document.querySelectorAll('.q-card, .card')[qi]
+  // 會抓到設定卡而不是題目卡，結果迴圈裡找不到 .option，紅綠框永遠不會出現。
+  const card = document.querySelectorAll('#questions .q-card, #questions .card')[qi];
+  // 找不到題目卡就不要記成已作答，否則這題會被鎖死、永遠無法重答。
+  if (!card) return;
+  state.answered[qi] = oi;
+
   const btns = card.querySelectorAll('.option');
   const isRight = oi === correctIdx;
 
