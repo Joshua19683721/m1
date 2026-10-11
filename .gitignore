@@ -6,6 +6,12 @@ build/fix_*.txt
 build/probe_*.py
 build/scan2.ps1
 
+# ---- ad-hoc scratch at the repo root (commit-message files, one-off probes) ----
+/_msg.txt
+/_chk.py
+/_*.txt
+/_*.py
+
 # ---- local agent / harness scratch ----
 .opencode/
 
