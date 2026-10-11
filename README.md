@@ -104,6 +104,28 @@ API Key 只存在使用者自己的瀏覽器（localStorage）；按「拆解」
 注意：60 課的 `:root` **沒有定義 `--teal`**（`build.py` 的 `EXTRA_CSS` 直接寫色碼），
 所以滑桿用字面值 `#0f766e`，寫 `var(--teal)` 會失效並掉回瀏覽器預設藍色。
 
+## 朗讀語音
+
+**全站固定使用 Microsoft Mark（en-US）**，不再讓使用者選。
+
+理由是教學一致性：每台電腦挑到不同語音，學生的發音基準就不一樣了。
+頁首原本的下拉選單已移除，改為唯讀文字顯示實際使用的語音。
+
+`pickVoice()` 的退回順序：
+
+1. `Microsoft Mark - English (United States`（完整名稱）
+2. 任何開頭是 `Microsoft Mark` 的語音
+3. 任何 `Microsoft` 的 en-US 語音（例如沒有 Mark 但有 Zira）
+4. 任何 en-US 語音
+5. 任何 en 語音
+6. 都沒有 → 不綁 voice，但固定 `lang="en-US"`
+
+第 6 步很重要：頁面是 `lang="zh-TW"`，若不指定 `lang`，
+瀏覽器會挑中文語音來念英文，發音整個跑掉。
+
+讀取頁原本把語音記在 `localStorage` 的 `tts_voice`，現在不再需要，已移除。
+若這台電腦沒有 Mark，畫面上的語音名稱會變成警示色並在 title 說明原因。
+
 ## 打字練習
 
 每課頁首的控制列有一個 **⌨️ 開啟打字練習** 按鈕，預設收起（列印時也會隱藏），

@@ -84,6 +84,10 @@
       font-size: 0.95rem;
     }
 
+    /* 固定語音的名稱顯示（不再讓使用者選） */
+    .voice-name { font-size: .95rem; color: var(--text); }
+    .voice-name:empty::before { content: '（載入中⋯）'; color: #94a3b8; }
+
     /* 朗讀語速滑桿。.control-group 是橫向 flex，所以滑桿與兩端標籤要包成
        一個直向容器，否則三個元素會被並排擠在一起。 */
     .rate-wrap { display: flex; flex-direction: column; width: 260px; flex: 0 0 auto; }

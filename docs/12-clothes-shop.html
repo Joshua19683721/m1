@@ -84,6 +84,10 @@
       font-size: 0.95rem;
     }
 
+    /* 固定語音的名稱顯示（不再讓使用者選） */
+    .voice-name { font-size: .95rem; color: var(--text); }
+    .voice-name:empty::before { content: '（載入中⋯）'; color: #94a3b8; }
+
     /* 朗讀語速滑桿。.control-group 是橫向 flex，所以滑桿與兩端標籤要包成
        一個直向容器，否則三個元素會被並排擠在一起。 */
     .rate-wrap { display: flex; flex-direction: column; width: 260px; flex: 0 0 auto; }
@@ -376,8 +380,8 @@ body.review .sentence-block{background:#f0f9ff;}
     <div class="sub-title">Clothes and Accessories｜滑鼠移至句子看文法解說・點擊單字聽標準發音・附中文全文翻譯</div>
     <div class="audio-panel">
       <div class="control-group">
-        <label for="voiceSelect"><b>🎙️ 發音語音引擎:</b></label>
-        <select id="voiceSelect"></select>
+        <b>🎙️ 發音語音引擎:</b>
+        <span id="voiceName" class="voice-name">載入中⋯</span>
       </div>
       <div class="control-group">
         <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.9x</span></label>
@@ -602,33 +606,48 @@ body.review .sentence-block{background:#f0f9ff;}
   const synth = window.speechSynthesis;
   let voices = [];
 
-  function populateVoiceList() {
-    voices = synth.getVoices();
-    const voiceSelect = document.getElementById('voiceSelect');
-    voiceSelect.innerHTML = '';
+  /* 全站固定使用 Microsoft Mark (en-US)。課堂上不要再讓使用者選語音 ——
+     每台電腦挑到不同語音，學生的發音基準就不一樣了。
+     若這台機器沒有 Mark（部分 Windows 以外的環境），依序退回
+     en-US 的 Microsoft 語音 → 任何 en 語音 → 讓瀏覽器自己挑（此時固定 lang=en-US）。 */
+  const PREFERRED_VOICE = 'Microsoft Mark';
 
-    const engVoices = voices.filter(v => v.lang.startsWith('en'));
+  function pickVoice() {
+    if (!voices.length) voices = synth.getVoices() || [];
+    const all = voices || [];
+    // 完整名稱優先，例如「Microsoft Mark - English (United States)」
+    let v = all.find(x => x.name === PREFERRED_VOICE + ' - English (United States)');
+    if (!v) v = all.find(x => x.name.indexOf(PREFERRED_VOICE) === 0);
+    if (!v) v = all.find(x => /Microsoft/i.test(x.name) && /^en[-_]US/i.test(x.lang || ''));
+    if (!v) v = all.find(x => /^en[-_]US/i.test(x.lang || ''));
+    if (!v) v = all.find(x => /^en/i.test(x.lang || ''));
+    return v || null;
+  }
 
-    engVoices.forEach((voice) => {
-      const option = document.createElement('option');
-      option.textContent = `${voice.name} (${voice.lang})`;
-      option.setAttribute('data-name', voice.name);
-      
-      // 預設優先選擇 Google US English
-      if (voice.name.includes('Google') && voice.lang === 'en-US') {
-        option.selected = true;
-      }
-      voiceSelect.appendChild(option);
-    });
-
-    if (!voiceSelect.value && engVoices.length > 0) {
-      voiceSelect.selectedIndex = 0;
+  function refreshVoiceLabel() {
+    const el = document.getElementById('voiceName');
+    if (!el) return;
+    const v = pickVoice();
+    if (v) {
+      const exact = v.name.indexOf(PREFERRED_VOICE) === 0;
+      el.textContent = v.name + '（' + v.lang + '）';
+      el.style.color = exact ? '' : '#b45309';
+      el.title = exact ? '' : '這台電腦沒有 Microsoft Mark，已改用最接近的英文語音';
+    } else {
+      el.textContent = '（尚未偵測到英文語音，朗讀可能不會有聲音）';
+      el.style.color = '#b45309';
+      el.title = '';
     }
   }
 
-  populateVoiceList();
+  function loadVoices() {
+    voices = synth.getVoices() || [];
+    refreshVoiceLabel();
+  }
+
+  loadVoices();
   if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = populateVoiceList;
+    speechSynthesis.onvoiceschanged = loadVoices;
   }
 
   /* 朗讀語速：0.5x – 1.5x 可拖曳滑桿。所有朗讀（句子、整段、單字、打字練習）共用。 */
@@ -668,17 +687,13 @@ body.review .sentence-block{background:#f0f9ff;}
 
     const cleanText = text.replace(/🔍/g, '').trim();
     const utterThis = new SpeechSynthesisUtterance(cleanText);
-    const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
+    const voice = pickVoice();
 
-    if (selectedVoiceName) {
-      utterThis.voice = voices.find(v => v.name === selectedVoiceName);
-    }
-
-    // 一定要指定 lang。若 voices 尚未載入完、或使用者機器沒有該語音，
-    // utterThis.voice 會是 undefined，瀏覽器就會依文件語言（zh-TW）挑中文
+    // 一定要指定 lang。若沒找到語音，瀏覽器會依文件語言（zh-TW）挑中文
     // 語音來念英文，發音整個跑掉。寫法與 reading.html 的 speak() 保持一致。
-    if (utterThis.voice) {
-      utterThis.lang = utterThis.voice.lang;
+    if (voice) {
+      utterThis.voice = voice;
+      utterThis.lang = voice.lang;
     } else {
       utterThis.lang = 'en-US';
     }

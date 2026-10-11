@@ -25,7 +25,7 @@ check('generate button present', html.includes('id="generate"'));
 check('article card present', html.includes('id="articleCard"'));
 check('questions container present', html.includes('id="questions"'));
 check('score card present', html.includes('id="scoreCard"'));
-check('voice select present', html.includes('id="voiceSelect"'));
+check('voice name display present', html.includes('id="voiceName"'));
 check('readAll + stopRead buttons present',
       html.includes('id="readAll"') && html.includes('id="stopRead"'));
 
@@ -59,6 +59,14 @@ check('setSpeechRate / updateRateLabel / speechRateLabel present',
       html.includes('function speechRateLabel'));
 
 /* ---------- 5. JS 真的可執行（從頁面抽出來跑） ---------- */
+// Stands in for whatever voices the machine actually has installed.
+let availableVoices = [
+  { name: 'Microsoft Zira - English (United States)', lang: 'en-US' },
+  { name: 'Microsoft Mark - English (United States)', lang: 'en-US' },
+  { name: 'Google US English', lang: 'en-US' },
+  { name: 'Google 國語（臺灣）', lang: 'zh-TW' },
+];
+
 function boot(withData) {
   const store = {};
   const mk = (id) => {
@@ -66,6 +74,8 @@ function boot(withData) {
       id, value: '', innerHTML: '', textContent: '', hidden: false,
       disabled: false, className: '', dataset: {}, children: [],
       _attrs: {}, _cls: new Set(),
+      // Every real element has a style object; refreshVoices writes to it.
+      style: {},
       focus() {},
       // A real appendChild must collect children, or code that checks
       // `el.children.length` (renderArticle does) crashes on the stub.
@@ -118,7 +128,7 @@ function boot(withData) {
   };
   ['apiKey', 'level', 'qcount', 'generate', 'status', 'articleCard',
    'artTitle', 'artTitleZh', 'artMeta', 'artBody', 'questions', 'scoreCard',
-   'voiceSelect', 'rateVal', 'rateRange', 'readAll', 'stopRead']
+   'voiceSelect', 'rateVal', 'rateRange', 'voiceName', 'readAll', 'stopRead']
     .forEach((id) => { store[id] = mk(id); });
   store.apiKey.value = 'gsk_test';
   store.level.value = 'intermediate';
@@ -167,10 +177,11 @@ function boot(withData) {
 
   const synth = {
     speaking: false, onvoiceschanged: undefined,
-    getVoices: () => [],
-    speak(u) { this.last = u; },
+    getVoices: () => availableVoices,
+    speak(u) { spoken.push(u); },
     cancel() {},
   };
+  const spoken = [];
 
   // answer() writes into #explain-N, so unknown ids must materialise instead of
   // returning null — a real DOM would have created them already.
@@ -203,7 +214,8 @@ function boot(withData) {
     js + '\nreturn {' +
     'setSpeechRate, updateRateLabel, speechRateLabel, normalize, normalizeProg,' +
     'buildExplain, buildPrompt, parseJSON, esc, md, state, progCache,' +
-    'callGroq, generate, renderAll, answer, updateScore, playSequential,' +
+    'callGroq, generate, renderAll, answer, updateScore, playSequential, speak,' +
+    'pickVoice, refreshVoices, ' +
     'get SPEECH_RATE(){return SPEECH_RATE}};'
   )(
     { speechSynthesis: synth }, doc, {}, {}, synth,
@@ -215,7 +227,7 @@ function boot(withData) {
 
   // `fetched` is written later by the fetch stub, so expose it lazily —
   // returning it directly would snapshot the pre-generate null.
-  return { api, store, getFetched: () => fetched, doc };
+  return { api, store, spoken, getFetched: () => fetched, doc };
 }
 
 const SAMPLE = {
@@ -251,7 +263,7 @@ try {
   process.exit(1);
 }
 
-const { api, store } = booted;
+const { api, store, spoken } = booted;
 
 /* ---------- 6. 出題流程 ---------- */
 api.generate().then(() => {
@@ -321,7 +333,61 @@ api.generate().then(() => {
     check('rate above max is clamped', api.SPEECH_RATE === 1.5,
           'rate=' + api.SPEECH_RATE);
 
-    /* ---------- 9. prompt 不含洩漏的答案 ---------- */
+    /* ---------- 9. 語音固定為 Microsoft Mark (en-US) ---------- */
+    check('no voice dropdown left on the reading page', !html.includes('id="voiceSelect"'));
+    check('the voice is shown as read-only text', html.includes('id="voiceName"'));
+    check('there is no tts_voice preference any more',
+          !html.includes("localStorage.setItem('tts_voice'"));
+
+    const mark = api.pickVoice();
+    check('pickVoice returns Microsoft Mark',
+          mark && mark.name === 'Microsoft Mark - English (United States)', mark && mark.name);
+    check('pickVoice is not the Google voice', !/Google/.test(mark.name), mark.name);
+
+    spoken.length = 0;
+    api.speak('The weather is lovely today.');
+    check('speak() uses Microsoft Mark',
+          spoken[0] && spoken[0].voice &&
+          spoken[0].voice.name === 'Microsoft Mark - English (United States)',
+          spoken[0] && spoken[0].voice && spoken[0].voice.name);
+    check('speak() sends the voice lang', spoken[0] && spoken[0].lang === 'en-US',
+          spoken[0] && spoken[0].lang);
+    check('the label names the voice in use',
+          store.voiceName.textContent.indexOf('Microsoft Mark') !== -1,
+          store.voiceName.textContent);
+
+    // Mark missing -> another English voice, never a Chinese one.
+    const saved = availableVoices;
+    availableVoices = [
+      { name: 'Microsoft Zira - English (United States)', lang: 'en-US' },
+      { name: 'Google 國語（臺灣）', lang: 'zh-TW' },
+    ];
+    api.refreshVoices();
+    const fallback = api.pickVoice();
+    check('without Mark it falls back to a Microsoft en-US voice',
+          fallback && fallback.name === 'Microsoft Zira - English (United States)',
+          fallback && fallback.name);
+    check('the fallback never picks a Chinese voice',
+          fallback && !/^zh/i.test(fallback.lang), fallback && fallback.lang);
+    check('the label warns that Mark is missing',
+          store.voiceName.style.color === '#b45309', store.voiceName.style.color);
+
+    availableVoices = [{ name: 'Google 國語（臺灣）', lang: 'zh-TW' }];
+    api.refreshVoices();
+    check('with no English voice it does not pick a Chinese one', api.pickVoice() === null,
+          api.pickVoice() && api.pickVoice().name);
+    spoken.length = 0;
+    api.speak('hello');
+    check('with no English voice it still forces lang=en-US',
+          spoken[0] && spoken[0].lang === 'en-US', spoken[0] && spoken[0].lang);
+
+    availableVoices = saved;
+    api.refreshVoices();
+    check('restoring the roster brings Mark back',
+          store.voiceName.textContent.indexOf('Microsoft Mark') !== -1,
+          store.voiceName.textContent);
+
+    /* ---------- 10. prompt 不含洩漏的答案 ---------- */
     const p = api.buildPrompt();
     check('prompt asks for Traditional Chinese', p.includes('繁體中文'));
     check('prompt forbids answerProgressive', p.includes('不需要產生 answerProgressive'));

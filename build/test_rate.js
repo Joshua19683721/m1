@@ -15,6 +15,8 @@ function mkEl(id) {
   const el = {
     id, value: '', disabled: false, hidden: false, textContent: '',
     _attrs: {},
+    // Every real element has a style object; refreshVoiceLabel writes to it.
+    style: {},
     focus() {}, appendChild() {}, setAttribute(k, v) { this._attrs[k] = v; },
     getAttribute(k) { return this._attrs[k]; },
     selectedOptions: [],
@@ -36,16 +38,24 @@ function mkEl(id) {
 
 const store = {};
 ['typePanel', 'btnType', 'typeCount', 'typeTarget', 'typeInput',
-  'voiceSelect', 'rateVal', 'rateRange'].forEach((id) => { store[id] = mkEl(id); });
+  'voiceSelect', 'rateVal', 'rateRange', 'voiceName'].forEach((id) => { store[id] = mkEl(id); });
 
 const utterances = [];
 const synth = {
   speaking: false,
   onvoiceschanged: undefined,
-  getVoices: () => [],
+  getVoices: () => availableVoices,
   speak(u) { utterances.push(u); },
   cancel() {},
 };
+// The voice roster stands in for whatever the machine actually has installed.
+let availableVoices = [
+  { name: 'Microsoft Zira - English (United States)', lang: 'en-US' },
+  { name: 'Microsoft Mark - English (United States)', lang: 'en-US' },
+  { name: 'Microsoft David - English (United Kingdom)', lang: 'en-GB' },
+  { name: 'Google US English', lang: 'en-US' },
+  { name: 'Google 國語（臺灣）', lang: 'zh-TW' },
+];
 const fakeWindow = { speechSynthesis: synth };
 
 const api = new Function(
@@ -54,6 +64,7 @@ const api = new Function(
   js + '\nreturn {speakText: speakText, speakParagraph: speakParagraph, ' +
        'setSpeechRate: setSpeechRate, updateRateLabel: updateRateLabel, ' +
        'syncRateSlider: syncRateSlider, speechRateLabel: speechRateLabel, ' +
+       'pickVoice: pickVoice, loadVoices: loadVoices, ' +
        'typeOnInput: typeOnInput, typeWords: typeWords, ' +
        'get SPEECH_RATE(){return SPEECH_RATE}, ' +
        'get MIN(){return SPEECH_RATE_MIN}, get MAX(){return SPEECH_RATE_MAX}, ' +
@@ -150,29 +161,65 @@ api.syncRateSlider();
 check('syncRateSlider is a no-op when already correct',
       parseFloat(slider.value) === 1.1, 'slider=' + slider.value);
 
-// 6) every utterance must carry a lang.
-// The pages are lang="zh-TW". If lang is left empty and no voice matched (the
-// voices list is loaded asynchronously, and the user may not have the voice
-// installed), the browser picks by document language and reads English with a
-// Chinese voice.
-store.voiceSelect.selectedOptions = [{ getAttribute: () => null }];
-api.setSpeechRate(0.9);
+// 6) the voice is fixed to Microsoft Mark (en-US), not chosen by the user
+check('no voice dropdown left on the page', !html.includes('id="voiceSelect"'));
+check('the voice is shown as read-only text', html.includes('id="voiceName"'));
+check('Mark is the preferred voice', /Microsoft Mark/.test(String(api.pickVoice)));
+
+const mark = api.pickVoice();
+check('pickVoice returns Microsoft Mark', mark && mark.name === 'Microsoft Mark - English (United States)',
+      mark && mark.name);
+check('pickVoice is not the Google voice', !/Google/.test(mark.name), mark.name);
+check('pickVoice is not the UK voice', mark.lang === 'en-US', mark.lang);
+
 api.speakText('hello');
-check('speakText always sets a lang', !!utterances.at(-1).lang,
-      'lang=' + JSON.stringify(utterances.at(-1).lang));
-check('speakText falls back to en-US with no voice',
-      utterances.at(-1).lang === 'en-US', 'lang=' + utterances.at(-1).lang);
+check('speakText uses Microsoft Mark',
+      utterances.at(-1).voice && utterances.at(-1).voice.name === 'Microsoft Mark - English (United States)',
+      utterances.at(-1).voice && utterances.at(-1).voice.name);
+check('speakText sends the voice lang', utterances.at(-1).lang === 'en-US',
+      utterances.at(-1).lang);
 
 api.speakParagraph(['hello there']);
-check('paragraph read sets a lang', utterances.at(-1).lang === 'en-US',
-      'lang=' + utterances.at(-1).lang);
+check('paragraph read uses Microsoft Mark',
+      utterances.at(-1).voice && utterances.at(-1).voice.name === 'Microsoft Mark - English (United States)',
+      utterances.at(-1).voice && utterances.at(-1).voice.name);
 
-api.typeRestart();
-store.typeInput.value = 'word ';
-api.typeOnInput();
-check('typing word sets a lang',
-      utterances.at(-1) && utterances.at(-1).lang === 'en-US',
-      utterances.at(-1) ? 'lang=' + utterances.at(-1).lang : 'no utterance');
+// Mark is missing -> fall back to another en-US voice rather than going silent
+const saved = availableVoices;
+availableVoices = [
+  { name: 'Microsoft Zira - English (United States)', lang: 'en-US' },
+  { name: 'Google 國語（臺灣）', lang: 'zh-TW' },
+];
+api.loadVoices();
+const fallback = api.pickVoice();
+check('without Mark it falls back to a Microsoft en-US voice',
+      fallback && fallback.name === 'Microsoft Zira - English (United States)',
+      fallback && fallback.name);
+check('the fallback never picks a Chinese voice',
+      fallback && !/^zh/i.test(fallback.lang), fallback && fallback.lang);
+check('the label reports which voice is in use',
+      store.voiceName.textContent.indexOf('Zira') !== -1, store.voiceName.textContent);
+check('the label warns that Mark is missing',
+      store.voiceName.style.color === '#b45309', store.voiceName.style.color);
+
+// No Mark, no other English voice at all -> still English, never zh-TW
+availableVoices = [{ name: 'Google 國語（臺灣）', lang: 'zh-TW' }];
+api.loadVoices();
+check('with no English voice it does not pick a Chinese one', api.pickVoice() === null,
+      api.pickVoice() && api.pickVoice().name);
+api.speakText('hello');
+check('with no English voice it still forces lang=en-US',
+      utterances.at(-1).lang === 'en-US', utterances.at(-1).lang);
+check('with no English voice there is no voice bound',
+      !utterances.at(-1).voice, utterances.at(-1).voice);
+
+availableVoices = saved;
+api.loadVoices();
+check('restoring the roster brings Mark back',
+      store.voiceName.textContent.indexOf('Microsoft Mark') !== -1,
+      store.voiceName.textContent);
+check('no warning colour when Mark is present', store.voiceName.style.color === '',
+      store.voiceName.style.color);
 
 console.log('\nrate slider: ' + pass + ' passed, ' + fail + ' failed');
 process.exit(fail ? 1 : 0);

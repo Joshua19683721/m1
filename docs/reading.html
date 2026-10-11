@@ -41,8 +41,8 @@ select{padding:6px 10px;border-radius:6px;border:1px solid #cbd5e1;font-size:.95
 .btn-tool:hover{background:#115e59;color:#fff;}
 .btn-tool.ghost{background:#fff;color:var(--teal);border:1px solid var(--teal-light);}
 .btn-tool.ghost:hover{background:var(--teal-bg);}
-/* .control-group 是橫向 flex，所以滑桿與兩端標籤要包成一個直向容器，
-   否則三個元素會被並排擠在一起。 */
+.voice-name{font-size:.95rem;color:var(--text);}
+.voice-name:empty::before{content:'（載入中⋯）';color:#94a3b8;}
 .rate-wrap{display:flex;flex-direction:column;width:240px;flex:0 0 auto;}
 .rate-range{width:240px;max-width:100%;height:22px;cursor:pointer;
   accent-color:var(--teal);margin:2px 0 0;display:block;}
@@ -261,8 +261,8 @@ footer a{color:var(--primary);font-weight:bold;}
 
   <div class="audio-panel">
     <div class="control-group">
-      <label for="voiceSelect"><b>🔊 朗讀語音</b></label>
-      <select id="voiceSelect" aria-label="選擇朗讀語音"></select>
+      <b>🔊 朗讀語音</b>
+      <span id="voiceName" class="voice-name">載入中⋯</span>
     </div>
     <div class="control-group">
       <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.9x</span></label>
@@ -387,7 +387,7 @@ function parseJSON(text){
 }
 
 /* ==================== TTS ==================== */
-let voiceList = [];
+let voiceList = [];   // 保留變數名，僅供舊的 localStorage 殘留值相容；實際取用見 pickVoice()
 let seqAbort = false;
 var SPEECH_RATE = 0.9;   // 與 60 課共用同一組語速設定
 var SPEECH_RATE_MIN = 0.5;
@@ -416,51 +416,39 @@ function updateRateLabel(val) {
 
 function getRate(){ return SPEECH_RATE; }
 
+/* 全站固定使用 Microsoft Mark (en-US)，不再讓使用者選。
+   課堂上每台電腦挑到不同語音，學生的發音基準就不一樣了。
+   沒有 Mark 時依序退回：Microsoft en-US → 任何 en-US → 任何 en。 */
+const PREFERRED_VOICE = 'Microsoft Mark';
+
+function pickVoice(){
+  if (!('speechSynthesis' in window)) return null;
+  const all = speechSynthesis.getVoices() || [];
+  let v = all.find(x => x.name === PREFERRED_VOICE + ' - English (United States)');
+  if (!v) v = all.find(x => x.name.indexOf(PREFERRED_VOICE) === 0);
+  if (!v) v = all.find(x => /Microsoft/i.test(x.name) && /^en[-_]US/i.test(x.lang || ''));
+  if (!v) v = all.find(x => /^en[-_]US/i.test(x.lang || ''));
+  if (!v) v = all.find(x => /^en/i.test(x.lang || ''));
+  return v || null;
+}
+
 function refreshVoices(){
   if (!('speechSynthesis' in window)) return;
-  const all = speechSynthesis.getVoices() || [];
-  voiceList = all.filter(v => /^en/i.test(v.lang || ''));
-
-  const sel = $('voiceSelect');
-  const prev = localStorage.getItem('tts_voice') || '';
-  sel.innerHTML = '';
-
-  const g = voiceList.filter(v => /google/i.test(v.name));
-  const m = voiceList.filter(v => /microsoft/i.test(v.name) && !/google/i.test(v.name));
-  const o = voiceList.filter(v => !/google/i.test(v.name) && !/microsoft/i.test(v.name));
-
-  function addGroup(label, arr){
-    if (!arr.length) return;
-    const og = document.createElement('optgroup');
-    og.label = label;
-    arr.forEach(v => {
-      const op = document.createElement('option');
-      op.value = v.name;
-      op.textContent = v.name + '（' + v.lang + '）';
-      og.appendChild(op);
-    });
-    sel.appendChild(og);
-  }
-  addGroup('Google 語音', g);
-  addGroup('Microsoft 語音', m);
-  addGroup('其他英語語音', o);
-
-  let pick = '';
-  if (prev && voiceList.some(v => v.name === prev)){
-    pick = prev;
+  const el = $('voiceName');
+  if (!el) return;
+  const v = pickVoice();
+  if (v){
+    el.textContent = v.name + '（' + v.lang + '）';
+    el.style.color = v.name.indexOf(PREFERRED_VOICE) === 0 ? '' : '#b45309';
+    el.title = v.name.indexOf(PREFERRED_VOICE) === 0
+      ? '' : '這台電腦沒有 Microsoft Mark，已改用最接近的英文語音';
   } else {
-    const p = g.find(v => /en[-_]US/i.test(v.lang)) || g[0]
-           || m.find(v => /en[-_]US/i.test(v.lang)) || m[0]
-           || voiceList[0];
-    pick = p ? p.name : '';
+    el.textContent = '（尚未偵測到英文語音，朗讀可能不會有聲音）';
+    el.style.color = '#b45309';
+    el.title = '';
   }
-  if (pick) sel.value = pick;
 }
 
-function getVoice(){
-  const name = $('voiceSelect').value;
-  return voiceList.find(v => v.name === name) || null;
-}
 function clearSpeaking(){
   document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
 }
@@ -472,7 +460,7 @@ function speak(text, el){
   clearSpeaking();
   if (el) el.classList.add('speaking');
 
-  const v = getVoice();
+  const v = pickVoice();
   const rate = getRate();
   const raw = String(text).match(/[^.!?]+[.!?]*\s*/g) || [String(text)];
   const parts = [];
@@ -495,10 +483,6 @@ function speak(text, el){
     speechSynthesis.speak(u);
   });
 }
-
-$('voiceSelect').addEventListener('change', () => {
-  localStorage.setItem('tts_voice', $('voiceSelect').value);
-});
 
 document.addEventListener('click', e => {
   const sb = e.target.closest('.speak-btn');
@@ -1234,7 +1218,7 @@ function playSequential(rows){
 
   setTimeout(() => {
     seqAbort = false;
-    const v = getVoice();
+    const v = pickVoice();
     let i = 0;
 
     const step = () => {
