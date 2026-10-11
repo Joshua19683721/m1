@@ -77,12 +77,21 @@
       gap: 8px;
     }
 
-    select, input[type="range"] {
+    select {
       padding: 6px 10px;
       border-radius: 6px;
       border: 1px solid #cbd5e1;
       font-size: 0.95rem;
     }
+
+    /* 朗讀語速預設按鈕 */
+    .rate-presets { display:flex; gap:6px; }
+    .btn-rate { background:#fff; color:#0f766e; border:1px solid #99f6e4;
+      border-radius:15px; padding:3px 12px; cursor:pointer; font-size:.82rem;
+      font-family:inherit; white-space:nowrap; }
+    .btn-rate:hover { background:#f0fdfa; }
+    .btn-rate.is-active { background:#0f766e; color:#fff; border-color:#0f766e;
+      font-weight:700; }
 
     /* 說明指標卡 */
     .legend-bar {

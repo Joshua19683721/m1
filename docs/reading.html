@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KET 閱讀理解練習｜A2 Key × 108 課綱國中會考</title>
+<style>
+:root{
+  --primary:#1e3a8a; --primary-light:#3b82f6;
+  --accent-green:#10b981; --accent-orange:#f59e0b; --accent-purple:#8b5cf6;
+  --bg:#f8fafc; --card-bg:#ffffff; --text:#1e293b; --muted:#64748b;
+  --teal:#0f766e; --teal-light:#99f6e4; --teal-bg:#f0fdfa;
+  --ok:#12a150; --ok-soft:#e8f8ef; --bad:#e5484d; --bad-soft:#fdecec;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--text); line-height:1.8; padding:20px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang TC","Microsoft JhengHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:900px;margin:0 auto;}
+
+/* ---------- 與 60 課共用的 header / 控制列 ---------- */
+header{
+  background:var(--card-bg); padding:25px; border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05); margin-bottom:25px;
+  text-align:center; border-top:6px solid var(--primary);
+}
+header h1{color:var(--primary);margin:0 0 10px 0;font-size:1.8rem;}
+.sub-title{color:var(--muted);font-size:.95rem;margin-bottom:15px;}
+.audio-panel{
+  background:#eff6ff;border:2px solid #bfdbfe;padding:15px 20px;border-radius:12px;
+  display:flex;flex-wrap:wrap;gap:15px;align-items:center;justify-content:space-between;margin-top:15px;
+}
+.control-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+select{padding:6px 10px;border-radius:6px;border:1px solid #cbd5e1;font-size:.95rem;
+  background:#fff;color:var(--text);font-family:inherit;}
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;justify-content:center;}
+.btn-tool{background:var(--teal);color:#fff;border:none;padding:7px 14px;border-radius:18px;
+  cursor:pointer;font-size:.85rem;font-family:inherit;text-decoration:none;display:inline-block;}
+.btn-tool:hover{background:#115e59;color:#fff;}
+.btn-tool.ghost{background:#fff;color:var(--teal);border:1px solid var(--teal-light);}
+.btn-tool.ghost:hover{background:var(--teal-bg);}
+.rate-presets{display:flex;gap:6px;}
+.btn-rate{background:#fff;color:var(--teal);border:1px solid var(--teal-light);
+  border-radius:15px;padding:3px 12px;cursor:pointer;font-size:.82rem;font-family:inherit;white-space:nowrap;}
+.btn-rate:hover{background:var(--teal-bg);}
+.btn-rate.is-active{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:700;}
+
+/* ---------- AI 生成提示 ---------- */
+.ai-note{
+  margin-top:14px;padding:12px 16px;background:#fffbeb;border:1px dashed var(--accent-orange);
+  border-radius:10px;font-size:.85rem;color:#92400e;text-align:left;line-height:1.7;
+}
+.ai-note b{color:#b45309;}
+
+/* ---------- 設定卡 ---------- */
+.card{background:var(--card-bg);border:1px solid #e2e8f0;border-radius:16px;padding:25px;
+  margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,.05);}
+.setup{display:grid;grid-template-columns:1.7fr 1.1fr .75fr auto;gap:14px;align-items:end;}
+@media(max-width:760px){.setup{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0;}
+.field label{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.4px;}
+input[type=password],input[type=text]{
+  font:inherit;font-size:14.5px;padding:10px 12px;border:1.5px solid #cbd5e1;
+  border-radius:10px;background:#fbfcfe;color:var(--text);outline:none;transition:.15s;width:100%;
+}
+input[type=password]:focus,input[type=text]:focus{border-color:var(--primary-light);background:#fff;
+  box-shadow:0 0 0 3px rgba(59,130,246,.15);}
+.primary{
+  font:inherit;font-weight:700;font-size:15px;color:#fff;border:none;cursor:pointer;
+  padding:12px 20px;border-radius:10px;white-space:nowrap;background:var(--teal);
+  box-shadow:0 6px 16px -6px rgba(15,118,110,.75);transition:.18s;
+}
+.primary:hover:not(:disabled){transform:translateY(-1px);background:#115e59;}
+.primary:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none;}
+.hint{font-size:12.5px;color:var(--muted);margin:10px 4px 0;line-height:1.7;}
+
+/* ---------- 狀態 ---------- */
+#status{margin:0 0 20px;}
+#status:empty{margin:0;}
+.status-loading{display:flex;align-items:center;gap:10px;color:var(--primary);
+  font-weight:600;font-size:14px;background:#eff6ff;border:1px solid #bfdbfe;
+  padding:12px 14px;border-radius:10px;}
+.spinner{width:16px;height:16px;border:2.5px solid rgba(59,130,246,.25);
+  border-top-color:var(--primary-light);border-radius:50%;animation:spin .8s linear infinite;flex:none;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.status-error{background:var(--bad-soft);color:#a1252a;border:1px solid #f6c9cb;
+  padding:12px 14px;border-radius:10px;font-size:14px;}
+
+/* ---------- 文章 ---------- */
+.section-title{border-left:5px solid var(--primary-light);padding-left:10px;
+  margin:0 0 20px 0;color:var(--primary);font-size:1.3rem;}
+.art-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.art-head h2{margin:0;font-size:1.25rem;line-height:1.5;color:var(--primary);}
+.sub{color:var(--muted);font-size:13.5px;margin-top:4px;}
+.badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:.72rem;
+  font-weight:bold;color:#fff;white-space:nowrap;flex:none;background:var(--teal);}
+.art-body{font-size:1rem;line-height:1.8;color:var(--text);}
+.para{margin:0 0 16px;}
+.para:last-child{margin-bottom:0;}
+.sent{margin:0 0 11px;}
+.sent:last-child{margin-bottom:0;}
+.sent-en{display:inline;}
+.sent-zh{display:block;margin-top:2px;font-size:13.5px;line-height:1.6;color:var(--muted);}
+.speakable{cursor:pointer;border-radius:5px;padding:0 2px;margin:0 -2px;
+  border-bottom:1.5px dashed transparent;transition:background .15s,border-color .15s;}
+.speakable:hover{background:var(--teal-bg);border-bottom-color:var(--teal-light);}
+.speakable.speaking{background:#ffeeb8;border-bottom-color:var(--accent-orange);}
+.prog-toggle{
+  display:inline-flex;align-items:center;gap:4px;font:inherit;font-size:11.5px;font-weight:800;
+  letter-spacing:.2px;padding:4px 11px;border-radius:999px;cursor:pointer;
+  border:1.5px solid var(--teal-light);background:#fff;color:var(--teal);
+  transition:.15s;white-space:nowrap;margin-left:7px;vertical-align:2px;font-family:inherit;
+}
+.prog-toggle:hover{background:var(--teal-bg);border-color:var(--teal);transform:translateY(-1px);}
+.prog-toggle.is-lazy::before{content:"⚡";font-size:11px;margin-right:2px;opacity:.85;}
+
+/* ---------- 題目 ---------- */
+.questions{display:flex;flex-direction:column;gap:20px;}
+.q-stem{font-size:1rem;font-weight:700;display:flex;gap:10px;margin-bottom:14px;line-height:1.6;}
+.q-num{background:var(--primary);color:#fff;font-size:12px;font-weight:800;border-radius:6px;
+  padding:2px 9px;height:fit-content;flex:none;margin-top:4px;letter-spacing:.5px;}
+.q-en{display:block;font-weight:700;color:var(--text);}
+.q-zh{display:block;font-size:13.5px;color:var(--muted);font-weight:400;margin-top:2px;line-height:1.65;}
+.options{display:flex;flex-direction:column;gap:9px;}
+.option{
+  display:flex;gap:12px;width:100%;text-align:left;align-items:flex-start;
+  padding:11px 13px;border:1.5px solid #e2e8f0;border-radius:11px;
+  background:#fff;cursor:pointer;font:inherit;font-size:15px;color:var(--text);
+  transition:.16s;line-height:1.55;font-family:inherit;
+}
+.option:not(.done):hover{border-color:var(--teal);background:var(--teal-bg);}
+.option.correct{border-color:var(--ok);background:var(--ok-soft);}
+.option.wrong{border-color:var(--bad);background:var(--bad-soft);}
+.option.done{cursor:default;}
+.opt-letter{flex:none;width:24px;height:24px;border-radius:50%;background:#eef1f8;color:#5a6580;
+  display:grid;place-items:center;font-size:12.5px;font-weight:800;margin-top:1px;}
+.option.correct .opt-letter{background:var(--ok);color:#fff;}
+.option.wrong .opt-letter{background:var(--bad);color:#fff;}
+.opt-text{flex:1;min-width:0;}
+.opt-en{display:block;font-weight:600;color:var(--text);}
+.opt-zh{display:block;font-size:12.5px;color:var(--muted);font-weight:400;margin-top:1px;line-height:1.55;}
+.speak-btn{flex:none;border:none;background:var(--teal-bg);color:var(--teal);cursor:pointer;
+  width:28px;height:28px;border-radius:50%;font-size:13px;line-height:1;
+  display:grid;place-items:center;transition:.15s;margin-top:-1px;font-family:inherit;}
+.speak-btn:hover{background:var(--teal);color:#fff;}
+.speak-btn.speaking{background:var(--accent-orange);color:#fff;}
+
+/* ---------- 解釋 ---------- */
+.explain{margin-top:16px;border-top:1px dashed #e2e8f0;padding-top:16px;display:none;}
+.explain.show{display:block;animation:fadeUp .35s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
+.verdict{font-weight:800;font-size:15px;padding:11px 15px;border-radius:10px;margin-bottom:15px;}
+.verdict.ok{background:var(--ok-soft);color:#0b7a3d;border:1px solid #bfe9d1;}
+.verdict.bad{background:var(--bad-soft);color:#a1252a;border:1px solid #f6c9cb;}
+.block{margin-bottom:16px;}
+.block:last-child{margin-bottom:0;}
+.block h4{margin:0 0 8px;font-size:14px;letter-spacing:.3px;color:var(--primary);}
+.block p{margin:0;font-size:14.5px;color:#3c465c;line-height:1.85;}
+.block code{background:#f1f4fb;padding:1px 6px;border-radius:5px;font-size:13.5px;color:var(--teal);
+  font-family:ui-monospace,Menlo,monospace;}
+.answer-line{font-weight:700;color:#0b7a3d;margin-bottom:8px;padding:9px 12px;
+  background:#f2faf5;border-radius:9px;border:1px solid #d6f0e0;}
+.answer-line .row1{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.answer-line .zh{display:block;font-size:13px;font-weight:400;color:var(--muted);margin-top:3px;}
+.notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.notes li{display:flex;gap:10px;font-size:14px;color:#3c465c;background:#fafbfe;
+  border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;line-height:1.7;}
+.notes li.is-correct{background:var(--ok-soft);border-color:#bfe9d1;}
+.notes li.is-wrong-pick{background:var(--bad-soft);border-color:#f6c9cb;}
+.letter{flex:none;width:22px;height:22px;border-radius:6px;background:#e6ebf7;color:#5a6580;
+  display:grid;place-items:center;font-size:12px;font-weight:800;margin-top:2px;}
+.notes li.is-correct .letter{background:var(--ok);color:#fff;}
+.notes li.is-wrong-pick .letter{background:var(--bad);color:#fff;}
+.notes .opt-note{display:block;margin-top:5px;}
+.kv-list{display:flex;flex-direction:column;gap:8px;}
+.kv{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;
+  background:#fafbfe;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:14px;}
+.kv-en{font-weight:800;color:var(--primary);font-size:15px;}
+.kv-phon{color:var(--accent-purple);font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace;}
+.kv-zh{color:#4a5570;font-weight:600;}
+.kv-note{flex-basis:100%;color:var(--muted);font-size:13px;}
+
+/* ---------- 漸進式彈窗 ---------- */
+.prog-pop{
+  position:fixed;z-index:9999;width:430px;max-width:calc(100vw - 24px);max-height:78vh;
+  background:#fff;border:1px solid #e2e8f0;border-radius:14px;
+  box-shadow:0 22px 55px -14px rgba(16,24,40,.4);
+  display:flex;flex-direction:column;overflow:hidden;animation:popIn .16s ease;
+}
+.prog-pop.dragging{animation:none;box-shadow:0 30px 70px -14px rgba(16,24,40,.55);transition:box-shadow .15s;}
+@keyframes popIn{from{opacity:0;transform:translateY(6px) scale(.98);}to{opacity:1;transform:none;}}
+.prog-head{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:11px 14px;background:linear-gradient(135deg,#eff6ff,#f7f0ff);
+  border-bottom:1px solid #e2e8f2;cursor:move;user-select:none;-webkit-user-select:none;touch-action:none;
+}
+.prog-head:active{cursor:grabbing;}
+.prog-head .ttl{font-size:13.5px;font-weight:800;color:var(--primary);letter-spacing:.3px;
+  display:inline-flex;align-items:center;gap:6px;pointer-events:none;}
+.prog-head .drag-hint{display:inline-block;font-size:11px;font-weight:600;color:#8a93a8;letter-spacing:0;padding-left:6px;}
+.prog-head .ai-tag{font-size:10.5px;font-weight:800;color:#b45309;background:#fffbeb;
+  border:1px dashed var(--accent-orange);border-radius:999px;padding:2px 8px;pointer-events:none;}
+.prog-close{border:none;background:rgba(255,255,255,.7);cursor:pointer;color:var(--muted);
+  width:26px;height:26px;border-radius:8px;font-size:14px;line-height:1;display:grid;place-items:center;transition:.15s;font-family:inherit;}
+.prog-close:hover{background:#fff;color:var(--bad);}
+.prog-body{padding:8px;overflow-y:auto;flex:1;}
+.prog-row{display:grid;grid-template-columns:22px 1fr;gap:2px 8px;padding:9px 10px;border-radius:9px;
+  cursor:pointer;transition:.15s;border:1px solid transparent;align-items:start;margin-bottom:5px;}
+.prog-row:hover{background:#f6f8ff;border-color:#e2e8f0;}
+.prog-row.speaking{background:#fff6dc;border-color:var(--accent-orange);}
+.prog-i{font-size:10.5px;font-weight:800;color:#a3adc4;text-align:center;padding-top:3px;}
+.prog-main{display:flex;flex-direction:column;gap:2px;}
+.prog-en{font-size:14.5px;font-weight:700;color:var(--text);line-height:1.4;}
+.prog-phon{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--accent-purple);line-height:1.45;}
+.prog-zh{font-size:12.5px;color:var(--muted);line-height:1.5;}
+.prog-note{display:block;margin-top:5px;padding:6px 9px;font-size:12px;line-height:1.65;color:#4a5570;
+  background:#f6f8ff;border-left:3px solid var(--teal-light);border-radius:4px;font-weight:400;}
+.prog-note b{color:var(--teal);font-weight:800;}
+.prog-row.is-last{background:#f2faf5;border-color:#d6f0e0;}
+.prog-row.is-last .prog-en{color:#0b7a3d;}
+.prog-row.is-last .prog-note{background:var(--ok-soft);border-left-color:var(--ok);color:#155c33;}
+.prog-row.is-last .prog-note b{color:#0b7a3d;}
+.prog-foot{padding:8px 10px;border-top:1px solid #e2e8f0;background:#fafbfe;display:flex;gap:8px;}
+.prog-foot .btn-tool{flex:1;font-size:12.5px;padding:7px 10px;text-align:center;}
+.prog-foot .btn-tool:disabled{opacity:.45;cursor:not-allowed;}
+.prog-loading{display:flex;align-items:center;gap:10px;padding:26px 16px;font-size:13.5px;
+  color:var(--primary);font-weight:600;justify-content:center;}
+.prog-error{padding:22px 16px;font-size:13.5px;color:#a1252a;text-align:center;line-height:1.7;}
+.score{text-align:center;background:linear-gradient(135deg,#eff6ff,#f7f0ff);border-color:#dfe5fb;
+  animation:fadeUp .4s ease;}
+.score h3{margin:0 0 6px;font-size:20px;color:var(--primary);}
+.score p{margin:0;color:var(--muted);font-size:14.5px;}
+footer{color:var(--muted);font-size:.82rem;text-align:center;padding:10px 0 0;line-height:1.7;}
+footer a{color:var(--primary);font-weight:bold;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>📖 KET 閱讀理解練習</h1>
+  <div class="sub-title">AI 隨機出題 · 中英對照 · 音標 · 語速可調 · 拆解按需生成</div>
+
+  <div class="ai-note">
+    ⚠️ <b>本頁所有內容（文章、考題、選項、音標、文法拆解）皆由 Groq AI 即時生成，未經人工檢核。</b><br>
+    它可能出現文法說明錯誤或前後不一致，請勿直接當成審定的教材。🔒 你的 API Key 只存在自己的瀏覽器
+    （localStorage），不會送到別的地方；按「🧩 拆解」或「⚡ 漸進式英文」時才會呼叫 Groq，生成後會快取，不會重複請求。
+  </div>
+
+  <div class="audio-panel">
+    <div class="control-group">
+      <label for="voiceSelect"><b>🔊 朗讀語音</b></label>
+      <select id="voiceSelect" aria-label="選擇朗讀語音"></select>
+    </div>
+    <div class="control-group">
+      <label for="rateVal"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.9x</span></label>
+      <div class="rate-presets" id="ratePresets" role="group" aria-label="朗讀語速">
+        <button type="button" class="btn-rate" data-rate="0.6" onclick="setSpeechRate(0.6)">🐢 慢</button>
+        <button type="button" class="btn-rate is-active" data-rate="0.9" onclick="setSpeechRate(0.9)">正常</button>
+        <button type="button" class="btn-rate" data-rate="1.2" onclick="setSpeechRate(1.2)">⏩ 快</button>
+      </div>
+    </div>
+    <div class="control-group">
+      <button id="readAll" class="btn-tool ghost" type="button">朗讀全文</button>
+      <button id="stopRead" class="btn-tool ghost" type="button">停止</button>
+    </div>
+  </div>
+
+  <div class="tool-row">
+    <a class="btn-tool" href="index.html">⬅ 回到總結果索引</a>
+  </div>
+</header>
+
+<section class="card setup">
+  <div class="field">
+    <label for="apiKey">Groq API Key</label>
+    <input id="apiKey" type="password" placeholder="gsk_..." autocomplete="off" spellcheck="false">
+  </div>
+  <div class="field">
+    <label for="level">難度</label>
+    <select id="level">
+      <option value="beginner">初級（A2 基礎）</option>
+      <option value="intermediate" selected>中級（A2 核心）</option>
+      <option value="advanced">高級（A2+ / B1 銜接）</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="qcount">題數</label>
+    <select id="qcount">
+      <option value="3">3 題</option>
+      <option value="4" selected>4 題</option>
+      <option value="5">5 題</option>
+    </select>
+  </div>
+  <button id="generate" class="primary" type="button">🎲 生成文章</button>
+</section>
+
+<div class="hint" style="margin-top:10px;">
+  💡 用法：選好難度與題數 → 按「🎲 生成文章」→ 逐題作答，答錯也會說明原因。
+  每一句英文都可以點擊發音；句號旁的「🧩 拆解」會把句子一步步拆開來講（按下去才會呼叫 AI）。
+</div>
+
+<div id="status"></div>
+
+<section id="articleCard" class="card article" hidden>
+  <div class="art-head">
+    <div>
+      <h2 id="artTitle"></h2>
+      <div id="artTitleZh" class="sub"></div>
+    </div>
+    <span id="artMeta" class="badge"></span>
+  </div>
+  <div id="artBody" class="art-body"></div>
+</section>
+
+<section id="questions" class="questions"></section>
+<section id="scoreCard" class="card score" hidden></section>
+
+<footer>
+  <p>詞彙範圍對照 <b>Cambridge A2 Key Vocabulary List</b>，文法難度對照 108 課綱國中會考。<br>
+  本頁由 AI 即時出題，內容未經人工檢核，僅供練習。<a href="index.html">回到 60 課索引</a></p>
+</footer>
+
+</div>
+<script>
+/* ==================== 設定 ==================== */
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const MODEL    = 'openai/gpt-oss-120b';
+const DEFAULT_RATE = 0.9;
+
+const LEVELS = {
+  beginner: {
+    name: '初級', words: '70–90',
+    desc: 'A2 基礎。只用一般現在式、一般過去式、can / must / have to 等基礎情態動詞。句子短（每句 8–12 字），全部使用高頻生活單字。'
+  },
+  intermediate: {
+    name: '中級', words: '120–150',
+    desc: 'A2 核心。可出現現在完成式、比較級 / 最高級、簡單被動語態、because / although / so / but 等連接詞。句子中等長度，有少許從屬子句。'
+  },
+  advanced: {
+    name: '高級', words: '170–210',
+    desc: 'A2+ 銜接 B1。可出現現在完成式、過去進行式、關係子句（who / which / that）、不定詞與動名詞、常見片語動詞。需具備推論與判斷作者態度的能力。'
+  }
+};
+
+const GENRES = ['電子郵件 email','部落格文章 blog post','學校公告 school notice','短篇故事 short story',
+                '雜誌文章 magazine article','個人日記 diary entry','網頁介紹 web page','對話記錄 conversation'];
+
+const TOPICS = ['週末旅行','新學校生活','養寵物','運動與健康','購物與省錢','天氣與季節','手機與科技',
+                '環保回收','志工服務','搬家','夏令營','圖書館','交通與通勤','各國飲食','興趣嗜好',
+                '打工經驗','家庭聚會','看電影','線上學習','城市與鄉村'];
+
+let state = { data: null, answered: {}, levelName: '' };
+const progCache = new Map();
+
+const $ = id => document.getElementById(id);
+const L = ['A','B','C','D','E','F'];
+
+function esc(s){
+  return String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+function md(s){
+  let h = esc(s);
+  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  h = h.replace(/`([^`]+)`/g, '<code>$1</code>');
+  h = h.replace(/\n/g, '<br>');
+  return h;
+}
+function parseJSON(text){
+  let t = String(text).trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
+  try { return JSON.parse(t); } catch (e) {}
+  const s = t.indexOf('{'), e2 = t.lastIndexOf('}');
+  if (s >= 0 && e2 > s) return JSON.parse(t.slice(s, e2 + 1));
+  throw new Error('AI 回傳的內容不是有效 JSON，請再試一次。');
+}
+
+/* ==================== TTS ==================== */
+let voiceList = [];
+let seqAbort = false;
+var SPEECH_RATE = 0.9;   // 與 60 課共用同一組語速預設
+
+function speechRateLabel(val) { return parseFloat(val).toFixed(1) + 'x'; }
+
+function setSpeechRate(rate) {
+  SPEECH_RATE = parseFloat(rate);
+  updateRateLabel(speechRateLabel(SPEECH_RATE));
+}
+
+function updateRateLabel(val) {
+  const el = $('rateVal');
+  if (el) el.innerText = val;
+  const group = $('ratePresets');
+  if (!group) return;
+  const btns = group.querySelectorAll('.btn-rate');
+  for (let i = 0; i < btns.length; i++) {
+    const on = parseFloat(btns[i].getAttribute('data-rate')) === parseFloat(val);
+    btns[i].classList.toggle('is-active', on);
+  }
+}
+
+function getRate(){ return SPEECH_RATE; }
+
+function refreshVoices(){
+  if (!('speechSynthesis' in window)) return;
+  const all = speechSynthesis.getVoices() || [];
+  voiceList = all.filter(v => /^en/i.test(v.lang || ''));
+
+  const sel = $('voiceSelect');
+  const prev = localStorage.getItem('tts_voice') || '';
+  sel.innerHTML = '';
+
+  const g = voiceList.filter(v => /google/i.test(v.name));
+  const m = voiceList.filter(v => /microsoft/i.test(v.name) && !/google/i.test(v.name));
+  const o = voiceList.filter(v => !/google/i.test(v.name) && !/microsoft/i.test(v.name));
+
+  function addGroup(label, arr){
+    if (!arr.length) return;
+    const og = document.createElement('optgroup');
+    og.label = label;
+    arr.forEach(v => {
+      const op = document.createElement('option');
+      op.value = v.name;
+      op.textContent = v.name + '（' + v.lang + '）';
+      og.appendChild(op);
+    });
+    sel.appendChild(og);
+  }
+  addGroup('Google 語音', g);
+  addGroup('Microsoft 語音', m);
+  addGroup('其他英語語音', o);
+
+  let pick = '';
+  if (prev && voiceList.some(v => v.name === prev)){
+    pick = prev;
+  } else {
+    const p = g.find(v => /en[-_]US/i.test(v.lang)) || g[0]
+           || m.find(v => /en[-_]US/i.test(v.lang)) || m[0]
+           || voiceList[0];
+    pick = p ? p.name : '';
+  }
+  if (pick) sel.value = pick;
+}
+
+function getVoice(){
+  const name = $('voiceSelect').value;
+  return voiceList.find(v => v.name === name) || null;
+}
+function clearSpeaking(){
+  document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+}
+
+function speak(text, el){
+  if (!('speechSynthesis' in window)) return;
+  seqAbort = true;
+  speechSynthesis.cancel();
+  clearSpeaking();
+  if (el) el.classList.add('speaking');
+
+  const v = getVoice();
+  const rate = getRate();
+  const raw = String(text).match(/[^.!?]+[.!?]*\s*/g) || [String(text)];
+  const parts = [];
+  let buf = '';
+  raw.forEach(c => {
+    if ((buf + c).length > 180 && buf.trim()){ parts.push(buf); buf = c; }
+    else buf += c;
+  });
+  if (buf.trim()) parts.push(buf);
+
+  parts.forEach((p, i) => {
+    const u = new SpeechSynthesisUtterance(p.trim());
+    if (v){ u.voice = v; u.lang = v.lang; }
+    else u.lang = 'en-US';
+    u.rate = rate; u.pitch = 1;
+    if (i === parts.length - 1 && el){
+      u.onend   = () => el.classList.remove('speaking');
+      u.onerror = () => el.classList.remove('speaking');
+    }
+    speechSynthesis.speak(u);
+  });
+}
+
+$('voiceSelect').addEventListener('change', () => {
+  localStorage.setItem('tts_voice', $('voiceSelect').value);
+});
+
+document.addEventListener('click', e => {
+  const sb = e.target.closest('.speak-btn');
+  if (sb){
+    e.stopPropagation();
+    sb.classList.add('speaking');
+    speak(sb.dataset.speak || '', sb);
+    setTimeout(() => sb.classList.remove('speaking'), 1200);
+    return;
+  }
+  const sp = e.target.closest('.speakable');
+  if (sp) speak(sp.dataset.speak || sp.textContent, sp);
+});
+
+if ('speechSynthesis' in window){
+  refreshVoices();
+  speechSynthesis.onvoiceschanged = refreshVoices;
+}
+updateRateLabel(speechRateLabel(SPEECH_RATE));
+
+/* ==================== Groq API ==================== */
+async function callGroq(key, prompt){
+  const res = await fetch(GROQ_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+    body: JSON.stringify({
+      model: MODEL,
+      messages: [
+        { role: 'system', content: '你是 KET (A2 Key) 英語教學專家。你只輸出純 JSON，絕對不加任何說明文字、前言或 markdown code fence。' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.85,
+      max_tokens: 8000,
+      response_format: { type: 'json_object' }
+    })
+  });
+
+  if (!res.ok){
+    let detail = '';
+    try { const j = await res.json(); detail = j.error?.message || JSON.stringify(j); }
+    catch(e){ detail = await res.text().catch(()=> ''); }
+    if (res.status === 401) throw new Error('API Key 無效，請確認你複製的是完整的 Groq Key。');
+    if (res.status === 404) throw new Error('模型不可用：' + MODEL + '。請至 console.groq.com/docs/models 查看可用模型。');
+    if (res.status === 429) throw new Error('請求太頻繁或已達額度上限，請稍等幾秒再試。');
+    throw new Error('Groq API 錯誤（' + res.status + '）：' + String(detail).slice(0, 220));
+  }
+
+  const j = await res.json();
+  const content = j.choices?.[0]?.message?.content || '';
+  if (!content) throw new Error('AI 沒有回傳內容，請再試一次。');
+  return parseJSON(content);
+}
+/* ==================== 文章生成 Prompt ==================== */
+function buildPrompt(){
+  const cfg = LEVELS[$('level').value];
+  const qcount = $('qcount').value;
+  const genre = GENRES[Math.floor(Math.random() * GENRES.length)];
+  const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+
+  state.levelName = cfg.name;
+
+  return '你是一位專業的 KET (A2 Key) 英語教師。請生成一篇 ' + cfg.name + ' 級別的英語閱讀文章，並依此設計 ' + qcount + ' 道閱讀理解單選題。\n\n' +
+'【文章設定】\n' +
+'- 文體：' + genre + '\n' +
+'- 主題：' + topic + '\n' +
+'- 長度：約 ' + cfg.words + ' 個英文單字\n' +
+'- 語言難度：' + cfg.desc + '\n\n' +
+'【格式要求，務必嚴格遵守】\n\n' +
+'(A) 文章逐句呈現，每句英文都要有對應中文翻譯。\n' +
+'把文章拆成 paragraphs 陣列，每個 paragraph 內有 sentences 陣列，\n' +
+'每個 sentence 物件包含 "en"（完整英文句子）與 "zh"（該句繁體中文翻譯）。\n' +
+'一個英文句子對一個中文翻譯，數量必須完全一致。\n\n' +
+'(B) 題目與選項都要中英對照：\n' +
+'- "stem"：英文題目；"stemZh"：中文題目\n' +
+'- "options"：四個英文選項（陣列）；"optionsZh"：四個對應中文翻譯（陣列，長度必須與 options 相同）\n\n' +
+'(C) 所有英文單字都要附音標：\n' +
+'- "vocab" 每個物件含："en"（只寫單字）、"phonetic"（KK 或 IPA 音標，用斜線包住如 /ˈwɜːrd/）、"zh"（中文意思）、"note"（用法或搭配）\n' +
+'- "phrases" 每個物件含："en"（片語）、"phonetic"（片語音標，斜線包住，若難標可留空字串）、"zh"（中文意思）、"note"（例句或使用情境）\n\n' +
+'【出題要求】\n' +
+'1. 題目涵蓋：主旨大意、細節理解、推論判斷、依上下文猜字義（至少各一題）。\n' +
+'2. 每題 4 個選項，只有 1 個正確。干擾項要是 KET 考生最常搞混的類型（時態混淆、介系詞誤用、字義相近用法不同、照抄文章但意思不符、半對選項）。\n' +
+'3. 解釋一律繁體中文。錯誤選項要寫出「學生為什麼會選它」與「跟正確答案差在哪」。\n' +
+'4. correctReason 要引用文章中的關鍵句。\n' +
+'5. vocab 提供 4–6 個重點單字；phrases 提供 2–3 個片語；grammar 說明文法重點並附正確 vs 錯誤對照。\n\n' +
+'【重要】不需要產生 answerProgressive 欄位，請省略該欄位。\n\n' +
+'【輸出格式】只輸出 JSON 物件，不要 markdown code fence，不要任何說明文字。\n' +
+'JSON 字串內不要使用未跳脫的換行。\n\n' +
+'{\n' +
+'  "title": "English title",\n' +
+'  "titleZh": "中文標題",\n' +
+'  "paragraphs": [ { "sentences": [ { "en": "First English sentence.", "zh": "第一句的中文翻譯。" } ] } ],\n' +
+'  "questions": [\n' +
+'    {\n' +
+'      "stem": "English question stem",\n' +
+'      "stemZh": "中文題目",\n' +
+'      "options": ["Option A", "Option B", "Option C", "Option D"],\n' +
+'      "optionsZh": ["選項 A 中譯", "選項 B 中譯", "選項 C 中譯", "選項 D 中譯"],\n' +
+'      "answerIndex": 0,\n' +
+'      "correctReason": "為什麼這個選項正確",\n' +
+'      "optionNotes": ["A 說明", "B 說明", "C 說明", "D 說明"],\n' +
+'      "vocab": [ { "en": "word", "phonetic": "/wɜːrd/", "zh": "中文意思", "note": "用法或搭配" } ],\n' +
+'      "phrases": [ { "en": "look after", "phonetic": "/lʊk ˈæftər/", "zh": "照顧", "note": "例句：She looks after her little brother." } ],\n' +
+'      "grammar": "本題文法重點，含正確用法 vs 常見錯誤"\n' +
+'    }\n' +
+'  ]\n' +
+'}';
+}
+
+/* ==================== 單句／答案拆解 Prompt ==================== */
+function buildSentenceProgressivePrompt(sentence){
+  return '請把下面這個英文句子，拆解成「漸進式英文建構」的步驟，讓學生一步一步看懂句子是怎麼組合出來的。\n\n' +
+'目標句子：\n"' + sentence + '"\n\n' +
+'【要求】\n' +
+'1. 從最簡單的詞組或主詞開始，一步步擴充到完整句子。\n' +
+'2. 最少 6 項，最多 10 項。\n' +
+'3. 每一項都要有四個欄位：\n' +
+'   - "en"：累積到此步驟的英文（可以是詞組，也可以是完整句子）\n' +
+'   - "zh"：對應繁體中文\n' +
+'   - "phonetic"：該行英文的音標（用空格分隔每個詞的音標，不加斜線，例如 "juː laɪk tə tɔːk"）\n' +
+'   - "note"：這一步的文法與用法解析（必填，繁體中文，1–3 句），需說明：\n' +
+'     (1) 這一步新增了什麼\n' +
+'     (2) 為什麼這樣搭配\n' +
+'     (3) 這一步與前後步驟的關聯\n' +
+'     (4) 若有常見錯誤，用「✅正確 vs ❌錯誤」對照點出\n' +
+'4. 最後一項必須與目標句子完全相同，且 note 要總結整句結構（主詞 + 動詞 + 受詞 / 補語 + 修飾語）。\n' +
+'5. 中間請交錯呈現「詞組擴充」與「組合」兩種形式。\n\n' +
+'【輸出格式】只輸出 JSON，不要 markdown code fence，不要任何說明文字：\n' +
+'{ "answerProgressive": [ { "en": "...", "zh": "...", "phonetic": "...", "note": "..." } ] }';
+}
+
+function buildAnswerProgressivePrompt(question, correctEn, correctZh, optionNotes){
+  return '你是 KET (A2 Key) 英語教師。請為下面這道閱讀題的「正確答案」做漸進式拆解，讓學生看懂這個答案句是怎麼一步步組合出來的。\n\n' +
+'【題目】\n"' + question + '"\n\n' +
+'【正確答案（英文）】\n"' + correctEn + '"\n\n' +
+'【正確答案（中文）】\n"' + correctZh + '"\n\n' +
+'【干擾項提示（僅供理解題意，不用拆解）】\n' + (optionNotes || []).map((n, i) => '- ' + n).join('\n') + '\n\n' +
+'【要求】\n' +
+'1. 從最簡單的詞組或主詞開始，一步步擴充到完整正確答案。\n' +
+'2. 最少 8 項，最多 12 項。\n' +
+'3. 每一項都要有四個欄位：\n' +
+'   - "en"：累積到此步驟的英文\n' +
+'   - "zh"：對應繁體中文\n' +
+'   - "phonetic"：該行英文的音標（用空格分隔每個詞的音標，不加斜線）\n' +
+'   - "note"：這一步的文法與用法解析（必填，繁體中文，1–3 句），需說明：\n' +
+'     (1) 這一步新增了什麼\n' +
+'     (2) 為什麼這樣搭配\n' +
+'     (3) 與前後步驟的關聯\n' +
+'     (4) 若有常見錯誤，用「✅正確 vs ❌錯誤」對照點出\n' +
+'4. 最後一項必須與正確答案完全相同，且 note 要總結整句結構（主詞 + 動詞 + 受詞 / 修飾語）。\n' +
+'5. 中間請交錯呈現「詞組擴充」與「組合」兩種形式。\n\n' +
+'【輸出格式】只輸出 JSON，不要 markdown code fence，不要任何說明文字：\n' +
+'{ "answerProgressive": [ { "en": "...", "zh": "...", "phonetic": "...", "note": "..." } ] }';
+}
+/* ==================== 主流程 ==================== */
+async function generate(){
+  const key = $('apiKey').value.trim();
+  if (!key){ setStatus('請先輸入你的 Groq API Key。', 'error'); $('apiKey').focus(); return; }
+
+  localStorage.setItem('groq_key', key);
+  const prompt = buildPrompt();
+
+  $('generate').disabled = true;
+  setStatus('AI 正在出題中，請稍候約 10–25 秒…', 'loading');
+  $('articleCard').hidden = true;
+  $('scoreCard').hidden = true;
+  $('questions').innerHTML = '';
+  closeProgressive();
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+
+  try {
+    const data = await callGroq(key, prompt);
+    if (!data.questions || !data.questions.length) throw new Error('AI 沒有產生題目，請再試一次。');
+    state.data = normalize(data);
+    state.answered = {};
+    progCache.clear();
+    renderAll(state.data);
+    setStatus('', '');
+  } catch (err){
+    console.error(err);
+    setStatus('❌ ' + err.message, 'error');
+  } finally {
+    $('generate').disabled = false;
+  }
+}
+
+function setStatus(msg, type){
+  const el = $('status');
+  if (!msg){ el.innerHTML = ''; return; }
+  if (type === 'loading'){
+    el.innerHTML = '<div class="status-loading"><span class="spinner"></span><span>' + esc(msg) + '</span></div>';
+  } else {
+    el.innerHTML = '<div class="status-error">' + esc(msg) + '</div>';
+  }
+}
+
+function normalizeProg(arr){
+  if (!Array.isArray(arr)) return [];
+  return arr
+    .filter(it => it && typeof it.en === 'string' && it.en.trim())
+    .map(it => ({
+      en: String(it.en).trim(),
+      zh: String(it.zh || '').trim(),
+      phonetic: String(it.phonetic || '').trim(),
+      note: String(it.note || it.grammar || it.explain || '').trim()
+    }));
+}
+
+function normalize(data){
+  if (Array.isArray(data.paragraphs) && data.paragraphs.length){
+    data.paragraphs = data.paragraphs.map(p => {
+      if (p && Array.isArray(p.sentences)) return p;
+      if (typeof p === 'string') return { sentences: [{ en: p, zh: '' }] };
+      return { sentences: [] };
+    }).filter(p => p.sentences.some(s => s && s.en));
+  }
+  if (!data.paragraphs || !data.paragraphs.length){
+    const enParas = String(data.article || '').split(/\n+/).filter(s => s.trim());
+    const zhParas = String(data.translation || '').split(/\n+/).filter(s => s.trim());
+    if (enParas.length){
+      data.paragraphs = enParas.map((en, i) => ({
+        sentences: [{ en: en.trim(), zh: (zhParas[i] || '').trim() }]
+      }));
+    } else {
+      data.paragraphs = [{ sentences: [{ en: '(No article was returned.)', zh: '（AI 未回傳文章）' }] }];
+    }
+  }
+
+  data.questions.forEach(q => {
+    if (!Array.isArray(q.options)) q.options = [];
+    if (!Array.isArray(q.optionsZh) || q.optionsZh.length !== q.options.length){
+      q.optionsZh = q.options.map(() => '');
+    }
+    if (!Array.isArray(q.optionNotes)) q.optionNotes = [];
+    if (!Array.isArray(q.vocab)) q.vocab = [];
+    q.vocab.forEach(v => { if (typeof v.phonetic !== 'string') v.phonetic = ''; });
+    if (!Array.isArray(q.phrases)) q.phrases = [];
+    q.phrases.forEach(v => { if (typeof v.phonetic !== 'string') v.phonetic = ''; });
+  });
+
+  return data;
+}
+
+/* ==================== 渲染 ==================== */
+function renderAll(data){
+  $('artTitle').textContent = data.title || 'Untitled';
+  $('artTitle').className = 'speakable';
+  $('artTitle').dataset.speak = data.title || '';
+  $('artTitleZh').textContent = data.titleZh || '';
+  $('artMeta').textContent = state.levelName + ' 級';
+
+  renderArticle(data);
+  $('articleCard').hidden = false;
+  $('scoreCard').hidden = true;
+  renderQuestions(data);
+}
+
+function renderArticle(data){
+  const box = $('artBody');
+  box.innerHTML = '';
+
+  data.paragraphs.forEach(p => {
+    const para = document.createElement('div');
+    para.className = 'para';
+
+    (p.sentences || []).forEach(s => {
+      if (!s || !s.en) return;
+      const row = document.createElement('div');
+      row.className = 'sent';
+
+      const en = document.createElement('span');
+      en.className = 'sent-en speakable';
+      en.textContent = s.en;
+      en.dataset.speak = s.en;
+      row.appendChild(en);
+
+      const pb = document.createElement('button');
+      pb.className = 'prog-toggle';
+      pb.type = 'button';
+      pb.title = '看這句話的漸進式拆解與文法解析（內容由 AI 生成，未經人工檢核）';
+      pb.textContent = '🧩 拆解';
+      pb.addEventListener('click', ev => {
+        ev.stopPropagation();
+        openProgressiveForSentence(pb, s.en);
+      });
+      row.appendChild(pb);
+
+      if (s.zh){
+        const zh = document.createElement('span');
+        zh.className = 'sent-zh';
+        zh.textContent = s.zh;
+        row.appendChild(zh);
+      }
+      para.appendChild(row);
+    });
+
+    if (para.children.length) box.appendChild(para);
+  });
+}
+
+function renderQuestions(data){
+  const box = $('questions');
+  box.innerHTML = '';
+
+  data.questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const stem = document.createElement('div');
+    stem.className = 'q-stem';
+    stem.innerHTML =
+      '<span class="q-num">Q' + (qi + 1) + '</span>' +
+      '<span style="flex:1;min-width:0;">' +
+      '<span class="q-en speakable" data-speak="' + esc(q.stem || '') + '">' + md(q.stem || '') + '</span>' +
+      (q.stemZh ? '<span class="q-zh">' + md(q.stemZh) + '</span>' : '') +
+      '</span>';
+    card.appendChild(stem);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    opts.dataset.qi = qi;
+
+    (q.options || []).forEach((opt, oi) => {
+      const zh = (q.optionsZh || [])[oi] || '';
+      const div = document.createElement('div');
+      div.className = 'option';
+      div.setAttribute('role', 'button');
+      div.setAttribute('tabindex', '0');
+      div.dataset.oi = oi;
+      div.innerHTML =
+        '<span class="opt-letter">' + L[oi] + '</span>' +
+        '<span class="opt-text">' +
+        '<span class="opt-en">' + md(opt) + '</span>' +
+        (zh ? '<span class="opt-zh">' + md(zh) + '</span>' : '') +
+        '</span>' +
+        '<button class="speak-btn" type="button" data-speak="' + esc(opt) + '" title="朗讀這個選項">🔊</button>';
+
+      div.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); answer(qi, oi); }
+      });
+      opts.appendChild(div);
+    });
+
+    opts.addEventListener('click', e => {
+      if (e.target.closest('.speak-btn')) return;
+      const opt = e.target.closest('.option');
+      if (opt) answer(qi, Number(opt.dataset.oi));
+    });
+
+    card.appendChild(opts);
+
+    const exp = document.createElement('div');
+    exp.className = 'explain';
+    exp.id = 'explain-' + qi;
+    card.appendChild(exp);
+
+    box.appendChild(card);
+  });
+}
+
+/* ==================== 作答 ==================== */
+function answer(qi, oi){
+  if (state.answered[qi] !== undefined) return;
+  state.answered[qi] = oi;
+
+  const q = state.data.questions[qi];
+  const correctIdx = Number(q.answerIndex) || 0;
+  const card = document.querySelectorAll('.q-card, .card')[qi];
+  const btns = card.querySelectorAll('.option');
+  const isRight = oi === correctIdx;
+
+  btns.forEach((b, i) => {
+    b.classList.add('done');
+    if (i === correctIdx) b.classList.add('correct');
+    else if (i === oi) b.classList.add('wrong');
+  });
+
+  const exp = $('explain-' + qi);
+  exp.innerHTML = buildExplain(q, oi, isRight, correctIdx);
+  exp.classList.add('show');
+
+  const progBtn = exp.querySelector('.prog-toggle.is-lazy');
+  if (progBtn){
+    progBtn.addEventListener('click', ev => {
+      ev.stopPropagation();
+      openProgressiveForAnswer(progBtn, q);
+    });
+  }
+
+  updateScore();
+}
+function buildExplain(q, oi, isRight, correctIdx){
+  const correctLetter = L[correctIdx] || 'A';
+  const yourLetter = L[oi] || '?';
+  const opts = q.options || [];
+  const optsZh = q.optionsZh || [];
+  const correctEn = opts[correctIdx] || '';
+  const correctZh = optsZh[correctIdx] || '';
+
+  const notes = opts.map((opt, i) => {
+    const note = (q.optionNotes || [])[i] || '（無說明）';
+    const zh = optsZh[i] || '';
+    const cls = i === correctIdx ? 'is-correct' : (i === oi ? 'is-wrong-pick' : '');
+    return '<li class="' + cls + '">' +
+      '<span class="letter">' + L[i] + '</span>' +
+      '<span style="flex:1;min-width:0;">' +
+      '<span class="opt-en speakable" data-speak="' + esc(opt) + '">' + L[i] + '. ' + md(opt) + '</span>' +
+      (zh ? '<span class="opt-zh">' + md(zh) + '</span>' : '') +
+      '<span class="opt-note">' + md(note) + '</span>' +
+      '</span></li>';
+  }).join('');
+
+  const vocab = (q.vocab || []).map(v =>
+    '<div class="kv">' +
+    '<span class="kv-en speakable" data-speak="' + esc(v.en) + '">' + esc(v.en) + '</span>' +
+    (v.phonetic ? '<span class="kv-phon">' + esc(v.phonetic) + '</span>' : '') +
+    '<span class="kv-zh">' + esc(v.zh || '') + '</span>' +
+    (v.note ? '<span class="kv-note">' + esc(v.note) + '</span>' : '') +
+    '</div>').join('');
+
+  const phrases = (q.phrases || []).map(v =>
+    '<div class="kv">' +
+    '<span class="kv-en speakable" data-speak="' + esc(v.en) + '">' + esc(v.en) + '</span>' +
+    (v.phonetic ? '<span class="kv-phon">' + esc(v.phonetic) + '</span>' : '') +
+    '<span class="kv-zh">' + esc(v.zh || '') + '</span>' +
+    (v.note ? '<span class="kv-note">' + esc(v.note) + '</span>' : '') +
+    '</div>').join('');
+
+  const progBtnHtml = correctEn
+    ? '<button class="prog-toggle is-lazy" type="button" title="點擊後才會呼叫 AI 生成拆解（未經人工檢核）">漸進式英文（含文法）</button>'
+    : '';
+
+  return '<div class="ai-note" style="margin-bottom:14px;">⚠️ 以下解析由 AI 即時生成，未經人工檢核。</div>' +
+    '<div class="verdict ' + (isRight ? 'ok' : 'bad') + '">' +
+      (isRight
+        ? '✅ 答對了！正確答案是 <strong>' + correctLetter + '</strong>'
+        : '❌ 答錯了。你選的是 <strong>' + yourLetter + '</strong>，正確答案是 <strong>' + correctLetter + '</strong>') +
+    '</div>' +
+    '<div class="block"><h4>📝 題目中譯</h4><p>' + md(q.stemZh || '（無）') + '</p></div>' +
+    (!isRight
+      ? '<div class="block"><h4>🔎 你選的 ' + yourLetter + ' 為什麼不對</h4><p>' + md((q.optionNotes || [])[oi] || '（無說明）') + '</p></div>'
+      : '') +
+    '<div class="block">' +
+      '<h4>✅ 為什麼答案是 ' + correctLetter + '</h4>' +
+      '<div class="answer-line"><div class="row1">' +
+      '<span class="en speakable" data-speak="' + esc(correctEn) + '">' + correctLetter + '. ' + md(correctEn) + '</span>' +
+      progBtnHtml +
+      '</div>' + (correctZh ? '<span class="zh">' + md(correctZh) + '</span>' : '') + '</div>' +
+      '<p>' + md(q.correctReason || '（無說明）') + '</p>' +
+    '</div>' +
+    '<div class="block"><h4>🧭 四個選項逐一分析（點擊英文可發音）</h4><ul class="notes">' + notes + '</ul></div>' +
+    (vocab ? '<div class="block"><h4>📘 詞彙 Vocabulary（單字後附音標）</h4><div class="kv-list">' + vocab + '</div></div>' : '') +
+    (phrases ? '<div class="block"><h4>🧩 片語 Phrases（點擊片語發音）</h4><div class="kv-list">' + phrases + '</div></div>' : '') +
+    (q.grammar ? '<div class="block"><h4>🏗️ 文法重點 Grammar</h4><p>' + md(q.grammar) + '</p></div>' : '');
+}
+
+function updateScore(){
+  const total = state.data.questions.length;
+  const done = Object.keys(state.answered).length;
+  if (done < total) return;
+  const right = Object.entries(state.answered).filter(
+    ([qi, oi]) => Number(oi) === (Number(state.data.questions[qi].answerIndex) || 0)
+  ).length;
+
+  const el = $('scoreCard');
+  el.innerHTML = '<h3>🎉 作答完成</h3><p>答對 <strong>' + right + '</strong> / ' + total +
+    ' 題' + (right === total ? '，全部正確！' : '，再多練幾次會更熟。') + '</p>';
+  el.hidden = false;
+}
+
+/* ==================== 漸進式彈窗 ==================== */
+function closeProgressive(){
+  const old = document.getElementById('progPop');
+  if (old) old.remove();
+}
+
+function makeDraggable(pop){
+  const handle = pop.querySelector('.prog-head');
+  const closeBtn = pop.querySelector('.prog-close');
+  if (!handle) return;
+
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+  const onMove = e => {
+    const pt = e.touches ? e.touches[0] : e;
+    const dx = pt.clientX - startX;
+    const dy = pt.clientY - startY;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const w = pop.offsetWidth, h = pop.offsetHeight;
+    const keep = 80;
+
+    let nl = Math.max(-(w - keep), Math.min(vw - keep, startLeft + dx));
+    let nt = Math.max(0, Math.min(vh - keep, startTop + dy));
+
+    pop.style.left = nl + 'px';
+    pop.style.top  = nt + 'px';
+    if (e.cancelable) e.preventDefault();
+  };
+
+  const onUp = () => {
+    pop.classList.remove('dragging');
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('touchmove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    document.removeEventListener('touchend', onUp);
+    document.removeEventListener('touchcancel', onUp);
+    document.body.style.userSelect = '';
+    document.body.style.cursor = '';
+  };
+
+  const onDown = e => {
+    if (closeBtn && (e.target === closeBtn || closeBtn.contains(e.target))) return;
+    if (e.type === 'mousedown' && e.button !== 0) return;
+
+    const pt = e.touches ? e.touches[0] : e;
+    startX = pt.clientX;
+    startY = pt.clientY;
+
+    const r = pop.getBoundingClientRect();
+    startLeft = r.left;
+    startTop  = r.top;
+
+    pop.style.left = startLeft + 'px';
+    pop.style.top  = startTop + 'px';
+    pop.style.right = 'auto';
+    pop.style.bottom = 'auto';
+
+    pop.classList.add('dragging');
+    document.body.style.userSelect = 'none';
+    document.body.style.cursor = 'grabbing';
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('mouseup', onUp);
+    document.addEventListener('touchend', onUp);
+    document.addEventListener('touchcancel', onUp);
+
+    if (e.cancelable) e.preventDefault();
+  };
+
+  handle.addEventListener('mousedown', onDown);
+  handle.addEventListener('touchstart', onDown, { passive: false });
+}
+
+function createProgPop(){
+  closeProgressive();
+  if ('speechSynthesis' in window){
+    seqAbort = true;
+    speechSynthesis.cancel();
+  }
+  clearSpeaking();
+
+  const pop = document.createElement('div');
+  pop.className = 'prog-pop';
+  pop.id = 'progPop';
+  pop.innerHTML =
+    '<div class="prog-head">' +
+      '<span class="ttl">🧩 漸進式英文建構 <span class="drag-hint">（可拖曳）</span>' +
+      '<span class="ai-tag">AI 生成</span></span>' +
+      '<button class="prog-close" type="button" title="關閉">✕</button>' +
+    '</div>' +
+    '<div class="prog-body" id="progBody"></div>' +
+    '<div class="prog-foot">' +
+      '<button class="btn-tool prog-play" type="button" disabled>▶ 依序播放</button>' +
+      '<button class="btn-tool ghost prog-reset" type="button">⏹ 停止</button>' +
+    '</div>';
+
+  pop.style.visibility = 'hidden';
+  document.body.appendChild(pop);
+  positionPop(pop);
+  makeDraggable(pop);
+  pop.style.visibility = 'visible';
+
+  pop.querySelector('.prog-close').addEventListener('click', closeProgressive);
+  pop.querySelector('.prog-reset').addEventListener('click', ev => {
+    ev.stopPropagation();
+    seqAbort = true;
+    speechSynthesis.cancel();
+    clearSpeaking();
+  });
+
+  return pop;
+}
+
+function fillProgBodyLoading(pop, msg){
+  const body = pop.querySelector('#progBody');
+  body.innerHTML = '<div class="prog-loading"><span class="spinner"></span>' + esc(msg) + '</div>';
+}
+
+function fillProgBodyError(pop, msg){
+  const body = pop.querySelector('#progBody');
+  body.innerHTML = '<div class="prog-error">❌ ' + esc(msg) + '<br><br>可以關閉彈窗後再按一次按鈕重試。</div>';
+}
+
+function fillProgBody(pop, items){
+  const body = pop.querySelector('#progBody');
+  const playBtn = pop.querySelector('.prog-play');
+
+  if (!items || items.length < 2){
+    fillProgBodyError(pop, '這次沒有取得足夠的拆解步驟。');
+    return;
+  }
+
+  body.innerHTML = items.map((it, i) => {
+    const isLast = i === items.length - 1;
+    const noteHtml = it.note
+      ? '<span class="prog-note"><b>文法：</b>' + esc(it.note) + '</span>'
+      : '';
+    return '<div class="prog-row speakable ' + (isLast ? 'is-last' : '') + '" data-speak="' + esc(it.en) + '" data-idx="' + i + '">' +
+      '<span class="prog-i">' + (i + 1) + '</span>' +
+      '<span class="prog-main">' +
+      '<span class="prog-en">' + esc(it.en) + '</span>' +
+      (it.phonetic ? '<span class="prog-phon">' + esc(it.phonetic) + '</span>' : '') +
+      (it.zh ? '<span class="prog-zh">' + esc(it.zh) + '</span>' : '') +
+      noteHtml +
+      '</span></div>';
+  }).join('');
+
+  playBtn.disabled = false;
+  playBtn.onclick = ev => {
+    ev.stopPropagation();
+    playSequential([].slice.call(body.querySelectorAll('.prog-row')));
+  };
+}
+
+function openProgressive(items){
+  const pop = createProgPop();
+  fillProgBody(pop, items);
+}
+
+async function openProgressiveForSentence(btn, sentence){
+  const key = String(sentence).trim();
+  if (!key) return;
+
+  if (progCache.has(key)){
+    openProgressive(progCache.get(key));
+    return;
+  }
+
+  const pop = createProgPop();
+  fillProgBodyLoading(pop, 'AI 正在拆解這句話…');
+
+  try {
+    const apiKey = $('apiKey').value.trim();
+    if (!apiKey) throw new Error('請先在上方輸入 Groq API Key，才能生成句子拆解。');
+
+    const data = await callGroq(apiKey, buildSentenceProgressivePrompt(key));
+    const items = normalizeProg(data.answerProgressive || data.items);
+
+    const last = items[items.length - 1];
+    if (!last || last.en.toLowerCase() !== key.toLowerCase()){
+      items.push({ en: key, zh: '', phonetic: '', note: '完整句：這是最終的完整句子形式。' });
+    }
+    if (items.length < 2) throw new Error('AI 沒有產生足夠的拆解步驟，請再試一次。');
+
+    progCache.set(key, items);
+    if (document.getElementById('progPop') !== pop) return;
+    fillProgBody(pop, items);
+  } catch (err){
+    console.error(err);
+    if (document.getElementById('progPop') !== pop) return;
+    fillProgBodyError(pop, err.message);
+  }
+}
+
+async function openProgressiveForAnswer(btn, q){
+  const ai = Number(q.answerIndex) || 0;
+  const correctEn = (q.options || [])[ai] || '';
+  if (!correctEn) return;
+
+  const cacheKey = 'ANSWER::' + correctEn.toLowerCase();
+  if (progCache.has(cacheKey)){
+    openProgressive(progCache.get(cacheKey));
+    return;
+  }
+
+  const pop = createProgPop();
+  fillProgBodyLoading(pop, 'AI 正在拆解這個答案句…');
+
+  try {
+    const apiKey = $('apiKey').value.trim();
+    if (!apiKey) throw new Error('請先在上方輸入 Groq API Key，才能生成答案拆解。');
+
+    const data = await callGroq(apiKey, buildAnswerProgressivePrompt(
+      q.stem || '',
+      correctEn,
+      (q.optionsZh || [])[ai] || '',
+      q.optionNotes || []
+    ));
+
+    const items = normalizeProg(data.answerProgressive || data.items);
+    const last = items[items.length - 1];
+    if (!last || last.en.toLowerCase() !== correctEn.toLowerCase()){
+      items.push({
+        en: correctEn,
+        zh: (q.optionsZh || [])[ai] || '',
+        phonetic: '',
+        note: '完整句：這是最終的正確答案形式（主詞 + 動詞 + 受詞 / 修飾語）。'
+      });
+    }
+    if (items.length < 2) throw new Error('AI 沒有產生足夠的拆解步驟，請再試一次。');
+
+    progCache.set(cacheKey, items);
+    if (document.getElementById('progPop') !== pop) return;
+    fillProgBody(pop, items);
+  } catch (err){
+    console.error(err);
+    if (document.getElementById('progPop') !== pop) return;
+    fillProgBodyError(pop, err.message);
+  }
+}
+
+function positionPop(pop){
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const w = pop.offsetWidth, h = pop.offsetHeight;
+  pop.style.left = Math.max(12, (vw - w) / 2) + 'px';
+  pop.style.top  = Math.max(12, (vh - h) / 4) + 'px';
+}
+
+function playSequential(rows){
+  if (!('speechSynthesis' in window) || !rows.length) return;
+  seqAbort = true;
+  speechSynthesis.cancel();
+  clearSpeaking();
+
+  const rate = getRate();
+
+  setTimeout(() => {
+    seqAbort = false;
+    const v = getVoice();
+    let i = 0;
+
+    const step = () => {
+      if (seqAbort || i >= rows.length) return;
+      const row = rows[i];
+      const txt = row.dataset.speak || '';
+      row.classList.add('speaking');
+      try { row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch(e){}
+
+      const u = new SpeechSynthesisUtterance(txt);
+      if (v){ u.voice = v; u.lang = v.lang; } else u.lang = 'en-US';
+      u.rate = rate; u.pitch = 1;
+      u.onend = () => {
+        row.classList.remove('speaking');
+        i += 1;
+        step();
+      };
+      u.onerror = () => {
+        row.classList.remove('speaking');
+        i += 1;
+        step();
+      };
+      speechSynthesis.speak(u);
+    };
+
+    step();
+  }, 120);
+}
+
+/* ==================== 朗讀全文 / 停止 ==================== */
+function readAll(){
+  if (!state.data) { setStatus('請先按「🎲 生成文章」產生內容。', 'error'); return; }
+  const parts = [];
+  state.data.paragraphs.forEach(p => (p.sentences || []).forEach(s => { if (s && s.en) parts.push(s.en); }));
+  if (!parts.length) return;
+  speak(parts.join(' '), null);
+}
+
+$('readAll').addEventListener('click', readAll);
+$('stopRead').addEventListener('click', () => {
+  seqAbort = true;
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  clearSpeaking();
+});
+$('generate').addEventListener('click', generate);
+
+/* 上次輸入的 Key 先帶回來，省得每次重貼 */
+(function restoreKey(){
+  const k = localStorage.getItem('groq_key');
+  if (k) $('apiKey').value = k;
+})();
+</script>

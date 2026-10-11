@@ -28,9 +28,11 @@ STEPS = [
     ("10. TOPICS", "qa_topics.py"),
     ("11. TYPING WIRING", "qa_typing.py"),
     ("12. TYPING BEHAVIOUR", "test_typing.js"),
+    ("13. RATE PRESETS", "test_rate.js"),
+    ("14. READING PAGE", "test_reading.js"),
 ]
 
-NODE = ["verify.js", "test_typing.js"]
+NODE = ["verify.js", "test_typing.js", "test_rate.js", "test_reading.js"]
 results = []
 for label, script in STEPS:
     if script in NODE:

@@ -203,8 +203,12 @@ def render(L, idx):
              '        <select id="voiceSelect"></select>\n'
              '      </div>\n'
              '      <div class="control-group">\n'
-             '        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>\n'
-             '        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">\n'
+             '        <label for="rateVal"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.9x</span></label>\n'
+             '        <div class="rate-presets" id="ratePresets" role="group" aria-label="朗讀語速">\n'
+             '          <button type="button" class="btn-rate" data-rate="0.6" onclick="setSpeechRate(0.6)">🐢 慢</button>\n'
+             '          <button type="button" class="btn-rate is-active" data-rate="0.9" onclick="setSpeechRate(0.9)">正常</button>\n'
+             '          <button type="button" class="btn-rate" data-rate="1.2" onclick="setSpeechRate(1.2)">⏩ 快</button>\n'
+             '        </div>\n'
              '      </div>\n'
              '    </div>\n'
              '    <div class="legend-bar">\n'
@@ -217,6 +221,7 @@ def render(L, idx):
              '      <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>\n'
              '      <button class="btn-tool" id="btnReview" onclick="toggleReview()">\u25bc 展開全部解析</button>\n'
              '      <button class="btn-tool ghost" onclick="printPage()">\U0001F5A8 列印本節</button>\n'
+             '      <a class="btn-tool ghost" href="reading.html" target="_blank" rel="noopener" title="開新視窗：AI 隨機出題的 KET 閱讀理解練習（內容未經人工檢核）">📖 KET 閱讀練習</a>\n'
              '    </div>\n'
              '    <div class="type-panel" id="typePanel" hidden>\n'
              '      <div class="type-head">\n'
@@ -404,6 +409,13 @@ def main():
         p = os.path.join(OUTDIR, L["file"])
         open(p, "w", encoding="utf-8").write(render(L, i))
         made.append(L["file"])
+
+    # 獨立的 KET 閱讀理解練習頁（不屬於 60 課，單獨在新視窗開啟）
+    import reading_tool
+    p = os.path.join(OUTDIR, "reading.html")
+    open(p, "w", encoding="utf-8").write(reading_tool.build())
+    made.append("reading.html")
+
     print("BUILT %d files in %s" % (len(made), OUTDIR))
     for m in made:
         print("  - " + m)

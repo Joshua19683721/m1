@@ -2,7 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 const DIR = path.resolve(__dirname, '..', 'docs');
-const files = fs.readdirSync(DIR).filter(f => f.endsWith('.html') && f !== 'index.html');
+// reading.html 是獨立的 KET 閱讀練習頁，不是 60 課之一。
+const SKIP = new Set(['index.html', 'reading.html']);
+const files = fs.readdirSync(DIR).filter(f => f.endsWith('.html') && !SKIP.has(f));
 const NL = '\\r?\\n';
 
 let allOk = true;

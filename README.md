@@ -26,17 +26,17 @@ source/                   詞彙來源（Cambridge PDF 與純文字版）
 
 ```bash
 cd build
-python build.py          # 產生 61 個 HTML 到 ../docs
-./verify_all.ps1          # 12 項檢查全過才算完成
+python build.py          # 產生 62 個 HTML 到 ../docs
+./verify_all.ps1          # 14 項檢查全過才算完成
 ```
 
 `verify_all.ps1` 需要 PowerShell。若環境沒有 PowerShell，改用 Python 版：
 
 ```bash
-python verify_all.py      # 同樣的 12 項檢查，產出相同結果
+python verify_all.py      # 同樣的 14 項檢查，產出相同結果
 ```
 
-### `verify_all.ps1` 十二項檢查
+### `verify_all.ps1` 十四項檢查
 
 | # | 檢查 | 內容 |
 |---|------|------|
@@ -52,6 +52,8 @@ python verify_all.py      # 同樣的 12 項檢查，產出相同結果
 | 10 | TOPICS | 「A2 Key『X』主題」比對官方 25 個主題表 |
 | 11 | TYPING WIRING | `python qa_typing.py`：60 頁的打字練習面板、監聽、句庫都正確 |
 | 12 | TYPING BEHAVIOUR | `node test_typing.js`：按空白鍵唸單字、整句完成換下一句等互動規則 |
+| 13 | RATE PRESETS | `node test_rate.js`：慢／正常／快三個語速預設，並確認朗讀真的套用 |
+| 14 | READING PAGE | `node test_reading.js`：KET 閱讀練習頁的結構、AI 標注與出題流程 |
 
 ### 內容層檢查（結構之外）
 
@@ -67,7 +69,28 @@ python show.py 7 pop raw # 看第 7 課每句的解析原始碼（meta/pop/sum/t
 
 它會檢查：每句標示詞數量（SCHEMA 規定 2–4 個）、每句解析點數量（2–3 個）、
 三張重點卡的條目數（4／5／3）、結尾標點、彎引號與簡體字、多餘空白。
-已知的良性偏離：第 2、3 課的「詞彙辨析」卡有 4 條（規格為 3）。**
+已知的良性偏離：第 2、3 課的「詞彙辨析」卡有 4 條（規格為 3）。
+
+## KET 閱讀理解練習（`docs/reading.html`）
+
+每課頁首控制列有一個 **📖 KET 閱讀練習** 按鈕，`target="_blank"` **開新視窗**獨立開啟。
+排版、配色、圓角、按鈕、header 結構都沿用 60 課的同一套設計語言。
+
+功能：輸入 Groq API Key → 選難度與題數 → AI 生成一篇中英對照的文章與考題 →
+逐題作答（含選項逐一分析、詞彙音標、文法重點）→ 每一句可點擊發音 → 句旁的「🧩 拆解」
+把句子一步步拆開講。語速控制與朗讀全文／停止和 60 課一致。
+
+API Key 只存在使用者自己的瀏覽器（localStorage）；按「拆解」時才會呼叫 Groq，生成後快取。
+
+⚠️ **文章、考題、音標、文法拆解全部由 AI 即時生成，未經人工檢核。**
+頁面頂部、每題解析、拆解彈窗、頁尾都有標示。它不應被當成審定教材使用
+——這也正是 `qa_content.py` 當初從 60 課裡修掉的那類內容。
+
+## 朗讀語速
+
+每課頁首「語音設定區」有 **🐢 慢 0.6x／正常 0.9x／⏩ 快 1.2x** 三顆預設按鈕，
+點一下即切換，不用拖曳。四種朗讀（點句子、朗讀整段、點單字、打字練習的單字發音）
+都用同一組設定。
 
 ## 打字練習
 
@@ -80,6 +103,14 @@ python show.py 7 pop raw # 看第 7 課每句的解析原始碼（meta/pop/sum/t
 
 比對採**寬鬆比對**：忽略大小寫、標點與多餘空白，只比對英文單字與順序，
 所以 `I couldn't open` 打成 `i couldnt open` 一樣算完成。
+
+## 目錄結構（補充）
+
+```
+docs/reading.html        獨立的 KET 閱讀理解練習頁（AI 出題，開新視窗）
+build/reading_src.html   上一頁的來源；build.py 原樣輸出，所以它是自給自足的
+build/reading_tool.py    讀取來源並交給 build.py
+```
 
 ## 內容資料格式
 

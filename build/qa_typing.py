@@ -9,8 +9,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.abspath(os.path.join(HERE, "..", "docs"))
 
 problems = []
+# reading.html 是獨立的 KET 閱讀練習頁，不屬於 60 課。
+SKIP = {"index.html", "reading.html"}
 files = sorted(f for f in os.listdir(DOCS)
-               if f.endswith(".html") and f != "index.html")
+               if f.endswith(".html") and f not in SKIP)
 
 for f in files:
     html = open(os.path.join(DOCS, f), encoding="utf-8").read()

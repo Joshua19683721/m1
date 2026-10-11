@@ -77,12 +77,21 @@
       gap: 8px;
     }
 
-    select, input[type="range"] {
+    select {
       padding: 6px 10px;
       border-radius: 6px;
       border: 1px solid #cbd5e1;
       font-size: 0.95rem;
     }
+
+    /* 朗讀語速預設按鈕 */
+    .rate-presets { display:flex; gap:6px; }
+    .btn-rate { background:#fff; color:#0f766e; border:1px solid #99f6e4;
+      border-radius:15px; padding:3px 12px; cursor:pointer; font-size:.82rem;
+      font-family:inherit; white-space:nowrap; }
+    .btn-rate:hover { background:#f0fdfa; }
+    .btn-rate.is-active { background:#0f766e; color:#fff; border-color:#0f766e;
+      font-weight:700; }
 
     /* 說明指標卡 */
     .legend-bar {
@@ -368,8 +377,12 @@ body.review .sentence-block{background:#f0f9ff;}
         <select id="voiceSelect"></select>
       </div>
       <div class="control-group">
-        <label for="rateRange"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.8x</span></label>
-        <input type="range" id="rateRange" min="0.5" max="1.5" step="0.1" value="0.8" oninput="updateRateLabel(this.value)">
+        <label for="rateVal"><b>⚡ 朗讀語速:</b> <span id="rateVal">0.9x</span></label>
+        <div class="rate-presets" id="ratePresets" role="group" aria-label="朗讀語速">
+          <button type="button" class="btn-rate" data-rate="0.6" onclick="setSpeechRate(0.6)">🐢 慢</button>
+          <button type="button" class="btn-rate is-active" data-rate="0.9" onclick="setSpeechRate(0.9)">正常</button>
+          <button type="button" class="btn-rate" data-rate="1.2" onclick="setSpeechRate(1.2)">⏩ 快</button>
+        </div>
       </div>
     </div>
     <div class="legend-bar">
@@ -382,6 +395,7 @@ body.review .sentence-block{background:#f0f9ff;}
       <button class="btn-tool" id="btnType" onclick="toggleType()">⌨️ 開啟打字練習</button>
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
+      <a class="btn-tool ghost" href="reading.html" target="_blank" rel="noopener" title="開新視窗：AI 隨機出題的 KET 閱讀理解練習（內容未經人工檢核）">📖 KET 閱讀練習</a>
     </div>
     <div class="type-panel" id="typePanel" hidden>
       <div class="type-head">
@@ -614,8 +628,28 @@ body.review .sentence-block{background:#f0f9ff;}
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
 
+  function speechRateLabel(val) {
+    return parseFloat(val).toFixed(1) + 'x';
+  }
+
+  /* 朗讀語速預設：慢 / 正常 / 快。所有朗讀（句子、整段、單字、打字練習）共用。 */
+  var SPEECH_RATE = 0.9;
+
+  function setSpeechRate(rate) {
+    SPEECH_RATE = parseFloat(rate);
+    updateRateLabel(speechRateLabel(SPEECH_RATE));
+  }
+
   function updateRateLabel(val) {
-    document.getElementById('rateVal').innerText = val + 'x';
+    const el = document.getElementById('rateVal');
+    if (el) el.innerText = val;
+    const group = document.getElementById('ratePresets');
+    if (!group) return;
+    const btns = group.querySelectorAll('.btn-rate');
+    for (let i = 0; i < btns.length; i++) {
+      const on = parseFloat(btns[i].getAttribute('data-rate')) === parseFloat(val);
+      btns[i].classList.toggle('is-active', on);
+    }
   }
 
   function speakText(text) {
@@ -626,12 +660,12 @@ body.review .sentence-block{background:#f0f9ff;}
     const cleanText = text.replace(/🔍/g, '').trim();
     const utterThis = new SpeechSynthesisUtterance(cleanText);
     const selectedVoiceName = document.getElementById('voiceSelect').selectedOptions[0]?.getAttribute('data-name');
-    
+
     if (selectedVoiceName) {
       utterThis.voice = voices.find(v => v.name === selectedVoiceName);
     }
 
-    utterThis.rate = parseFloat(document.getElementById('rateRange').value);
+    utterThis.rate = SPEECH_RATE;
     synth.speak(utterThis);
   }
 
@@ -717,14 +751,17 @@ body.review .sentence-block{background:#f0f9ff;}
     typeRender();
   }
 
-  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
   var typeIdx = 0;
   var typeDone = false;
 
+  /* 狀態放在最後宣告，讓上面的函式都可以直接取用 */
   (function () {
     const input = document.getElementById('typeInput');
     if (input) input.addEventListener('input', typeOnInput);
   })();
+
+  /* 讓標籤與啟用中的按鈕以 JS 為準，避免日後兩邊不同步 */
+  updateRateLabel(speechRateLabel(SPEECH_RATE));
 
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {
