@@ -666,6 +666,15 @@ body.review .sentence-block{background:#f0f9ff;}
       utterThis.voice = voices.find(v => v.name === selectedVoiceName);
     }
 
+    // 一定要指定 lang。若 voices 尚未載入完、或使用者機器沒有該語音，
+    // utterThis.voice 會是 undefined，瀏覽器就會依文件語言（zh-TW）挑中文
+    // 語音來念英文，發音整個跑掉。寫法與 reading.html 的 speak() 保持一致。
+    if (utterThis.voice) {
+      utterThis.lang = utterThis.voice.lang;
+    } else {
+      utterThis.lang = 'en-US';
+    }
+
     utterThis.rate = SPEECH_RATE;
     synth.speak(utterThis);
   }

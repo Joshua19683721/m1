@@ -6,6 +6,10 @@ build/fix_*.txt
 build/probe_*.py
 build/scan2.ps1
 
+# ---- editor / experiment backups of generated output ----
+*.bak
+*.orig
+
 # ---- ad-hoc scratch at the repo root (commit-message files, one-off probes) ----
 /_msg.txt
 /_chk.py

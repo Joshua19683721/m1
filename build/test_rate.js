@@ -136,5 +136,28 @@ api.updateRateLabel('2.5x');
 check('unknown value leaves no active button', activeRate() === null,
       'active=' + activeRate());
 
+// 5) every utterance must carry a lang.
+// The pages are lang="zh-TW". If lang is left empty and no voice matched (the
+// voices list is loaded asynchronously, and the user may not have the voice
+// installed), the browser picks by document language and reads English with a
+// Chinese voice. Caught in a real browser, not in the unit stub.
+store.voiceSelect.selectedOptions = [{ getAttribute: () => null }];
+api.speakText('hello');
+check('speakText always sets a lang', !!utterances.at(-1).lang,
+      'lang=' + JSON.stringify(utterances.at(-1).lang));
+check('speakText falls back to en-US with no voice',
+      utterances.at(-1).lang === 'en-US', 'lang=' + utterances.at(-1).lang);
+
+api.speakParagraph(['hello there']);
+check('paragraph read sets a lang', utterances.at(-1).lang === 'en-US',
+      'lang=' + utterances.at(-1).lang);
+
+api.typeRestart();
+store.typeInput.value = 'word ';
+api.typeOnInput();
+check('typing word sets a lang',
+      utterances.at(-1) && utterances.at(-1).lang === 'en-US',
+      utterances.at(-1) ? 'lang=' + utterances.at(-1).lang : 'no utterance');
+
 console.log('\nrate presets: ' + pass + ' passed, ' + fail + ' failed');
 process.exit(fail ? 1 : 0);
