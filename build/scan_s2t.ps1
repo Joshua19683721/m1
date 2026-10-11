@@ -31,7 +31,10 @@ $root = Split-Path -Parent $buildDir   # repository root: build/ lives one level
 $exts = @('*.html', '*.py', '*.md', '*.txt', '*.ps1', '*.js', '.gitignore', '.gitattributes')
 $files = @()
 foreach ($e in $exts) { $files += Get-ChildItem -Path $root -Recurse -Filter $e -File -ErrorAction SilentlyContinue }
-$files = $files | Sort-Object FullName -Unique | Where-Object { $_.FullName -notlike '*\.git\*' }
+# .git is VCS data and .opencode is a local agent harness scratch dir; both are
+# not project content, and neither should be able to fail this gate.
+$files = $files | Sort-Object FullName -Unique |
+  Where-Object { $_.FullName -notlike '*\.git\*' -and $_.FullName -notlike '*\.opencode\*' }
 $total = 0
 foreach ($f in $files) {
     $src = [System.IO.File]::ReadAllText($f.FullName, [System.Text.Encoding]::UTF8)

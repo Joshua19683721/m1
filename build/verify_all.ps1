@@ -1,4 +1,4 @@
-# run every check in one go
+# run every check in one go (14 checks)
 $ErrorActionPreference = "Continue"
 Write-Output "=== 1. BUILD ==="
 python build.py 2>&1 | Select-Object -First 1
@@ -29,3 +29,15 @@ python qa_claims.py 2>&1 | Select-Object -Last 1
 Write-Output ""
 Write-Output "=== 10. A2 KEY TOPIC ATTRIBUTION ==="
 python qa_topics.py 2>&1 | Select-Object -Last 1
+Write-Output ""
+Write-Output "=== 11. TYPING WIRING ==="
+python qa_typing.py 2>&1 | Select-Object -Last 2
+Write-Output ""
+Write-Output "=== 12. TYPING BEHAVIOUR (node) ==="
+node test_typing.js 2>&1 | Select-Object -Last 1
+Write-Output ""
+Write-Output "=== 13. RATE PRESETS (node) ==="
+node test_rate.js 2>&1 | Select-Object -Last 1
+Write-Output ""
+Write-Output "=== 14. READING PAGE (node) ==="
+node test_reading.js 2>&1 | Select-Object -Last 1

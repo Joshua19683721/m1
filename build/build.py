@@ -161,6 +161,10 @@ IDX_HEAD = """<!DOCTYPE html>
   </header>
   <div class="summary-card">
     <p style="color:#475569;margin-top:0;">本設計以 <b>Cambridge A2 Key Vocabulary List</b> 主題清單為詞彙骨架，搭配 <b>108 課綱國中會考</b> 文法單元的命題前提；每課一篇完整故事（三段・逐句解讀）互為體系化清卡，前30課為基礎謚法，後30課為延美句型與議題融入。</p>
+    <div class="tool-row">
+      <a class="btn-tool" href="reading.html" target="_blank" rel="noopener"
+         title="開新視窗：AI 隨機出題的 KET 閱讀理解練習（內容未經人工檢核）">📖 KET 閱讀練習</a>
+    </div>
     <div class="idx-tools">
       <input id="idxSearch" type="search" placeholder="搜尋課次、主題或文法點（例：露營、A2 Key、if）..." oninput="filterLessons()">
       <span class="hint">搜尋無限制。按「清除」顯示全部。</span>
