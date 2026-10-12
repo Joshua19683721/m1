@@ -24,51 +24,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Last Saturday morning, our washing machine suddenly stopped and made a strange noise.""",
-    "html": '''<span class="w-tap kw-link">Last Saturday morning</span>, our <span class="w-tap kw-colloc">washing machine</span> <span class="w-tap kw-verb">suddenly stopped</span> and <span class="w-tap kw-verb">made a strange noise</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last Saturday morning</span>, our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">washing machine</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">suddenly stopped</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">made a strange noise</span>.''',
     "pop": '''1. <b>規則動詞的過去式 (stopped)：</b>stop 是規則動詞，過去式直接加 -ed；本句用過去式是因為敘述的是「上週六」已發生的事情。<br>
 2. <b>主詞與謂語一致 (our washing machine → stopped)：</b>washing machine 是一個名詞片語，整體視為單數主語，所以謂語用 stopped，不可寫成 stop。<br>
 3. <b>make + 名詞 (made a strange noise)：</b>make ＝「發出、製造」，後接名詞時<b>不加 to</b>；這是 A2 Key 收錄的高頻搭配。'''},
    {"text": """The door was full of wet clothes, so my mother turned off the gas heating.""",
-    "html": '''<span class="w-tap kw-colloc">The door was full of wet clothes</span>, <span class="w-tap kw-link">so</span> my mother <span class="w-tap kw-verb">turned off</span> the <span class="w-tap kw-colloc">gas heating</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">The door was full of wet clothes</span>, <span class="w-tap kw-link" data-pos="X" data-func="unknown">so</span> my mother <span class="w-tap kw-verb" data-pos="X" data-func="unknown">turned off</span> the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">gas heating</span>.''',
     "pop": '''1. <b>be + 形容詞 + 介系詞 (was full of)：</b>full 是形容詞、of 是介系詞，full of ＝「充滿⋯⋯」，後接名詞 wet clothes。<br>
 2. <b>結果連接詞 (so)：</b>so 引出「結果」；so 引出「結果」、because 引出「原因」，兩者不可互換；同一個簡單句中只能擇一，但多子句的句子可以並存（He was tired, so he went to bed early because he had to get up at six.）。<br>
 3. <b>多字動詞 turn off：</b>＝「關掉（電器、瓦斯）」；<span style="color:#dc2626;">⚠️ 陷阱：</span>off 在此是必須的小品詞，寫成 turned the gas heating off 可以，省成 turn the gas heating 則語意大變。'''},
    {"text": """There were two days of dirty clothes, and my father said we shouldn't wait.""",
-    "html": '''<span class="w-tap kw-verb">There were</span> <span class="w-tap kw-colloc">two days of dirty clothes</span>, and my father <span class="w-tap kw-verb">said we shouldn't wait</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">There were</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">two days of dirty clothes</span>, and my father <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said we shouldn't wait</span>.''',
     "pop": '''1. <b>There be 句型 (There were)：</b>＝「有⋯⋯」，were 後面接複數名詞 two days；be 動詞必須與後方名詞一致（There was a problem.／There were two days.）。<br>
 2. <b>間接引語 said + 子句：</b>that 可以省略，但子句仍須是完整句子（said we shouldn't wait）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 said we shouldn't to wait。<br>
 3. <b>情態動詞否定 (shouldn't + 原形)：</b>should 的否定式把 not 直接接在 should 後面，後面<b>只能接原形</b> wait。'''},
   ],
   [
    {"text": """We checked the cooker, the oven and the fridge, and there was no problem with them.""",
-    "html": '''We <span class="w-tap kw-verb">checked</span> the <span class="w-tap kw-colloc">cooker</span>, the <span class="w-tap kw-colloc">oven</span> and the <span class="w-tap kw-colloc">fridge</span>, and <span class="w-tap kw-verb">there was no problem</span> with them.''',
+    "html": '''We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">checked</span> the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">cooker</span>, the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">oven</span> and the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">fridge</span>, and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">there was no problem</span> with them.''',
     "pop": '''1. <b>check + 賓語 (checked the cooker)：</b>check ＝「檢查」，可直接接名詞；若要接動作則用 check + doing（check the washing），不可寫成 check to check。<br>
 2. <b>A、B and C 的列舉：</b>三者以上並列時，通常<b>只在最後一項前加 and</b>，中間各項之間只用逗號連接。<br>
 3. <b>指示代詞 (them)：</b>them 是 they 的賓格，代替前文的 cooker、oven 與 fridge；若放主語位置就必須改用 they。'''},
    {"text": """In the living room, my father checked the television, the computer and my mobile phone.""",
-    "html": '''<span class="w-tap kw-link">In the living room</span>, my father <span class="w-tap kw-verb">checked</span> the <span class="w-tap kw-colloc">television</span>, the <span class="w-tap kw-colloc">computer</span> and my <span class="w-tap kw-colloc">mobile phone</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">In the living room</span>, my father <span class="w-tap kw-verb" data-pos="X" data-func="unknown">checked</span> the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">television</span>, the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">computer</span> and my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">mobile phone</span>.''',
     "pop": '''1. <b>地點片語置於句首：</b>介系詞片語放句首後要加逗號，逗號之後才是主詞與謂語，語序不可倒裝。<br>
 2. <b>物主代詞 (my mobile phone)：</b>my 必須置於名詞之前，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 the my mobile phone。<br>
 3. <b>電器名稱前的 the：</b>表示家裡特定的那一臺時可加 the（the television）；但泛指「電視這類東西」時也常直接用 television，中文「看電視」也常不加冠詞。'''},
    {"text": """My sister took her camera upstairs, and our old clock near the lamp was too slow.""",
-    "html": '''My sister <span class="w-tap kw-verb">took</span> her <span class="w-tap kw-colloc">camera</span> <span class="w-tap kw-link">upstairs</span>, and our old <span class="w-tap kw-colloc">clock near the lamp</span> <span class="w-tap kw-verb">was too slow</span>.''',
+    "html": '''My sister <span class="w-tap kw-verb" data-pos="X" data-func="unknown">took</span> her <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">camera</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">upstairs</span>, and our old <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">clock near the lamp</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was too slow</span>.''',
     "pop": '''1. <b>take + 賓語 + 副詞片語 (took her camera upstairs)：</b>take ＝「拿、帶」，此處是「把相機帶上樓」，upstairs 是副詞片語、不是第二個受詞；take 的雙賓語句型是 take her a camera（把相機給她）；拍照要用 take a photo。<br>
 2. <b>形容詞置於名詞前 (our old clock)：</b>英文形容詞通常放在名詞<b>之前</b>（our old clock），與中文「舊的鐘」詞序相反；少數形容詞可置於名詞後（something new、the people present），屬例外。<br>
 3. <b>too + 形容詞 (was too slow)：</b>too 修飾 slow 表示程度「太⋯⋯、超出預期」；這裡只說程度，沒有接 to 的不定詞，與本課的 too...to 句型是同一家族。'''},
   ],
   [
    {"text": """The repairman came at four o'clock and found a broken part in the washing machine.""",
-    "html": '''The <span class="w-tap kw-colloc">repairman</span> <span class="w-tap kw-verb">came at</span> <span class="w-tap kw-link">four o'clock</span> and <span class="w-tap kw-verb">found a broken part</span> in the washing machine.''',
+    "html": '''The <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">repairman</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">came at</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">four o'clock</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">found a broken part</span> in the washing machine.''',
     "pop": '''1. <b>特定鐘點用 at：</b>at four o'clock 是確切時；泛指時段才用 in（in the morning）。<br>
 2. <b>find + 形容詞 + 名詞 (found a broken part)：</b>broken 是過去分詞作前置定語，相當於 that was broken；這個「形容詞 + 名詞」的複合結構是會考常見得分點。<br>
 3. <b>介系詞 in 表內部：</b>in the washing machine ＝「在洗衣機裡面」；on 則表示「在⋯⋯表面上」（on the door）。'''},
    {"text": """He said that the machine was too old to repair, so we called the shop.""",
-    "html": '''He <span class="w-tap kw-verb">said that</span> the machine <span class="w-tap kw-verb">was too old to repair</span>, <span class="w-tap kw-link">so</span> we <span class="w-tap kw-verb">called the shop</span>.''',
+    "html": '''He <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> the machine <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was too old to repair</span>, <span class="w-tap kw-link" data-pos="X" data-func="unknown">so</span> we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">called the shop</span>.''',
     "pop": '''1. <b>間接引語 said that + 子句：</b>say / tell / explain 後接 that 子句；that 可省略，但子句必須維持「主詞 + 動詞」的完整語序。<br>
 2. <b>too + 形容詞 + to + 原形：</b><span style="color:#dc2626;">⚠️ 會考核心句型</span>——too old to repair ＝「太舊了以致於不能修」。主動式 to 後面接<b>原形</b> repair；若要表被動須用 <b>to be + 過去分詞</b>（too old to be <b>repaired</b>），✗ 只有 too old to be <b>repair</b>（漏 -ed）才是錯的。<br>
 3. <b>時態一致：</b>主句是過去式 said，so 後面的結果子句也用過去式 called，兩句時態保持一致。'''},
    {"text": """On Sunday a new machine arrived, and Dad said we should save electricity.""",
-    "html": '''<span class="w-tap kw-link">On Sunday</span> a new machine <span class="w-tap kw-verb">arrived</span>, and Dad <span class="w-tap kw-verb">said we should save electricity</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">On Sunday</span> a new machine <span class="w-tap kw-verb" data-pos="X" data-func="unknown">arrived</span>, and Dad <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said we should save electricity</span>.''',
     "pop": '''1. <b>星期、日期前用 on：</b>On Sunday、on Monday 前置 on；月份用 in（in May），鐘點用 at（at eight）。<br>
 2. <b>arrive 是不及物動詞 (a new machine arrived)：</b>arrive 後面<b>不能直接加賓語</b>（✗ the machine arrived home）；要說到達某地必須用 arrive at / arrive in + 場所。<br>
 3. <b>should + 原形 (should save)：</b>should ＝「應該」，後接原形 save；這是父親的建議，不是命令，所以用 should 而不用 must 或 have to。'''},
@@ -119,51 +119,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """At the beginning of term, my school uniform did not fit me any more.""",
-    "html": '''<span class="w-tap kw-colloc">At the beginning of</span> term, my <span class="w-tap kw-colloc">school uniform</span> <span class="w-tap kw-verb">did not fit me any more</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="PREP" data-func="prep_phrase">At the beginning of</span> term, my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">school uniform</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">did not fit me any more</span>.''',
     "pop": '''1. <b>否定句借助助動詞 (did not fit)：</b>否定句要用 <b>did not (didn't)</b> ＋ <b>原形</b> fit，絕對不可寫 didn't fitted。<br>
 2. <b>fit / suit / be fitting：</b><br>• <b>fit</b> ＝ 尺寸合身（clothes <b>fit</b> me）<br>• <b>suit</b> ＝ 顏色款式適合（that colour <b>suits</b> you）<br>• <b>be fitting</b> ＝ 合身（trousers are <b>fitting</b>）——三者不可混用。<br>
 3. <b>any more / anymore：</b><b>any more（分寫兩字）</b>＝「更多的」，用於疑問與肯定句（Are there <b>any more</b> clothes?）；<b>anymore（合寫一字）</b>＝「再也（不）」，只用於否定與疑問句，且不可分開（✓ not fit me <b>anymore</b>）。'''},
    {"text": """My mother said that my trousers were too short, so she took me to a clothes shop.""",
-    "html": '''My mother <span class="w-tap kw-verb">said that</span> my <span class="w-tap kw-colloc">trousers were too short</span>, so she <span class="w-tap kw-verb">took me to</span> a <span class="w-tap kw-colloc">clothes shop</span>.''',
+    "html": '''My mother <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">trousers were too short</span>, so she <span class="w-tap kw-verb" data-pos="X" data-func="unknown">took me to</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">clothes shop</span>.''',
     "pop": '''1. <b>間接引語 (said that + 子句)：</b>主語 my trousers 為<b>複數</b>，故 be 動詞用 <b>were</b>；這是會考主謂一致的固定送分題。<br>
 2. <b>too + 形容詞 (too short)：</b>too 表「太⋯⋯（超出預期）」，與 merely very（很）語意不同。<br>
 3. <b>take sb to + 場所：</b>take ＝「帶某人去⋯⋯」，後面的場所名詞要依情境加 <b>a / the / this</b> 等限定詞（took me to <b>a</b> clothes shop／take him to <b>the</b> shop）。'''},
    {"text": """The shop was small, but it had a very large mirror near the fitting room.""",
-    "html": '''The shop <span class="w-tap kw-verb">was small</span>, but it <span class="w-tap kw-verb">had a very large mirror</span> <span class="w-tap kw-colloc">near the fitting room</span>.''',
+    "html": '''The shop <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was small</span>, but it <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had a very large mirror</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">near the fitting room</span>.''',
     "pop": '''1. <b>but 表轉折：</b>前半句「店很小」、後半句「鏡子很大」，前後形成對照，是閱讀題抓主旨的重要線索。<br>
 2. <b>have a + 單數可數名詞：</b>a ＋ 單數名詞 mirror，故用 had。<br>
 3. <b>near + 場所：</b>near the fitting room ＝「在試衣間附近」，試衣間前須加 <b>the</b>。'''},
   ],
   [
    {"text": """A shop assistant showed me some blue jeans and asked me to try them on.""",
-    "html": '''A <span class="w-tap kw-colloc">shop assistant</span> <span class="w-tap kw-verb">showed me some blue jeans</span> and <span class="w-tap kw-verb">asked me to try them on</span>.''',
+    "html": '''A <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">shop assistant</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">showed me some blue jeans</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked me to try them on</span>.''',
     "pop": '''1. <b>show sb sth：</b>show ＝「給某人看某物」，兩個受詞之間不加介詞；過去式為規則動詞 showed。<br>
 2. <b>some + 複數可數名詞 (some blue jeans)：</b>jeans 永遠是<b>複數</b>，前面不可加 a；此處用 some 不是因為動作尚未發生，而是因為本句是一般過去式的<b>肯定句</b>——肯定句用 some，否定句與疑問句則改用 any（✗ She didn't show me some jeans.／✓ She didn't show me any jeans.）。<br>
 3. <b>ask sb to + 原形 (asked me to try them on)：</b>ask ＋ 人 ＋ to do；本句把 <b>try...on</b> 拆開夾在受詞後面，代詞 them 必須放中間。'''},
    {"text": """The first pair was too tight, and the second pair was much too long for me.""",
-    "html": '''The first <span class="w-tap kw-colloc">pair was too tight</span>, and the second pair <span class="w-tap kw-verb">was much too long for me</span>.''',
+    "html": '''The first <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">pair was too tight</span>, and the second pair <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was much too long for me</span>.''',
     "pop": '''1. <b>a pair of + 複數名詞 (a pair of jeans)：</b>pair 為可數名詞，前面須加 a / the / this / each，後接 <b>of</b> + 複數名詞。<br>
 2. <b>too...to 的否定加強 (much too)：</b>too...to 已含否定（太⋯⋯以致不能），若要再加強烈程度，可加 much：<b>much too long</b>。<br>
 3. <b>too...to + 原形：</b>too + 形容詞 + to + 原形 ＝「太⋯⋯以至於不能⋯⋯」；表被動時可接 <b>to be + 過去分詞</b>（too old to be <b>repaired</b>），不可接 be + 原形。'''},
    {"text": """I liked a pair of black trousers, but they were more expensive than I expected.""",
-    "html": '''I <span class="w-tap kw-verb">liked a pair of black trousers</span>, but they <span class="w-tap kw-verb">were more expensive than</span> I expected.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">liked a pair of black trousers</span>, but they <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were more expensive than</span> I expected.''',
     "pop": '''1. <b>規則過去式 (liked)：</b>like 為規則動詞，加 -ed；同時是本課「動詞辨析」中的另一個核心字。<br>
 2. <b>比較級 more + 多音節形容詞 (more expensive)：</b>expensive 為多音節，比較級前加 <b>more</b>，最高級為 the most expensive。<br>
 3. <b>than + 主語 + 動詞 (than I expected)：</b>than 後可接子句，「（價格）比我預期的還高」，此為會考比較結構的進階寫法。'''},
   ],
   [
    {"text": """In the end, I chose a dark blue skirt and a white T-shirt with a small pocket.""",
-    "html": '''<span class="w-tap kw-link">In the end</span>, I <span class="w-tap kw-colloc">chose a dark blue skirt</span> and <span class="w-tap kw-colloc">a white T-shirt with a small pocket</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">In the end</span>, I <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">chose a dark blue skirt</span> and <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a white T-shirt with a small pocket</span>.''',
     "pop": '''1. <b>不規則過去式 (chose)：</b>choose–chose–chosen，是會考必背高頻動詞。<br>
 2. <b>複合顏色形容詞作修飾 (dark blue skirt)：</b>dark blue 是並列的複合<b>形容詞</b>，置於名詞前修飾，不可寫成 a skirt dark blue。<br>
 3. <b>with + 名詞 (with a small pocket)：</b>with ＝「帶有⋯⋯」，用來補充說明衣物本身的特徵。'''},
    {"text": """I put my old jacket and a scarf into my handbag and wore my new raincoat.""",
-    "html": '''I <span class="w-tap kw-verb">put my old jacket and a scarf into my handbag</span> and <span class="w-tap kw-verb">wore my new raincoat</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">put my old jacket and a scarf into my handbag</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wore my new raincoat</span>.''',
     "pop": '''1. <b>put + 賓語 + into / in / on + 地點：</b>put ＝「放」，後面<b>直接接受詞</b>（put my old jacket and a scarf），要用介詞 into / in / on 的只是表目的地的地點。<br>
 2. <b>wear 的過去式 (wore)：</b>wear–wore–worn 三態皆不規則；<b>wear</b> ＝「穿在身上、持續狀態」，對照 put on（＝穿上，動作）。<br>
 3. <b>本課動詞總整理：</b><br>• <b>try on</b> ＝ 試穿（僅試穿動作）<br>• <b>put on</b> ＝ 穿上（短暫動作）<br>• <b>wear</b> ＝ 穿著（持續狀態）<br>• <b>dress</b> ＝ 給某人穿衣（dress sb）／穿衣服（be dressed in）。'''},
    {"text": """I felt happy because I could wear a uniform that fitted me well.""",
-    "html": '''I <span class="w-tap kw-verb">felt happy because</span> I <span class="w-tap kw-verb">could wear a uniform that fitted me well</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt happy because</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">could wear a uniform that fitted me well</span>.''',
     "pop": '''1. <b>because 引導原因：</b>因為「終於能穿合身的制服」，所以開心，形成完整因果。<br>
 2. <b>情態動詞 could + 原形：</b>could 表「能夠、得以」，後接原形 wear。<br>
 3. <b>限定關係子句 (that fitted me well)：</b>that 引導子句修飾先行詞 a uniform，說明「是哪一套制服」；fitted 為 fit 的過去式／過去分詞。'''},

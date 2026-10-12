@@ -24,51 +24,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Not only do I love our reading club, but I also want to save it.""",
-    "html": '''<span class="w-tap kw-verb">Not only do I love</span> our reading club, <span class="w-tap kw-verb">but I also want to save it</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Not only do I love</span> our reading club, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">but I also want to save it</span>.''',
     "pop": '''1. <b>Not only...but also 倒裝：</b>「不只⋯⋯而且⋯⋯」。Not only 一旦放到<b>句首</b>，主句就必須倒裝，把助動詞提到主語前面：Not only <b>do</b> I love…。<br>
 2. <b>倒裝只調換位置，不改變主要動詞：</b>原語序 I love our club → 倒裝 Not only <b>do</b> I love our club；love 仍是 love，只多出助動詞 do（依時態用 do／does／did）。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>✗ <s>Not only I do love...</s>／✓ <u>Not only do I love...</u>——not only / never / hardly 這類否定或半否定副詞只要置於句首，整句就得倒裝。'''},
    {"text": """Here comes the news: our reading club has only ten students now.""",
-    "html": '''<span class="w-tap kw-verb">Here comes</span> the news: our reading club <span class="w-tap kw-colloc">has only ten students</span> now.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Here comes</span> the news: our reading club <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">has only ten students</span> now.''',
     "pop": '''1. <b>Here comes + 單數名詞：</b>「⋯⋯來了」。here 放句首、謂語用 comes，表示某樣東西到達眼前，是會考必考的倒裝句型。<br>
 2. <b>news 作單數：</b>news 雖然字尾有 s，仍然是<b>不可數名詞</b>，主詞看待作單數，所以用 comes 而非 come。<br>
 3. <b>冒號的用法：</b>冒號用來補充說明前面提到的消息，冒號前要有完整句子，是會考標點題的固定考點。'''},
    {"text": """The teacher decided to change the club this term and asked us for ideas.""",
-    "html": '''The <span class="w-tap kw-colloc">teacher</span> <span class="w-tap kw-verb">decided to change</span> the club <span class="w-tap kw-colloc">this term</span> and <span class="w-tap kw-verb">asked us for</span> ideas.''',
+    "html": '''The <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">teacher</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">decided to change</span> the club <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">this term</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked us for</span> ideas.''',
     "pop": '''1. <b>decided 與 asked 都是一般過去式：</b>兩個動詞並列，共述「過去某時先後完成」的事，不需要重複說出時間。<br>
 2. <b>ask sb for sth：</b>ask ＋ 人 ＋ for ＋ 物 ＝「向某人要某物」；ask 的第三人稱單數是 <b>asks</b>，但過去式仍是 asked。<br>
 3. <b>decide to + 原形：</b>decide 後面接 to do，本句 to change 的內容就是「改組社團」；term 是「學期」，this term ＝「這個學期」。'''},
   ],
   [
    {"text": """Here is our plan: we study English in the library every Friday.""",
-    "html": '''<span class="w-tap kw-verb">Here is</span> our plan: we <span class="w-tap kw-verb">study English</span> in the <span class="w-tap kw-colloc">library every Friday</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Here is</span> our plan: we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">study English</span> in the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">library every Friday</span>.''',
     "pop": '''1. <b>Here is + 單數名詞：</b>「這就是⋯⋯」，用來提出計畫或介紹東西；若後接複數名詞，則改用 <b>Here are</b>。<br>
 2. <b>every + 單數可數名詞：</b>every Friday ＝「每個星期五」。every 後面的名詞一律用<b>單數</b>，所以不能寫成 every Fridays。<br>
 3. <b>study 作動詞：</b>study ＝「學習、研究」，是 A2 Key「Education」主題的核心詞，後面可直接接學科（study English）。'''},
    {"text": """Every classmate chooses a subject and borrows a dictionary for the project.""",
-    "html": '''<span class="w-tap kw-link">Every classmate</span> <span class="w-tap kw-verb">chooses</span> a <span class="w-tap kw-colloc">subject</span> and borrows a <span class="w-tap kw-colloc">dictionary</span> for the project.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Every classmate</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">chooses</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">subject</span> and borrows a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">dictionary</span> for the project.''',
     "pop": '''1. <b>第三人稱單數加 -es：</b>Every classmate 視為單數，謂語須第三人稱單數：choose → <b>chooses</b>（以 -e 結尾只加 -s）。<br>
 2. <b>borrow sth for sth：</b>borrow ＋ 物 ＋ for ＋ 用途 ＝「為了⋯⋯而借⋯⋯」；對照 lend（借出）與 keep（保留）。<br>
 3. <b>不可數與可數的分別：</b>a subject / a dictionary 前要有 <b>a</b>；像 homework 這種不可數名詞則不能加 a。'''},
    {"text": """However, many students were too busy with their homework to join us.""",
-    "html": '''<span class="w-tap kw-link">However</span>, many <span class="w-tap kw-colloc">students</span> <span class="w-tap kw-verb">were too busy</span> with their homework <span class="w-tap kw-verb">to join</span> us.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">However</span>, many <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">students</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were too busy</span> with their homework <span class="w-tap kw-verb" data-pos="X" data-func="unknown">to join</span> us.''',
     "pop": '''1. <b>句首連接副詞 However：</b>however 後面一定要加<b>逗號</b>，語氣比 but 更正式，是會考寫作常見的加分配備。<br>
 2. <b>too + 形容詞 + to + 原形：</b>too busy <u>to join</u> us ＝「太忙以致於無法參加」；too...to 的否定意思要靠<b>too</b> 本身表達。<br>
 3. <b>be busy with + 名詞：</b>be busy with sth ＝「忙於⋯⋯」；be busy doing sth 則是「忙著做某事」，兩者不可混用。'''},
   ],
   [
    {"text": """Only then did we learn that studying together matters more than marks.""",
-    "html": '''<span class="w-tap kw-verb">Only then did we learn</span> that <span class="w-tap kw-colloc">studying together</span> <span class="w-tap kw-verb">matters more than</span> marks.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Only then did we learn</span> that <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">studying together</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">matters more than</span> marks.''',
     "pop": '''1. <b>Only + 副詞置前必須倒裝：</b>Only then 放句首時，要把助動詞 did 提到主詞 we 前面：Only then <b>did</b> we learn…。<br>
 2. <b>Only + 單數名詞則不倒裝：</b>Only my cousin finished it.（✗ Only did my cousin finish it）——判斷關鍵在於 only 後面接的是副詞還是名詞。<br>
 3. <b>matters more than + 名詞：</b>matter 作動詞 ＝「要緊、有關係」，more than 後面接<b>被比較的對象</b>（marks）。'''},
    {"text": """At the end of term, our teacher gave us a short exam in class.""",
-    "html": '''<span class="w-tap kw-link">At the end of term</span>, our <span class="w-tap kw-colloc">teacher</span> <span class="w-tap kw-verb">gave us</span> a short <span class="w-tap kw-colloc">exam in class</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">At the end of term</span>, our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">teacher</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">gave us</span> a short <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">exam in class</span>.''',
     "pop": '''1. <b>時間片語 + 一般過去式：</b>At the end of term ＝「學期快結束時」，放句首時後面加逗號，謂語用 gave。<br>
 2. <b>give sb sth（雙受詞）：</b>give ＋ 人 ＋ 物，中間<b>不加任何介詞</b>：<u>✓ gave us a short exam</u>；<span style="color:#dc2626;">✗</span> <s>gave an exam to us</s>。<br>
 3. <b>in class 與 in the classroom：</b>in class ＝「在課堂上（上課期間）」，class 前<b>不加 the</b>，是會考常見的小陷阱。'''},
    {"text": """Now our lessons end with reading, and our classroom is always quiet.""",
-    "html": '''Now our <span class="w-tap kw-colloc">lessons</span> <span class="w-tap kw-verb">end with reading</span>, and our classroom <span class="w-tap kw-verb">is always</span> quiet.''',
+    "html": '''Now our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">lessons</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">end with reading</span>, and our classroom <span class="w-tap kw-verb" data-pos="X" data-func="unknown">is always</span> quiet.''',
     "pop": '''1. <b>複數主語 + 原形動詞：</b>our lessons 是複數，所以謂語用原形 end，不用 ends。<br>
 2. <b>end with + V-ing：</b>end with doing sth ＝「以⋯⋯作結」，後面<b>必須用動名詞</b>（✗ end with to read）。<br>
 3. <b>always 的位置：</b>always ＝「總是」，放在 be 動詞<b>之後</b>、其他主要動詞之前：the room <b>is always</b> quiet.'''},
@@ -119,51 +119,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Having finished our homework, my sister and I walked home together.""",
-    "html": '''<span class="w-tap kw-verb">Having finished our homework</span>, my sister and I <span class="w-tap kw-verb">walked home</span> together.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Having finished our homework</span>, my sister and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">walked home</span> together.''',
     "pop": '''1. <b>Having + 過去分詞（完成式分詞）：</b>Having finished ＝「做完⋯⋯之後」，表示這個動作<b>已經完成</b>，相當於 After we had finished our homework。<br>
 2. <b>分詞片語作狀語：</b>分詞片語放在句首時，後面要加<b>逗號</b>，主句才是完整的重點（…，we walked home together.）。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>分詞的<b>邏輯主語必須等於主句主語</b>；✗ <s>Having finished our homework, she walked with me.</s>（前後主語不一致＝懸垂分詞）'''},
    {"text": """Walking beside the quiet road, we talked about our summer trip.""",
-    "html": '''<span class="w-tap kw-verb">Walking beside the quiet road</span>, we <span class="w-tap kw-verb">talked about</span> our summer <span class="w-tap kw-colloc">trip</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Walking beside the quiet road</span>, we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">talked about</span> our summer <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">trip</span>.''',
     "pop": '''1. <b>現在分詞（V-ing）：</b>表示與主句<b>同時進行</b>的動作，相當於 While we were walking beside the road。<br>
 2. <b>beside / next to：</b>beside ＝「在⋯旁邊」，是 A2 Key「Travel and Transport」必備的方位介系詞。<br>
 3. <b>talk about + 名詞：</b>talk about sth ＝「談論⋯⋯」，about 後面接要談的對象（our summer trip）。'''},
    {"text": """We planned to meet at the station and buy tickets for our trip.""",
-    "html": '''We <span class="w-tap kw-verb">planned to meet</span> at the <span class="w-tap kw-colloc">station</span> and <span class="w-tap kw-verb">buy tickets</span> for our trip.''',
+    "html": '''We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">planned to meet</span> at the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">station</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">buy tickets</span> for our trip.''',
     "pop": '''1. <b>plan to + 原形：</b>plan ＋ to do ＝「打算做某事」；後面的 meet 與 buy 共用同一個 to，<b>不可重複寫 to</b>。<br>
 2. <b>at the station：</b>station ＝「車站」。說明集合的地點用 <b>at</b>，不可用 to（to the station 是「前往車站」）。<br>
 3. <b>ticket 的可數性：</b>ticket 是可數名詞，購票用 buy tickets；one-way ticket（單程票）也是 A2 Key 實用搭配。'''},
   ],
   [
    {"text": """Rushing down the long platform, we almost missed our train.""",
-    "html": '''<span class="w-tap kw-verb">Rushing down the long platform</span>, we <span class="w-tap kw-verb">almost missed</span> our <span class="w-tap kw-colloc">train</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Rushing down the long platform</span>, we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">almost missed</span> our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">train</span>.''',
     "pop": '''1. <b>Rushing down... ＝現在分詞：</b>表示「正急忙跑下月台時」，與主句 almost missed 同時發生。<br>
 2. <b>miss + 名詞／動名詞：</b>miss our train ＝「錯過火車」；miss doing sth ＝「錯過做某事」，<b>不可保留 to</b>（✗ miss to catch）。<br>
 3. <b>almost 的位置：</b>almost ＝「幾乎、差不多」，放在主要動詞<b>之前</b>：we almost <u>missed</u> our train.'''},
    {"text": """The driver told us that heavy traffic had delayed the first bus.""",
-    "html": '''The <span class="w-tap kw-colloc">driver</span> <span class="w-tap kw-verb">told us that</span> heavy <span class="w-tap kw-colloc">traffic</span> <span class="w-tap kw-verb">had delayed</span> the first bus.''',
+    "html": '''The <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">driver</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">told us that</span> heavy <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">traffic</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had delayed</span> the first bus.''',
     "pop": '''1. <b>過去完成式 (had delayed)：</b>had + 過去分詞表示「在過去某時點<b>之前</b>就已完成」——塞車造成延誤，發生在「司機告訴我們」之前。<br>
 2. <b>tell sb that + 子句：</b>tell 必須先接「人」作受詞（tell <b>us</b> that…），不可寫成 tell that…。<br>
 3. <b>traffic 是不可數名詞：</b>heavy traffic ＝「交通壅塞」，traffic 不可數，所以不加 -s，也不能用 many 修飾。'''},
    {"text": """So we waited on platform three and checked the map again.""",
-    "html": '''<span class="w-tap kw-link">So</span> we <span class="w-tap kw-verb">waited on platform three</span> and <span class="w-tap kw-verb">checked the map</span> again.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">So</span> we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">waited on platform three</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">checked the map</span> again.''',
     "pop": '''1. <b>So 引導結果：</b>so ＋ 完整句子 ＝「所以⋯⋯」，與 because（原因）方向相反，兩者不可重複表達同一個因果。<br>
 2. <b>wait on / wait for：</b>wait <b>for</b> sb ＝「等人」；wait <b>on</b> at a place ＝「在某處等候」，此處是「在三號月台上等」。<br>
 3. <b>again 的位置：</b>again ＝「再一次」，一般放在主要動詞之後（checked the map again），不加 -ly；也可以獨立放在句首（Again, we waited.）。'''},
   ],
   [
    {"text": """Having missed the last train, we walked to the bus stop instead.""",
-    "html": '''<span class="w-tap kw-verb">Having missed the last train</span>, we <span class="w-tap kw-verb">walked to</span> the <span class="w-tap kw-colloc">bus stop</span> <span class="w-tap kw-link">instead</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Having missed the last train</span>, we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">walked to</span> the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">bus stop</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">instead</span>.''',
     "pop": '''1. <b>Having missed + 過去分詞：</b>Having missed the last train ＝「錯過末班車之後」，分詞動作<b>先於</b>主句發生。<br>
 2. <b>instead 的用法：</b>instead ＝「改而、代替」，放在句尾或句首皆可，不可與 also 同時出現在一句中。<br>
 3. <b>the last train：</b>the + 序數詞 + 名詞 ＝「當班的那班」；the last train 即「今天最後一班車」。'''},
    {"text": """Taking the number twelve bus, we talked about our next journey.""",
-    "html": '''<span class="w-tap kw-verb">Taking the number twelve bus</span>, we <span class="w-tap kw-verb">talked about</span> our next <span class="w-tap kw-colloc">journey</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Taking the number twelve bus</span>, we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">talked about</span> our next <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">journey</span>.''',
     "pop": '''1. <b>Taking + 現在分詞（V-ing）：</b>Taking the number twelve bus ＝「搭乘十二號公車時」，分詞片語作狀語，相當於 While we were taking the bus。<br>
 2. <b>路線編號的說法：</b>路線用<b>基數詞</b>前加 the：the number twelve bus；不可寫成 the twelfth number bus。<br>
 3. <b>journey 與 trip：</b>journey ＝「（長途的）旅程、路程」，trip ＝「（短程的）旅行、行程」，兩者皆為 A2 Key 旅行主題詞。'''},
    {"text": """Being tired but happy, we reached my street just before dark.""",
-    "html": '''<span class="w-tap kw-verb">Being tired but happy</span>, we <span class="w-tap kw-verb">reached</span> my <span class="w-tap kw-colloc">street</span> just <span class="w-tap kw-link">before dark</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Being tired but happy</span>, we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">reached</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">street</span> just <span class="w-tap kw-link" data-pos="X" data-func="unknown">before dark</span>.''',
     "pop": '''1. <b>Being + 形容詞：</b>Being tired but happy ＝「又累又開心」，being 在此是<b>現在分詞</b>，用來說明主語的狀態，相當於 Because we were tired but happy。<br>
 2. <b>but 連接對比形容詞：</b>tired（累）與 happy（開心）是兩種並列的狀態、形成對比，通常用 <b>but</b> 連接；兩者並非反義詞，用 and 也可以。<br>
 3. <b>before dark：</b>dark 在此作<b>名詞</b>（＝天黑），before 後面的抽象名詞不加 the。'''},
@@ -214,51 +214,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """One Saturday afternoon, I found a red bag under my mother's bed.""",
-    "html": '''<span class="w-tap kw-link">One Saturday afternoon</span>, I <span class="w-tap kw-verb">found</span> a red bag <span class="w-tap kw-colloc">under my mother's bed</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">One Saturday afternoon</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">found</span> a red bag <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">under my mother's bed</span>.''',
     "pop": '''1. <b>一般過去式 (found)：</b>find 的過去式是 found（find–found–found），三態拼字相同，是會考必背的不規則動詞。<br>
 2. <b>名詞所有格 N's：</b>mother's ＝「媽媽的」，單數名詞直接加 's；英文所有格在中文裡只能用「的」來表達。<br>
 3. <b>方位介系詞的選擇：</b>under ＝ 在⋯下面；on ＝ 在⋯上面；in ＝ 在⋯裡面，三者不可混用。'''},
    {"text": """I asked everyone in the family, but nobody knew whose bag it was.""",
-    "html": '''I <span class="w-tap kw-verb">asked</span> everyone in the <span class="w-tap kw-colloc">family</span>, <span class="w-tap kw-link">but</span> nobody <span class="w-tap kw-verb">knew whose bag it was</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked</span> everyone in the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">family</span>, <span class="w-tap kw-link" data-pos="X" data-func="unknown">but</span> nobody <span class="w-tap kw-verb" data-pos="X" data-func="unknown">knew whose bag it was</span>.''',
     "pop": '''1. <b>間接問句 (whose + 名詞 + it was)：</b>在陳述句中，疑問詞後面<b>不倒裝、也不加助動詞</b>：whose bag it was（✗ whose was the bag）。<br>
 2. <b>nobody 視為單數：</b>nobody 作主語時，後面的動詞要用<b>第三人稱單數</b> knew（✗ know / knowed）。<br>
 3. <b>Whose 問「誰的」：</b>Whose 可單獨使用（<b>Whose is this?</b>），也可接名詞形成間接問句（Whose bag is it?），是本課的核心疑問詞。'''},
    {"text": """So I opened it carefully and looked at everything inside.""",
-    "html": '''<span class="w-tap kw-link">So</span> I <span class="w-tap kw-verb">opened it carefully</span> and <span class="w-tap kw-verb">looked at everything inside</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">So</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">opened it carefully</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">looked at everything inside</span>.''',
     "pop": '''1. <b>So 引導結果：</b>So ＋ 完整句子 ＝「所以⋯⋯」，與 because（原因）方向相反，是會考因果句型的標準配對。<br>
 2. <b>look at + 名詞：</b>look at 是及物片語，後面<b>必須接賓語</b>：looked at everything；不可說成 looked everything。<br>
 3. <b>everything 作受詞：</b>everything 是<b>不定代詞</b>，作主語時謂語用單數（Everything is here.）。'''},
   ],
   [
    {"text": """Inside, I saw my grandmother's glasses and my uncle's old camera.""",
-    "html": '''<span class="w-tap kw-link">Inside</span>, I <span class="w-tap kw-verb">saw</span> my <span class="w-tap kw-colloc">grandmother's glasses</span> and my <span class="w-tap kw-colloc">uncle's old camera</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Inside</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">saw</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">grandmother's glasses</span> and my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">uncle's old camera</span>.''',
     "pop": '''1. <b>所有格 + 名詞片語：</b>grandmother's glasses（眼鏡是複數）與 uncle's old camera（單數）都直接加 's，後面照常接名詞。<br>
 2. <b>old 的兩種位置：</b>old camera 中 old 放在名詞前作<b>定語</b>；The camera is old. 中 old 放在 be 動詞後作表語。<br>
 3. <b>glasses 恆用複數：</b>「一副眼鏡」是 <b>a pair of glasses</b>，不可寫成 a glass（a glass 是「一杯」）。'''},
    {"text": """My sister said the handwriting in the note looked like our neighbour's.""",
-    "html": '''My <span class="w-tap kw-colloc">sister</span> <span class="w-tap kw-verb">said</span> the handwriting in the note <span class="w-tap kw-colloc">looked like</span> our neighbour's.''',
+    "html": '''My <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">sister</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said</span> the handwriting in the note <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">looked like</span> our neighbour's.''',
     "pop": '''1. <b>said + 從句（that 可省略）：</b>引述內容較長時 that 可以省略，但從句<b>不可倒裝</b>：said the handwriting… looked…<br>
 2. <b>look like + 名詞：</b>look like ＝「看起來像⋯⋯」，後面接<b>名詞</b>，不用進行式，也不用 be 動詞。<br>
 3. <b>省略名詞時 's 不可省：</b>our neighbour's（後面沒有名詞重複出現）＝「鄰居的（那個東西）」，這種省略形式<b>一定要保留 's</b>。'''},
    {"text": """Then my father remembered that our guest's daughter had used a red bag.""",
-    "html": '''<span class="w-tap kw-link">Then</span> my <span class="w-tap kw-colloc">father</span> <span class="w-tap kw-verb">remembered that</span> our <span class="w-tap kw-colloc">guest's daughter</span> had used a red bag.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Then</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">father</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">remembered that</span> our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">guest's daughter</span> had used a red bag.''',
     "pop": '''1. <b>remember that + 子句：</b>remember 可接 that 子句（記得某件事）或 V-ing（記得做過某事），兩者不可混用。<br>
 2. <b>had + 過去分詞（過去完成式）：</b>「用過紅色袋子」發生在「爸爸想起來」之前，因此用 had used。<br>
 3. <b>複合所有格：</b>our guest's daughter ＝「我們那位客人的女兒」，只有 guest 加 's，daughter 是被擁有的名詞、不再加 's；只有兩個名詞先後都帶有所屬時才會出現兩層 's（如 our guest's daughter's bag）。'''},
   ],
   [
    {"text": """We called my cousin, whose family was visiting us that week.""",
-    "html": '''We <span class="w-tap kw-verb">called</span> my <span class="w-tap kw-colloc">cousin</span>, <span class="w-tap kw-verb">whose family was visiting</span> us that week.''',
+    "html": '''We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">called</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">cousin</span>, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">whose family was visiting</span> us that week.''',
     "pop": '''1. <b>whose 引導定語關係子句：</b>whose family was visiting us… 用來說明「是哪一位表姊」，whose 後面接<b>名詞 + 完整子句</b>。<br>
 2. <b>cousin 的中文對應：</b>cousin ＝ 堂兄弟姊妹或表兄弟姊妹，是「family」主題的核心親屬詞彙。<br>
 3. <b>call + 人：</b>call sb ＝「打電話給某人」；本句 call my cousin ＝「打電話給表姊」，呼應全課追問袋子主人的主線。'''},
    {"text": """It turned out that the bag was hers, and she had left it here.""",
-    "html": '''<span class="w-tap kw-verb">It turned out that</span> the bag <span class="w-tap kw-colloc">was hers</span>, and she <span class="w-tap kw-verb">had left</span> it here.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">It turned out that</span> the bag <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">was hers</span>, and she <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had left</span> it here.''',
     "pop": '''1. <b>It turned out that + 子句：</b>「結果⋯⋯是」。it 是<b>虛主語</b>，真正的主語放在 that 子句裡面。<br>
 2. <b>名詞性物主代詞 hers：</b>hers ＝「她的（東西）」，等同 her bag，前面<b>不再重複名詞</b>。<br>
 3. <b>had + 過去分詞：</b>「她把袋子留在這裡」比「結果揭曉」更早發生，所以用過去完成式 had left。'''},
    {"text": """We said sorry to her, and she gave us a friendly smile.""",
-    "html": '''We <span class="w-tap kw-colloc">said sorry to her</span>, and she <span class="w-tap kw-verb">gave us</span> a <span class="w-tap kw-colloc">friendly smile</span>.''',
+    "html": '''We <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">said sorry to her</span>, and she <span class="w-tap kw-verb" data-pos="X" data-func="unknown">gave us</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">friendly smile</span>.''',
     "pop": '''1. <b>say sorry to sb：</b>say sorry to ＋ 人 ＝「向某人道歉」，是口語中最自然的說法（✗ say sorry her）。<br>
 2. <b>give sb sth（雙受詞）：</b>give ＋ 人 ＋ 物，中間<b>不加介詞</b>；兩個受詞皆為代詞時須加 to（gave it to me）。<br>
 3. <b>friendly 是形容詞：</b>由動詞加 -ly 構成的<b>形容詞</b>，放在名詞前修飾 smile；此處不可用副詞形。'''},

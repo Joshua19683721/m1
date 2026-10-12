@@ -24,51 +24,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Our classroom was always noisy, so our teacher wrote some new rules on the board.""",
-    "html": '''Our classroom <span class="w-tap kw-verb">was always noisy</span>, so our teacher <span class="w-tap kw-verb">wrote some new rules on</span> the <span class="w-tap kw-colloc">board</span>.''',
+    "html": '''Our classroom <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was always noisy</span>, so our teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wrote some new rules on</span> the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">board</span>.''',
     "pop": '''1. <b>be + 副詞 + 形容詞 (was always noisy)：</b>noisy 為 A2 Key「Personal Feelings」形容詞；always 置於 be 動詞之後。<br>
 2. <b>規則 + 連接詞 so：</b>因為教室一直很吵，所以老師寫了新規則，形成因果。<br>
 3. <b>some + 複數可數名詞 (some new rules)：</b>some 用於肯定句；new 置於 rules 之前作修飾。'''},
    {"text": """We must keep our voices down, and we must not run in the hallway.""",
-    "html": '''We <span class="w-tap kw-verb">must keep our voices down</span>, and we <span class="w-tap kw-verb">must not run in</span> the hallway.''',
+    "html": '''We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">must keep our voices down</span>, and we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">must not run in</span> the hallway.''',
     "pop": '''1. <b>情態動詞 must + 原形 (must keep)：</b>must ＝「必須」<b>（表示規定或義務）</b>，後接<b>原形</b> keep，不可寫 kept。<br>
 2. <b>keep...down ＝ 壓低聲音：</b>keep 是 A2 Key 極高頻的片語動詞（keep quiet／keep clean／keep fit）。<br>
 3. <b>must not + 原形 (must not run)：</b>must not ＝「不可以」，<b>禁止</b>；對照 don\'t have to ＝「不必」，兩者意義完全不同。</li>'''},
    {"text": """Our teacher asked us whether we agreed with the rules, and we talked about them in groups.""",
-    "html": '''Our teacher <span class="w-tap kw-verb">asked us whether we agreed with</span> the rules, and we <span class="w-tap kw-verb">talked about them in groups</span>.''',
+    "html": '''Our teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked us whether we agreed with</span> the rules, and we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">talked about them in groups</span>.''',
     "pop": '''1. <b>間接問句 whether (asked us whether we agreed)：</b>whether（＝if）引導的是 yes/no 疑問的間接形式，語序為「whether + 主詞 we + 動詞 agreed」，<b>不倒裝</b>。<br>
 2. <b>agree with + 人／物：</b>agree with ＝「同意某人的看法」，對照 agree on（就某事達成共識）。<br>
 3. <b>talk about + 對象 (them)：</b>them 為代詞，替代前面的 the rules，避免重複。</li>'''},
   ],
   [
    {"text": """My friend Amy suggested that we should clean the board after every lesson.""",
-    "html": '''My friend Amy <span class="w-tap kw-verb">suggested that we should clean the board</span> <span class="w-tap kw-link">after every lesson</span>.''',
+    "html": '''My friend Amy <span class="w-tap kw-verb" data-pos="X" data-func="unknown">suggested that we should clean the board</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">after every lesson</span>.''',
     "pop": '''1. <b>suggest + 建議內容：</b><br>• 表「建議」：suggest that sb <b>(should) + 原形</b>（suggested that we <u>should clean</u>）<br>• 表「暗示」：suggest that + <b>陳述語序</b>（His face suggested that he <u>was</u> angry.）<br><span style="color:#dc2626;">⚠️ 兩者絕不可混用。</span><br>
 2. <b>after every lesson：</b>every + 單數名詞 ＋ after，＝「每堂課之後」。<br>
 3. <b>should + 原形 (should clean)：</b>should 表建議，後接原形。'''},
    {"text": """Some students wanted to open the windows more often, while others thought the room was too cold.""",
-    "html": '''Some students <span class="w-tap kw-verb">wanted to open the windows more often</span>, while others <span class="w-tap kw-link">thought the room was too cold</span>.''',
+    "html": '''Some students <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wanted to open the windows more often</span>, while others <span class="w-tap kw-link" data-pos="X" data-func="unknown">thought the room was too cold</span>.''',
     "pop": '''1. <b>more often：</b>often 的比較級為 <b>more often</b>，＝「更頻繁地」。副詞比較級的規則：單音節副詞加 -er（如 hard → harder），多音節或 -ly 結尾的副詞前加 <b>more</b> + 原級（如 quietly → more quietly）；often 是特例，雖是單音節卻加 more。<br>
 2. <b>while 作對比：</b>while 在此不表示時間，而表示<b>然而、另一方面</b>，連接兩種相反的意見。<br>
 3. <b>too + 形容詞 (too cold)：</b>too 表「太⋯⋯（超出可接受範圍）」，與 merely very 不同。</li>'''},
    {"text": """So I suggested reading quietly for ten minutes after lunch.""",
-    "html": '''<span class="w-tap kw-link">So</span> I <span class="w-tap kw-verb">suggested reading quietly for</span> ten minutes after lunch.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">So</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">suggested reading quietly for</span> ten minutes after lunch.''',
     "pop": '''1. <b>suggest + 動名詞：</b>suggest 表「建議」時，後可直接接 <b>V-ing</b>：suggested <u>reading</u>；與 suggest that sb (should) do 意思相同。<br>
 2. <b>for + 一段時間：</b>for ten minutes ＝「十分鐘」，對照 at ten o\'clock（時間點）。<br>
 3. <b>quietly：</b>副詞修飾動詞 read，說明「以安靜的方式閱讀」。'''},
   ],
   [
    {"text": """We decided to try the new rules for a week.""",
-    "html": '''We <span class="w-tap kw-verb">decided to try the new rules</span> <span class="w-tap kw-link">for a week</span>.''',
+    "html": '''We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">decided to try the new rules</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">for a week</span>.''',
     "pop": '''1. <b>decide to + 原形 (decided to try)：</b>decide 後接不定詞，是 A2 Key 必收句型。<br>
 2. <b>try + 名詞：</b>try the rules ＝「試試看新規則」；對照 <b>try to do</b>（試著做某事）與 <b>try out</b>（試訓）。<br>
 3. <b>for a week：</b>表示試行的時間長度。'''},
    {"text": """Let's see the result next Monday, shall we?""",
-    "html": '''<span class="w-tap kw-colloc">Let's see the result</span> next Monday, <span class="w-tap kw-colloc">shall we</span>?''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">Let's see the result</span> next Monday, <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">shall we</span>?''',
     "pop": '''1. <b>Let's + 原形 (Let's see)：</b>Let us 的縮寫，後接<b>原形動詞</b>，表示提議「我們來⋯⋯吧」。<br>
 2. <b>附加問句 (shall we?)：</b>對 Let's...、Let us... 的<b>建議</b>，用 shall we? 徵求同意；對 How about...?／Why don't we...? 的<b>疑問句</b>，回答才用 OK, let's...。<br>
 3. <b>時間副詞置於句中：</b>next Monday 放在動詞 see 與句末問號之間，不影響主句語序。'''},
    {"text": """Don't worry if you forget; just do your best and tell me the next day.""",
-    "html": '''<span class="w-tap kw-verb">Don't worry if</span> you forget; <span class="w-tap kw-verb">just do your best and tell me</span> the next day.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">Don't worry if</span> you forget; <span class="w-tap kw-verb" data-pos="X" data-func="unknown">just do your best and tell me</span> the next day.''',
     "pop": '''1. <b>否定祈使句 (Don't worry)：</b>祈使句的否定<b>直接加 Do not / Don't</b>，句首不加主語 you。對照肯定祈使句（祈使句一律省略 you）。<br>
 2. <b>if + 現在式 (if you forget)：</b>if 引導條件子句時，謂語用<b>一般現在式</b>，不可寫成 if you will forget。<br>
 3. <b>分號 (;)：</b>分號連接兩句獨立的祈使句，是會考標點與句型合併的高頻考點。</li>'''},
@@ -119,51 +119,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Last Saturday was a cleaning day in our family.""",
-    "html": '''<span class="w-tap kw-link">Last Saturday</span> <span class="w-tap kw-verb">was a cleaning day in</span> our family.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last Saturday</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was a cleaning day in</span> our family.''',
     "pop": '''1. <b>be 動詞 + 名詞 (was a cleaning day)：</b>a + 名詞片語作表語，相當於「就是一個⋯⋯的日子」。<br>
 2. <b>時間介系詞 (Last Saturday)：</b>特定日用 <b>on</b>；last 在此與日期連用，後面不加 at。<br>
 3. <b>cleaning (動名詞)：</b>cleaning 作定語修飾 day，相當於「打掃的」。'''},
    {"text": """My mother made me wash the dishes, and she had my father clean the bathroom.""",
-    "html": '''My mother <span class="w-tap kw-verb">made me wash the dishes</span>, and she <span class="w-tap kw-verb">had my father clean the bathroom</span>.''',
+    "html": '''My mother <span class="w-tap kw-verb" data-pos="X" data-func="unknown">made me wash the dishes</span>, and she <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had my father clean the bathroom</span>.''',
     "pop": '''1. <b>使役動詞 make + 賓語 + 原形 (made me wash)：</b><span style="color:#dc2626;">⚠️ 最高頻陷阱</span>——<b>make 與 let、have 的賓語後必須接「原形動詞」</b>，<b>不可加 to</b>。<br>　✗ She made me <s>to wash</s>.　✓ She made me <u>wash</u>.<br>
 2. <b>have + 賓語 + 原形 (had my father clean)：</b>have 表示「讓某人做某事」，同樣接原形。<br>
 3. <b>兩者差別：</b><b>make</b> ＝ 強迫對方做；<b>have</b> ＝ 安排／委託對方做；<b>let</b> ＝ 允許對方做。</li>'''},
    {"text": """She let me choose the music, so I played my favourite songs.""",
-    "html": '''She <span class="w-tap kw-verb">let me choose the music</span>, so I <span class="w-tap kw-verb">played my favourite songs</span>.''',
+    "html": '''She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">let me choose the music</span>, so I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">played my favourite songs</span>.''',
     "pop": '''1. <b>let + 賓語 + 原形 (let me choose)：</b>let ＝「允許、讓」，賓語後接原形，與 make / have 規則相同。<br>
 2. <b>使役動詞三兄弟總整理：</b><b>make sb do</b>（強迫）／<b>have sb do</b>（安排）／<b>let sb do</b>（允許），三者皆<b>不加 to</b>。<br>
 3. <b>favourite + 名詞複數 (favourite songs)：</b>favourite 後直接接名詞，前不加 the。</li>'''},
   ],
   [
    {"text": """I heard my brother singing in the next room.""",
-    "html": '''I <span class="w-tap kw-verb">heard my brother singing</span> in the <span class="w-tap kw-colloc">next room</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">heard my brother singing</span> in the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">next room</span>.''',
     "pop": '''1. <b>感官動詞 + 賓語 + 現在分詞 (heard sb singing)：</b><span style="color:#dc2626;">⚠️ 核心規則</span>——<b>強調「動作正在進行、還沒結束」</b>時用 <b>-ing</b>。<br>　• <b>hear sb doing</b> ＝ 聽見某人<b>正在</b>做某事<br>　• <b>hear sb do</b> ＝ 聽見某人<b>做了</b>某事（全貌）<br>
 2. <b>進行時強調當下：</b>本句重點是「此刻正在唱」，因此用 singing。<br>
 3. <b>感官動詞範圍：</b>see / hear / smell / feel / watch 皆適用此規則。</li>'''},
    {"text": """I saw him carrying a heavy box, so I helped him.""",
-    "html": '''I <span class="w-tap kw-verb">saw him carrying a heavy box</span>, so I <span class="w-tap kw-verb">helped him</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">saw him carrying a heavy box</span>, so I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">helped him</span>.''',
     "pop": '''1. <b>see + 賓語 + V-ing：</b>與 hear 同理，看到的是「正在進行」的畫面，故用 carrying。<br>
 2. <b>help sb (to) do：</b>help 後的 <b>to 可以省略</b>（help me carry），正式寫作建議保留 to。<br>
 3. <b>so 表結果：</b>看到他在搬重物，所以我幫忙——因果關係使動作有了理由。'''},
    {"text": """Then I smelled something terrible in the kitchen and went to look.""",
-    "html": '''Then I <span class="w-tap kw-verb">smelled something terrible in</span> the kitchen and <span class="w-tap kw-verb">went to look</span>.''',
+    "html": '''Then I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">smelled something terrible in</span> the kitchen and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">went to look</span>.''',
     "pop": '''1. <b>smell + 賓語 + 形容詞 (smelled something terrible)：</b>此處 smell 是<b>及物動詞</b>「聞到」，後接賓語，再以形容詞作補語；不可寫成 smelled something is terrible。<br>
 2. <b>smell 的兩種用法：</b><br>• <b>smell sth</b> ＝ 聞到某物（及物）<br>• <b>smell + 形容詞</b> ＝ 聞起來⋯⋯（連繫）：The kitchen <u>smelled terrible</u>.<br>
 3. <b>to + 原形表目的 (went to look)：</b>此處 to 是不定詞記號（不是介系詞），後接原形 look 表「去看看」；to look at 也是正確寫法。'''},
   ],
   [
    {"text": """My mother was cleaning the cooker, and the rubbish bin smelled terrible too.""",
-    "html": '''My mother <span class="w-tap kw-verb">was cleaning the cooker</span>, and the <span class="w-tap kw-colloc">rubbish bin smelled</span> terrible too.''',
+    "html": '''My mother <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was cleaning the cooker</span>, and the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">rubbish bin smelled</span> terrible too.''',
     "pop": '''1. <b>過去進行式 (was cleaning)：</b>was + V-ing，表示「當時正在做」，作為背景描寫。<br>
 2. <b>too（也）：</b>置於句末修飾前面的謂語，通常<b>不加逗號</b>（smelled terrible too）。<br>
 3. <b>rubbish（垃圾）：</b>為<b>不可數名詞</b>，不可加 -s；bin ＝ 垃圾桶（可數）。</li>'''},
    {"text": """We worked together for two hours, and I felt tired but useful.""",
-    "html": '''We <span class="w-tap kw-verb">worked together for two hours</span>, and I <span class="w-tap kw-verb">felt tired but useful</span>.''',
+    "html": '''We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">worked together for two hours</span>, and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt tired but useful</span>.''',
     "pop": '''1. <b>work together：</b>together ＝「一起」，置於動詞後，也可寫 work with each other。<br>
 2. <b>feel + 形容詞 (felt tired but useful)：</b>feel 後接<b>形容詞</b>描述<b>自身的感受</b>（tired but useful：又累又有成就感）；若接<b>造成感受的事物／原因</b>，感受就來自別處，如 feel worried（感到擔心，擔心的是某件事）、I felt the cold wind.。注意 tired 本身也是 -ed 形容詞，兩者並不是靠「有沒有 -ed」區分，而是看受詞描述的是自己的狀態還是外在的原因。<br>
 3. <b>but 的對比：</b>tired（身體累）與 useful（心理踏實）並列，形成勞動後的雙重收穫。'''},
    {"text": """Now I make my bed every morning and never forget to wash my hands.""",
-    "html": '''<span class="w-tap kw-link">Now</span> I <span class="w-tap kw-colloc">make my bed every morning</span> and <span class="w-tap kw-verb">never forget to wash my hands</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Now</span> I <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">make my bed every morning</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">never forget to wash my hands</span>.''',
     "pop": '''1. <b>一般現在時描述習慣 (make)：</b>Now + 現在式，表示「從現在起養成習慣」。<br>
 2. <b>make one's bed：</b>bed 在此作<b>動詞短語的賓語</b>，前面不加 the。<br>
 3. <b>forget to + 原形：</b>forget to do ＝「忘記要去做某事」；對照 forget <b>doing</b>（＝忘記做過某事）。</li>'''},

@@ -25,51 +25,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": "My English teacher told us that her new plan was really interesting.",
-    "html": 'My English teacher <span class="w-tap kw-verb">told us that</span> her <span class="w-tap kw-colloc">new plan</span> was <span class="w-tap kw-verb">really interesting</span>.',
+    "html": 'My English teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">told us that</span> her <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">new plan</span> was <span class="w-tap kw-verb" data-pos="X" data-func="unknown">really interesting</span>.',
     "pop": '''1. <b>間接敘述 (told us that + 子句)：</b>tell 必須接「人」當受詞（tell <b>us</b> that…），後面接 that 子句；子句仍用主詞 her + 動詞 was，不倒裝。<br>
 2. <b>be 動詞 + 形容詞 (was really interesting)：</b>interesting 是形容詞，用來修飾前面的 plan；really 這類程度副詞必須放在形容詞<b>之前</b>。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>say 與 tell 的分界：</b><u>✓ tell us that...</u>／<s>✗ tell that...</s>（缺少受詞），要改成 say that... 或 tell sb that...。'''},
    {"text": "At first I felt worried and afraid of speaking alone in class.",
-    "html": '<span class="w-tap kw-link">At first</span> I <span class="w-tap kw-verb">felt worried</span> and <span class="w-tap kw-verb">afraid of speaking</span> <span class="w-tap kw-colloc">alone in class</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">At first</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt worried</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">afraid of speaking</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">alone in class</span>.',
     "pop": '''1. <b>心理動詞 + 形容詞 (felt worried)：</b>feel + 形容詞＝「感到⋯⋯」，felt 是 feel 的不規則過去式（feel–felt–felt）。<br>
 2. <b>be afraid of + 名詞／V-ing (afraid of speaking)：</b>afraid 是形容詞，必須放在 be 動詞之後；of 後面接動名詞，<s>✗ afraid of speak</s>。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>alone 與 by yourself：</b>alone 是副詞，修飾動詞（speak <u>alone</u>）；by yourself 強調「靠你自己」；lonely 是形容「寂寞的」，本句不可用 lonely。'''},
    {"text": "She said that I would improve provided that I practised every day.",
-    "html": 'She <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">would improve provided that</span> I <span class="w-tap kw-colloc">practised every day</span>.',
+    "html": 'She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">would improve provided that</span> I <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">practised every day</span>.',
     "pop": '''1. <b>間接敘述與時態 (said that I would improve)：</b>主句用過去式 said，但引述的內容仍是「將來一定會發生的事」，因此用 would + 原形 improve。<br>
 2. <b>provided that + 一般現在式：</b>provided that ＝ provided + that ＝「只要⋯⋯就⋯⋯」，後面接一般現在式（practise），表示將來的條件。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>會考寫作時，provided that／as long as／unless 都接<b>一般現在式</b>：<u>✓ provided that I practise</u>；<s>✗ provided that I will practise</s>（口語可通，正式作答以一般現在式為標準）。'''},
   ],
   [
    {"text": "I felt ready to try again, and I practised as long as I could.",
-    "html": 'I <span class="w-tap kw-verb">felt ready to try again</span>, and I <span class="w-tap kw-verb">practised as long as I could</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt ready to try again</span>, and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">practised as long as I could</span>.',
     "pop": '''1. <b>be ready to + 原形 (felt ready to try again)：</b>ready 是形容詞，須置於 be 動詞之後；to 之後只能接原形 try。<br>
 2. <b>as long as + 子句 (as long as I could)：</b>as long as ＝「只要、在⋯⋯範圍之內」；此處 could 是「盡可能」的意思，整句等於 I practised for as long as I could。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>as long as 與 as soon as：</b><u>✓ I will call you as soon as I arrive.</u>／<s>✗ ...as long as I arrive.</s>（只要⋯⋯／一旦⋯⋯就⋯⋯，意思完全不同）。'''},
    {"text": "My desk partner said that my mistakes were useful, not terrible.",
-    "html": 'My <span class="w-tap kw-colloc">desk partner</span> <span class="w-tap kw-verb">said that</span> my mistakes <span class="w-tap kw-verb">were useful, not terrible</span>.',
+    "html": 'My <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">desk partner</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> my mistakes <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were useful, not terrible</span>.',
     "pop": '''1. <b>名詞片語 (my mistakes)：</b>mistake 是可數名詞，複數在詞尾加 -s；前面已有 my 這個限定詞，就不能再加 a。<br>
 2. <b>were + 形容詞, not + 形容詞：</b>否定另一個形容詞時用 not 保留原級，<u>✓ useful, not terrible</u>；不可寫 <s>✗ not usefully</s>。<br>
 3. <b>useful 與 useless 的字尾：</b>useful（有用的）＝ use + -ful；useless（沒用的）＝ use + -less。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 *helpfull（-ful 結尾只留一個 l）。'''},
    {"text": "She warned me that otherwise I would stay exactly the same.",
-    "html": 'She <span class="w-tap kw-verb">warned me that</span> <span class="w-tap kw-verb">otherwise</span> I would <span class="w-tap kw-colloc">stay exactly the same</span>.',
+    "html": 'She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">warned me that</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">otherwise</span> I would <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">stay exactly the same</span>.',
     "pop": '''1. <b>warn sb (that) + 子句 (warned me that…)：</b>warn 可以直接接人當受詞（warn <b>me</b>），後接子句說明警告的內容。<br>
 2. <b>otherwise ＝「否則、不然的話」：</b>otherwise 自己不帶句子，只接<b>後果</b>，通常放在主詞之後；也可置於句首加逗號（<u>Otherwise, you will stay the same.</u>）。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>otherwise 不能和 because、so 同時塞進一句：<u>✓ ...otherwise I would stay the same.</u>／<s>✗ ...because I was lazy, so otherwise...</s>。'''},
   ],
   [
    {"text": "Even if my voice shook, I stood up and read a short text.",
-    "html": '<span class="w-tap kw-link">Even if my voice shook</span>, I <span class="w-tap kw-verb">stood up and read</span> a <span class="w-tap kw-colloc">short text</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">Even if my voice shook</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">stood up and read</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">short text</span>.',
     "pop": '''1. <b>even if ＝「即使、就算」：</b>even if 引導<b>讓步</b>子句，表示「條件不成立，句子仍然成立」；後面接完整句子。<br>
 2. <b>讓步子句的時態：</b>此處 voice shook 用一般過去式，描述「當時真的發抖」；if 不必與 would 配對，兩句各自完整即可。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span>even if 之後<b>不可</b>再加 but：<u>✓ Even if I was afraid, I read it aloud.</u>／<s>✗ Even if I was afraid, but I read it aloud.</s>（but 只能連兩個對等的完整句子）。'''},
    {"text": "The class was excited, and my teacher gave me a big smile.",
-    "html": 'The class <span class="w-tap kw-verb">was excited</span>, and my teacher <span class="w-tap kw-colloc">gave me a big smile</span>.',
+    "html": 'The class <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was excited</span>, and my teacher <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">gave me a big smile</span>.',
     "pop": '''1. <b>be + 形容詞 (was excited)：</b>excited 形容「感到興奮的」，用來修飾人；主語 the class 視為單數，所以用 was。<br>
 2. <b>give + 人 + 物 (gave me a big smile)：</b>give ＋ 人 ＋ 物＝「給某人某物」；a big smile 這個名詞片語不可拆開。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>-ing 與 -ed 形容詞：</b>exciting 形容「令人興奮的」，修飾事物（an exciting story）；<s>✗ The class was exciting.</s>，應寫 <u>✓ The class was excited.</u>。'''},
    {"text": "Now I feel happy and sure that my careful effort really pays off.",
-    "html": 'Now I <span class="w-tap kw-verb">feel happy and sure that</span> my <span class="w-tap kw-colloc">careful effort</span> really <span class="w-tap kw-colloc">pays off</span>.',
+    "html": 'Now I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">feel happy and sure that</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">careful effort</span> really <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">pays off</span>.',
     "pop": '''1. <b>feel + 形容詞 + that 子句 (feel happy and sure that…)：</b>feel 之後可以同時接形容詞與 that 子句，子句用來補充「確定什麼」；sure that + 子句是固定用法。<br>
 2. <b>effort 的可數用法 (my careful effort)：</b>effort 是可數名詞，複數為 efforts（They made great efforts to improve.）；本句只需單數的 effort，前面用 my 這類限定詞。<br>
 3. <b>pay off ＝「有回報、值得」：</b>pay off 是可分開的片語（pay it off），指先前的努力產生好結果。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ pay off it</s>，代詞必須放中間。'''},
@@ -120,51 +120,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": "Our teacher gave us an article about sleep from a newspaper.",
-    "html": 'Our teacher <span class="w-tap kw-verb">gave us</span> an <span class="w-tap kw-colloc">article about sleep</span> <span class="w-tap kw-link">from a newspaper</span>.',
+    "html": 'Our teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">gave us</span> an <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">article about sleep</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">from a newspaper</span>.',
     "pop": '''1. <b>give + 人 + 物 (gave us an article)：</b>give 的語序是「動詞＋受詞 us＋受詞 article」＝「把文章給我們」；兩個受詞的先後順序不可互換。<br>
 2. <b>article about + 名詞：</b>article ＝「報導、文章」，about 後面接表示主題的名詞；本句的 sleep 是不可數名詞所以不加 the，但其他情況可以加 the（an article about the environment）。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>from 與 in 的差別：</b>from a newspaper ＝「（消息）出自某份報紙」；in a newspaper ＝「在報紙裡刊登」。兩者本身都正確、只是語意不同；本句要表達「消息的出處」所以用 <u>✓ from a newspaper</u>，若要表達刊登位置才用 in（an article in a newspaper）。'''},
    {"text": "The writer said that teenagers sleep only six hours a night.",
-    "html": 'The writer <span class="w-tap kw-verb">said that</span> teenagers <span class="w-tap kw-verb">sleep</span> <span class="w-tap kw-colloc">only six hours a night</span>.',
+    "html": 'The writer <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> teenagers <span class="w-tap kw-verb" data-pos="X" data-func="unknown">sleep</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">only six hours a night</span>.',
     "pop": '''1. <b>報導動詞 + that 子句 (said that…)：</b>the writer ＝「作者」；say 後接 that 子句，子句用「主詞＋動詞」的正常語序。<br>
 2. <b>一般現在式表示報導事實：</b>報紙文字敘述客觀事實，即使今天才讀到，仍用一般現在式 sleep，不用過去式 slept。<br>
 3. <b>only + 數量詞 + a night：</b>only 放在數字前加強語氣「只有」；a night 中的 a ＝「每一」。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可漏寫 a，<u>✓ six hours a night</u>，也不可寫 <s>✗ six hour</s>。'''},
    {"text": "I read it twice and wrote a short note about the main idea.",
-    "html": 'I <span class="w-tap kw-verb">read it twice</span> and <span class="w-tap kw-verb">wrote a short note about</span> <span class="w-tap kw-colloc">the main idea</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">read it twice</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wrote a short note about</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">the main idea</span>.',
     "pop": '''1. <b>read 的拼字與發音：</b>read 現在式與過去式拼字完全相同，只有發音不同（現 /riːd/、過 /red/）；本句是回顧往事，動詞仍寫 read。<br>
 2. <b>次數副詞的位置 (twice)：</b>twice、once、three times 放在<b>受詞之後</b>，也可放句末（read it twice／read it two times）。<br>
 3. <b>a short note about the main idea：</b>note ＝「筆記、便條」，about 引出筆記的主題。<span style="color:#dc2626;">⚠️ 陷阱：</span>關於某主題用 about，不可用 of（<s>✗ a note of the main idea</s>）。'''},
   ],
   [
    {"text": "Then I had to put the same message into my own simple words.",
-    "html": '<span class="w-tap kw-link">Then</span> I <span class="w-tap kw-verb">had to put</span> the same <span class="w-tap kw-colloc">message into my own simple words</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">Then</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had to put</span> the same <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">message into my own simple words</span>.',
     "pop": '''1. <b>have to + 原形 (had to put)：</b>had to 是 have to 的過去式，表示「過去不得不做」；to 之後只能接原形 put。<br>
 2. <b>put A into B ＝「把 A 改寫成 B」：</b>同義片語還有 express A in B、say A in B。<br>
 3. <b>in one's own words：</b>＝「用自己的話」，本課核心片語。<span style="color:#dc2626;">⚠️ 陷阱：</span>own words 恆為複數，<u>✓ in my own words</u>，不可寫 <s>✗ in my own word</s>。'''},
    {"text": "I cut three long sentences and kept only the important facts.",
-    "html": 'I <span class="w-tap kw-verb">cut three long sentences</span> and <span class="w-tap kw-verb">kept only</span> <span class="w-tap kw-colloc">the important facts</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">cut three long sentences</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">kept only</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">the important facts</span>.',
     "pop": '''1. <b>cut 的三態同形：</b>cut–cut–cut，本句是回顧過去的動作，動詞寫 cut，不寫 cutted。<br>
 2. <b>摘要常用的四個動詞：</b>cut（刪去）、keep（保留）、replace（替換）、combine（合併），是會考寫作整理段落的萬用動詞。<br>
 3. <b>important 與 importance：</b>important 是形容詞，facts 是名詞。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ the importances facts</s>；fact 的複數是 facts。'''},
    {"text": "My first draft still sounded like a letter to a close friend.",
-    "html": 'My <span class="w-tap kw-colloc">first draft</span> <span class="w-tap kw-verb">still sounded like</span> a <span class="w-tap kw-colloc">letter to a close friend</span>.',
+    "html": 'My <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">first draft</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">still sounded like</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">letter to a close friend</span>.',
     "pop": '''1. <b>感官動詞 + like + 名詞：</b>sound like ＝「聽起來像」，同類結構還有 look like、feel like、taste like。<br>
 2. <b>still 的位置：</b>still 是副詞，須放在 be 動詞之後、實義動詞之前（draft <u>still</u> sounded like…），表示「改完之後依然」。<br>
 3. <b>a letter to a close friend：</b>letter ＝「信」，to 指出收信人。<span style="color:#dc2626;">⚠️ 陷阱：</span>比擬的是整體語氣，所以用 like；as 只能用來比擬身分（He works <u>as</u> a doctor.）。'''},
   ],
   [
    {"text": "My teacher said that a good project keeps the main idea only.",
-    "html": 'My teacher <span class="w-tap kw-verb">said that</span> a <span class="w-tap kw-colloc">good project</span> <span class="w-tap kw-verb">keeps the main idea only</span>.',
+    "html": 'My teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">good project</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">keeps the main idea only</span>.',
     "pop": '''1. <b>主詞與動詞的一致 (a good project keeps)：</b>主語 a good project 是單數，故用 keeps；若改用 it 當主語，動詞形式不變（it keeps…）。<br>
 2. <b>main idea ＝「主旨」：</b>摘要一定要保留 main idea，其餘人物、時間、例子等細節才可以刪。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><b>only 的位置決定意思：</b><u>✓ keeps the main idea only（只保留主旨）</u>／<s>✗ only keeps the main idea（只有好的專案才保留主旨）</s>。'''},
    {"text": "So I wrote one short text for a page in our school magazine.",
-    "html": '<span class="w-tap kw-link">So</span> I <span class="w-tap kw-verb">wrote one short text</span> <span class="w-tap kw-colloc">for a page in our school magazine</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">So</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wrote one short text</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">for a page in our school magazine</span>.',
     "pop": '''1. <b>So ＝「因此、所以」：</b>連接前句的<b>結果</b>，與 because（原因）方向相反，兩者不可混用。<br>
 2. <b>複合修飾語：</b>one short text 中的 short 修飾 text；a page in our school magazine 用 in 表示「在⋯⋯之中」，a 後接單數名詞 page。<br>
 3. <b>可數與不可數：</b>text 在此指「一段文字」，可數；information（資訊）則不可數。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ many informations</s>，要數量時用 pieces of information。'''},
    {"text": "She was pleased and sent me a short email about it.",
-    "html": 'She <span class="w-tap kw-verb">was pleased</span> and <span class="w-tap kw-verb">sent me a short email about</span> <span class="w-tap kw-link">it</span>.',
+    "html": 'She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was pleased</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">sent me a short email about</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">it</span>.',
     "pop": '''1. <b>be + 形容詞 (was pleased)：</b>pleased ＝「感到滿意的」，固定搭配 be pleased with 或 be pleased about + 名詞。<br>
 2. <b>send + 人 + 物 (sent me an email)：</b>send 的過去式與原形同形（send–sent–sent），不可寫 sended。<br>
 3. <b>代詞 it 指代前文整件事：</b>about it 中的 it 取代前面已出現的內容，避免重複。<span style="color:#dc2626;">⚠️ 陷阱：</span><b>about 與 it 要成對出現</b>：<u>✓ sent me a short email about it</u>；漏掉 it 才是錯的 <s>✗ sent me a short email about</s>。但只寫 <u>sent me a short email</u> 本身並沒有錯，about 只是讓指代更明確。'''},
@@ -215,51 +215,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": "Last month my cousin gave me her old mobile phone and a password.",
-    "html": '<span class="w-tap kw-link">Last month</span> my cousin <span class="w-tap kw-verb">gave me</span> her <span class="w-tap kw-colloc">old mobile phone</span> and <span class="w-tap kw-colloc">a password</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last month</span> my cousin <span class="w-tap kw-verb" data-pos="X" data-func="unknown">gave me</span> her <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">old mobile phone</span> and <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a password</span>.',
     "pop": '''1. <b>時間片語與過去式 (Last month)：</b>last month 是過去時間，敘述句用一般過去式 gave（give 的不規則過去式 give–gave–given）。<br>
 2. <b>give + 人 + 物 (gave me her mobile phone)：</b>me 是「給誰」，mobile phone 是「給什麼」，兩個受詞的順序不可互換。<br>
 3. <b>mobile phone / cell phone：</b>兩者都是「手機」，英式教材常用 mobile phone。<span style="color:#dc2626;">⚠️ 陷阱：</span>複合名詞不可拆開（<s>✗ a phone mobile</s>）。'''},
    {"text": "I used it to chat with my classmates and download a free app.",
-    "html": 'I <span class="w-tap kw-verb">used it to chat</span> <span class="w-tap kw-colloc">with my classmates</span> and <span class="w-tap kw-verb">download</span> a <span class="w-tap kw-colloc">free app</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">used it to chat</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">with my classmates</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">download</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">free app</span>.',
     "pop": '''1. <b>use A to do B：</b>use it to chat… ＝「用它來聊天」；to 之後只能接原形 chat。<br>
 2. <b>download 與 chat 的詞性：</b>download 在此是動詞「下載」，作名詞時指「下載的內容」；chat 作動詞「聊天」、作名詞「聊天記錄」。<br>
 3. <b>a free app：</b>app 是 application 的簡寫。<span style="color:#dc2626;">⚠️ 陷阱：</span>母音音素開頭的名詞前用 an，不可寫 <s>✗ a app</s>，也不可寫 <s>✗ a app free</s>。'''},
    {"text": "She told me that I must change my password every few months.",
-    "html": 'She <span class="w-tap kw-verb">told me that</span> I <span class="w-tap kw-verb">must change</span> my <span class="w-tap kw-colloc">password every few months</span>.',
+    "html": 'She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">told me that</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">must change</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">password every few months</span>.',
     "pop": '''1. <b>tell sb that + 子句 (told me that…)：</b>tell 必須接人當受詞；轉述別人的指示時，子句裡的 must <b>不隨主句的過去式改變</b>。<br>
 2. <b>must + 原形 (must change)：</b>must 是情態動詞，後面只接原形，而且沒有人稱與數的變化（<s>✗ musts change</s>）。<br>
 3. <b>every few months：</b>every few ＝「每隔幾⋯⋯」，是 A2 高頻時間片語。<span style="color:#dc2626;">⚠️ 陷阱：</span>every 後的名詞用<b>複數</b>（months），不可寫 <s>✗ every few month</s>。'''},
   ],
   [
    {"text": "One evening I clicked a strange link and saw a free gift online.",
-    "html": '<span class="w-tap kw-link">One evening</span> I <span class="w-tap kw-verb">clicked a strange link</span> and <span class="w-tap kw-verb">saw</span> a <span class="w-tap kw-colloc">free gift online</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">One evening</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">clicked a strange link</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">saw</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">free gift online</span>.',
     "pop": '''1. <b>click 與介系詞：</b>click 可直接接受詞（click a link），也可說 click <b>on</b> a link。<br>
 2. <b>see 的過去式 saw：</b>see–saw–seen，本句 saw a free gift 是一般過去式。<br>
 3. <b>strange ＝「奇怪的、可疑的」：</b>a strange link 是網路安全主題的關鍵詞。<span style="color:#dc2626;">⚠️ 陷阱：</span>線上看到免費贈品時要先停手，英文常說 it is <u>too good to be true</u>。'''},
    {"text": "The screen asked for my address, my age, and my school name.",
-    "html": 'The <span class="w-tap kw-colloc">screen</span> <span class="w-tap kw-verb">asked for</span> my <span class="w-tap kw-colloc">address</span>, my age, and my school name.',
+    "html": 'The <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">screen</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked for</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">address</span>, my age, and my school name.',
     "pop": '''1. <b>ask for + 名詞：</b>ask for ＝「要求⋯⋯」；本句把 screen 當擬人化的主語，寫作「螢幕要求填資料」。<br>
 2. <b>address ＝「地址」：</b>a home address、an e-mail address；說地址時用介系詞 at。<br>
 3. <span style="color:#dc2626;">⚠️ 陷阱：</span><u>✓ I live at this address.</u>／<s>✗ I live in this address.</s>；另外三個以上並列名詞之間要加逗號，最後一項前加 and。'''},
    {"text": "My cousin stopped me and said that such information is dangerous.",
-    "html": 'My cousin <span class="w-tap kw-verb">stopped me</span> and <span class="w-tap kw-verb">said that</span> <span class="w-tap kw-colloc">such information</span> is <span class="w-tap kw-verb">dangerous</span>.',
+    "html": 'My cousin <span class="w-tap kw-verb" data-pos="X" data-func="unknown">stopped me</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">such information</span> is <span class="w-tap kw-verb" data-pos="X" data-func="unknown">dangerous</span>.',
     "pop": '''1. <b>stop sb (from) doing：</b>stop me ＝「攔住我」；完整寫法是 stop me <b>from</b> posting，from 可以省略。<br>
 2. <b>指示形容詞 such (such information)：</b>such ＝「像這樣的」，後面可接不可數名詞（such information）或複數名詞（such books）；接單數可數名詞時前面一定要加 a／an（✗ such book，✓ such a book）。本句接不可數名詞 information，<b>不加 a</b>。<br>
 3. <b>information 是不可數名詞：</b>可數用法寫 pieces of information。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ an information / many informations</s>。'''},
   ],
   [
    {"text": "Now I must never post my phone number or my address online.",
-    "html": 'Now I <span class="w-tap kw-verb">must never post</span> my <span class="w-tap kw-colloc">phone number or my address</span> <span class="w-tap kw-link">online</span>.',
+    "html": 'Now I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">must never post</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">phone number or my address</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">online</span>.',
     "pop": '''1. <b>must never + 原形：</b>must never ＝「絕對不可以」，語氣最強；後面接原形 post，不加 to，也不加 -s。<br>
 2. <b>phone number / mobile number：</b>phone number ＝「電話號碼」，是不可拆開的複合名詞。<br>
 3. <b>online 作副詞：</b>post … online ＝「在網路上貼出」；作形容詞時修飾名詞（an online form）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ my number phone</s>（複合名詞須前修飾、後中心）。'''},
    {"text": "I always check the website and every file before I click.",
-    "html": 'I <span class="w-tap kw-link">always</span> <span class="w-tap kw-verb">check the website and every file</span> <span class="w-tap kw-verb">before I click</span>.',
+    "html": 'I <span class="w-tap kw-link" data-pos="X" data-func="unknown">always</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">check the website and every file</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">before I click</span>.',
     "pop": '''1. <b>頻率副詞 always 的位置：</b>放在主要動詞之前（I <u>always</u> check…）；若謂語是 be 動詞，則放在 be 動詞之後（She is always late）。<br>
 2. <b>before + 子句 (before I click)：</b>before 引導時間子句，子句用一般現在式表示未來會發生的事。<br>
 3. <b>a website / a web page / the internet：</b>website 是可數名詞（複數 websites）；上網固定說 on the internet。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫 <s>✗ a internet</s>，也不可寫 <s>✗ in the internet</s>。'''},
    {"text": "My cousin says that careful students stay safe on the internet.",
-    "html": 'My cousin <span class="w-tap kw-verb">says that</span> <span class="w-tap kw-colloc">careful students</span> <span class="w-tap kw-verb">stay safe</span> <span class="w-tap kw-colloc">on the internet</span>.',
+    "html": 'My cousin <span class="w-tap kw-verb" data-pos="X" data-func="unknown">says that</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">careful students</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">stay safe</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">on the internet</span>.',
     "pop": '''1. <b>一般現在式表示普遍事實：</b>這是給所有學生的一般建議，兩個子句都用一般現在式；主語 students 是複數，故用 stay。<br>
 2. <b>stay + 形容詞 (stay safe)：</b>stay 可直接接形容詞表示「保持某狀態」，相當於 keep / remain + 形容詞。<br>
 3. <b>on the internet：</b>這是固定介系詞片語，定冠詞 the 不可省略。<span style="color:#dc2626;">⚠️ 陷阱：</span>上網說 be <b>on</b> the internet，不可寫 <s>✗ in the internet</s>。'''},

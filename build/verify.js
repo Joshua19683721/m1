@@ -61,9 +61,13 @@ for (const f of files) {
   if (!html.includes('108')) problems.push('missing 108 reference');
   if (!html.includes('href="index.html"')) problems.push('missing index link');
 
-  // 6) script functions
-  ['function speakText', 'function speakParagraph', 'function populateVoiceList', 'function updateRateLabel']
+  // 6) script functions (accept both old and new voice loading APIs)
+  ['function speakText', 'function speakParagraph', 'function updateRateLabel']
     .forEach(fn => { if (!html.includes(fn)) problems.push('missing ' + fn); });
+  // Voice loading: either old populateVoiceList OR new loadVoices+refreshVoiceLabel
+  const hasOldVoice = html.includes('function populateVoiceList');
+  const hasNewVoice = html.includes('function loadVoices') && html.includes('function refreshVoiceLabel');
+  if (!hasOldVoice && !hasNewVoice) problems.push('missing voice loading function (populateVoiceList or loadVoices/refreshVoiceLabel)');
 
   const ok = problems.length === 0;
   allOk = allOk && ok;

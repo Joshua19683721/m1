@@ -24,51 +24,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Our classroom walls were still white, and everyone felt a little bored.""",
-    "html": '''Our <span class="w-tap kw-colloc">classroom walls were still white</span>, and everyone <span class="w-tap kw-verb">felt a little bored</span>.''',
+    "html": '''Our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">classroom walls were still white</span>, and everyone <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt a little bored</span>.''',
     "pop": '''1. <b>be 動詞 + 形容詞 (were white)：</b>white 為顏色形容詞，置於 be 動詞之後修飾 walls。<br>
 2. <b>still 的位置：</b>still 為副詞，置於 be 動詞與其後的形容詞之間：<b>were still white</b>，此處強調「當時仍然」；本句是敘事過去，still 不表示「到現在仍然」。<br>
 3. <b>連繫動詞 + 形容詞 (felt bored)：</b>feel + 形容詞 ＝「感到⋯⋯」，bored 是「感到無聊的」，對照 boring（令人無聊的）。'''},
    {"text": """Last Friday, our art teacher gave us a light blue paint and a big brush.""",
-    "html": '''<span class="w-tap kw-link">Last Friday</span>, our art teacher <span class="w-tap kw-verb">gave us a light blue paint</span> and <span class="w-tap kw-colloc">a big brush</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last Friday</span>, our art teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">gave us a light blue paint</span> and <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a big brush</span>.''',
     "pop": '''1. <b>過去式 + 明確過去時間 (Last Friday)：</b>時間狀語為已過去的時間點，必須用一般過去式 gave。<br>
 2. <b>複合修飾 (a light blue paint)：</b>顏色 light blue 放在名詞 paint 之前；注意 <b>light blue（淺藍）</b> 與 <b>blue light（藍色的光）</b> 語意完全不同，屬會考字序陷阱。<br>
 3. <b>give sb sth：</b>give ＋ 人 ＋ 物；兩個受詞都是名詞時不加介詞（gave us a brush），但若指「給某人」仍須加 to（Give the brush to me.）。'''},
    {"text": """She asked us to paint one wall pale yellow, but not too dark.""",
-    "html": '''She <span class="w-tap kw-verb">asked us to paint one wall pale yellow</span>, but <span class="w-tap kw-colloc">not too dark</span>.''',
+    "html": '''She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked us to paint one wall pale yellow</span>, but <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">not too dark</span>.''',
     "pop": '''1. <b>ask sb to + 原形 (asked us to paint)：</b>ask ＋ 人 ＋ to do，不定詞不可省略。<br>
 2. <b>顏色形容詞作補語 (pale yellow)：</b>此處 pale yellow 緊接在受詞 one wall 之後，作為「畫成什麼顏色」的<b>賓語補語</b>。<br>
 3. <b>省略句 not too dark：</b>為省略結構，完整為 (to paint it) not too dark；too + 形容詞表示「太⋯⋯」的程度超出預期。'''},
   ],
   [
    {"text": """My friend Amy wanted bright pink, but I thought that was too strong for a classroom.""",
-    "html": '''My friend Amy <span class="w-tap kw-verb">wanted bright pink</span>, but I <span class="w-tap kw-verb">thought that was too strong for</span> a classroom.''',
+    "html": '''My friend Amy <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wanted bright pink</span>, but I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">thought that was too strong for</span> a classroom.''',
     "pop": '''1. <b>want + 受詞 (wanted bright pink)：</b>want 在此後接名詞，表示「想要某物」；對照 want <b>to do</b>（想做某事）。<br>
 2. <b>間接敘述 (thought that + 子句)：</b>後接陳述語序 that it was…；完整句為 I thought (that) <b>it was</b> too strong。<br>
 3. <b>too + 形容詞 + for + 對象：</b>too...for + 名詞 ＝「對⋯⋯而言太⋯⋯」，是會考常見的結構。'''},
    {"text": """Our teacher said that light colours made people calm, while dark colours made a room smaller.""",
-    "html": '''Our teacher <span class="w-tap kw-verb">said that light colours made people calm</span>, while <span class="w-tap kw-link">dark colours made a room smaller</span>.''',
+    "html": '''Our teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that light colours made people calm</span>, while <span class="w-tap kw-link" data-pos="X" data-func="unknown">dark colours made a room smaller</span>.''',
     "pop": '''1. <b>間接引語的時態後移 (said that light colours made)：</b>原句為「Light colours <b>make</b> people calm.」，轉述成過去時須將一般現在式後移為一般過去式 <b>made</b>。<br>
 2. <b>make + 賓語 + 形容詞 (made people calm)：</b>make sb + adj. ＝「使某人變得⋯⋯」，與第 8 課的 made me braver 同型。<br>
 3. <b>while 引導對比：</b>while 在此不表示「當⋯的時候」，而是<b>然而、對比</b>，連接兩種相反的色彩效果。'''},
    {"text": """So we mixed our pink with white and got a very soft pink.""",
-    "html": '''<span class="w-tap kw-link">So</span> we <span class="w-tap kw-verb">mixed our pink with white</span> and <span class="w-tap kw-verb">got a very soft pink</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">So</span> we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">mixed our pink with white</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">got a very soft pink</span>.''',
     "pop": '''1. <b>So 表結果：</b>接在上一段因果之後，表示「於是我們⋯⋯」。<br>
 2. <b>mix A with B：</b>mix ＝「混合」，把 A 與 B 混合在一起用 <b>with</b>（mix pink with white）；也可以說 mix A and B（mix red and blue），兩者都能搭配兩個成分。<br>
 3. <b>get + 受詞 (got a very soft pink)：</b>本句 got 後面有受詞 a very soft pink，get 在此是<b>及物動詞</b>「得到、獲得」，整句是「得到一種非常柔和的粉紅色」。若作<b>連繫動詞</b>「變得」，後面就不接受詞（The pink got soft.）。<b>got 為 get 的過去式</b>（get–got–gotten）。'''},
   ],
   [
    {"text": """In the afternoon, a golden afternoon light came through the windows.""",
-    "html": '''<span class="w-tap kw-colloc">In the afternoon</span>, a <span class="w-tap kw-colloc">golden afternoon light</span> <span class="w-tap kw-verb">came through the windows</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">In the afternoon</span>, a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">golden afternoon light</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">came through the windows</span>.''',
     "pop": '''1. <b>時間介系詞 (In the afternoon)：</b>特定時段用 in，對照第 3 課的 at seven o\'clock（時間點用 at）。<br>
 2. <b>複合修飾 (golden afternoon light)：</b>此處 afternoon 先與 light 組成「午後的光」，golden 再修飾整個片語；英文複合形容詞並沒有「修飾詞由小到大」的排序規則。<br>
 3. <b>come through：</b>come–came–come，<b>過去式與過去分詞同形</b>；through 表示「穿過、透過」。'''},
    {"text": """When we finished, the room looked brighter and more comfortable than before.""",
-    "html": '''<span class="w-tap kw-link">When we finished</span>, the room <span class="w-tap kw-verb">looked brighter and more comfortable than before</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">When we finished</span>, the room <span class="w-tap kw-verb" data-pos="X" data-func="unknown">looked brighter and more comfortable than before</span>.''',
     "pop": '''1. <b>When + 敘事過去式 (When we finished)：</b>全句是敘事過去，When 引導的時間子句隨主句一併用一般過去式（時態一致）。<br>
 2. <b>look + 比較級 (looked brighter)：</b>look 為連繫動詞「看起來」，後接比較級 brighter。<br>
 3. <b>than before：</b>before 在此為<b>副詞</b>，代替前面出現過的內容，比 than the room was 更簡潔。</li>'''},
    {"text": """I love our classroom now, because its colours are warm and it is mine.""",
-    "html": '''I <span class="w-tap kw-verb">love our classroom now</span>, because <span class="w-tap kw-colloc">its colours are warm</span> and it <span class="w-tap kw-verb">is mine</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">love our classroom now</span>, because <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">its colours are warm</span> and it <span class="w-tap kw-verb" data-pos="X" data-func="unknown">is mine</span>.''',
     "pop": '''1. <b>現在式表此刻感受 (love)：</b>故事結尾回到現在，說明主角對新教室的喜愛。<br>
 2. <b>所有格代詞 (its)：</b>its ＝「它的」，後接名詞 colours；<span style="color:#dc2626;">⚠️ 陷阱：</span>it's ＝ it is，兩者只差一個 apostrophe。<br>
 3. <b>名詞性物主代詞 (mine)：</b>mine ＝「我的（東西）」，後<b>不加名詞</b>；對比 my（後接名詞）。'''},
@@ -119,51 +119,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Last weekend, I wanted to make a cake, so I asked my mother for her recipe.""",
-    "html": '''<span class="w-tap kw-link">Last weekend</span>, I <span class="w-tap kw-verb">wanted to make a cake</span>, so I <span class="w-tap kw-verb">asked my mother for</span> her <span class="w-tap kw-colloc">recipe</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last weekend</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wanted to make a cake</span>, so I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked my mother for</span> her <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">recipe</span>.''',
     "pop": '''1. <b>want to + 原形 (wanted to make)：</b>want 後接不定詞；want + 名詞則是「想要某物」。<br>
 2. <b>ask sb for + 對象 (asked my mother for her recipe)：</b>ask ＋ 人 ＋ for ＋ 物 ＝「向某人要某物」；接名詞時 for 不可省略，但接子句時不用 for（Ask me what happened.）。<br>
 3. <b>recipe（食譜）：</b>來自 A2 Key「Food and Drink」主題；recipe 是可數名詞，前面須加 a / her / this。'''},
    {"text": """The recipe said that I needed 250 grams of flour and 200 millilitres of milk.""",
-    "html": '''The recipe <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-colloc">needed 250 grams of flour</span> and <span class="w-tap kw-colloc">200 millilitres of milk</span>.''',
+    "html": '''The recipe <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> I <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">needed 250 grams of flour</span> and <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">200 millilitres of milk</span>.''',
     "pop": '''1. <b>間接引語 (said that + 子句)：</b>原句為「I <b>need</b> 250 grams of flour.」，轉述成過去時後移為 <b>needed</b>；主語 I 是第一人稱，與單複數無關。<br>
 2. <b>數字 + 計量單位：</b>數量詞 + 單位名詞，單位名詞<b>可數，數量大於 1 要加 s</b>：250 grams、200 millilitres、3 hours、a cup of flour。<br>
 3. <b>不可數名詞不加 s：</b>flour、milk 皆不可數，此處的 grams 是「計量單位」而非名詞本身，故 200 millilitres 加 s 是正確的。</li>'''},
    {"text": """I did not have a kitchen scale, so I had to guess the weight.""",
-    "html": '''I <span class="w-tap kw-verb">did not have a kitchen scale</span>, so I <span class="w-tap kw-verb">had to guess the weight</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">did not have a kitchen scale</span>, so I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had to guess the weight</span>.''',
     "pop": '''1. <b>否定句用助動詞 (did not have)：</b>have 的過去式否定為 did not have，後接<b>原形</b>。<br>
 2. <b>have to + 原形 (had to guess)：</b>have to ＝「不得不」，表示<b>外在條件</b>造成的義務；對照 must（說者自身的堅持）。<br>
 3. <b>因果連接詞 so：</b>因為沒有秤，所以只能猜，形成完整的因果閉環。'''},
   ],
   [
    {"text": """I put in too much sugar, and the mixture was too sweet to eat.""",
-    "html": '''I <span class="w-tap kw-verb">put in too much sugar</span>, and the mixture <span class="w-tap kw-verb">was too sweet to eat</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">put in too much sugar</span>, and the mixture <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was too sweet to eat</span>.''',
     "pop": '''1. <b>too much + 不可數名詞 (too much sugar)：</b>too much 後面接<b>不可數名詞</b>；可數名詞複數要用 too many。要特別注意 time（時間）、trouble（麻煩）這類詞<b>本身就是不可數名詞</b>，所以 too much time、too much trouble 完全正確，並不是例外。<br>
 2. <b>put in + 對象：</b>put in ＝「放入」，屬動詞片語（put ＋ 副詞 in），後接受詞時不加介詞（put in the sugar）。<br>
 3. <b>too...to + 原形 (too sweet to eat)：</b>too + 形容詞 + to + 原形；<span style="color:#dc2626;">⚠️</span>to 之後接<b>原形動詞</b>，不能用 be ＋ 原形構成假被動（✗ too sweet to be eat；✓ too late to be sorry，be 後接的是形容詞）。'''},
    {"text": """My mother said that I should weigh the ingredients carefully.""",
-    "html": '''My mother <span class="w-tap kw-verb">said that</span> I <span class="w-tap kw-verb">should weigh the ingredients carefully</span>.''',
+    "html": '''My mother <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">should weigh the ingredients carefully</span>.''',
     "pop": '''1. <b>should + 原形 (should weigh)：</b>should 表<b>建議</b>，後接原形 weigh，不可寫 weighed 或 to weigh。<br>
 2. <b>副詞位置 (carefully)：</b>修飾動詞 weigh 時，carefully 置於 weigh 之後、<b>受詞之前</b>。<br>
 3. <b>ingredient（食材）：</b>為 A2 Key「Food and Drink」主題核心詞，food 只指「食物」整體，ingredient 指「成分」。'''},
    {"text": """She also told me that a cup of flour weighs about 120 grams, and a quarter of an hour is 15 minutes.""",
-    "html": '''She also <span class="w-tap kw-verb">told me that</span> a <span class="w-tap kw-colloc">cup of flour weighs about 120 grams</span>, and <span class="w-tap kw-colloc">a quarter of an hour is 15 minutes</span>.''',
+    "html": '''She also <span class="w-tap kw-verb" data-pos="X" data-func="unknown">told me that</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">cup of flour weighs about 120 grams</span>, and <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a quarter of an hour is 15 minutes</span>.''',
     "pop": '''1. <b>about 120 grams：</b>about ＝「大約」，置於數字前表示概略數量。<br>
 2. <b>weigh + 重量 (weighs about 120 grams)：</b>weigh 為動詞「weighs（有⋯⋯重）」；weight 是名詞「重量」。<br>
 3. <b>分數與時間 (a quarter of an hour)：</b>quarter ＝ 四分之一；<b>a quarter of an hour ＝ 15 分鐘</b>（a half of an hour ＝ 30 分鐘），是 Measurements 主題的必記對應。</li>'''},
   ],
   [
    {"text": """When I tried again, I put in less sugar and added one egg.""",
-    "html": '''<span class="w-tap kw-link">When I tried again</span>, I <span class="w-tap kw-verb">put in less sugar and added one egg</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">When I tried again</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">put in less sugar and added one egg</span>.''',
     "pop": '''1. <b>When + 敘事過去式 (When I tried again)：</b>全句是敘事過去，When 引導的時間子句隨主句一併用一般過去式（時態一致）。<br>
 2. <b>比較級 less (less sugar)：</b>little 的比較級為 <b>less</b>，修飾不可數名詞；可數名詞複數用 <b>fewer</b>。<br>
 3. <b>數量詞 one：</b>此處用 <b>one</b> 強調「剛好一顆」的精確數量；one 是數詞，前面不能再加不定冠詞（✗ a one egg）。'''},
    {"text": """I also read the label on my cold medicine, which said that the temperature must stay below 25 degrees.""",
-    "html": '''I also <span class="w-tap kw-verb">read the label on my cold medicine</span>, <span class="w-tap kw-colloc">which said that the temperature must stay below 25 degrees</span>.''',
+    "html": '''I also <span class="w-tap kw-verb" data-pos="X" data-func="unknown">read the label on my cold medicine</span>, <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">which said that the temperature must stay below 25 degrees</span>.''',
     "pop": '''1. <b>on + 物品表面 (on the label)：</b>on 表「在⋯表面上」，與 in（在內部）、at（某一地點，如 at the door）的差異是會考高頻考點。<br>
 2. <b>非限定關係子句 (which said that...)：</b>which 指代前面<b>整件事</b>（我讀標示這件事），前有<b>逗號</b>。<br>
 3. <b>must + 原形 (must stay)：</b>must ＝「必須」，後接原形 stay；below 25 degrees 表示「25 度以下」。</li>'''},
    {"text": """The cake was smaller than I expected, but it tasted delicious.""",
-    "html": '''The cake <span class="w-tap kw-verb">was smaller than I expected</span>, but it <span class="w-tap kw-verb">tasted delicious</span>.''',
+    "html": '''The cake <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was smaller than I expected</span>, but it <span class="w-tap kw-verb" data-pos="X" data-func="unknown">tasted delicious</span>.''',
     "pop": '''1. <b>比較級 smaller + than 子句：</b>than 後可接省略句 <b>than (it was)</b>，也可接完整子句 <b>than I expected</b>；兩種都正確，本句用的是完整子句。<br>
 2. <b>感官動詞 + 形容詞 (tasted delicious)：</b>taste 後接<b>形容詞</b>，不可寫成 tasted very deliciously。<br>
 3. <b>but 表轉折：</b>「比預期小」與「很好吃」形成對照，符合中式敘事「雖不盡如人意但仍有收穫」的收尾模式。</li>'''},

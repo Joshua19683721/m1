@@ -24,51 +24,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": "Our English teacher announced a school magazine competition, so I felt very excited.",
-    "html": 'Our English teacher <span class="w-tap kw-verb">announced</span> <span class="w-tap kw-colloc">a school magazine competition</span>, so I <span class="w-tap kw-verb">felt very excited</span>.',
+    "html": 'Our English teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">announced</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a school magazine competition</span>, so I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt very excited</span>.',
     "pop": '''1. <b>announce 的過去式 (announced)：</b> announce 是規則動詞，過去式直接加 <b>-d</b>（announce → announced）；主詞 Our English teacher 是單數第三人稱。<br>
 2. <b>對等連接詞 so（結果）：</b> so ＝「因此、所以」，引導<b>結果</b>；與 because（原因）方向相反，是會考一組必考對比。<br>
 3. <b>feel + 形容詞：</b> 表示「感到⋯⋯」，後面直接接形容詞 excited。<span style="color:#dc2626;">⚠️ 陷阱：</span>excited 描述的是「我」的狀態，不可改成副詞（<s>✗ I felt excitedly.</s>）。'''},
    {"text": "I was worried, because I had never written a story about my own feelings before.",
-    "html": 'I <span class="w-tap kw-verb">was worried</span>, because I <span class="w-tap kw-verb">had never written</span> a story about <span class="w-tap kw-colloc">my own feelings before</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was worried</span>, because I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had never written</span> a story about <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">my own feelings before</span>.',
     "pop": '''1. <b>過去完成式 had never + 過去分詞：</b> 表示「在過去某時點之前從未⋯⋯」。此句的過去參照點是「宣布比賽」，而「從來沒有寫過」發生在比它更早的過去，當時還沒有寫過；故用 <b>had never written</b>。<br>
 2. <b>because（原因）：</b> because 說明原因，可放句首或句中；放句中時前後各加一個逗號，用來解釋前面的 worried。<br>
 3. <b>own 必須緊接名詞：</b> own 是形容詞性物主代詞，只能作定語：<u>✓</u> my own feelings；不可寫成 *my feelings own。'''},
    {"text": "My friend Leo said I would not understand it unless I read it twice.",
-    "html": 'My friend Leo <span class="w-tap kw-verb">said</span> I <span class="w-tap kw-verb">would not</span> understand it <span class="w-tap kw-link">unless</span> I <span class="w-tap kw-link">read it twice</span>.',
+    "html": 'My friend Leo <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">would not</span> understand it <span class="w-tap kw-link" data-pos="X" data-func="unknown">unless</span> I <span class="w-tap kw-link" data-pos="X" data-func="unknown">read it twice</span>.',
     "pop": '''1. <b>unless（＝if...not）：</b> unless ＝「除非」，引導<b>否定條件子句</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span>unless 本身已含否定，後面不可再加 not（<s>✗ unless you don't read it</s>，意思剛好相反）。<br>
 2. <b>would + 原形：</b> would 是 will 的過去式，表「將會⋯⋯」，後面<b>只能接原形</b> understand，不可加 -ed。<br>
 3. <b>引述句不倒裝：</b> say 後接賓語子句時 that 可省略，語序仍是「主詞 + 動詞」：said I <b>would</b> not…（<s>✗ said would I not…</s>）。'''},
   ],
   [
    {"text": "As soon as I sat down, I remembered my first week at a new school.",
-    "html": '<span class="w-tap kw-link">As soon as</span> I sat down, I <span class="w-tap kw-verb">remembered</span> <span class="w-tap kw-colloc">my first week at a new school</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">As soon as</span> I sat down, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">remembered</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">my first week at a new school</span>.',
     "pop": '''1. <b>as soon as + 一般現在式：</b> 表示「一⋯就⋯」，前後動作都用<b>一般現在式</b>表未來：As soon as I <u>sit</u> down, I <u>will</u> tell you.<br>
 2. <b>短句置於句首要加逗號：</b> as soon as 引導的短句放句首時後面要加逗號，重點落在主句。<br>
 3. <b>remember + 記憶的內容：</b> remember 可直接接名詞（remember my first week）或接子句（remember that I was alone），此處接名詞，表示「想起那一週」。'''},
    {"text": "Everything felt strange and boring at first, because nobody talked to me.",
-    "html": 'Everything <span class="w-tap kw-verb">felt strange</span> and <span class="w-tap kw-verb">boring</span> at first, because <span class="w-tap kw-link">nobody</span> talked to me.',
+    "html": 'Everything <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt strange</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">boring</span> at first, because <span class="w-tap kw-link" data-pos="X" data-func="unknown">nobody</span> talked to me.',
     "pop": '''1. <b>狀態動詞 + 形容詞：</b> 主語是 Everything（單數），所以用 <b>felt</b>（feel–felt–felt 不規則變化），後接兩個並列的形容詞。<br>
 2. <b>形容詞的位置：</b> strange 修飾「整體感受」，boring 說明「無聊的感覺」，兩者由 and 連接，順序可互換。<br>
 3. <b>nobody 作主語：</b> 不定代詞 nobody 視為單數，動詞用第三人稱單數 talked；no one 後面才加 of + 人。'''},
    {"text": "I felt tired and unhappy until a funny girl at my table shared her sandwich.",
-    "html": 'I <span class="w-tap kw-verb">felt tired</span> and <span class="w-tap kw-verb">unhappy</span> <span class="w-tap kw-link">until</span> a <span class="w-tap kw-colloc">funny girl at my table</span> <span class="w-tap kw-verb">shared</span> her sandwich.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt tired</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">unhappy</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">until</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">funny girl at my table</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">shared</span> her sandwich.',
     "pop": '''1. <b>until 作連詞：</b> until ＝「直到⋯⋯為止」，後面接<b>句子</b>時是連詞；接單數名詞（until lunch）時是介系詞。<br>
 2. <b>until 前後的時態：</b> until 前的持續狀態與 until 瞬間出現的動作，都用<b>一般過去式</b>：felt…until she shared…。<br>
 3. <b>at my table：</b> at one's table ＝「在某人那一桌」，是英文「一起吃午餐」的固定說法。'''},
   ],
   [
    {"text": "My first ending was too careful, so nobody wanted to hear my true feelings.",
-    "html": 'My first ending <span class="w-tap kw-verb">was too careful</span>, so nobody <span class="w-tap kw-verb">wanted to hear</span> <span class="w-tap kw-colloc">my true feelings</span>.',
+    "html": 'My first ending <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was too careful</span>, so nobody <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wanted to hear</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">my true feelings</span>.',
     "pop": '''1. <b>too + 形容詞：</b> too + 形容詞表示「太⋯⋯而過頭了」，後面接形容詞 careful；too 後面不可再加 very 或 not。<br>
 2. <b>want somebody to + 原形：</b> want 後接「人 + to + 原形」：wanted <b>me to</b> read…；此處受詞 me 被省略。<br>
 3. <b>so（結果）：</b> so 引導結果，說明「為什麼沒有人想聽」；牢記 because 講原因、so 講結果。'''},
    {"text": "Then I wrote what really happened until it felt honest, even if it was sad.",
-    "html": 'Then I <span class="w-tap kw-verb">wrote</span> what really happened <span class="w-tap kw-link">until</span> it felt honest, <span class="w-tap kw-link">even if</span> it was sad.',
+    "html": 'Then I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wrote</span> what really happened <span class="w-tap kw-link" data-pos="X" data-func="unknown">until</span> it felt honest, <span class="w-tap kw-link" data-pos="X" data-func="unknown">even if</span> it was sad.',
     "pop": '''1. <b>until 的「重複動作」用法：</b> until 也可表示「持續到某個時間點為止」，這裡是「我一直改稿，改到手稿讀起來誠實為止」。<br>
 2. <b>even if（即使）：</b> even if 引導<b>讓步條件</b>，表示「就算如此，結果也不變」，語氣比 if 更讓步。<br>
 3. <b>it felt + 形容詞：</b> 此處的 it 回指前面改寫的那份手稿，指涉明確，不是虛主語（虛主語如 It is important to start early，it 沒有對應的人或物）。it felt honest（讀起來感覺很誠實）；feel 這種連繫動詞後面直接接形容詞，不加冠詞。'''},
    {"text": "The magazine printed my story, and I feel happy that many readers are interested.",
-    "html": 'The magazine <span class="w-tap kw-verb">printed</span> my story, and I <span class="w-tap kw-verb">feel happy</span> that many readers <span class="w-tap kw-verb">are interested</span>.',
+    "html": 'The magazine <span class="w-tap kw-verb" data-pos="X" data-func="unknown">printed</span> my story, and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">feel happy</span> that many readers <span class="w-tap kw-verb" data-pos="X" data-func="unknown">are interested</span>.',
     "pop": '''1. <b>print → printed：</b> print 是規則動詞，過去式加 <b>-ed</b>；主語 The magazine 為單數，敘述已完成的事用過去式。<br>
 2. <b>be interested in + 對象：</b> 興趣用 be interested <b>in</b>，in 後接名詞或 V-ing：readers are interested <b>in</b> my story。<br>
 3. <b>that 引導賓語子句：</b> feel happy that… 的 that 子句說明高興的原因；賓語子句的 that 可省略，但保留更清楚。'''},
@@ -119,51 +119,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": "Last spring my new hobby was camping, so I joined a club near my town.",
-    "html": 'Last spring my <span class="w-tap kw-colloc">new hobby</span> was <span class="w-tap kw-colloc">camping</span>, so I <span class="w-tap kw-verb">joined a club</span> <span class="w-tap kw-link">near my town</span>.',
+    "html": 'Last spring my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">new hobby</span> was <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">camping</span>, so I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">joined a club</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">near my town</span>.',
     "pop": '''1. <b>join + 團體：</b> join ＝「加入」，後面直接接<b>團體名稱</b>（a club），中間不加介系詞。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>join to the club</s>。<br>
 2. <b>so（結果）：</b> so 引導結果：因為喜歡露營，所以加入社團；與 because（原因）方向相反。<br>
 3. <b>hobby 與 camping：</b> hobby ＝「業餘愛好」，camping ＝「露營」，兩者皆為 A2 Key「Hobbies and Leisure」主題詞彙。'''},
    {"text": "Every month we walked to the campsite and put up our tent before dark.",
-    "html": 'Every month we <span class="w-tap kw-verb">walked</span> to the <span class="w-tap kw-colloc">campsite</span> and <span class="w-tap kw-verb">put up our tent</span> <span class="w-tap kw-link">before dark</span>.',
+    "html": 'Every month we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">walked</span> to the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">campsite</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">put up our tent</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">before dark</span>.',
     "pop": '''1. <b>put up + 搭建物：</b> put up ＝「搭起、架起」；put–put–put 三態同形，且代詞須放中間：put <b>up</b> the tent。<br>
 2. <b>before + 不可數名詞：</b> before dark ＝「在天黑之前」，此處 dark 作不可數名詞（意思同 darkness），指「天色變暗」這一刻，不能加冠詞（✗ before a dark）。<br>
 3. <b>to the campsite：</b> 動詞 walk 後接地點用介系詞 to；campsite ＝「露營地」，是 Hobbies and Leisure 主題的固定字。'''},
    {"text": "I took a photograph of the lake every month, but my English was still weak.",
-    "html": 'I <span class="w-tap kw-verb">took</span> <span class="w-tap kw-colloc">a photograph of</span> the lake every month, but my English <span class="w-tap kw-link">was still weak</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">took</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a photograph of</span> the lake every month, but my English <span class="w-tap kw-link" data-pos="X" data-func="unknown">was still weak</span>.',
     "pop": '''1. <b>take a photograph of + 對象：</b> of 引出被拍攝的對象；photograph 可作名詞也可作動詞，take a photograph 是固定搭配。<br>
 2. <b>take → took：</b> take–took–taken 為不規則變化；拍照這個動作已完成，必須用過去式 <b>took</b>。<br>
 3. <b>but（轉折）：</b> but 與前句相反：照片拍得很多，英文卻還是很弱，為第二段埋下轉折。'''},
   ],
   [
    {"text": "So I also became a member of the school English club on Friday afternoons.",
-    "html": 'So I also <span class="w-tap kw-verb">became</span> <span class="w-tap kw-colloc">a member of</span> <span class="w-tap kw-link">the school English club</span> on Friday afternoons.',
+    "html": 'So I also <span class="w-tap kw-verb" data-pos="X" data-func="unknown">became</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a member of</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">the school English club</span> on Friday afternoons.',
     "pop": '''1. <b>become → became：</b> become–became–become 為不規則變化；表示「成為⋯⋯的一員」時用 become，比 join 更正式。<br>
 2. <b>a member of + 團體：</b> of 後接所屬團體，前面須加冠詞：a member of <b>the</b> English club。<br>
 3. <b>時間片語放句尾：</b> on Friday afternoons 說明活動時段；on + 星期／日期前不加 the。'''},
    {"text": "There I met Kenji, a new student from Japan who spoke very quietly.",
-    "html": 'There I <span class="w-tap kw-verb">met</span> Kenji, <span class="w-tap kw-colloc">a new student from Japan</span> <span class="w-tap kw-link">who spoke very quietly</span>.',
+    "html": 'There I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">met</span> Kenji, <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a new student from Japan</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">who spoke very quietly</span>.',
     "pop": '''1. <b>meet → met：</b> meet–met–met 為不規則變化，敘述已結束的相遇事件要用過去式 met。<br>
 2. <b>同位語 (Kenji)：</b> 逗號後的名詞補充說明前面的 a new student，兩者指同一人。<br>
 3. <b>關係子句 who spoke very quietly：</b> who 引導子句說明「是哪一位學生」；先行詞是人用 who，子句後<b>不可再加逗號</b>。'''},
    {"text": "We spoke slowly so that he could hear us, because he was too afraid to ask.",
-    "html": 'We <span class="w-tap kw-verb">spoke slowly</span> <span class="w-tap kw-link">so that</span> he <span class="w-tap kw-verb">could hear</span> us, because he <span class="w-tap kw-link">was too afraid to ask</span>.',
+    "html": 'We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">spoke slowly</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">so that</span> he <span class="w-tap kw-verb" data-pos="X" data-func="unknown">could hear</span> us, because he <span class="w-tap kw-link" data-pos="X" data-func="unknown">was too afraid to ask</span>.',
     "pop": '''1. <b>so that + 目的子句：</b> so that 引導<b>目的子句</b>，放在主要動作之後，回答「為什麼要慢慢說」：spoke slowly <b>so that</b> he could hear us。<br>
 2. <b>could + 原形：</b> could 是 can 的過去式，此處表示「當時能夠聽懂」，後面接<b>原形</b> hear，不可加 -ed。<br>
 3. <b>too + 形容詞 + to + 原形：</b> too…to ＝「太⋯⋯而不能⋯⋯」：too afraid <b>to ask</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span>too 後不可再加 very 或 not。'''},
   ],
   [
    {"text": "Before the camp we drew pictures of every tool in order to show him the rules.",
-    "html": 'Before the camp we <span class="w-tap kw-verb">drew pictures</span> of every tool <span class="w-tap kw-link">in order to</span> <span class="w-tap kw-verb">show</span> him the rules.',
+    "html": 'Before the camp we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">drew pictures</span> of every tool <span class="w-tap kw-link" data-pos="X" data-func="unknown">in order to</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">show</span> him the rules.',
     "pop": '''1. <b>in order to + 原形：</b> in order to ＝「為了⋯⋯」，與 so that 同屬目的表達，但後面<b>直接接原形動詞</b>，不再接句子。<br>
 2. <b>draw → drew：</b> draw–drew–drawn 為不規則變化；every tool 是複數，畫的動作已完成，用過去式 <b>drew</b>。<br>
 3. <b>a picture 的複數：</b> picture 以 -e 結尾，複數加 <b>-s</b>：pictures（複數才加 -es 的是以 -s / -x / -ch / -sh 結尾的名詞，如 box → boxes、dish → dishes；book 只是子音結尾，仍直接加 -s 變 books）。'''},
    {"text": "We wrote short sentences so as to keep our English simple and clear.",
-    "html": 'We <span class="w-tap kw-verb">wrote short sentences</span> <span class="w-tap kw-link">so as to</span> <span class="w-tap kw-verb">keep</span> our English <span class="w-tap kw-colloc">simple and clear</span>.',
+    "html": 'We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wrote short sentences</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">so as to</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">keep</span> our English <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">simple and clear</span>.',
     "pop": '''1. <b>so as to + 原形：</b> so as to 與 in order to 同義，語氣較正式；兩者後面都<b>直接接原形</b>，不可接整句。<br>
 2. <b>目的句中的原形動詞：</b> to 後面的 keep 是原形，後面接<b>形容詞</b> simple and clear 當補語。<br>
 3. <b>write → wrote：</b> write–wrote–written 為不規則變化，此處描述已完成的三個過去動作。'''},
    {"text": "At our end picnic, Kenji answered the quiz, and everyone was really happy.",
-    "html": 'At <span class="w-tap kw-colloc">our end picnic</span>, Kenji <span class="w-tap kw-verb">answered the quiz</span>, and <span class="w-tap kw-verb">everyone was</span> really happy.',
+    "html": 'At <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">our end picnic</span>, Kenji <span class="w-tap kw-verb" data-pos="X" data-func="unknown">answered the quiz</span>, and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">everyone was</span> really happy.',
     "pop": '''1. <b>名詞片語 (At our end picnic)：</b> at + 活動名詞，說明活動是在哪一場舉行。⚠️ 用詞提醒：end picnic 不是慣用說法，「期末／結業野餐」應寫成 <b>final picnic</b> 或 <b>end-of-term picnic</b>。<br>
 2. <b>answer → answered：</b> answer 是規則動詞，過去式加 <b>-ed</b>；Kenji 順利答題，正是他從「不敢開口」到「敢開口」的轉折。<br>
 3. <b>everyone 作主語：</b> 不定代詞 everyone 視為單數，be 動詞用 <b>was</b>，不可寫成 were。'''},
@@ -214,51 +214,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": "Our school needed costumes for a winter play, so our class began making them in September.",
-    "html": 'Our school <span class="w-tap kw-verb">needed</span> <span class="w-tap kw-colloc">costumes for a winter play</span>, so our class <span class="w-tap kw-verb">began making</span> them in September.',
+    "html": 'Our school <span class="w-tap kw-verb" data-pos="X" data-func="unknown">needed</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">costumes for a winter play</span>, so our class <span class="w-tap kw-verb" data-pos="X" data-func="unknown">began making</span> them in September.',
     "pop": '''1. <b>make → made：</b> make–made–made 為不規則變化；「動手做戲服」這個動作已完成，用過去式 <b>made</b>。<br>
 2. <b>costume（n）：</b> costume ＝「戲服、服裝」，指表演或特殊場合穿的衣服，屬 A2 Key「Clothes and Accessories」主題詞彙。<br>
 3. <b>need + 名詞：</b> need 後直接接需要的對象：needed costumes；這裡接過去式是因為要表達「當時需要」。'''},
    {"text": "My friend Daniel wore a new jacket and white trainers every single day.",
-    "html": 'My friend Daniel <span class="w-tap kw-verb">wore</span> <span class="w-tap kw-colloc">a new jacket and white trainers</span> <span class="w-tap kw-link">every single day</span>.',
+    "html": 'My friend Daniel <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wore</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a new jacket and white trainers</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">every single day</span>.',
     "pop": '''1. <b>wear → wore：</b> wear–wore–worn 為不規則變化；wear 是「穿著」，三態不規則，會考常考。<br>
 2. <b>every single day：</b> every single ＝「每一天、無一例外」，比 every day 語氣更強，常與 already／still 連用。<br>
 3. <b>並列衣物不加 and 重複名詞：</b> jacket 與 trainers 是兩個不同名詞，直接用 and 連接即可，不必重複 a／white。'''},
    {"text": "Then he proudly described a black old lovely coat, and the whole room laughed.",
-    "html": 'Then he <span class="w-tap kw-colloc">proudly described</span> <span class="w-tap kw-verb">a black old lovely coat</span>, and <span class="w-tap kw-verb">the whole room laughed</span>.',
+    "html": 'Then he <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">proudly described</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">a black old lovely coat</span>, and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">the whole room laughed</span>.',
     "pop": '''1. <b>describe + 描述的對象：</b> describe 後直接接被描述的名詞（a coat），中間不加 about。<br>
 2. <b>形容詞語序錯誤（本課重點）：</b> 英文形容詞依「<b>意見—大小—年齡—形狀—顏色—質地／來源</b>」排列；black old lovely 把顏色擺在最前面是錯的，應為 <u>✓</u> a lovely old black coat。<br>
 3. <b>the whole room：</b> the + 形容詞 + 名詞＝「整間屋子的人」，whole 強調「全部、整個」。'''},
   ],
   [
    {"text": "Our art teacher smiled and put the adjectives in the right order for us.",
-    "html": 'Our art teacher <span class="w-tap kw-verb">smiled and put</span> the adjectives <span class="w-tap kw-link">in the right order</span> for us.',
+    "html": 'Our art teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">smiled and put</span> the adjectives <span class="w-tap kw-link" data-pos="X" data-func="unknown">in the right order</span> for us.',
     "pop": '''1. <b>put + 賓語 + 方位片語：</b> put the adjectives <b>in the right order</b>，中文思維常把方位放在前面，但英文是「動詞—受詞—位置」。<br>
 2. <b>並列動詞共用主語：</b> smiled and put 由同一主語 Our art teacher 發出，後一個動詞直接用原形 put。<br>
 3. <b>for us：</b> for 後接對象，表示「替我們（把順序排好）」，for + 人是會考常見介系詞。'''},
    {"text": "She said opinion comes first, then size, age, shape, colour, and material.",
-    "html": 'She <span class="w-tap kw-verb">said</span> <span class="w-tap kw-verb">opinion comes first</span>, <span class="w-tap kw-link">then size, age, shape, colour</span>, and material.',
+    "html": 'She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">opinion comes first</span>, <span class="w-tap kw-link" data-pos="X" data-func="unknown">then size, age, shape, colour</span>, and material.',
     "pop": '''1. <b>引述句不倒裝：</b> say 後接賓語子句，that 可省略，但語序不可顛倒：She said opinion <b>comes</b> first.（<s>✗ said does opinion come first</s>）<br>
 2. <b>first / then：</b> 用來標示順序，放在對應名詞之前；列舉多項時，最後一項前要加 <b>and</b>。<br>
 3. <b>material 為不可數名詞：</b>「材質」不可數，所以不加 -s；若要說多種材質才用 materials。'''},
    {"text": "So Daniel wore a lovely small old black coat, and everyone cheered for him.",
-    "html": 'So Daniel <span class="w-tap kw-verb">wore</span> <span class="w-tap kw-colloc">a lovely small old black coat</span>, and everyone <span class="w-tap kw-colloc">cheered for</span> him.',
+    "html": 'So Daniel <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wore</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a lovely small old black coat</span>, and everyone <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">cheered for</span> him.',
     "pop": '''1. <b>形容詞語序（正確示範）：</b> lovely（意見）＋ small（大小）＋ old（年齡）＋ black（顏色）＝ a lovely small old black coat，順序不可隨意調換。<br>
 2. <b>cheer for somebody：</b> cheer for ＝「為某人加油、喝采」（cheered <b>for</b> him）；cheer 也能直接接受詞（cheered him ＝「替他喝采」），兩種寫法都正確，看語意選擇。<br>
 3. <b>so（結果）：</b> 句首的 So 是承接上文的結果連接詞：老師把順序排好之後，所以 Daniel 穿上了順序正確的外套；後面的「全班喝采」則由 and 連接。'''},
   ],
   [
    {"text": "That evening I asked my sister to try on a long grey scarf and a hat.",
-    "html": 'That evening I <span class="w-tap kw-verb">asked my sister to</span> <span class="w-tap kw-colloc">try on</span> <span class="w-tap kw-colloc">a long grey scarf and a hat</span>.',
+    "html": 'That evening I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked my sister to</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">try on</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a long grey scarf and a hat</span>.',
     "pop": '''1. <b>ask somebody to + 原形：</b> ask 後接「人 + to + 原形」：asked my sister <b>to try</b>；口語常縮成 ask her to。<br>
 2. <b>try on（動詞片語）：</b> try on ＝「試穿」，代詞須置於中間：try <b>it</b> on；不可寫成 *try on it。<br>
 3. <b>long grey scarf：</b> 長短（long）先於顏色（grey），再一次用一個名詞 scarf 同時修飾兩者。'''},
    {"text": "She worried a lot, but a small silver necklace gave her real confidence.",
-    "html": 'She <span class="w-tap kw-verb">worried a lot</span>, but <span class="w-tap kw-colloc">a small silver necklace</span> <span class="w-tap kw-verb">gave her</span> real confidence.',
+    "html": 'She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">worried a lot</span>, but <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">a small silver necklace</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">gave her</span> real confidence.',
     "pop": '''1. <b>a small silver necklace：</b> 這裡有<b>兩個</b>前置形容詞：size（small）→ 顏色兼材質（silver）→ 名詞 necklace；順序符合本課規則「意見—大小—年齡—形狀—顏色—質地／來源」，材質詞若與顏色並列須排在顏色之後。<br>
 2. <b>give somebody + 抽象名詞：</b> give sb confidence ＝「給某人信心」，後面直接接名詞，且不加冠詞。<br>
 3. <b>but（轉折）：</b> but 把「很擔心」翻轉成「有自信」，是本課故事情節轉折的關鍵連詞。'''},
    {"text": "On the play night her simple clothes won loud cheers from the whole school.",
-    "html": 'On the play night her <span class="w-tap kw-colloc">simple clothes</span> <span class="w-tap kw-verb">won loud cheers</span> <span class="w-tap kw-link">from the whole school</span>.',
+    "html": 'On the play night her <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">simple clothes</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">won loud cheers</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">from the whole school</span>.',
     "pop": '''1. <b>on + the + 夜晚：</b> on the night ＝「在⋯⋯那晚」，night 前須加 the；常見搭配為 on the night of the play。<br>
 2. <b>win → won：</b> win–won–won 為不規則變化；主語 her simple clothes 是單數片語，用 <b>won</b>（clothes 雖是複數形式，義為「衣服」整體時當單數）。<br>
 3. <b>loud cheers：</b> 「熱烈的掌聲」是固定說法；cheer 可作可數名詞，用複數 cheers。'''},

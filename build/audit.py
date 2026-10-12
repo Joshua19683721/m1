@@ -58,7 +58,8 @@ for i, L in enumerate(LESSONS, 1):
                 problems.append("%s P%d pop 含 </li>" % (tag, pi))
             if len(pop) < 100:
                 problems.append("%s P%d 解析過短（%d）" % (tag, pi, len(pop)))
-            if not re.search(r'<span class="w-tap kw-(verb|colloc|link)">', s.get("html", "")):
+            # 允許 class 後有額外屬性（如 data-pos、data-func）
+            if not re.search(r'<span class="w-tap kw-(verb|colloc|link)"[^>]*>', s.get("html", "")):
                 problems.append("%s P%d 句中無標示詞" % (tag, pi))
     sums = L.get("summary", [])
     if len(sums) != 3:

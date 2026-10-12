@@ -24,51 +24,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Our school sports meet was last Friday, and I took part in the long jump.""",
-    "html": '''Our <span class="w-tap kw-colloc">school sports meet was last Friday</span>, and I <span class="w-tap kw-verb">took part in the long jump</span>.''',
+    "html": '''Our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">school sports meet was last Friday</span>, and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">took part in the long jump</span>.''',
     "pop": '''1. <b>sports meet（運動會）：</b>sports 此處作定語修飾 meet，整體視為單數，故用 <b>was</b>（✗ <s>were</s>）。<br>
 2. <b>take part in + 活動：</b>take part in ＝「參加（活動）」，in 不可省略；對照 <b>join</b> ＋「團體」（join a club）。<br>
 3. <b>長跳（the long jump）：</b>long jump 為運動項目名稱，前須加 <b>the</b>。</li>'''},
    {"text": """I am not as tall as my classmate Amy, but I am as fast as her.""",
-    "html": '''I <span class="w-tap kw-verb">am not as tall as</span> my classmate Amy, but I <span class="w-tap kw-verb">am as fast as her</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">am not as tall as</span> my classmate Amy, but I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">am as fast as her</span>.''',
     "pop": '''1. <b>not as + 原級 + as（會考必考）：</b><b>not as + 形容詞原級 + as</b> ＝「不如⋯⋯」，是本課最核心的結構。<br>　• <b>否定式</b>：not as...as　• <b>肯定式</b>：as...as<br><span style="color:#dc2626;">⚠️</span>不可寫成 not as...then 或 as...than。</span><br>
 2. <b>as...as 的位置：</b>as...as 兩端固定在所比較的形容詞兩側（as + 形容詞原級 + as），整個 as...as 片語可放在所比較對象之前或句末，意思相同；但<b>不可與 too 同時使用</b>（✗ too fast as）。<br>
 3. <b>人稱代詞的比較 (as fast as her)：</b>比較對象是人時用<b>賓格代詞 her</b>（不可用 she）。</li>'''},
    {"text": """The older students were much stronger than the younger ones.""",
-    "html": '''The older students <span class="w-tap kw-verb">were much stronger than</span> the younger <span class="w-tap kw-colloc">ones</span>.''',
+    "html": '''The older students <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were much stronger than</span> the younger <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">ones</span>.''',
     "pop": '''1. <b>比較級 + much 強調：</b>strong 的比較級為 <b>stronger</b>（-er 規則），much 修飾比較級表示「強得多」。<br>
 2. <b>one / ones 的替代作用：</b>one ＝ 單數替代（the young one）；<b>ones</b> ＝ 複數替代（the younger <u>ones</u>），後面不可再加名詞。<br>
 3. <b>定冠詞 + 比較級：</b>the older / the younger 以 the 標示「比較的雙方」，是會考閱讀常用的對比結構。</li>'''},
   ],
   [
    {"text": """In the final race, my friend ran faster and faster.""",
-    "html": '''<span class="w-tap kw-colloc">In the final race</span>, my friend <span class="w-tap kw-verb">ran faster and faster</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">In the final race</span>, my friend <span class="w-tap kw-verb" data-pos="X" data-func="unknown">ran faster and faster</span>.''',
     "pop": '''1. <b>比較級重複 (faster and faster)：</b><b>「比較級 + and + 比較級」</b> ＝「越來越⋯⋯」，是 A2 程度表達持續變化的標準句型。<br>
 2. <b>the + 比較級, the + 比較級：</b><span style="color:#dc2626;">⚠️ 句型區分</span><br>　• <b>比較級 and 比較級</b> ＝ 越來越⋯⋯（faster and faster）<br>　• <b>the + 比較級, the + 比較級</b> ＝ 愈是⋯⋯就愈是⋯⋯（The more…, the more…）<br><br>
 3. <b>in the + 序數詞：</b>in the final race ＝「在決賽中」，序數詞前加 the。</li>'''},
    {"text": """The more he practised, the better he became.""",
-    "html": '''<span class="w-tap kw-colloc">The more he practised</span>, <span class="w-tap kw-link">the better he became</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">The more he practised</span>, <span class="w-tap kw-link" data-pos="X" data-func="unknown">the better he became</span>.''',
     "pop": '''1. <b>the + 比較級, the + 比較級（會考核心句型）：</b><b>The + 比較級…, the + 比較級…</b> ＝「愈是⋯⋯，就愈是⋯⋯」。<br>　• <i>例：</i> <u>The more</u> you practise, <u>the better</u> you become.<br><br>
 2. <b>句子成分：</b>第一個 the 比較級子句修飾時間（愈練），第二個修飾結果（愈好）。<br>
 3. <b>became + 比較級：</b>become 可直接接比較級（become better）；become 也可進入進行式表示「逐漸變得」（He <b>is becoming</b> more and more popular），並非只能用原形。</li>'''},
    {"text": """Our team won because we practised together twice a week.""",
-    "html": '''Our team <span class="w-tap kw-verb">won because</span> we <span class="w-tap kw-verb">practised together twice a week</span>.''',
+    "html": '''Our team <span class="w-tap kw-verb" data-pos="X" data-func="unknown">won because</span> we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">practised together twice a week</span>.''',
     "pop": '''1. <b>won – won – won：</b>win 的三態皆同形，是會考必背不規則動詞。<br>
 2. <b>because 引導原因：</b>後接原因子句，說明獲勝的原因。<br>
 3. <b>twice 作次數：</b>twice a week ＝「每週兩次」；twice 是「兩次／兩倍」的用法（一次＝once，兩次＝twice）。</li>'''},
   ],
   [
    {"text": """I did not win first place, but I jumped further than I did last year.""",
-    "html": '''I <span class="w-tap kw-verb">did not win first place</span>, but I <span class="w-tap kw-verb">jumped further than I did last year</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">did not win first place</span>, but I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">jumped further than I did last year</span>.''',
     "pop": '''1. <b>win first place：</b>win 之後不加重點介詞（✗ <s>win in first place</s>），是會考介詞錯誤的高頻點。<br>
 2. <b>far 構成比較級 (further)：</b>far 的比較級為 <b>farther / further</b>；作形容詞表示「距離更遠」時用 <b>further</b>。<br>
 3. <b>than I did（省略結構）：</b>than I did ＝ than I jumped last year，省略重複動詞，是英文比較句的標準簡化。</li>'''},
    {"text": """My teacher said that trying hard was as important as winning.""",
-    "html": '''My teacher <span class="w-tap kw-verb">said that trying hard was as important as</span> <span class="w-tap kw-colloc">winning</span>.''',
+    "html": '''My teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that trying hard was as important as</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">winning</span>.''',
     "pop": '''1. <b>間接引語中的主語：</b>that 子句的主語為<b>動名詞</b> trying hard，後面的動詞一律用<b>單數</b> was。<br>
 2. <b>as + 形容詞 + as：</b>as important as winning ＝「跟贏一樣重要」；as...as 兩邊通常要對稱（形容詞 ↔ 形容詞、原級 ↔ 原級），也可一邊接動名詞或名詞，但此例兩邊詞性並不相同（important 是形容詞、winning 是動名詞）。<br>
 3. <b>重要 vs 有趣：</b>important ＝ 重要的（be important to sb）；對照 interesting（be interesting to sb）。'''},
    {"text": """I am as proud of my progress as the winners are.""",
-    "html": '''I <span class="w-tap kw-verb">am as proud of my</span> <span class="w-tap kw-colloc">progress</span> <span class="w-tap kw-verb">as the winners are</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">am as proud of my</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">progress</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">as the winners are</span>.''',
     "pop": '''1. <b>as...as 的省略：</b>as proud of… as the winners (are) proud of…，後半句省略重複部分。<br>
 2. <b>be proud of + 名詞：</b>proud 為 A2 Key「Personal Feelings」形容詞，固定搭配為 <b>be proud of</b>。<br>
 3. <b>progress 為不可數名詞：</b><b>make progress</b> ＝「有進展」，不可加 -s（✗ <s>progresses</s>）。</li>'''},
@@ -119,51 +119,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Last summer I went back to the village where I spent my childhood.""",
-    "html": '''<span class="w-tap kw-link">Last summer</span> I <span class="w-tap kw-verb">went back to the village where</span> I <span class="w-tap kw-verb">spent my childhood</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last summer</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">went back to the village where</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">spent my childhood</span>.''',
     "pop": '''1. <b>關係副詞 where 引導定語從句（會考核心）：</b>where ＝ in which / at which，<b>後面接完整句子</b>，用來修飾地點。<br>　the village <u>where</u> I spent my childhood<br><span style="color:#dc2626;">⚠️</span>不可寫成 <s>the village where did I spend</s>（不可倒裝）。<br>
 2. <b>spent（spend 的過去式）：</b>spend–spent–spent，三態皆不規則。<br>
 3. <b>spend time (on) + 對象：</b>one\'s childhood 是不可數名詞，前面須加物主代詞 my。</li>'''},
    {"text": """It was the place where my grandfather built a small wooden house.""",
-    "html": '''It <span class="w-tap kw-verb">was the place where</span> my grandfather <span class="w-tap kw-verb">built a small wooden house</span>.''',
+    "html": '''It <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was the place where</span> my grandfather <span class="w-tap kw-verb" data-pos="X" data-func="unknown">built a small wooden house</span>.''',
     "pop": '''1. <b>It was + the place where...：</b>整句為強調句的簡化說法，強調「那個地方」，是會考閱讀常見的起句。<br>
 2. <b>where 引導定語從句：</b>where 在句中<b>充當狀語</b>（＝ at which），後面接主詞與動詞。<br>
 3. <b>built（build 的過去式）：</b>build–built–built，為會考必背不規則動詞。</li>'''},
    {"text": """The river ran behind the house, and there was an old tree in the garden.""",
-    "html": '''The river <span class="w-tap kw-verb">ran behind the house</span>, and <span class="w-tap kw-verb">there was an old tree in</span> the garden.''',
+    "html": '''The river <span class="w-tap kw-verb" data-pos="X" data-func="unknown">ran behind the house</span>, and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">there was an old tree in</span> the garden.''',
     "pop": '''1. <b>方位介系詞 behind：</b>behind ＝「在⋯的後面」，是描述鄉間位置的必備介系詞（對照 in front of）。<br>
 2. <b>There was + 單數名詞：</b>there be 的過去式；an old tree 為單數，故用 <b>was</b>。<br>
 3. <b>a / an 的選擇 (an old tree)：</b>a 與 an 依後接名詞的<b>讀音</b>決定：old 的首音是母音 /oʊ/，所以用 an old tree；單音節與否與冠詞的選擇無關。</li>'''},
   ],
   [
    {"text": """I found a box in the room where I used to sleep.""",
-    "html": '''I <span class="w-tap kw-verb">found a box in the room where</span> I <span class="w-tap kw-verb">used to sleep</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">found a box in the room where</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">used to sleep</span>.''',
     "pop": '''1. <b>used to + 原形：</b>used to ＝「過去常常⋯⋯（現在不再）」，後接<b>原形動詞</b>，且<b>沒有第三人稱單數變化</b>（✗ he use to sleep）。<br>
 2. <b>where 引導定語從句：</b>the room <u>where</u> I used to sleep ＝「我以前睡覺的房間」。<br>
 3. <b>find 的過去式 (found)：</b>find–found–found，<b>過去式與過去分詞同形</b>。'''},
    {"text": """Inside it was a letter that my grandmother had written twenty years ago.""",
-    "html": '''<span class="w-tap kw-link">Inside it</span> <span class="w-tap kw-verb">was a letter that my grandmother had written</span> twenty years ago.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Inside it</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was a letter that my grandmother had written</span> twenty years ago.''',
     "pop": '''1. <b>地點狀語置前 (Inside it was a letter...)：</b>把地點狀語 <b>Inside it</b> 提到句首以加強語氣；主語 a letter 仍在動詞 was 之前，本句<b>並未使用倒裝</b>（真正倒裝如 Here came a letter.）。<br>
 2. <b>that 引導定語從句：</b>that 指代前面的 a letter，在句中<b>充當受詞</b>（had written <u>that</u>／<u>it</u>）。<br>
 3. <b>過去完成式 (had written)：</b>had + 過去分詞，表示「在找到箱子<b>之前</b>就已經寫好了」；twenty years ago 為過去時間。</li>'''},
    {"text": """The letter said that she wanted me to remember where we came from.""",
-    "html": '''The letter <span class="w-tap kw-verb">said that she wanted me to remember where</span> we <span class="w-tap kw-colloc">came from</span>.''',
+    "html": '''The letter <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that she wanted me to remember where</span> we <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">came from</span>.''',
     "pop": '''1. <b>間接引語 (said that + 子句)：</b>子句主語 she，謂語 wanted 保留原時態。<br>
 2. <b>want sb to + 原形 (wanted me to remember)：</b>want ＋ 人 ＋ to do，<b>to 不可省略</b>（對照 make／let／have 接原形）。<br>
 3. <b>間接問句 (where we came from)：</b>「疑問詞 + 主詞 we + 動詞 came」的陳述語序，不可寫成 where did we come from。</li>'''},
   ],
   [
    {"text": """Now I live in a tall building in the city, which has more than twenty floors.""",
-    "html": '''<span class="w-tap kw-link">Now</span> I <span class="w-tap kw-verb">live in a tall building in the city, which has</span> <span class="w-tap kw-colloc">more than twenty floors</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Now</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">live in a tall building in the city, which has</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">more than twenty floors</span>.''',
     "pop": '''1. <b>現在式描述現況：</b>Now + 現在時，說明目前的居住狀態。<br>
 2. <b>非限定關係子句 (which has...floors)：</b>which 指代前面的名詞 <b>a tall building</b>（＝「這棟大樓有二十多層」），前有<b>逗號</b>；後面不可再加逗號。<br>
 3. <b>more than + 數字：</b>more than ＝「超過」，是數量表達的高頻結構。</li>'''},
    {"text": """But the village is still the place where I feel happiest.""",
-    "html": '''But the village <span class="w-tap kw-verb">is still the place where</span> I <span class="w-tap kw-verb">feel happiest</span>.''',
+    "html": '''But the village <span class="w-tap kw-verb" data-pos="X" data-func="unknown">is still the place where</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">feel happiest</span>.''',
     "pop": '''1. <b>But 表轉折：</b>儘管住在高樓，村莊仍是最讓我快樂的地方，形成對照。<br>
 2. <b>the place where + 完整句：</b>where 在句中作地點狀語，後接「主詞 I + 動詞 feel」。<br>
 3. <b>最高級修飾語 (feel happiest)：</b>happy 的最高級為 <b>happiest</b>；feel 後可直接接最高級形容詞。</li>'''},
    {"text": """Whenever I feel tired, I remember the tree, and I carry on.""",
-    "html": '''<span class="w-tap kw-link">Whenever I feel tired</span>, I <span class="w-tap kw-verb">remember the tree</span>, and I <span class="w-tap kw-verb">carry on</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Whenever I feel tired</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">remember the tree</span>, and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">carry on</span>.''',
     "pop": '''1. <b>Whenever + 從句：</b>whenever ＝「每當⋯⋯」，後接<b>一般現在時</b>的子句，作為<b>時間狀語</b>（表讓步要用 no matter when／even if）。<br>
 2. <b>feel + 形容詞 (feel tired)：</b>feel 為連繫動詞，後接形容詞描述身心狀態。<br>
 3. <b>carry on + 動名詞：</b>carry on ＝「繼續」，<b>後接 V-ing</b>（carry on walking）；單獨使用則不加任何詞。</li>'''},

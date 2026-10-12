@@ -24,53 +24,53 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": "Our school held a music show last Friday, and it was really wonderful.",
-    "html": 'Our school <span class="w-tap kw-verb">held a music show</span> <span class="w-tap kw-link">last Friday</span>, and it <span class="w-tap kw-verb">was really wonderful</span>.',
+    "html": 'Our school <span class="w-tap kw-verb" data-pos="X" data-func="unknown">held a music show</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">last Friday</span>, and it <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was really wonderful</span>.',
     "pop": '''1. <b>不規則過去式 (held)：</b>hold–held–held，為會考必背；此處搭配明確過去時間 last Friday。<br>
 2. <b>有明確過去時間 → 用過去式：</b>last Friday 是<b>已過去且已完成</b>的時間點，必須用一般過去式，不能用現在完成式。<br>
 3. <b>音樂相關詞 (music show)：</b>來自 A2 Key「Entertainment and Media」主題，show 在此為名詞「表演」。'''},
    {"text": "I have wanted to play the guitar since I was ten years old.",
-    "html": 'I <span class="w-tap kw-verb">have wanted to play</span> the guitar <span class="w-tap kw-colloc">since I was ten years old</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">have wanted to play</span> the guitar <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">since I was ten years old</span>.',
     "pop": '''1. <b>現在完成式 (have wanted)：</b>have / has + <b>過去分詞</b>，表示「從過去持續到現在」。wanted 是 want 的過去分詞（規則：wanted）。<br>
 2. <b>since + 過去時間點：</b><span style="color:#dc2626;">⚠️ 核心差異</span>——<b>since</b> 接<b>時間點</b>（since 2010／since I was ten），<b>for</b> 接<b>時間段</b>（for three months／for years）。<br>
 3. <b>play + the + 樂器：</b>彈奏樂器時樂器前<b>必須加定冠詞 the</b>（play the guitar），但「參與某項運動」時不加（play football）。'''},
    {"text": "My band has practised the same song for three months, so we are always nervous before a show.",
-    "html": 'My band <span class="w-tap kw-verb">has practised the same song for three months</span>, so we <span class="w-tap kw-verb">are always nervous before a show</span>.',
+    "html": 'My band <span class="w-tap kw-verb" data-pos="X" data-func="unknown">has practised the same song for three months</span>, so we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">are always nervous before a show</span>.',
     "pop": '''1. <b>現在完成式 + for (has practised … for three months)：</b>for 後接<b>時間段</b>，與前句的 since 形成對照記憶。<br>
 2. <b>the same + 名詞：</b>same 表示「同一個」，前面<b>必須加 the</b>（the same song）。<br>
 3. <b>so 連接前後：</b>前半句為「已持續數月的練習」，後半句為「每次上台前都很緊張」，so 表因果結果。'''},
   ],
   [
    {"text": "When we walked onto the stage, my hands were cold and my heart beat very fast.",
-    "html": '<span class="w-tap kw-link">When we walked onto</span> the stage, my hands <span class="w-tap kw-verb">were cold</span> and my heart <span class="w-tap kw-verb">beat very fast</span>.',
+    "html": '<span class="w-tap kw-link" data-pos="X" data-func="unknown">When we walked onto</span> the stage, my hands <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were cold</span> and my heart <span class="w-tap kw-verb" data-pos="X" data-func="unknown">beat very fast</span>.',
     "pop": '''1. <b>When + 短暫過去式 (walked)：</b>對照第 3、7 課的規則：短動作用一般過去式，背景狀態用過去進行式。<br>
 2. <b>be + 形容詞 (were cold)：</b>cold 描述當下的身體感受，置於 be 動詞之後。<br>
 3. <b>beat – beat – beaten：</b>「心跳」的主動詞是 <b>beat</b>（過去式不變形），與 beat the competition（贏得）同源，為常見雙關考點。</li>
 '''},
    {"text": "I had never played in front of so many people before.",
-    "html": 'I <span class="w-tap kw-verb">had never played</span> in front of so many people <span class="w-tap kw-colloc">before</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had never played</span> in front of so many people <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">before</span>.',
     "pop": '''1. <b>過去完成式的否定 (had never + 過去分詞)：</b>had + 過去分詞 是<b>過去完成式</b>，本故事為過去式敘述，故用 had never played ＝「在那之前從來沒有⋯⋯過」；若要表「到現在為止從來沒有⋯⋯過」，現在完成式必須寫成 <b>have never + 過去分詞</b>。<br>
 2. <b>never 的位置：</b>never 置於助動詞 had 之後、過去分詞之前：<b>had never played</b>。<br>
 3. <b>before 的位置：</b>before 置於句末，是「在此之前」的語意標記；若改成 after 則接續不同事件。</li>
 '''},
    {"text": "As soon as we started to play, I forgot all my worries.",
-    "html": '<span class="w-tap kw-colloc">As soon as</span> we <span class="w-tap kw-verb">started to play</span>, I <span class="w-tap kw-verb">forgot all my worries</span>.',
+    "html": '<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">As soon as</span> we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">started to play</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">forgot all my worries</span>.',
     "pop": '''1. <b>As soon as + 短暫過去式：</b>as soon as ＝「一⋯⋯就⋯⋯」，本故事為過去式敘述，子句用一般過去式（As soon as we <b>started</b>, …）；只有在描述習慣或尚未發生的未來事件時才用一般現在式（As soon as we <b>start</b>, …）。<br>
 2. <b>不規則過去式 (forgot)：</b>forget–forgot–forgotten，與第 3 課的 went 同屬必背。<br>
 3. <b>實義動詞 + 受詞 (forgot all my worries)：</b>此處 forget 是實義動詞，直接接受詞 all my worries，不是連繫動詞；注意別與 forget <b>to do</b>（忘記要做某事）混淆。'''},
   ],
   [
    {"text": "The audience clapped for a long time after the song finished.",
-    "html": 'The audience <span class="w-tap kw-verb">clapped for a long time after</span> the song <span class="w-tap kw-verb">finished</span>.',
+    "html": 'The audience <span class="w-tap kw-verb" data-pos="X" data-func="unknown">clapped for a long time after</span> the song <span class="w-tap kw-verb" data-pos="X" data-func="unknown">finished</span>.',
     "pop": '''1. <b>clap for + 時間：</b>clap ＝「鼓掌」，為 A2 Key「Entertainment and Media」主題的動作動詞。<br>
 2. <b>after + 短暫過去式 (the song finished)：</b>對照 When，引導「之後」的時間子句，同樣使用一般過去式。<br>
 3. <b>名詞作受詞 (the song)：</b>the + 單數可數名詞作 finish 的受詞，finish 後<b>不加介詞</b>。'''},
    {"text": "I haven't seen my teacher smile like that for years.",
-    "html": 'I <span class="w-tap kw-verb">haven\'t seen my teacher smile like that</span> <span class="w-tap kw-colloc">for years</span>.',
+    "html": 'I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">haven\'t seen my teacher smile like that</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">for years</span>.',
     "pop": '''1. <b>現在完成式否定 (haven\'t seen)：</b>have not + 過去分詞；主語 I 用 have，seen 為 see 的過去分詞（不規則）。<br>
 2. <b>for + 時間段 (for years)：</b>再次呼應「since 接時間點、for 接時間段」這組會考必考規則。<br>
 3. <b>感官動詞後接省略 to 的不定詞 (see sb smile)：</b>see / hear / watch 後接動詞原形，表示「看見某人做某事」。'''},
    {"text": "Playing music has made me braver, and I will keep practising every day.",
-    "html": '<span class="w-tap kw-colloc">Playing music</span> <span class="w-tap kw-verb">has made me braver</span>, and I <span class="w-tap kw-verb">will keep practising</span> every day.',
+    "html": '<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">Playing music</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">has made me braver</span>, and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">will keep practising</span> every day.',
     "pop": '''1. <b>動名詞作主語 (Playing music)：</b>動名詞片語作主語時，謂語用<b>單數</b> has，不可寫成 have；此為本課句型回收點。<br>
 2. <b>make + 賓語 + 比較級 (made me braver)：</b>make sb + 形容詞／比較級 ＝「使某人變得⋯⋯」。<br>
 3. <b>will + 動名詞 (will keep practising)：</b>keep 後接動名詞，對應第 4 課的核心規則，will 在此表示未來的承諾。'''},

@@ -24,51 +24,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """At the beginning of the year, our teacher asked us to write down our hopes.""",
-    "html": '''<span class="w-tap kw-colloc">At the beginning of the year</span>, our teacher <span class="w-tap kw-verb">asked us to write down our hopes</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">At the beginning of the year</span>, our teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked us to write down our hopes</span>.''',
     "pop": '''1. <b>ask sb to + 原形 (asked us to write)：</b>ask ＋ 人 ＋ to do，不定詞不可省略。<br>
 2. <b>write down：</b>write down ＝「寫下來」，與 write 的過去式 written（分詞）搭配使用。<br>
 3. <b>hope（希望）：</b>為 A2 Key「Personal Feelings」核心名詞，注意 <b>hopes</b> 是可數複數（write down our hopes）。'''},
    {"text": """I would like to learn a new hobby, and I hope I can join a photography club.""",
-    "html": '''I <span class="w-tap kw-verb">would like to learn a new hobby</span>, and I <span class="w-tap kw-verb">hope I can join a photography club</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">would like to learn a new hobby</span>, and I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">hope I can join a photography club</span>.''',
     "pop": '''1. <b>would like to + 原形 (would like to learn)：</b>would like ＝「想要」，比 want 更有禮，後接 to + 原形。<br>
 2. <b>hope + 子句：</b>hope 後可接 <b>that 子句</b>（hope (that) I can join…），也可接 to do（hope to see you）。<br>
 3. <b>join + 團體：</b>join 後直接接受詞；對照 <b>take part in</b>（參加活動）。</li>'''},
    {"text": """My wish is simple: I want to visit my grandparents every month.""",
-    "html": '''My <span class="w-tap kw-colloc">wish is simple</span>: I <span class="w-tap kw-verb">want to visit my grandparents every month</span>.''',
+    "html": '''My <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">wish is simple</span>: I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">want to visit my grandparents every month</span>.''',
     "pop": '''1. <b>wish + 名詞 (My wish is simple)：</b>wish 在此作<b>名詞</b>「願望」，可數（a wish / my wishes）。<br>
 2. <b>want to + 原形：</b>want ＋ to do 是 A2 最基礎的意願句型。<br>
 3. <b>冒號的用法 (：)：</b>冒號用來解釋前述內容，是會考標點題的常考點。</li>'''},
   ],
   [
    {"text": """My friend Tom said that I should start small and not give up.""",
-    "html": '''My friend Tom <span class="w-tap kw-verb">said that I should start small</span> and not <span class="w-tap kw-colloc">give up</span>.''',
+    "html": '''My friend Tom <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that I should start small</span> and not <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">give up</span>.''',
     "pop": '''1. <b>間接引語 (said that + 子句)：</b>轉述建議時，子句內的 should <b>不隨主句過去式而改變</b>。<br>
 2. <b>should + 原形 (should start)：</b>should 表建議，後接原形 start。<br>
 3. <b>not + 原形 (not give up)：</b>否定祈使句／不定式時用 <b>not</b>，不借助 do：and <u>not give up</u>。</li>'''},
    {"text": """Why don't we take a photo every Sunday afternoon?""",
-    "html": '''<span class="w-tap kw-colloc">Why don't we take a photo</span> <span class="w-tap kw-colloc">every Sunday afternoon</span>?''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">Why don't we take a photo</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">every Sunday afternoon</span>?''',
     "pop": '''1. <b>Why don't we + 原形?：</b>表示建議「我們⋯⋯好不好？」，後接<b>原形動詞</b>（take），是會考口語與寫作皆高頻的建議句型。<br>
 2. <b>take a photo：</b>拍照；photo 的複數為 <b>photos</b>（此處用單數並加 a）。<br>
 3. <b>every + 單數名詞：</b>every Sunday afternoon ＝「每個週日下午」，是表示頻率的固定結構。</li>'''},
    {"text": """I agreed, and we made a plan that we could keep.""",
-    "html": '''I <span class="w-tap kw-verb">agreed</span>, and we <span class="w-tap kw-verb">made a plan that we could keep</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">agreed</span>, and we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">made a plan that we could keep</span>.''',
     "pop": '''1. <b>agree (with sb)：</b>單獨使用 agree ＝「同意」，此處省略了受詞與介詞。<br>
 2. <b>make + 名詞 + that 定語從句：</b>a plan (that) we could keep ＝「我們能維持的計畫」，that 在句中作受詞且可省略。<br>
 3. <b>keep a plan：</b>keep ＝「維持、保持」，是與本課「持續」主題呼應的核心動詞。</li>'''},
   ],
   [
    {"text": """I wish I were better at maths, but I know I can improve.""",
-    "html": '''<span class="w-tap kw-colloc">I wish I were better at</span> maths, but I <span class="w-tap kw-verb">know I can improve</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">I wish I were better at</span> maths, but I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">know I can improve</span>.''',
     "pop": '''1. <b>I wish + 過去式（會考核心句型）：</b><b>I wish + 主詞 + 過去式</b> 表示「與現在事實相反的願望」——希望現在不是這樣。<br>　• <i>例：</i> I wish I <u>were</u> better at maths.（要是我數學更好就好了）／I wish I <u>knew</u> the answer.（要是我知道答案就好了）<br><span style="color:#dc2626;">⚠️</span>動詞能用 be 的過去式 <b>were</b>（I wish I were…），也能用其他動詞的過去式（I wish I knew…），兩者都表「與現在事實相反」；此時不可再加 to。
 2. <b>be good at + 對象：</b>at 後接名詞或動名詞：be good at <b>maths</b>／be good at <b>swimming</b>。<br>
 3. <b>improving：</b>improve 是動詞「改善」，本句作 can improve。</li>'''},
    {"text": """If I keep a diary and review it every month, I will see my progress.""",
-    "html": '''<span class="w-tap kw-colloc">If I keep a diary and review it every month</span>, I <span class="w-tap kw-verb">will see my progress</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">If I keep a diary and review it every month</span>, I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">will see my progress</span>.''',
     "pop": '''1. <b>if 條件句第一類：</b><b>if + 現在式, will + 原形</b>——「如果⋯⋯就⋯⋯」。if 從句中<b>不可用將來式</b>。<br>
 2. <b>review it：</b>review 在此作動詞「複習、檢視」，是 A2 Key「Education」主題詞彙。<br>
 3. <b>see + 受詞：</b>see one's progress ＝「看見自己的進步」；省略 to 的原形須接代詞賓語（see him run），本句沒有。</li>'''},
    {"text": """I hope that next year I can show my family a real photo album.""",
-    "html": '''I <span class="w-tap kw-verb">hope that next year I can show my family</span> a real <span class="w-tap kw-colloc">photo album</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">hope that next year I can show my family</span> a real <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">photo album</span>.''',
     "pop": '''1. <b>hope that + 子句：</b>that 可省略，但正式寫作建議保留；子句語序為「主詞 + 動詞」。<br>
 2. <b>時間狀語放在主詞前：</b>next year 置於子句主詞 I 之前，不影響整體語序。<br>
 3. <b>show sb sth：</b>show ＋ 人 ＋ 物，兩個受詞之間不加介詞。</li>'''},
@@ -119,50 +119,50 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Our English teacher asked us to report a short news story to the class.""",
-    "html": '''Our English teacher <span class="w-tap kw-verb">asked us to report a short news story</span> from the <span class="w-tap kw-colloc">newspaper</span>.''',
+    "html": '''Our English teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked us to report a short news story</span> from the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">newspaper</span>.''',
     "pop": '''1. <b>ask sb to + 原形 (asked us to report)：</b>ask ＋ 人 ＋ to do，不定詞不可省略。<br>
 2. <b>report (n.) 與 report (v.)：</b>• <b>report (v.)</b> ＝ 報導：<u>report</u> a news story.<br>• <b>report (n.)</b> ＝ 報告：a short <u>report</u>.<br>• 這是一詞多義的高頻考點，須依句子判斷詞性。<br>
 3. <b>新聞情境詞彙：</b>article 屬 A2 Key「Documents and Texts」，news（story）屬「Entertainment and Media」，兩者都是新聞寫作的高頻詞彙。'''},
    {"text": """She said, 'A new library will open in our town next month.'""",
-    "html": '''She <span class="w-tap kw-verb">said</span>, <span class="w-tap kw-colloc">'A new library will open in our town next month,'</span> and asked us to <span class="w-tap kw-verb">write a short report about</span> it.''',
+    "html": '''She <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said</span>, <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">'A new library will open in our town next month,'</span> and asked us to <span class="w-tap kw-verb" data-pos="X" data-func="unknown">write a short report about</span> it.''',
     "pop": '''1. <b>直接引語：</b>引號內是說話人<b>當下</b>說的原始句子，時態與原句相同（will open）。<br>
 2. <b>引號的使用：</b>英文用<b>單引號 ' '</b> 表示直接引語；若句子本身已有單引號（如 a 'special' day），則改用<b>雙引號</b>。<br>
 3. <b>will 在此的時態：</b>will 表示未來，轉為間接引語時<b>須整體後移</b>，是本課的核心。</li>'''},
    {"text": """I wrote it down and changed the direct speech into reported speech.""",
-    "html": '''I <span class="w-tap kw-verb">wrote the message on my computer and changed the direct speech into</span> <span class="w-tap kw-colloc">reported speech</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wrote the message on my computer and changed the direct speech into</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">reported speech</span>.''',
     "pop": '''1. <b>write 的過去式 (wrote)：</b>write–wrote–written，為會考必背不規則動詞。<br>
 2. <b>change A into B：</b>change ＝「把 A 變成 B」，into 後接結果；change A to B 則指「改變 A 成為 B」，兩者語意相近但前者強調「轉變」。<br>
 3. <b>術語：</b>direct speech ＝ 直接引語；<b>reported speech</b> ＝ 間接引語（美式亦作 indirect speech）。'''},
   ],
   [
    {"text": """In reported speech we usually move the words back one step in time.""",
-    "html": '''<span class="w-tap kw-link">In reported speech</span> we usually <span class="w-tap kw-verb">move the words back one step in time</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">In reported speech</span> we usually <span class="w-tap kw-verb" data-pos="X" data-func="unknown">move the words back one step in time</span>.''',
     "pop": '''1. <b>時態一致（backshift）核心：</b>間接引語須把<b>主要動詞與 be 動詞</b>整體往過去推一個時態。<br>• <b>am / is / are</b> → <b>was / were</b><br>• <b>will</b> → <b>would</b><br>• <b>can</b> → <b>could</b><br>• 規則動詞 → 過去式；不規則動詞 → 過去分詞<br>
 2. <b>move...back：</b>back 在此作副詞「往後」，描述時間軸的推移。<br>
 3. <b>注意：</b>從句中的<b>時態通常不變</b>（主句時態一致，但從句內再退一格會過於複雜，A2 階段不要求）。</li>'''},
    {"text": """For example, 'I am busy' becomes 'He said that he was busy.'""",
-    "html": '''<span class="w-tap kw-colloc">For example</span>, <span class="w-tap kw-colloc">'I am busy' becomes 'He said that he was busy.'</span>''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">For example</span>, <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">'I am busy' becomes 'He said that he was busy.'</span>''',
     "pop": '''1. <b>轉換示範：</b>直接引語 <b>I am busy</b> 中的 <b>am</b>，在間接引語中轉為 <b>was</b>——這是時態一致的最小示範。<br>
 2. <b>人稱與指示詞也要改：</b>I → he／me → him；now → then／that day，與時態同時處理。<br>
 3. <b>that 子句：</b>reported speech 中的 that 可省略，但正式寫作建議保留。</li>'''},
    {"text": """We also learned that the word said is often better than put.""",
-    "html": '''We also <span class="w-tap kw-verb">learned that the word said is often better than</span> <span class="w-tap kw-colloc">put</span>, and <span class="w-tap kw-verb">wrote the whole article on a screen</span>.''',
+    "html": '''We also <span class="w-tap kw-verb" data-pos="X" data-func="unknown">learned that the word said is often better than</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">put</span>, and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">wrote the whole article on a screen</span>.''',
     "pop": '''1. <b>say vs. put（會考高頻辨析）：</b><br>• <b>say sth</b> ＝ 說（可直接接說話的內容，但<u>不能</u>直接以「人」作受詞）：He said that...<br>• <b>say sth to sb</b> ＝ 對某人說<br>• <b>put sth</b> ＝ 放／put it this way ＝ 這樣說<br><span style="color:#dc2626;">⚠️</span>間接引語只用 <b>said</b>，不用 put（put 須有賓語）。<br>
 2. <b>learned 的過去式：</b>learn 的過去式直接加 -ed，沒有不規則變化。<br>
 3. <b>比較級 better than：</b>better 為 good 的不規則比較級（good–better–best）。</li>'''},
   ],
   [
    {"text": """I was really nervous before I started, wasn't I?""",
-    "html": '''I <span class="w-tap kw-verb">was really nervous before I started</span>, <span class="w-tap kw-colloc">wasn't I</span>?''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was really nervous before I started</span>, <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">wasn't I</span>?''',
     "pop": '''1. <b>反意疑問句（會考核心句型）：</b>前句為肯定，附加問句就用<b>否定</b>；前句為否定，附加問句就用<b>肯定</b>。<br>• 肯定 + <b>否定</b>：You are ready, <u>aren\'t you</u>?<br>• 否定 + <b>肯定</b>：You aren\'t ready, <u>are you</u>?<br><span style="color:#dc2626;">⚠️</span>前句的 be 動詞與助動詞在附加問句中<b>必須一致</b>（was → wasn\'t I）。<br>
 2. <b>反意疑問句的用法：</b>說話者希望得到對方的確認，是口語與聽力的高頻句型。</li>'''},
    {"text": """Actually, it was not as hard as I had imagined.""",
-    "html": '''<span class="w-tap kw-link">Actually</span>, it <span class="w-tap kw-verb">was not as hard as</span> I <span class="w-tap kw-verb">had imagined</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Actually</span>, it <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was not as hard as</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">had imagined</span>.''',
     "pop": '''1. <b>not as + 原級 + as：</b>「不如⋯⋯那麼難」，為第 25 課 as...as 結構的應用。<br>
 2. <b>過去完成式 (had imagined)：</b>had + 過去分詞，表示「在我開始<b>之前</b>就已經想像過」，與 as...as 構成時間先後。<br>
 3. <b>imagine：</b>imagine 後接<b>動名詞</b>或 <b>from + 名詞</b>：imagine being there／imagine it from their view。</li>'''},
    {"text": """The teacher said that our report was the clearest one, which made us extremely happy.""",
-    "html": '''The teacher <span class="w-tap kw-verb">said that our report was the clearest one</span>, <span class="w-tap kw-colloc">which made us extremely happy</span>.''',
+    "html": '''The teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said that our report was the clearest one</span>, <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">which made us extremely happy</span>.''',
     "pop": '''1. <b>最高級 + one：</b>the clearest one ＝「最清楚的那一份」，one 替代前文名詞。<br>
 2. <b>非限定關係子句 (which made us...)：</b>which 指代前面<b>整件事</b>（老師這樣說），前有<b>逗號</b>。<br>
 3. <b>make + 賓語 + 形容詞 (made us extremely happy)：</b>make sb + adj. ＝「使某人變得⋯⋯」，與第 8 課的 made me braver 同型。</li>'''},

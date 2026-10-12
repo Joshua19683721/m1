@@ -27,51 +27,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Last Monday, our class began to use a new AI tool for homework.""",
-    "html": '''<span class="w-tap kw-link">Last Monday</span>, our class <span class="w-tap kw-verb">began to use</span> a new AI tool <span class="w-tap kw-colloc">for homework</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last Monday</span>, our class <span class="w-tap kw-verb" data-pos="X" data-func="unknown">began to use</span> a new AI tool <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">for homework</span>.''',
     "pop": '''1. <b>begin / start + to + 原形 (began to use)：</b>begin ＝ start，「開始做某事」後面接 <b>to do</b>；也可以用 begin + doing，兩者都正確，會考寫作建議用 begin to do。<br>
 2. <b>一般過去式 (began)：</b>故事敘述已發生的事，故用 began。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ begin to use</s>（時態未變）或 <s>✗ began to using</s>。<br>
 3. <b>for + 名詞 (for homework)：</b>for 表目的「為了」，後面接<b>名詞或動名詞</b>（for homework／for reading），不可直接接原形動詞。'''},
    {"text": """My friend opened the software on her computer and clicked on the first web page.""",
-    "html": '''My friend <span class="w-tap kw-verb">opened</span> the <span class="w-tap kw-colloc">software</span> on her computer and <span class="w-tap kw-verb">clicked on</span> the first <span class="w-tap kw-colloc">web page</span>.''',
+    "html": '''My friend <span class="w-tap kw-verb" data-pos="X" data-func="unknown">opened</span> the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">software</span> on her computer and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">clicked on</span> the first <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">web page</span>.''',
     "pop": '''1. <b>click (on) + 賓格 (clicked on the first web page)：</b>click ＝「點（滑鼠）」，可說 <u>click a link</u>，也可說 <u>click on a link</u>，兩者都正確。<br>
 2. <b>不可數名詞 software：</b>software 不可數，用 the software／a piece of software，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ a software</s> 或 <s>✗ the softwares</s>。<br>
 3. <b>複合名詞的層級 (web page)：</b>web page ＝「網頁」，website ＝「網站」，web ＝「網路」，三者不可互相替換。'''},
    {"text": """The answers appeared on the screen, and the whole class felt very excited.""",
-    "html": '''The answers <span class="w-tap kw-verb">appeared on the screen</span>, and <span class="w-tap kw-link">the whole class</span> <span class="w-tap kw-verb">felt very excited</span>.''',
+    "html": '''The answers <span class="w-tap kw-verb" data-pos="X" data-func="unknown">appeared on the screen</span>, and <span class="w-tap kw-link" data-pos="X" data-func="unknown">the whole class</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt very excited</span>.''',
     "pop": '''1. <b>連繫動詞 + 形容詞 (felt very excited)：</b>feel ＝「感到」，本句後面接<b>形容詞</b> excited；feel 也可接 well／badly 這類描述身體狀況的副詞。<br>
 2. <b>the + 集合名詞 (the whole class)：</b>the whole class ＝「全班」，class 在此視為單數，謂語用單數動詞。<br>
 3. <b>並列完整句 (…, and …)：</b>and 連接兩個各自完整的句子，兩個謂語都要符合各自的主語。'''},
   ],
   [
    {"text": """The tool worked online, so I did my project with it in one evening.""",
-    "html": '''The tool <span class="w-tap kw-verb">worked online</span>, <span class="w-tap kw-verb">so</span> I <span class="w-tap kw-colloc">did my project with it</span> <span class="w-tap kw-link">in one evening</span>.''',
+    "html": '''The tool <span class="w-tap kw-verb" data-pos="X" data-func="unknown">worked online</span>, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">so</span> I <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">did my project with it</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">in one evening</span>.''',
     "pop": '''1. <b>結果連接詞 so：</b>so ＝「因此、所以」，<b>前句是原因、後句是結果</b>；<span style="color:#dc2626;">⚠️ 陷阱：</span>原因用 because、結果才用 so，兩者方向相反不可互換。<br>
 2. <b>do 的過去式 (did)：</b>本句的 did 是實義動詞 do 的過去式（do–did–done），後面接受詞 my project；只有當 did 作<b>助動詞</b>時，後面的動詞才一律用原形（Did you use it?），不可寫成 <s>✗ Did you used it</s>。<br>
 3. <b>表示耗時的片語置於句尾 (in one evening)：</b>do + 賓格 + in 一段時間，是會考寫作加分的結構。'''},
    {"text": """I made a short note, because I thought it knew every subject.""",
-    "html": '''I <span class="w-tap kw-verb">made a short note</span>, <span class="w-tap kw-verb">because</span> I thought it knew <span class="w-tap kw-colloc">every subject</span>.''',
+    "html": '''I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">made a short note</span>, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">because</span> I thought it knew <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">every subject</span>.''',
     "pop": '''1. <b>原因連接詞 because：</b>because ＝「因為」，後面接<b>原因</b>；與 so（結果）方向相反，兩者不可互換，這組對比是會考標配。<br>
 2. <b>think + that 子句 (thought it knew …)：</b>think 表看法，子句要用<b>陳述句語序</b>（that it knew），<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ thought that did it know</s>。<br>
 3. <b>make 的過去式與可數名詞 (made a short note)：</b>make–made–made（不規則三態），note 是可數名詞，前面須加冠詞與形容詞 a short。'''},
    {"text": """My marks in the test were much better than last month.""",
-    "html": '''My <span class="w-tap kw-colloc">marks in the test</span> <span class="w-tap kw-verb">were much better than</span> <span class="w-tap kw-link">last month</span>.''',
+    "html": '''My <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">marks in the test</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were much better than</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">last month</span>.''',
     "pop": '''1. <b>比較級 + than (much better than)：</b>單音節形容詞加 -er（good–better）；修飾比較級的 much 放在比較級<b>之前</b>。<br>
 2. <b>than 後接比較對象 (than last month)：</b>than 後接<b>時間</b>名詞時直接用 last month，不必加 the（than the last month 也可接受）；但比較特定對象時仍要保留 the（taller than the other boys），不可一概說 than 之後都不加 the。<br>
 3. <b>be 動詞與複數主語一致 (marks … were)：</b>主語 My marks 為複數，be 動詞用 <b>were</b>，不可寫成 <s>✗ My marks was</s>。'''},
   ],
   [
    {"text": """Then one day I printed a page with a wrong fact about my subject.""",
-    "html": '''<span class="w-tap kw-link">Then one day</span> I <span class="w-tap kw-verb">printed</span> a page <span class="w-tap kw-colloc">with a wrong fact about</span> my <span class="w-tap kw-colloc">subject</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Then one day</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">printed</span> a page <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">with a wrong fact about</span> my <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">subject</span>.''',
     "pop": '''1. <b>with + 名詞 (with a wrong fact)：</b>with ＝「帶著、附有」，後面接名詞；要表示「關於某主題」則要用 about。<br>
 2. <b>規則過去式 (printed)：</b>print 的過去式仍是 printed（加 -ed），重音不變；其分詞為 printing。<br>
 3. <b>指示副詞 Then 引出轉折：</b>Then one day 承接前文的順利，用來提示接下來要發生變化。'''},
    {"text": """The teacher showed the class that the machine could make mistakes too.""",
-    "html": '''The teacher <span class="w-tap kw-verb">showed the class that</span> the machine <span class="w-tap kw-verb">could make mistakes</span> <span class="w-tap kw-link">too</span>.''',
+    "html": '''The teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">showed the class that</span> the machine <span class="w-tap kw-verb" data-pos="X" data-func="unknown">could make mistakes</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">too</span>.''',
     "pop": '''1. <b>show + 人 + that 子句 (showed the class that …)：</b>show somebody (that) … ＝「讓某人知道」；間接敘述的子句一律用陳述句語序。<br>
 2. <b>情態動詞 could + 原形 (could make mistakes)：</b>could 是 can 的過去式，後面<b>只能接原形</b> make。<br>
 3. <b>too 的位置：</b>too 用來補充前面已提過的資訊，通常置於句尾或緊接所修飾的字詞之後，不可插在句首。'''},
    {"text": """Now I still use the tool, but I check answers because I want to learn.""",
-    "html": '''<span class="w-tap kw-link">Now</span> I <span class="w-tap kw-verb">still use the tool</span>, <span class="w-tap kw-verb">but I check answers</span> <span class="w-tap kw-verb">because</span> I want to learn.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Now</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">still use the tool</span>, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">but I check answers</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">because</span> I want to learn.''',
     "pop": '''1. <b>轉折連接詞 but：</b>but ＝「但是」，前後語意相反；此處表示「工具照用，但答案要自己查」。<br>
 2. <b>原因連接詞 because：</b>because ＝「因為」，後面接<b>原因</b>，與 so（結果）方向相反，這組對比是會考標配。<br>
 3. <b>want to + 原形 (want to learn)：</b>want ＝「想要」，後接 to do；若用 want that… 則句子不正確。'''},
@@ -122,51 +122,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """Last summer my family went to a small island near our country.""",
-    "html": '''<span class="w-tap kw-link">Last summer</span> my family <span class="w-tap kw-verb">went to</span> a <span class="w-tap kw-colloc">small island</span> <span class="w-tap kw-colloc">near our country</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Last summer</span> my family <span class="w-tap kw-verb" data-pos="X" data-func="unknown">went to</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">small island</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">near our country</span>.''',
     "pop": '''1. <b>go 的過去式 (went)：</b>go–went–gone（不規則），敘述暑假已發生的行程用 went。<br>
 2. <b>go to + 地點：</b>go ＝「到⋯⋯去」，後面接地點，<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ went at the island</s>。<br>
 3. <b>last + 時間名詞 (Last summer)：</b>last summer ＝「去年夏天」，前不加 the；指示用法要加 the（the last summer I went there）。'''},
    {"text": """The sea was blue and hot under the summer sun.""",
-    "html": '''The sea <span class="w-tap kw-verb">was blue and hot</span> <span class="w-tap kw-link">under the summer sun</span>.''',
+    "html": '''The sea <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was blue and hot</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">under the summer sun</span>.''',
     "pop": '''1. <b>be 動詞 + 並列形容詞 (was blue and hot)：</b>be 後面接<b>形容詞</b>作表語，blue 與 hot 可用 and 並列。<br>
 2. <b>天氣說法 (hot)：</b>描述天氣用 <b>The weather is hot</b>；weather 不可數，不可寫成 <s>✗ The weathers are hot</s>。<br>
 3. <b>under the sun：</b>under the sun ＝「在陽光之下」，是固定搭配，under 後接無生命的名詞。'''},
    {"text": """On the beach I saw green bottles and white bags in the water.""",
-    "html": '''<span class="w-tap kw-link">On the beach</span> I <span class="w-tap kw-verb">saw</span> green bottles and white bags <span class="w-tap kw-colloc">in the water</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">On the beach</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">saw</span> green bottles and white bags <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">in the water</span>.''',
     "pop": '''1. <b>see 的過去式 (saw)：</b>see–saw–seen（不規則），此處敘述當下已完成的一次觀察。<br>
 2. <b>顏色 + 複數名詞 (green bottles and white bags)：</b>顏色形容詞直接置於名詞之前，且 and 兩邊都用複數以保持一致。<br>
 3. <b>in 與 on 的差別：</b>on the beach ＝「在沙灘表面上」，in the water ＝「在水裡面」，介系詞不可混用。'''},
   ],
   [
    {"text": """A woman told us that millions of bottles go from rivers into the sea.""",
-    "html": '''A woman <span class="w-tap kw-verb">told us that</span> millions of bottles <span class="w-tap kw-verb">go from rivers into the sea</span>.''',
+    "html": '''A woman <span class="w-tap kw-verb" data-pos="X" data-func="unknown">told us that</span> millions of bottles <span class="w-tap kw-verb" data-pos="X" data-func="unknown">go from rivers into the sea</span>.''',
     "pop": '''1. <b>tell + 人 + that 子句 (told us that …)：</b>tell 必須先接<b>間接受詞</b>（us）才能接 that 子句；say 之後不能先放「人」再接 that 子句（✓ She said that…／✗ She said us that…）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ told that millions of bottles…</s>。<br>
 2. <b>millions of + 複數名詞：</b>millions of ＝「數百萬個」，後面一定要接<b>複數</b>名詞 bottles。<br>
 3. <b>一般現在式表長久事實 (go)：</b>go 在此不是敘述過去，而是說明<b>年年如此</b>的事實，故用原形。'''},
    {"text": """The plastic in the sea does not disappear for many years.""",
-    "html": '''The plastic in the sea <span class="w-tap kw-verb">does not disappear</span> <span class="w-tap kw-link">for many years</span>.''',
+    "html": '''The plastic in the sea <span class="w-tap kw-verb" data-pos="X" data-func="unknown">does not disappear</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">for many years</span>.''',
     "pop": '''1. <b>助動詞 does not + 原形 (does not disappear)：</b>第三人稱單數的否定要用 does not，後面的動詞<b>還原成原形</b> disappear，不寫 disappears。<br>
 2. <b>for + 時間長度 (for many years)：</b>for 後接「多長」的時間；since 則接「從哪個時間點」（since 2015），兩者不可互換。<br>
 3. <b>主語中心詞 (The plastic)：</b>in the sea 只是修飾片語，中心詞是不可數的 plastic，所以用 does。'''},
    {"text": """Fish and plants cannot grow well in that dirty water.""",
-    "html": '''Fish and plants <span class="w-tap kw-verb">cannot grow well</span> <span class="w-tap kw-link">in that dirty water</span>.''',
+    "html": '''Fish and plants <span class="w-tap kw-verb" data-pos="X" data-func="unknown">cannot grow well</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">in that dirty water</span>.''',
     "pop": '''1. <b>cannot + 原形 (cannot grow)：</b>cannot 是 can not 的合寫，後面只能接原形 grow。<br>
 2. <b>副詞修飾動詞 (grow well)：</b>well 在此是<b>副詞</b>，修飾動詞 grow，必須放在動詞之後。<br>
 3. <b>and 連接的主語：</b>Fish and plants 是複數主語，動詞同樣視為複數；跟在情態動詞後仍一律用原形。'''},
   ],
   [
    {"text": """So my class walked along the beach and put the rubbish into big bags.""",
-    "html": '''<span class="w-tap kw-verb">So</span> my class <span class="w-tap kw-verb">walked along the beach</span> and <span class="w-tap kw-verb">put the rubbish into big bags</span>.''',
+    "html": '''<span class="w-tap kw-verb" data-pos="X" data-func="unknown">So</span> my class <span class="w-tap kw-verb" data-pos="X" data-func="unknown">walked along the beach</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">put the rubbish into big bags</span>.''',
     "pop": '''1. <b>put + 賓語 + 介系詞片語 (put the rubbish into big bags)：</b>put ＝「放」，可與 into／in／on 搭配；其過去式仍是 put（put–put–put）。<br>
 2. <b>walk along：</b>walk along ＝「沿著⋯⋯走」，是描述淨灘行動的高頻片語。<br>
 3. <b>句首的 so：</b>So 在句首接續完整句子時，會考寫作建議加逗號：<u>✓ So, my class walked…</u>。'''},
    {"text": """We found more than a hundred bottles in only two hours.""",
-    "html": '''We <span class="w-tap kw-verb">found</span> <span class="w-tap kw-colloc">more than a hundred bottles</span> <span class="w-tap kw-link">in only two hours</span>.''',
+    "html": '''We <span class="w-tap kw-verb" data-pos="X" data-func="unknown">found</span> <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">more than a hundred bottles</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">in only two hours</span>.''',
     "pop": '''1. <b>more than + 數量：</b>more than ＝「超過」，後面接數量；詢問此類數量要用 How many + 複數名詞。<br>
 2. <b>find 的過去式 (found)：</b>find–found–found（不規則），注意與 find out（查明結果）的差別。<br>
 3. <b>only 的位置 (in only two hours)：</b>only 修飾時間狀語時要放在數詞<b>之前</b>，表示「僅僅兩小時」。'''},
    {"text": """Now I carry a cloth bag, because our world needs a cleaner sea.""",
-    "html": '''<span class="w-tap kw-link">Now</span> I <span class="w-tap kw-verb">carry a cloth bag</span>, <span class="w-tap kw-verb">because</span> our world <span class="w-tap kw-verb">needs a cleaner sea</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">Now</span> I <span class="w-tap kw-verb" data-pos="X" data-func="unknown">carry a cloth bag</span>, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">because</span> our world <span class="w-tap kw-verb" data-pos="X" data-func="unknown">needs a cleaner sea</span>.''',
     "pop": '''1. <b>原因連接詞 because：</b>because ＝「因為」，後面接<b>原因</b>，與 so（結果）方向相反，會考常兩者互換出題。<br>
 2. <b>一般現在式表習慣 (carry)：</b>carry 描述「我每天的固定做法」，主語 I 謂語用原形。<br>
 3. <b>比較級作定語 (a cleaner sea)：</b>clean 加 -er 變 cleaner，形容詞前須加冠詞 a／the。'''},
@@ -217,51 +217,51 @@ LESSONS.append({
  "paragraphs": [
   [
    {"text": """The weather was cloudy and windy, but the morning was still hot.""",
-    "html": '''<span class="w-tap kw-colloc">The weather</span> <span class="w-tap kw-verb">was cloudy and windy</span>, <span class="w-tap kw-verb">but</span> the morning <span class="w-tap kw-verb">was still hot</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">The weather</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was cloudy and windy</span>, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">but</span> the morning <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was still hot</span>.''',
     "pop": '''1. <b>weather 為不可數名詞：</b>weather 不可數，謂語用單數（<b>The weather is bad</b>）。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ The weathers are bad</s>。<br>
 2. <b>-y 結尾的形容詞 (cloudy, windy)：</b>cloudy ＝「多雲的」、windy ＝「有風的」，直接放在 be 動詞之後作表語。<br>
 3. <b>轉折連接詞 but：</b>but ＝「但是」，前後兩句語意相反，用逗號連接兩個完整句子即可。'''},
    {"text": """Grey clouds moved fast across the sky above our school.""",
-    "html": '''<span class="w-tap kw-colloc">Grey clouds</span> <span class="w-tap kw-verb">moved fast</span> <span class="w-tap kw-link">across the sky above our school</span>.''',
+    "html": '''<span class="w-tap kw-colloc" data-pos="X" data-func="unknown">Grey clouds</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">moved fast</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">across the sky above our school</span>.''',
     "pop": '''1. <b>cloud 的可數與複數 (clouds)：</b>cloud 作「一團雲」時可數，複數為 clouds；指整片雲層時也常見複數。<br>
 2. <b>副詞修飾動詞 (moved fast)：</b>fast 在此為副詞，修飾動詞 moved，必須置於動詞之後。<br>
 3. <b>across vs. through：</b>across ＝「橫過表面」（across the sky），through ＝「由一側穿過另一側」（through the room／through the sky）；兩者語意相近，依語境選擇。'''},
    {"text": """The wind became stronger, so everyone looked out of the window.""",
-    "html": '''The wind <span class="w-tap kw-verb">became stronger</span>, <span class="w-tap kw-verb">so</span> everyone <span class="w-tap kw-verb">looked out of the window</span>.''',
+    "html": '''The wind <span class="w-tap kw-verb" data-pos="X" data-func="unknown">became stronger</span>, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">so</span> everyone <span class="w-tap kw-verb" data-pos="X" data-func="unknown">looked out of the window</span>.''',
     "pop": '''1. <b>become 的過去式 (became)：</b>become–became–become（不規則），比 be 更強調「變化」的過程。<br>
 2. <b>比較級作表語 (became stronger)：</b>strong 是單音節形容詞，加 -er 變 stronger，說明風勢「變得」更強。<br>
 3. <b>look out (of) + 場所：</b>look out of the window ＝「往窗外看」；美式與口語常直接說 <b>look out the window</b>（of 省略），兩者都可接受。'''},
   ],
   [
    {"text": """At noon the sky turned black and the temperature dropped ten degrees.""",
-    "html": '''<span class="w-tap kw-link">At noon</span> the sky <span class="w-tap kw-verb">turned black</span> and the temperature <span class="w-tap kw-verb">dropped ten degrees</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">At noon</span> the sky <span class="w-tap kw-verb" data-pos="X" data-func="unknown">turned black</span> and the temperature <span class="w-tap kw-verb" data-pos="X" data-func="unknown">dropped ten degrees</span>.''',
     "pop": '''1. <b>At + 時刻 / in + 時段：</b>at 用於<b>特定時刻</b>（at noon），in 用於較長時段（in the afternoon），兩者不可互換。<br>
 2. <b>turn + 形容詞 (turned black)：</b>turn ＝「變得」，後面只能接<b>形容詞</b>作表語（turn black／turn cold）。<br>
 3. <b>drop + 幅度：</b>drop ＝「下降」，此處作<b>及物動詞</b>，受詞 ten degrees（下降的幅度）接在後面；也可作不及物動詞，此時後面要接副詞或介系詞片語（dropped sharply／dropped by ten degrees）。'''},
    {"text": """The radio said a thunderstorm would arrive in the afternoon.""",
-    "html": '''The radio <span class="w-tap kw-verb">said</span> a thunderstorm <span class="w-tap kw-verb">would arrive</span> <span class="w-tap kw-link">in the afternoon</span>.''',
+    "html": '''The radio <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said</span> a thunderstorm <span class="w-tap kw-verb" data-pos="X" data-func="unknown">would arrive</span> <span class="w-tap kw-link" data-pos="X" data-func="unknown">in the afternoon</span>.''',
     "pop": '''1. <b>would + 原形 (would arrive)：</b>would ＝「將會」，後面接原形 arrive；would 沒有第三人稱單數的變化形式。<br>
 2. <b>say + 子句作受詞（that 可省略）：</b>say 後面的受詞是帶動詞的<b>子句</b>，不是名詞片語：said (that) a thunderstorm would arrive。<br>
 3. <b>可數名詞 thunderstorm：</b>a thunderstorm ＝「雷雨、暴風雨」，前面須加冠詞 a，不可寫成 <s>✗ thunderstorm</s> 單獨使用。'''},
    {"text": """My teacher said school would close the next morning if the storm got stronger.""",
-    "html": '''My teacher <span class="w-tap kw-verb">said school would close</span> the next morning <span class="w-tap kw-verb">if the storm got stronger</span>.''',
+    "html": '''My teacher <span class="w-tap kw-verb" data-pos="X" data-func="unknown">said school would close</span> the next morning <span class="w-tap kw-verb" data-pos="X" data-func="unknown">if the storm got stronger</span>.''',
     "pop": '''1. <b>省略 that 的間接引語：</b>said 後的 that 可省略：said (that) school would close；會考寫作建議把 that 補回。<br>
 2. <b>第二類條件句 if + 過去式, would + 原形：</b>if the storm <b>got</b> stronger, school <b>would</b> close，表示「（如果）風暴變得更強，學校就會停課」；第一類條件句才是 if + 現在式, will + 原形。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ if the storm will get stronger, school will close</s>。<br>
 3. <b>指示用法 the next morning：</b>next 前要加 the，表示「隔天的早上」。'''},
   ],
   [
    {"text": """In the morning the rain was still heavy and the streets were wet.""",
-    "html": '''<span class="w-tap kw-link">In the morning</span> the rain <span class="w-tap kw-verb">was still heavy</span> and the streets <span class="w-tap kw-verb">were wet</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">In the morning</span> the rain <span class="w-tap kw-verb" data-pos="X" data-func="unknown">was still heavy</span> and the streets <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were wet</span>.''',
     "pop": '''1. <b>複數主語 + be 動詞 (streets were)：</b>主語 the streets 為複數，be 動詞要用 <b>were</b>。<span style="color:#dc2626;">⚠️ 陷阱：</span>不可寫成 <s>✗ the streets was wet</s>。<br>
 2. <b>副詞 still 的位置：</b>still ＝「仍然」，放在 be 動詞之後（was <b>still</b> heavy），是會考高頻副詞。<br>
 3. <b>be 動詞 + 形容詞 (were wet)：</b>wet 是形容詞修飾街道表面，不可寫成 <s>✗ were wetly</s>。'''},
    {"text": """A tree fell near the coast, and the strong wind broke two windows.""",
-    "html": '''A tree <span class="w-tap kw-verb">fell near the coast</span>, and the strong wind <span class="w-tap kw-verb">broke two windows</span>.''',
+    "html": '''A tree <span class="w-tap kw-verb" data-pos="X" data-func="unknown">fell near the coast</span>, and the strong wind <span class="w-tap kw-verb" data-pos="X" data-func="unknown">broke two windows</span>.''',
     "pop": '''1. <b>fall 的過去式 (fell)：</b>fall–fell–fallen（不規則）；分詞為 falling（正在落下）、fallen（已倒下）。<br>
 2. <b>break 的過去式 (broke)：</b>break–broke–broken（不規則），此處作及物動詞「打破」，受詞 two windows 置於後方。<br>
 3. <b>數量詞 + 複數名詞 (two windows)：</b>two 之後必須接<b>複數</b>名詞 windows，不可寫成 <s>✗ two window</s>。'''},
    {"text": """After the storm, the sun came out and the day felt cool.""",
-    "html": '''<span class="w-tap kw-link">After the storm</span>, the sun <span class="w-tap kw-verb">came out</span> and the day <span class="w-tap kw-verb">felt cool</span>.''',
+    "html": '''<span class="w-tap kw-link" data-pos="X" data-func="unknown">After the storm</span>, the sun <span class="w-tap kw-verb" data-pos="X" data-func="unknown">came out</span> and the day <span class="w-tap kw-verb" data-pos="X" data-func="unknown">felt cool</span>.''',
     "pop": '''1. <b>時間連接詞 After (After the storm)：</b>After ＝「⋯⋯之後」，後面接<b>名詞</b>或完整句子（After the storm／After it stopped）。<br>
 2. <b>come out 的慣用義：</b>come out 在此不是「走出來」，而是「（太陽）出來」，是描述天氣的高頻片語。<br>
 3. <b>連繫動詞 feel + 形容詞 (felt cool)：</b>feel 後接形容詞；felt 是 feel 的不規則過去式（feel–felt–felt）。'''},
