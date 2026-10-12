@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-import re, os, sys
+import re, os, sys, json
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import poslib
 
 TEMPLATE = os.path.join(HERE, "template", "gemini-code.html")
 OUTDIR   = os.path.abspath(os.path.join(HERE, os.pardir, "docs"))
@@ -12,6 +14,31 @@ SCRIPT = re.search(r"<script>(.*?)</script>", src, re.S).group(1)
 
 CN = ["一", "二", "三"]
 Q  = chr(39)
+
+
+def _attr(s):
+    """把屬性值裡會破壞 HTML 屬性的字元轉成實體。"""
+    return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+             .replace('"', "&quot;"))
+
+
+def sentence_pos_attrs(html):
+    """把整句「每一個字」的詞性／中文說明編成 data-wpos、data-wfun 兩個屬性。
+
+    data-wpos = [[字, 詞性, 中文說明, group_id], ...]
+    data-wfun = 各個已標註片語的句法功能（以逗號分隔，索引＝span index）
+    group_id = -1 表示這個字不屬於任何已標註的片語。
+    """
+    try:
+        rows, funcs = poslib.analyze_full(html)
+    except Exception:
+        return ""
+    if not rows:
+        return ""
+    arr = json.dumps([[w, p, n, g] for w, p, n, g in rows],
+                     ensure_ascii=False, separators=(",", ":"))
+    return (' data-wpos="' + _attr(arr) + '"'
+            ' data-wfun="' + _attr(",".join(funcs)) + '"')
 
 
 
@@ -226,6 +253,49 @@ def render(L, idx):
              '      <button class="btn-tool" id="btnReview" onclick="toggleReview()">\u25bc 展開全部解析</button>\n'
              '      <button class="btn-tool ghost" onclick="printPage()">\U0001F5A8 列印本節</button>\n'
              '      <a class="btn-tool ghost" href="reading.html" target="_blank" rel="noopener" title="開新視窗：AI 隨機出題的 KET 閱讀理解練習（內容未經人工檢核）">📖 KET 閱讀練習</a>\n'
+             '      <button class="btn-tool" id="btnErrBook" onclick="toggleErrBook()">\U0001F4D5 錯字本</button>\n'
+             '    </div>\n'
+             '    <div class="errbook-panel" id="errBookPanel" hidden>\n'
+             '      <div class="errbook-head">\n'
+             '        <span class="badge badge-grammar">\U0001F4D5 錯字本</span>\n'
+             '        <b>間隔重複複習：</b>答錯的字會自動收進來，依遺忘曲線安排下次複習；\n'
+             '        <b>滾動過關</b>＝連續答對 3 次才算過關。\n'
+             '        <span class="type-count" id="ebCount"></span>\n'
+             '      </div>\n'
+             '      <div class="errbook-stats" id="ebStats"></div>\n'
+             '      <div class="eb-card" id="ebCard" hidden>\n'
+             '        <div class="eb-card-q" id="ebQ"></div>\n'
+             '        <div class="eb-card-ctx" id="ebCtx"></div>\n'
+             '        <div class="eb-card-a" id="ebA">\n'
+             '          <div class="eb-mean" id="ebMean"></div>\n'
+             '          <div class="eb-tip" id="ebTip"></div>\n'
+             '        </div>\n'
+             '        <div class="eb-btns">\n'
+             '          <button class="eb-btn show" id="ebShowBtn" onclick="ebShow()">\u25b6 \u986f\u793a\u7b54\u6848</button>\n'
+             '          <button class="eb-btn no" id="ebNoBtn" onclick="ebGrade(false)" hidden>\u2715 \u5fd8\u4e86</button>\n'
+             '          <button class="eb-btn yes" id="ebYesBtn" onclick="ebGrade(true)" hidden>\u2713 \u8a18\u5f97</button>\n'
+             '        </div>\n'
+             '        <div class="eb-progress"><i id="ebBar" style="width:0%"></i></div>\n'
+             '        <div class="eb-streak" id="ebStreak"></div>\n'
+             '      </div>\n'
+             '      <div class="eb-btns">\n'
+             '        <button class="eb-btn show" id="ebStartBtn" onclick="ebStart()">\u25b6 \u958b\u59cb\u4eca\u65e5\u8907\u7fd2</button>\n'
+             '        <button class="eb-btn ghost2" onclick="ebResetSession()">\u91cd\u65b0\u9019\u4e00\u8f2a</button>\n'
+             '        <button class="eb-btn ghost2" onclick="ebClearGrad()">\u6e05\u9664\u5df2\u904e\u95dc</button>\n'
+             '        <button class="eb-btn ghost2" onclick="ebClearAll()">\u6e05\u7a7a\u932f\u5b57\u672c</button>\n'
+             '      </div>\n'
+             '      <div class="eb-add">\n'
+             '        <input id="ebAddInput" type="text" placeholder="\u624b\u52d5\u8f38\u5165\u55ae\u5b57\u52a0\u5165\u932f\u5b57\u672c\uff08\u6309 Enter\uff09"\n'
+             '               autocomplete="off" spellcheck="false">\n'
+             '        <button class="eb-btn ghost2" onclick="ebAddManual()">\uff0b \u52a0\u5165</button>\n'
+             '      </div>\n'
+             '      <div class="eb-tip-box" id="ebTipBox">\n'
+             '        <b>\u8907\u7fd2\u6280\u5de7\uff1a</b>\u2460 \u5148\u770b\u5b57\u60f3\u56de\u610f\u601d\uff08\u4e3b\u52d5\u56de\u60f3\uff09\uff0c\u518d\u770b\u7b54\u6848\uff1b\n'
+             '        \u2461 \u5fd8\u4e86\u5c31\u628a\u9593\u9694\u7e2e\u56de\u4eca\u5929\uff0c\u8a18\u5f97\u5c31\u62c9\u9577\u9593\u9694\uff1b\n'
+             '        \u2462 \u540c\u4e00\u500b\u5b57\u8981\u9023\u7e8c\u7b54\u5c0d 3 \u6b21\u624d\u6703\u300c\u904e\u95dc\u300d\uff0c\u904e\u95dc\u5f8c\u4ecd\u6703\u5728\u66f4\u96b1\u7684\u9593\u9694\u5f8c\u56de\u8a2a\uff1b\n'
+             '        \u2463 \u6bcf\u6b21\u8907\u7fd2\u8acb\u51fa\u8072\u6717\u8b80\uff0c\u540c\u6642\u7df4\u767c\u97f3\u3002\n'
+             '      </div>\n'
+             '      <div class="eb-list" id="ebList"></div>\n'
              '    </div>\n'
              '    <div class="type-panel" id="typePanel" hidden>\n'
              '      <div class="type-head">\n'
@@ -244,7 +314,7 @@ def render(L, idx):
              '        <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>\n'
              '        <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>\n'
              '      </div>\n'
-             '    </div>\n  </header>\n')
+             '    </div>\n      <!-- 單字結構與詞性對照面板 -->\n      <div class="word-pos-panel" id="wordPosPanel">\n        <div class="word-pos-header">\n          <h3>📖 單字結構與詞性對照</h3>\n          <button class="word-pos-close" onclick="toggleWordPosPanel()" aria-label="關閉">×</button>\n        </div>\n        <div class="word-pos-body" id="wordPosBody">\n          <div class="word-pos-empty">請按 <kbd>Alt</kbd>+<kbd>Z</kbd> 開啟面板</div>\n        </div>\n      </div>\n    </div>\n  </header>\n')
 
     P.append('  <div class="story-card">\n'
              '    <h2 class="section-title">📖 ' + t["story_title"] + '</h2>\n'
@@ -274,7 +344,9 @@ def render(L, idx):
         for j, s in enumerate(para, 1):
             P.append('      <!-- Sentence ' + str(i) + '.' + str(j) + ' -->\n')
             P.append(BLOCK_OPEN)
-            P.append('        <div class="sentence-text">\n          ' + s["html"] + '\n        </div>\n')
+            P.append('        <div class="sentence-text"' +
+                     sentence_pos_attrs(s["html"]) + '>\n          ' +
+                     s["html"] + '\n        </div>\n')
             P.append('        <div class="sentence-grammar-pop">\n'
                      '          <strong>🔍 文法與句法結構分析：</strong><br>\n'
                      '          ' + clean_pop(s["pop"]) + '\n        </div>\n      </div>\n')

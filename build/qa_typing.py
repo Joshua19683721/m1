@@ -68,7 +68,7 @@ for f in files:
             arr.append("".join(buf))
         texts = []
         for block in html.split('<div class="paragraph-container">')[1:]:
-            rx = re.compile(r'<div class="sentence-text">\s*\n(.*?)\n\s*</div>', re.S)
+            rx = re.compile(r'<div class="sentence-text"[^>]*>\s*\n(.*?)\n\s*</div>', re.S)
             texts += [re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", x)).strip()
                       for x in rx.findall(block)]
         if len(arr) != 9:

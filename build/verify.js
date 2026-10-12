@@ -29,7 +29,7 @@ for (const f of files) {
   const blocks = html.split('<div class="paragraph-container">').slice(1);
   if (blocks.length !== 3) problems.push('expected 3 paragraph containers, got ' + blocks.length);
   blocks.forEach((b, i) => {
-    const rx = new RegExp('<div class="sentence-text">' + NL + '([\\s\\S]*?)' + NL + '        <\\/div>', 'g');
+    const rx = new RegExp('<div class="sentence-text"[^>]*>' + NL + '([\\s\\S]*?)' + NL + '        <\\/div>', 'g');
     const texts = [...b.matchAll(rx)].map(x => x[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim());
     const arr = arrays[i] || [];
     if (texts.length !== arr.length) { problems.push('P' + (i+1) + ' count ' + texts.length + '/' + arr.length); return; }

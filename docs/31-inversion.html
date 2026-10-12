@@ -327,6 +327,230 @@
     /* 打字練習面板 */
     .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
       padding:16px 20px; margin-top:14px; text-align:left; }
+
+    /* 單字結構與詞性對照面板 */
+    .word-pos-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 800px;
+      max-height: 80vh;
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .word-pos-panel[open] { display: flex; }
+    .word-pos-header {
+      background: var(--primary);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .word-pos-header h3 { margin: 0; font-size: 1.1rem; }
+    .word-pos-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 8px;
+    }
+    .word-pos-close:hover { opacity: 0.7; }
+    .word-pos-body {
+      padding: 20px;
+      overflow-y: auto;
+      max-height: 60vh;
+    }
+    .word-pos-sentence {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .word-pos-sentence:last-child { border-bottom: none; margin-bottom: 0; }
+    .word-pos-sentence-header {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    .word-pos-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .word-pos-table th,
+    .word-pos-table td {
+      padding: 8px 10px;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+      vertical-align: top;
+    }
+    .word-pos-table th {
+      background: #f8fafc;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+    .word-pos-table td { font-size: 0.85rem; }
+    .word-pos-table tr:nth-child(even) td { background: #f8fafc; }
+    .word-pos-table .pos-tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: white;
+    }
+    .pos-VERB { background: #047857; }
+    .pos-NOUN { background: #f59e0b; }
+    .pos-PROPN { background: #8b5cf6; }
+    .pos-PREP { background: #0f766e; }
+    .pos-ADV { background: #6d28d9; }
+    .pos-NUM { background: #dc2626; }
+    .pos-SCONJ { background: #0ea5e9; }
+    .pos-PRON { background: #ec4899; }
+    .pos-DET { background: #64748b; }
+    .pos-ADJ { background: #14b8a6; }
+    .pos-AUX { background: #f97316; }
+    .pos-DET { background: #64748b; }
+    .pos-PART { background: #84cc16; }
+    .pos-PRON { background: #ec4899; }
+    .pos-INTJ { background: #f43f5e; }
+    .pos-PHRASE { background: #b45309; }
+    .pos-LINKER { background: #6d28d9; }
+    .pos-CONJ { background: #0ea5e9; }
+    .pos-TO { background: #7c3aed; }
+    .pos-BE { background: #f97316; }
+    .pos-X { background: #94a3b8; }
+    .pos-unknown { background: #94a3b8; }
+    .word-pos-table .func-tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+    /* 每個片語的「句法功能」標題列（其下逐字一列） */
+    .word-pos-table tr.wpos-func-row td {
+      background: #f1f5f9;
+      border-top: 2px solid var(--primary);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 7px 10px;
+      white-space: normal;
+      word-break: break-word;
+    }
+    .word-pos-table tr.wpos-func-row:first-child td { border-top: none; }
+    .wpos-func-chip {
+      display: inline-block;
+      padding: 2px 7px;
+      margin-right: 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--primary);
+      vertical-align: middle;
+    }
+    .wpos-func-text {
+      font-weight: 600;
+      color: #0f172a;
+      font-size: 0.88rem;
+      vertical-align: middle;
+    }
+    .word-pos-table tr.wpos-func-row + tr td { border-top: none; }
+    .wpos-func-row .pos-tag { margin: 0 8px 0 4px; }
+    .wpos-func-chip.muted { background: #94a3b8; }
+    .word-pos-table tr.wpos-func-plain td {
+      background: #f8fafc;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .wpos-func-plain .wpos-func-text { font-weight: 500; color: #475569; }
+    .word-pos-empty {
+      text-align: center;
+      color: #94a3b8;
+      padding: 40px 20px;
+      font-size: 0.95rem;
+    }
+
+    /* ---- 錯字本（SRS 間隔重複）---- */
+    .errbook-panel {
+      background: #fff7ed;
+      border: 2px solid #fdba74;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .errbook-head { display: flex; flex-wrap: wrap; gap: 10px;
+      align-items: center; margin-bottom: 12px; }
+    .errbook-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .eb-chip { background:#fff; border:1px solid #fed7aa; border-radius:14px;
+      padding:3px 10px; font-size:0.8rem; color:#9a3412; }
+    .eb-chip b { color:#c2410c; }
+    .eb-list { max-height: 260px; overflow-y: auto; }
+    .eb-row { display:flex; align-items:center; gap:10px; background:#fff;
+      border:1px solid #fed7aa; border-radius:8px; padding:7px 10px;
+      margin-bottom:6px; font-size:0.88rem; }
+    .eb-word { font-weight:700; color:#9a3412; min-width:110px; }
+    .eb-ctx { flex:1; color:#57534e; overflow:hidden; text-overflow:ellipsis;
+      white-space:nowrap; }
+    .eb-meter { width:74px; height:7px; background:#ffedd5; border-radius:4px;
+      overflow:hidden; flex:none; }
+    .eb-meter i { display:block; height:100%; background:#f97316; }
+    .eb-due { font-size:0.75rem; color:#c2410c; min-width:66px; text-align:right; }
+    .eb-grad { background:#f0fdf4; border-color:#86efac; }
+    .eb-grad .eb-word { color:#15803d; }
+    .eb-empty { text-align:center; color:#a8a29e; padding:26px 10px; font-size:0.92rem; }
+    /* 複習抽認卡 */
+    .eb-card { background:#fff; border:2px dashed #fb923c; border-radius:10px;
+      padding:16px; margin-top:10px; }
+    .eb-card-q { font-size:1.35rem; font-weight:700; color:#9a3412;
+      text-align:center; letter-spacing:.5px; }
+    .eb-card-ctx { text-align:center; color:#57534e; margin-top:6px;
+      font-size:0.95rem; min-height:1.6em; }
+    .eb-card-a { display:none; text-align:center; margin-top:10px;
+      padding-top:10px; border-top:1px solid #fed7aa; }
+    .eb-card-a.show { display:block; }
+    .eb-card-a .eb-mean { font-weight:700; color:#c2410c; font-size:1.05rem; }
+    .eb-card-a .eb-tip { color:#78716c; font-size:0.85rem; margin-top:4px; }
+    .eb-btns { display:flex; gap:10px; justify-content:center; margin-top:12px;
+      flex-wrap:wrap; }
+    .eb-btn { border:none; border-radius:18px; padding:8px 18px; cursor:pointer;
+      font-size:0.9rem; font-weight:600; }
+    .eb-btn.show { background:#0ea5e9; color:#fff; }
+    .eb-btn.show:hover { background:#0284c7; }
+    .eb-btn.no { background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; }
+    .eb-btn.no:hover { background:#fecaca; }
+    .eb-btn.yes { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
+    .eb-btn.yes:hover { background:#bbf7d0; }
+    .eb-btn.ghost2 { background:#fff; color:#9a3412; border:1px solid #fdba74; }
+    .eb-progress { height:9px; background:#ffedd5; border-radius:5px;
+      overflow:hidden; margin-top:12px; }
+    .eb-progress i { display:block; height:100%; background:#22c55e;
+      transition:width .3s; }
+    .eb-streak { text-align:center; font-size:0.85rem; color:#16a34a;
+      margin-top:6px; font-weight:600; }
+    .eb-add { display:flex; gap:8px; margin-top:10px; }
+    .eb-add input { flex:1; border:1px solid #fdba74; border-radius:8px;
+      padding:7px 10px; font-size:0.9rem; }
+    .eb-add input:focus { outline:2px solid #fb923c; border-color:transparent; }
+    .eb-tip-box { background:#fffbeb; border:1px dashed #f59e0b; border-radius:8px;
+      padding:9px 12px; font-size:0.82rem; color:#92400e; margin-top:10px; }
+    @media print {
+      .errbook-panel, .word-pos-panel, .tool-row { display:none !important; }
+    }
     .type-panel[hidden] { display:none; }
     .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
       font-size:.92rem; color:#134e4a; }
@@ -403,6 +627,49 @@ body.review .sentence-block{background:#f0f9ff;}
       <button class="btn-tool" id="btnReview" onclick="toggleReview()">▼ 展開全部解析</button>
       <button class="btn-tool ghost" onclick="printPage()">🖨 列印本節</button>
       <a class="btn-tool ghost" href="reading.html" target="_blank" rel="noopener" title="開新視窗：AI 隨機出題的 KET 閱讀理解練習（內容未經人工檢核）">📖 KET 閱讀練習</a>
+      <button class="btn-tool" id="btnErrBook" onclick="toggleErrBook()">📕 錯字本</button>
+    </div>
+    <div class="errbook-panel" id="errBookPanel" hidden>
+      <div class="errbook-head">
+        <span class="badge badge-grammar">📕 錯字本</span>
+        <b>間隔重複複習：</b>答錯的字會自動收進來，依遺忘曲線安排下次複習；
+        <b>滾動過關</b>＝連續答對 3 次才算過關。
+        <span class="type-count" id="ebCount"></span>
+      </div>
+      <div class="errbook-stats" id="ebStats"></div>
+      <div class="eb-card" id="ebCard" hidden>
+        <div class="eb-card-q" id="ebQ"></div>
+        <div class="eb-card-ctx" id="ebCtx"></div>
+        <div class="eb-card-a" id="ebA">
+          <div class="eb-mean" id="ebMean"></div>
+          <div class="eb-tip" id="ebTip"></div>
+        </div>
+        <div class="eb-btns">
+          <button class="eb-btn show" id="ebShowBtn" onclick="ebShow()">▶ 顯示答案</button>
+          <button class="eb-btn no" id="ebNoBtn" onclick="ebGrade(false)" hidden>✕ 忘了</button>
+          <button class="eb-btn yes" id="ebYesBtn" onclick="ebGrade(true)" hidden>✓ 記得</button>
+        </div>
+        <div class="eb-progress"><i id="ebBar" style="width:0%"></i></div>
+        <div class="eb-streak" id="ebStreak"></div>
+      </div>
+      <div class="eb-btns">
+        <button class="eb-btn show" id="ebStartBtn" onclick="ebStart()">▶ 開始今日複習</button>
+        <button class="eb-btn ghost2" onclick="ebResetSession()">重新這一輪</button>
+        <button class="eb-btn ghost2" onclick="ebClearGrad()">清除已過關</button>
+        <button class="eb-btn ghost2" onclick="ebClearAll()">清空錯字本</button>
+      </div>
+      <div class="eb-add">
+        <input id="ebAddInput" type="text" placeholder="手動輸入單字加入錯字本（按 Enter）"
+               autocomplete="off" spellcheck="false">
+        <button class="eb-btn ghost2" onclick="ebAddManual()">＋ 加入</button>
+      </div>
+      <div class="eb-tip-box" id="ebTipBox">
+        <b>複習技巧：</b>① 先看字想回意思（主動回想），再看答案；
+        ② 忘了就把間隔縮回今天，記得就拉長間隔；
+        ③ 同一個字要連續答對 3 次才會「過關」，過關後仍會在更隱的間隔後回訪；
+        ④ 每次複習請出聲朗讀，同時練發音。
+      </div>
+      <div class="eb-list" id="ebList"></div>
     </div>
     <div class="type-panel" id="typePanel" hidden>
       <div class="type-head">
@@ -420,6 +687,17 @@ body.review .sentence-block{background:#f0f9ff;}
         <button class="btn-tool ghost" onclick="typeGo(1)">下一句 →</button>
         <button class="btn-tool ghost" onclick="typeRestart()">重頭開始</button>
         <span class="hint">比對方式：忽略大小寫、標點與多餘空白</span>
+      </div>
+    </div>
+      <!-- 單字結構與詞性對照面板 -->
+      <div class="word-pos-panel" id="wordPosPanel">
+        <div class="word-pos-header">
+          <h3>📖 單字結構與詞性對照</h3>
+          <button class="word-pos-close" onclick="toggleWordPosPanel()" aria-label="關閉">×</button>
+        </div>
+        <div class="word-pos-body" id="wordPosBody">
+          <div class="word-pos-empty">請按 <kbd>Alt</kbd>+<kbd>Z</kbd> 開啟面板</div>
+        </div>
       </div>
     </div>
   </header>
@@ -447,8 +725,8 @@ body.review .sentence-block{background:#f0f9ff;}
     <div class="paragraph-container">
       <!-- Sentence 1.1 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          <span class="w-tap kw-verb" data-pos="X" data-func="unknown">Not only do I love</span> our reading club, <span class="w-tap kw-verb" data-pos="X" data-func="unknown">but I also want to save it</span>.
+        <div class="sentence-text" data-wpos="[[&quot;Not&quot;,&quot;ADV&quot;,&quot;否定副詞 not&quot;,0],[&quot;only&quot;,&quot;ADV&quot;,&quot;副詞（只、僅僅）&quot;,0],[&quot;do&quot;,&quot;AUX&quot;,&quot;助動詞 do 系（幫助構成疑問句或加強語氣）&quot;,0],[&quot;I&quot;,&quot;PRON&quot;,&quot;主格代名詞（作主詞）&quot;,0],[&quot;love&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,0],[&quot;our&quot;,&quot;DET&quot;,&quot;所有格限定詞（our 的）&quot;,-1],[&quot;reading&quot;,&quot;NOUN&quot;,&quot;動名詞作定語（修飾後面的名詞）&quot;,-1],[&quot;club&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1],[&quot;but&quot;,&quot;CONJ&quot;,&quot;對等連接詞（連接地位相等的字、片語或子句）&quot;,1],[&quot;I&quot;,&quot;PRON&quot;,&quot;主格代名詞（作主詞）&quot;,1],[&quot;also&quot;,&quot;ADV&quot;,&quot;副詞&quot;,1],[&quot;want&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,1],[&quot;to&quot;,&quot;TO&quot;,&quot;不定詞標記 to（to + 動詞原形）&quot;,1],[&quot;save&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,1],[&quot;it&quot;,&quot;PRON&quot;,&quot;受格代名詞（it 主格、受格同形，此處作受詞）&quot;,1]]" data-wfun="predicate,linker">
+          <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;Not&quot;,&quot;ADV&quot;,&quot;否定副詞 not&quot;],[&quot;only&quot;,&quot;ADV&quot;,&quot;副詞（只、僅僅）&quot;],[&quot;do&quot;,&quot;AUX&quot;,&quot;助動詞 do 系（幫助構成疑問句或加強語氣）&quot;],[&quot;I&quot;,&quot;PRON&quot;,&quot;主格代名詞（作主詞）&quot;],[&quot;love&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;]]">Not only do I love</span> our reading club, <span class="w-tap kw-verb" data-pos="VERB" data-func="linker" data-w="[[&quot;but&quot;,&quot;CONJ&quot;,&quot;對等連接詞（連接地位相等的字、片語或子句）&quot;],[&quot;I&quot;,&quot;PRON&quot;,&quot;主格代名詞（作主詞）&quot;],[&quot;also&quot;,&quot;ADV&quot;,&quot;副詞&quot;],[&quot;want&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;],[&quot;to&quot;,&quot;TO&quot;,&quot;不定詞標記 to（to + 動詞原形）&quot;],[&quot;save&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;],[&quot;it&quot;,&quot;PRON&quot;,&quot;受格代名詞（it 主格、受格同形，此處作受詞）&quot;]]">but I also want to save it</span>.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -457,8 +735,8 @@ body.review .sentence-block{background:#f0f9ff;}
       </div>
       <!-- Sentence 1.2 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          <span class="w-tap kw-verb" data-pos="X" data-func="unknown">Here comes</span> the news: our reading club <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">has only ten students</span> now.
+        <div class="sentence-text" data-wpos="[[&quot;Here&quot;,&quot;ADV&quot;,&quot;副詞&quot;,0],[&quot;comes&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;,0],[&quot;the&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;news&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1],[&quot;our&quot;,&quot;DET&quot;,&quot;所有格限定詞（our 的）&quot;,-1],[&quot;reading&quot;,&quot;NOUN&quot;,&quot;動名詞作定語（修飾後面的名詞）&quot;,-1],[&quot;club&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1],[&quot;has&quot;,&quot;VERB&quot;,&quot;動詞（have 有、吃、從事）&quot;,1],[&quot;only&quot;,&quot;ADV&quot;,&quot;副詞（只、僅僅）&quot;,1],[&quot;ten&quot;,&quot;NUM&quot;,&quot;數詞（修飾後面的名詞）&quot;,1],[&quot;students&quot;,&quot;NOUN&quot;,&quot;名詞（複數）&quot;,1],[&quot;now&quot;,&quot;ADV&quot;,&quot;副詞&quot;,-1]]" data-wfun="predicate,predicate">
+          <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;Here&quot;,&quot;ADV&quot;,&quot;副詞&quot;],[&quot;comes&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;]]">Here comes</span> the news: our reading club <span class="w-tap kw-colloc" data-pos="VERB" data-func="predicate" data-w="[[&quot;has&quot;,&quot;VERB&quot;,&quot;動詞（have 有、吃、從事）&quot;],[&quot;only&quot;,&quot;ADV&quot;,&quot;副詞（只、僅僅）&quot;],[&quot;ten&quot;,&quot;NUM&quot;,&quot;數詞（修飾後面的名詞）&quot;],[&quot;students&quot;,&quot;NOUN&quot;,&quot;名詞（複數）&quot;]]">has only ten students</span> now.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -467,8 +745,8 @@ body.review .sentence-block{background:#f0f9ff;}
       </div>
       <!-- Sentence 1.3 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          The <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">teacher</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">decided to change</span> the club <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">this term</span> and <span class="w-tap kw-verb" data-pos="X" data-func="unknown">asked us for</span> ideas.
+        <div class="sentence-text" data-wpos="[[&quot;The&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;teacher&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,0],[&quot;decided&quot;,&quot;VERB&quot;,&quot;動詞過去式／過去分詞&quot;,1],[&quot;to&quot;,&quot;TO&quot;,&quot;不定詞標記 to（to + 動詞原形）&quot;,1],[&quot;change&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,1],[&quot;the&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;club&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1],[&quot;this&quot;,&quot;DET&quot;,&quot;限定詞（指示形容詞，修飾後面的名詞）&quot;,2],[&quot;term&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,2],[&quot;and&quot;,&quot;CONJ&quot;,&quot;對等連接詞（連接地位相等的字、片語或子句）&quot;,-1],[&quot;asked&quot;,&quot;VERB&quot;,&quot;動詞過去式／過去分詞&quot;,3],[&quot;us&quot;,&quot;PRON&quot;,&quot;受格代名詞（we 的受格）&quot;,3],[&quot;for&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,3],[&quot;ideas&quot;,&quot;NOUN&quot;,&quot;名詞（複數）&quot;,-1]]" data-wfun="subject,predicate,object,predicate">
+          The <span class="w-tap kw-colloc" data-pos="NOUN" data-func="subject" data-w="[[&quot;teacher&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">teacher</span> <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;decided&quot;,&quot;VERB&quot;,&quot;動詞過去式／過去分詞&quot;],[&quot;to&quot;,&quot;TO&quot;,&quot;不定詞標記 to（to + 動詞原形）&quot;],[&quot;change&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;]]">decided to change</span> the club <span class="w-tap kw-colloc" data-pos="NOUN" data-func="object" data-w="[[&quot;this&quot;,&quot;DET&quot;,&quot;限定詞（指示形容詞，修飾後面的名詞）&quot;],[&quot;term&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">this term</span> and <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;asked&quot;,&quot;VERB&quot;,&quot;動詞過去式／過去分詞&quot;],[&quot;us&quot;,&quot;PRON&quot;,&quot;受格代名詞（we 的受格）&quot;],[&quot;for&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;]]">asked us for</span> ideas.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -485,8 +763,8 @@ body.review .sentence-block{background:#f0f9ff;}
     <div class="paragraph-container">
       <!-- Sentence 2.1 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          <span class="w-tap kw-verb" data-pos="X" data-func="unknown">Here is</span> our plan: we <span class="w-tap kw-verb" data-pos="X" data-func="unknown">study English</span> in the <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">library every Friday</span>.
+        <div class="sentence-text" data-wpos="[[&quot;Here&quot;,&quot;ADV&quot;,&quot;副詞&quot;,0],[&quot;is&quot;,&quot;BE&quot;,&quot;is　be 動詞（連綴動詞：後接形容詞作主詞補語）&quot;,0],[&quot;our&quot;,&quot;DET&quot;,&quot;所有格限定詞（our 的）&quot;,-1],[&quot;plan&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1],[&quot;we&quot;,&quot;PRON&quot;,&quot;主格代名詞（作主詞）&quot;,-1],[&quot;study&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,1],[&quot;English&quot;,&quot;PROPN&quot;,&quot;專有名詞（人名／地名／星期，首字母大寫）&quot;,1],[&quot;in&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,-1],[&quot;the&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;library&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,2],[&quot;every&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,2],[&quot;Friday&quot;,&quot;PROPN&quot;,&quot;專有名詞（人名／地名／星期，首字母大寫）&quot;,2]]" data-wfun="predicate,predicate,object">
+          <span class="w-tap kw-verb" data-pos="BE" data-func="predicate" data-w="[[&quot;Here&quot;,&quot;ADV&quot;,&quot;副詞&quot;],[&quot;is&quot;,&quot;BE&quot;,&quot;is be 動詞（連綴動詞：後接形容詞作主詞補語）&quot;]]">Here is</span> our plan: we <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;study&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;],[&quot;English&quot;,&quot;PROPN&quot;,&quot;專有名詞（人名／地名／星期，首字母大寫）&quot;]]">study English</span> in the <span class="w-tap kw-colloc" data-pos="NOUN" data-func="object" data-w="[[&quot;library&quot;,&quot;NOUN&quot;,&quot;名詞&quot;],[&quot;every&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;],[&quot;Friday&quot;,&quot;PROPN&quot;,&quot;專有名詞（人名／地名／星期，首字母大寫）&quot;]]">library every Friday</span>.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -495,8 +773,8 @@ body.review .sentence-block{background:#f0f9ff;}
       </div>
       <!-- Sentence 2.2 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          <span class="w-tap kw-link" data-pos="X" data-func="unknown">Every classmate</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">chooses</span> a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">subject</span> and borrows a <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">dictionary</span> for the project.
+        <div class="sentence-text" data-wpos="[[&quot;Every&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,0],[&quot;classmate&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,0],[&quot;chooses&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;,1],[&quot;a&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;subject&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,2],[&quot;and&quot;,&quot;CONJ&quot;,&quot;對等連接詞（連接地位相等的字、片語或子句）&quot;,-1],[&quot;borrows&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;,-1],[&quot;a&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;dictionary&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,3],[&quot;for&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,-1],[&quot;the&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;project&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1]]" data-wfun="adjunct,predicate,object,object">
+          <span class="w-tap kw-link" data-pos="NOUN" data-func="adjunct" data-w="[[&quot;Every&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;],[&quot;classmate&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">Every classmate</span> <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;chooses&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;]]">chooses</span> a <span class="w-tap kw-colloc" data-pos="NOUN" data-func="object" data-w="[[&quot;subject&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">subject</span> and borrows a <span class="w-tap kw-colloc" data-pos="NOUN" data-func="object" data-w="[[&quot;dictionary&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">dictionary</span> for the project.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -505,8 +783,8 @@ body.review .sentence-block{background:#f0f9ff;}
       </div>
       <!-- Sentence 2.3 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          <span class="w-tap kw-link" data-pos="X" data-func="unknown">However</span>, many <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">students</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">were too busy</span> with their homework <span class="w-tap kw-verb" data-pos="X" data-func="unknown">to join</span> us.
+        <div class="sentence-text" data-wpos="[[&quot;However&quot;,&quot;ADV&quot;,&quot;副詞&quot;,0],[&quot;many&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;students&quot;,&quot;NOUN&quot;,&quot;名詞（複數）&quot;,1],[&quot;were&quot;,&quot;BE&quot;,&quot;were　be 動詞（連綴動詞：後接形容詞作主詞補語）&quot;,2],[&quot;too&quot;,&quot;ADV&quot;,&quot;副詞&quot;,2],[&quot;busy&quot;,&quot;ADJ&quot;,&quot;形容詞&quot;,2],[&quot;with&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,-1],[&quot;their&quot;,&quot;DET&quot;,&quot;所有格限定詞（their 的）&quot;,-1],[&quot;homework&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1],[&quot;to&quot;,&quot;TO&quot;,&quot;不定詞標記 to（to + 動詞原形）&quot;,3],[&quot;join&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,3],[&quot;us&quot;,&quot;PRON&quot;,&quot;受格代名詞（we 的受格）&quot;,-1]]" data-wfun="linker,subject,predicate,object">
+          <span class="w-tap kw-link" data-pos="ADV" data-func="linker" data-w="[[&quot;However&quot;,&quot;ADV&quot;,&quot;副詞&quot;]]">However</span>, many <span class="w-tap kw-colloc" data-pos="NOUN" data-func="subject" data-w="[[&quot;students&quot;,&quot;NOUN&quot;,&quot;名詞（複數）&quot;]]">students</span> <span class="w-tap kw-verb" data-pos="BE" data-func="predicate" data-w="[[&quot;were&quot;,&quot;BE&quot;,&quot;were be 動詞（連綴動詞：後接形容詞作主詞補語）&quot;],[&quot;too&quot;,&quot;ADV&quot;,&quot;副詞&quot;],[&quot;busy&quot;,&quot;ADJ&quot;,&quot;形容詞&quot;]]">were too busy</span> with their homework <span class="w-tap kw-verb" data-pos="VERB" data-func="object" data-w="[[&quot;to&quot;,&quot;TO&quot;,&quot;不定詞標記 to（to + 動詞原形）&quot;],[&quot;join&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;]]">to join</span> us.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -523,8 +801,8 @@ body.review .sentence-block{background:#f0f9ff;}
     <div class="paragraph-container">
       <!-- Sentence 3.1 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          <span class="w-tap kw-verb" data-pos="X" data-func="unknown">Only then did we learn</span> that <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">studying together</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">matters more than</span> marks.
+        <div class="sentence-text" data-wpos="[[&quot;Only&quot;,&quot;ADV&quot;,&quot;副詞（只、僅僅）&quot;,0],[&quot;then&quot;,&quot;ADV&quot;,&quot;副詞&quot;,0],[&quot;did&quot;,&quot;AUX&quot;,&quot;助動詞 do 系（幫助構成疑問句或加強語氣）&quot;,0],[&quot;we&quot;,&quot;PRON&quot;,&quot;主格代名詞（作主詞）&quot;,0],[&quot;learn&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,0],[&quot;that&quot;,&quot;SCONJ&quot;,&quot;從屬連接詞（that 引導名詞子句，本身不作成分）&quot;,-1],[&quot;studying&quot;,&quot;VERB&quot;,&quot;現在分詞／動名詞&quot;,1],[&quot;together&quot;,&quot;ADV&quot;,&quot;副詞（與前面的動詞構成片語動詞）&quot;,1],[&quot;matters&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;,2],[&quot;more&quot;,&quot;ADV&quot;,&quot;副詞（更、最）&quot;,2],[&quot;than&quot;,&quot;SCONJ&quot;,&quot;比較用從屬連接詞（A 比 B…）&quot;,2],[&quot;marks&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;,-1]]" data-wfun="predicate,object,predicate">
+          <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;Only&quot;,&quot;ADV&quot;,&quot;副詞（只、僅僅）&quot;],[&quot;then&quot;,&quot;ADV&quot;,&quot;副詞&quot;],[&quot;did&quot;,&quot;AUX&quot;,&quot;助動詞 do 系（幫助構成疑問句或加強語氣）&quot;],[&quot;we&quot;,&quot;PRON&quot;,&quot;主格代名詞（作主詞）&quot;],[&quot;learn&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;]]">Only then did we learn</span> that <span class="w-tap kw-colloc" data-pos="VERB" data-func="object" data-w="[[&quot;studying&quot;,&quot;VERB&quot;,&quot;現在分詞／動名詞&quot;],[&quot;together&quot;,&quot;ADV&quot;,&quot;副詞（與前面的動詞構成片語動詞）&quot;]]">studying together</span> <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;matters&quot;,&quot;VERB&quot;,&quot;動詞第三人稱單數現在式&quot;],[&quot;more&quot;,&quot;ADV&quot;,&quot;副詞（更、最）&quot;],[&quot;than&quot;,&quot;SCONJ&quot;,&quot;比較用從屬連接詞（A 比 B…）&quot;]]">matters more than</span> marks.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -533,8 +811,8 @@ body.review .sentence-block{background:#f0f9ff;}
       </div>
       <!-- Sentence 3.2 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          <span class="w-tap kw-link" data-pos="X" data-func="unknown">At the end of term</span>, our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">teacher</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">gave us</span> a short <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">exam in class</span>.
+        <div class="sentence-text" data-wpos="[[&quot;At&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,0],[&quot;the&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,0],[&quot;end&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,0],[&quot;of&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,0],[&quot;term&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,0],[&quot;our&quot;,&quot;DET&quot;,&quot;所有格限定詞（our 的）&quot;,-1],[&quot;teacher&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,1],[&quot;gave&quot;,&quot;VERB&quot;,&quot;動詞過去式&quot;,2],[&quot;us&quot;,&quot;PRON&quot;,&quot;受格代名詞（we 的受格）&quot;,2],[&quot;a&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;,-1],[&quot;short&quot;,&quot;ADJ&quot;,&quot;形容詞&quot;,-1],[&quot;exam&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,3],[&quot;in&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,3],[&quot;class&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,3]]" data-wfun="prep_phrase,subject,predicate,object">
+          <span class="w-tap kw-link" data-pos="NOUN" data-func="prep_phrase" data-w="[[&quot;At&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;],[&quot;the&quot;,&quot;DET&quot;,&quot;限定詞（修飾後面的名詞）&quot;],[&quot;end&quot;,&quot;NOUN&quot;,&quot;名詞&quot;],[&quot;of&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;],[&quot;term&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">At the end of term</span>, our <span class="w-tap kw-colloc" data-pos="NOUN" data-func="subject" data-w="[[&quot;teacher&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">teacher</span> <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;gave&quot;,&quot;VERB&quot;,&quot;動詞過去式&quot;],[&quot;us&quot;,&quot;PRON&quot;,&quot;受格代名詞（we 的受格）&quot;]]">gave us</span> a short <span class="w-tap kw-colloc" data-pos="NOUN" data-func="object" data-w="[[&quot;exam&quot;,&quot;NOUN&quot;,&quot;名詞&quot;],[&quot;in&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;],[&quot;class&quot;,&quot;NOUN&quot;,&quot;名詞&quot;]]">exam in class</span>.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -543,8 +821,8 @@ body.review .sentence-block{background:#f0f9ff;}
       </div>
       <!-- Sentence 3.3 -->
       <div class="sentence-block" onclick="speakText(this.querySelector('.sentence-text').innerText)">
-        <div class="sentence-text">
-          Now our <span class="w-tap kw-colloc" data-pos="X" data-func="unknown">lessons</span> <span class="w-tap kw-verb" data-pos="X" data-func="unknown">end with reading</span>, and our classroom <span class="w-tap kw-verb" data-pos="X" data-func="unknown">is always</span> quiet.
+        <div class="sentence-text" data-wpos="[[&quot;Now&quot;,&quot;ADV&quot;,&quot;副詞&quot;,-1],[&quot;our&quot;,&quot;DET&quot;,&quot;所有格限定詞（our 的）&quot;,-1],[&quot;lessons&quot;,&quot;NOUN&quot;,&quot;名詞（複數）&quot;,0],[&quot;end&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;,1],[&quot;with&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;,1],[&quot;reading&quot;,&quot;VERB&quot;,&quot;動名詞（介系詞後接 V-ing 作受詞）&quot;,1],[&quot;and&quot;,&quot;CONJ&quot;,&quot;對等連接詞（連接地位相等的字、片語或子句）&quot;,-1],[&quot;our&quot;,&quot;DET&quot;,&quot;所有格限定詞（our 的）&quot;,-1],[&quot;classroom&quot;,&quot;NOUN&quot;,&quot;名詞&quot;,-1],[&quot;is&quot;,&quot;BE&quot;,&quot;is　be 動詞（連綴動詞：後接形容詞作主詞補語）&quot;,2],[&quot;always&quot;,&quot;ADV&quot;,&quot;副詞&quot;,2],[&quot;quiet&quot;,&quot;ADJ&quot;,&quot;形容詞&quot;,-1]]" data-wfun="subject,predicate,predicate">
+          Now our <span class="w-tap kw-colloc" data-pos="NOUN" data-func="subject" data-w="[[&quot;lessons&quot;,&quot;NOUN&quot;,&quot;名詞（複數）&quot;]]">lessons</span> <span class="w-tap kw-verb" data-pos="VERB" data-func="predicate" data-w="[[&quot;end&quot;,&quot;VERB&quot;,&quot;動詞原形&quot;],[&quot;with&quot;,&quot;PREP&quot;,&quot;介系詞（後接名詞片語作受詞）&quot;],[&quot;reading&quot;,&quot;VERB&quot;,&quot;動名詞（介系詞後接 V-ing 作受詞）&quot;]]">end with reading</span>, and our classroom <span class="w-tap kw-verb" data-pos="BE" data-func="predicate" data-w="[[&quot;is&quot;,&quot;BE&quot;,&quot;is be 動詞（連綴動詞：後接形容詞作主詞補語）&quot;],[&quot;always&quot;,&quot;ADV&quot;,&quot;副詞&quot;]]">is always</span> quiet.
         </div>
         <div class="sentence-grammar-pop">
           <strong>🔍 文法與句法結構分析：</strong><br>
@@ -764,6 +1042,11 @@ body.review .sentence-block{background:#f0f9ff;}
     if (word) speakText(word);               // 1) 唸出剛打完的那個單字
 
     const target = typeWords(TYPE_SENTENCES[typeIdx]);
+    // 把打錯的字收進錯字本（逐字比對，寬鬆規則：忽略大小寫／標點）
+    if (typeof ebCatchTyped === 'function' && word) {
+      const bad = ebCatchTyped(typed, target, TYPE_SENTENCES[typeIdx]);
+      if (bad.length) ebRender();
+    }
     if (typed.join(' ') === target.join(' ')) {
       // 2) 整句（寬鬆比對）已完成 → 跳到下一句開頭
       typeIdx += 1;
@@ -796,6 +1079,565 @@ body.review .sentence-block{background:#f0f9ff;}
   /* 讓標籤與滑桿位置以 JS 為準，避免日後兩邊不同步 */
   updateRateLabel(speechRateLabel(SPEECH_RATE));
   syncRateSlider();
+
+/* ---- 單字結構與詞性對照面板 ---- */
+
+  /* 詞性／句法功能 對照中文說明（面板顯示用） */
+  var POS_LABEL = {
+    VERB: '動詞', AUX: '助動詞', BE: 'be 動詞',
+    NOUN: '名詞', PROPN: '專有名詞', PRON: '代名詞',
+    ADJ: '形容詞', ADV: '副詞', NUM: '數詞',
+    DET: '限定詞', PREP: '介系詞', SCONJ: '從屬連接詞',
+    CONJ: '對等連接詞', PART: '小品詞', TO: '不定詞 to',
+    INTJ: '感嘆詞', X: '未標記', PHRASE: '片語', LINKER: '連接語'
+  };
+
+  var FUNC_LABEL = {
+    subject: '主詞',
+    predicate: '述語（主要動詞）',
+    object: '受詞',
+    complement: '補語',
+    adjunct: '修飾語（狀語）',
+    appositive: '同位語',
+    prep_phrase: '介系詞片語',
+    adv_phrase: '副詞片語',
+    clause_adv: '副詞子句',
+    clause_noun: '名詞子句',
+    clause_rel: '關係子句',
+    linker: '連接語',
+    interjection: '感嘆語',
+    unknown: '未標記'
+  };
+
+  function toggleWordPosPanel() {
+    const panel = document.getElementById('wordPosPanel');
+    if (!panel) return;
+    if (panel.hasAttribute('open')) {
+      panel.removeAttribute('open');
+    } else {
+      panel.setAttribute('open', '');
+      renderWordPosPanel();
+    }
+  }
+
+  function renderWordPosPanel() {
+    const body = document.getElementById('wordPosBody');
+    if (!body) return;
+
+    const blocks = document.querySelectorAll('.sentence-block');
+    if (!blocks.length) {
+      body.innerHTML = '<div class="word-pos-empty">本頁無句子資料</div>';
+      return;
+    }
+
+    let html = '';
+    blocks.forEach((block, blockIdx) => {
+      const textEl = block.querySelector('.sentence-text');
+      if (!textEl) return;
+
+      // 先嘗試「整句逐字」資料（data-wpos）；沒有才退回只有 data-w 的舊版面
+      const full = parseSentenceWords(textEl);
+      if (full) {
+        html += renderSentence(textEl, blockIdx, full.rows, full.funcs);
+        return;
+      }
+
+      const taps = textEl.querySelectorAll('.w-tap');
+      if (!taps.length) return;
+
+      let legacy = '';
+      taps.forEach(tap => {
+        const spanText = tap.textContent.trim();
+        const func = tap.getAttribute('data-func') || 'unknown';
+        const spanPos = tap.getAttribute('data-pos') || 'X';
+        legacy += '<tr class="wpos-func-row"><td colspan="4">';
+        legacy += '<span class="wpos-func-chip">' +
+                  escapeHtml(FUNC_LABEL[func] || func) + '</span>';
+        legacy += '<span class="pos-tag pos-' + escapeHtml(spanPos) + '">' +
+                  escapeHtml(spanPos) + '</span>';
+        legacy += '<span class="wpos-func-text">' + escapeHtml(spanText) + '</span>';
+        legacy += '</td></tr>';
+
+        const words = parseWordPos(tap);
+        if (!words.length) {
+          legacy += fallbackRow(tap, spanText, spanPos, func);
+          return;
+        }
+        words.forEach(w => { legacy += wordRow(w[0], w[1], w[2]); });
+      });
+
+      if (!legacy) return;
+      html += '<div class="word-pos-sentence">';
+      html += sentenceHeader(blockIdx);
+      html += '<table class="word-pos-table"><thead>';
+      html += '<tr><th>單字</th><th>標籤</th><th>詞性 (POS)</th><th>中文說明</th></tr>';
+      html += '</thead><tbody>';
+      html += legacy;
+      html += '</tbody></table></div>';
+    });
+
+    if (!html) {
+      body.innerHTML = '<div class="word-pos-empty">未找到可分析的單字</div>';
+    } else {
+      body.innerHTML = html;
+    }
+  }
+
+  function sentenceHeader(blockIdx) {
+    return '<div class="word-pos-sentence-header">第 ' +
+      Math.ceil((blockIdx + 1) / 3) + ' 段 第 ' + ((blockIdx % 3) + 1) +
+      ' 句</div>';
+  }
+
+  function wordRow(word, pos, note) {
+    pos = pos || 'X';
+    let h = '<tr>';
+    h += '<td><strong>' + escapeHtml(word) + '</strong></td>';
+    h += '<td><span class="pos-tag pos-' + escapeHtml(pos) + '">' +
+         escapeHtml(pos) + '</span></td>';
+    h += '<td>' + escapeHtml(POS_LABEL[pos] || pos) + '</td>';
+    h += '<td>' + escapeHtml(note || '') + '</td>';
+    h += '</tr>';
+    return h;
+  }
+
+  /* 整句逐字：data-wpos=[[字,詞性,說明,group_id],...]；group_id=-1＝不屬於任何片語 */
+  function parseSentenceWords(textEl) {
+    const raw = textEl.getAttribute('data-wpos');
+    if (!raw) return null;
+    let rows;
+    try {
+      rows = JSON.parse(raw);
+    } catch (err) {
+      return null;
+    }
+    if (!Array.isArray(rows) || !rows.length) return null;
+    const fnRaw = textEl.getAttribute('data-wfun') || '';
+    return { rows: rows, funcs: fnRaw.split(',') };
+  }
+
+  function renderSentence(textEl, blockIdx, rows, funcs) {
+    const taps = textEl.querySelectorAll('.w-tap');
+
+    // 依 group_id 分組（相連且 group_id 相同的字視為一組）
+    const groups = [];
+    rows.forEach(r => {
+      const g = r[3];
+      let last = groups[groups.length - 1];
+      if (!last || last.g !== g) {
+        last = { g: g, items: [] };
+        groups.push(last);
+      }
+      last.items.push(r);
+    });
+
+    let html = '<div class="word-pos-sentence">';
+    html += sentenceHeader(blockIdx);
+    html += '<table class="word-pos-table"><thead>';
+    html += '<tr><th>單字</th><th>標籤</th><th>詞性 (POS)</th><th>中文說明</th></tr>';
+    html += '</thead><tbody>';
+
+    groups.forEach(gr => {
+      const isSpan = gr.g >= 0;
+      const tap = isSpan ? taps[gr.g] : null;
+      const fnKey = isSpan ? (funcs[gr.g] || '') : '';
+      const label = isSpan
+        ? (FUNC_LABEL[fnKey] || fnKey || '未標記')
+        : '其他成分（非片語）';
+      const spanPos = (tap && tap.getAttribute('data-pos')) || 'X';
+      const spanText = gr.items.map(x => x[0]).join(' ');
+
+      html += '<tr class="wpos-func-row' + (isSpan ? '' : ' wpos-func-plain') +
+              '"><td colspan="4">';
+      html += '<span class="wpos-func-chip' + (isSpan ? '' : ' muted') + '">' +
+              escapeHtml(label) + '</span>';
+      if (isSpan && spanPos !== 'X') {
+        html += '<span class="pos-tag pos-' + escapeHtml(spanPos) + '">' +
+                escapeHtml(spanPos) + '</span>';
+      }
+      html += '<span class="wpos-func-text">' + escapeHtml(spanText) + '</span>';
+      html += '</td></tr>';
+
+      gr.items.forEach(w => { html += wordRow(w[0], w[1], w[2]); });
+    });
+
+    html += '</tbody></table></div>';
+    return html;
+  }
+
+  /* data-w = [[word, POS, 中文說明], ...]（HTML 屬性值中的 " 已存成 &quot;） */
+  function parseWordPos(tap) {
+    const raw = tap.getAttribute('data-w');
+    if (!raw) return [];
+    try {
+      const arr = JSON.parse(raw);
+      return Array.isArray(arr) ? arr.filter(x => Array.isArray(x) && x.length >= 3) : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function fallbackRow(tap, spanText, spanPos, func) {
+    const pos = spanPos === 'X' || spanPos === 'unknown' ? guessPos(tap) : spanPos;
+    let h = '<tr>';
+    h += '<td><strong>' + escapeHtml(spanText) + '</strong></td>';
+    h += '<td><span class="pos-tag pos-' + escapeHtml(pos) + '">' + escapeHtml(pos) + '</span></td>';
+    h += '<td>' + escapeHtml(POS_LABEL[pos] || pos) + '</td>';
+    h += '<td>' + escapeHtml(FUNC_LABEL[func] || func) + '</td>';
+    h += '</tr>';
+    return h;
+  }
+
+  function guessPos(tap) {
+    const cls = tap.className || '';
+    if (cls.indexOf('kw-verb') >= 0) return 'VERB';
+    if (cls.indexOf('kw-colloc') >= 0) return 'PHRASE';
+    if (cls.indexOf('kw-link') >= 0) return 'LINKER';
+    return 'X';
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Alt+Z 開啟/關閉（測試用的假 document 可能沒有 addEventListener，先防呆）
+  if (typeof document.addEventListener === 'function') {
+    document.addEventListener('keydown', function(e) {
+      if (e.altKey && String(e.key || '').toLowerCase() === 'z') {
+        e.preventDefault();
+        toggleWordPosPanel();
+      }
+    });
+
+    // 點擊面板外部關閉
+    document.addEventListener('click', function(e) {
+      const panel = document.getElementById('wordPosPanel');
+      if (!panel || !panel.hasAttribute('open')) return;
+      const t = e.target;
+      if (!panel.contains(t) && !(t && t.closest && t.closest('.word-pos-header'))) {
+        panel.removeAttribute('open');
+      }
+    });
+  }
+
+/* ===================== 錯字本：間隔重複 (SRS / SM-2 精簡版) =====================
+   每個字的狀態：
+     { w:單字, ctx:出錯的原句, cn:中文提示, n:遇到次數,
+       e:ease(難度係數 1.3~2.8), i:下次間隔(天), due:到期時間(ms),
+       ok:連續答對次數, g:是否過關, first:第一次時間, last:最後複習時間 }
+   評分：
+     忘了  → 連續答對歸零、間隔回 0（今天再出現）、ease -0.2
+     記得  → 連續答對 +1、依 SM-2 拉長間隔、ease +0.05（上限 2.8）
+   滾動過關：連續答對 EB_PASS 次 → g=true（過關），間隔拉長到 7 天起跳。
+   ============================================================================ */
+  var EB_KEY = 'errbook_v1';
+  var EB_PASS = 3;          // 連續答對幾次算過關
+  var EB_DAY = 86400000;    // 一天的 ms
+
+  function ebLoad() {
+    try {
+      var raw = localStorage.getItem(EB_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) { return []; }
+  }
+
+  function ebSave(list) {
+    try { localStorage.setItem(EB_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+
+  function ebNorm(w) {
+    return String(w || '').toLowerCase().replace(/[^a-z0-9']/g, '');
+  }
+
+  /* 把一個字加入錯字本；已存在則累加次數並把 due 拉回今天 */
+  function ebAdd(word, ctx, cn) {
+    var w = ebNorm(word);
+    if (!w || w.length < 2) return null;
+    var list = ebLoad(), now = Date.now(), i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i].w === w) {
+        list[i].n = (list[i].n || 0) + 1;
+        list[i].due = now;              // 再錯一次 → 今天就要重複
+        list[i].ok = 0;                 // 滾動過關：連對歸零
+        list[i].g = false;
+        if (ctx) list[i].ctx = ctx;
+        if (cn)  list[i].cn  = cn;
+        list[i].last = now;
+        ebSave(list);
+        return list[i];
+      }
+    }
+    var rec = { w: w, ctx: ctx || '', cn: cn || '', n: 1,
+                e: 2.5, i: 0, due: now, ok: 0, g: false,
+                first: now, last: now };
+    list.push(rec);
+    ebSave(list);
+    return rec;
+  }
+
+  /* SM-2 更新；correct=true 記得 / false 忘了 */
+  function ebGradeRec(rec, correct) {
+    var now = Date.now();
+    rec.last = now;
+    if (!correct) {
+      rec.ok = 0;
+      rec.i = 0;                    // 今天再出現
+      rec.due = now;
+      rec.e = Math.max(1.3, (rec.e || 2.5) - 0.2);
+      rec.g = false;
+      return rec;
+    }
+    rec.ok = (rec.ok || 0) + 1;
+    rec.e = Math.min(2.8, (rec.e || 2.5) + 0.05);
+
+    if (rec.ok >= EB_PASS) {
+      // 滾動過關：連對 EB_PASS 次 → 過關，間隔拉長
+      rec.g = true;
+      rec.i = rec.i < 7 ? 7 : Math.round(rec.i * rec.e);
+    } else {
+      // 尚未過關：短間隔滾動（今天 → 明天 → 後天）
+      rec.i = rec.ok === 1 ? 1 : (rec.ok === 2 ? 2 : Math.max(3, Math.round((rec.i || 1) * rec.e)));
+    }
+    rec.due = now + rec.i * EB_DAY;
+    return rec;
+  }
+
+  /* 今日到期（含過關後的長間隔回訪） */
+  function ebDue(list) {
+    var now = Date.now();
+    return (list || ebLoad()).filter(function (r) { return (r.due || 0) <= now; });
+  }
+
+  /* 打字練習逐字比對：把打錯的字收進錯字本，回傳錯字陣列 */
+  function ebCatchTyped(typedWords, targetWords, sentence) {
+    var bad = [], i, t, g;
+    var n = Math.min(typedWords.length, targetWords.length);
+    for (i = 0; i < n; i++) {
+      t = ebNorm(typedWords[i]);
+      g = ebNorm(targetWords[i]);
+      if (!t || !g) continue;
+      if (t !== g) {
+        // 打錯的那一個字，收進錯字本（保留「原本該打的字」）
+        ebAdd(g, sentence, '');
+        bad.push({ typed: typedWords[i], target: targetWords[i] });
+      }
+    }
+    return bad;
+  }
+
+  /* ---------- 錯字本面板 UI ---------- */
+  var ebQueue = [];      // 本輪待複習
+  var ebIdx = 0;         // 目前卡號
+  var ebDone = 0;        // 本輪已完成
+  var ebRight = 0;       // 本輪答對數
+  var ebRunning = false;
+
+  function eb$(id) { return document.getElementById(id); }
+
+  function toggleErrBook() {
+    var p = eb$('errBookPanel'), b = eb$('btnErrBook');
+    if (!p) return;
+    p.hidden = !p.hidden;
+    if (b) b.textContent = p.hidden ? '📕 錯字本' : '📕 收起錯字本';
+    if (!p.hidden) ebRender();
+  }
+
+  function ebWhen(ts) {
+    if (!ts) return '今天';
+    var d = new Date(ts), now = new Date();
+    var days = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) -
+                 new Date(now.getFullYear(), now.getMonth(), now.getDate())) / EB_DAY);
+    if (days <= 0) return '今天';
+    if (days === 1) return '明天';
+    if (days < 7) return days + ' 天後';
+    if (days < 30) return Math.round(days / 7) + ' 週後';
+    return Math.round(days / 30) + ' 個月後';
+  }
+
+  function ebRender() {
+    var list = ebLoad();
+    var due = ebDue(list);
+    var grad = list.filter(function (r) { return r.g; });
+    var learning = list.filter(function (r) { return !r.g; });
+    var totalWrong = list.reduce(function (s, r) { return s + (r.n || 1); }, 0);
+
+    var stats = eb$('ebStats');
+    if (stats) {
+      stats.innerHTML =
+        '<span class="eb-chip">收錄 <b>' + list.length + '</b> 字</b></span>' +
+        '<span class="eb-chip">今日待複習 <b>' + due.length + '</b></span>' +
+        '<span class="eb-chip">學習中 <b>' + learning.length + '</b></span>' +
+        '<span class="eb-chip">已過關 <b>' + grad.length + '</b></span>' +
+        '<span class="eb-chip">累計答錯 <b>' + totalWrong + '</b> 次</span>';
+    }
+    var cnt = eb$('ebCount');
+    if (cnt) cnt.textContent = ebRunning
+      ? ('第 ' + Math.min(ebIdx + 1, ebQueue.length) + ' / ' + ebQueue.length + ' 題')
+      : (due.length ? ('今日 ' + due.length + ' 字待複習') : '今日已複習完');
+
+    var box = eb$('ebList');
+    if (!box) return;
+    if (!list.length) {
+      box.innerHTML = '<div class="eb-empty">錯字本還是空的。<br>' +
+        '到「打字練習」打錯的字會自動收進這裡，也可以在上方手動加入。</div>';
+      return;
+    }
+    // 排序：到期的在前，其後依下次複習時間
+    var sorted = list.slice().sort(function (a, b) { return (a.due || 0) - (b.due || 0); });
+    box.innerHTML = sorted.map(function (r) {
+      var pct = Math.min(100, Math.round(((r.ok || 0) / EB_PASS) * 100));
+      var cls = 'eb-row' + (r.g ? ' eb-grad' : '');
+      var ctx = r.ctx ? r.ctx : '（手動加入）';
+      return '<div class="' + cls + '">' +
+        '<span class="eb-word">' + esc(r.w) + '</span>' +
+        '<span class="eb-ctx">' + esc(ctx) + '</span>' +
+        '<span class="eb-meter"><i style="width:' + pct + '%"></i></span>' +
+        '<span class="eb-due">' + (r.g ? '已過關 ✓' : ebWhen(r.due)) + '</span>' +
+        '</div>';
+    }).join('');
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /* 開始今日複習：把到期的字排成一輪（過關的字排在後面） */
+  function ebStart() {
+    var list = ebLoad();
+    var due = ebDue(list);
+    if (!due.length) {
+      ebQueue = []; ebIdx = 0; ebRunning = false;
+      ebRender();
+      alert('今日沒有到期的字，稍後再來複習吧！');
+      return;
+    }
+    // 打亂順序（費雪–耶特斯洗牌）
+    for (var i = due.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = due[i]; due[i] = due[j]; due[j] = tmp;
+    }
+    ebQueue = due;
+    ebIdx = 0; ebDone = 0; ebRight = 0; ebRunning = true;
+    ebShowCard();
+    ebRender();
+  }
+
+  function ebResetSession() {
+    ebQueue = []; ebIdx = 0; ebDone = 0; ebRight = 0; ebRunning = false;
+    var c = eb$('ebCard'); if (c) c.hidden = true;
+    ebRender();
+  }
+
+  function ebShowCard() {
+    var c = eb$('ebCard');
+    if (!c) return;
+    if (!ebRunning || ebIdx >= ebQueue.length) {
+      c.hidden = true;
+      ebRunning = false;
+      ebRender();
+      if (ebQueue.length) {
+        alert('這一輪完成！答對 ' + ebRight + ' / ' + ebQueue.length + ' 題。');
+      }
+      return;
+    }
+    c.hidden = false;
+    var rec = ebQueue[ebIdx];
+    eb$('ebQ').textContent = rec.w;
+    eb$('ebCtx').textContent = rec.ctx ? '⋯ ' + rec.ctx + ' ⋯' : '（手動加入的字）';
+    eb$('ebMean').textContent = rec.cn || (rec.ctx ? '' : '回想它的意思與用法');
+    eb$('ebTip').textContent = '難度 ' + rec.e.toFixed(2) +
+      '　目前連續答對 ' + (rec.ok || 0) + ' / ' + EB_PASS +
+      '　已錯 ' + (rec.n || 1) + ' 次' + (rec.g ? '　（已過關，長間隔回訪）' : '');
+    var a = eb$('ebA'); if (a) a.classList.remove('show');
+    eb$('ebShowBtn').hidden = false;
+    eb$('ebNoBtn').hidden = true;
+    eb$('ebYesBtn').hidden = true;
+    var bar = eb$('ebBar');
+    if (bar) bar.style.width = Math.round((ebDone / ebQueue.length) * 100) + '%';
+    var st = eb$('ebStreak');
+    if (st) st.textContent = '連續答對 ' + (rec.ok || 0) + ' / ' + EB_PASS +
+      (rec.g ? '　✓ 已過關' : '');
+    // 出聲朗讀，邊聽邊回想
+    if (typeof speakText === 'function') speakText(rec.w);
+  }
+
+  function ebShow() {
+    var a = eb$('ebA'); if (a) a.classList.add('show');
+    eb$('ebShowBtn').hidden = true;
+    eb$('ebNoBtn').hidden = false;
+    eb$('ebYesBtn').hidden = false;
+    var rec = ebQueue[ebIdx];
+    if (rec && rec.ctx && typeof speakText === 'function') speakText(rec.ctx);
+  }
+
+  function ebGrade(correct) {
+    if (!ebRunning || ebIdx >= ebQueue.length) return;
+    var rec = ebQueue[ebIdx];
+    var list = ebLoad(), i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i].w === rec.w) { list[i] = ebGradeRec(list[i], correct); break; }
+    }
+    ebSave(list);
+    if (correct) ebRight++;
+    ebDone++;
+    ebIdx++;
+    // 更新進度條後換下一題
+    var bar = eb$('ebBar');
+    if (bar) bar.style.width = Math.round((ebDone / ebQueue.length) * 100) + '%';
+    // 以新的資料重取（過關狀態可能已改變）
+    var fresh = ebLoad();
+    for (i = 0; i < fresh.length; i++) {
+      if (fresh[i].w === rec.w) { ebQueue[ebIdx - 1] = fresh[i]; break; }
+    }
+    if (ebIdx >= ebQueue.length) {
+      var c = eb$('ebCard');
+      if (c) c.hidden = true;
+      ebRunning = false;
+      ebRender();
+      alert('這一輪完成！答對 ' + ebRight + ' / ' + ebQueue.length + ' 題。');
+    } else {
+      ebShowCard();
+      ebRender();
+    }
+  }
+
+  function ebAddManual() {
+    var el = eb$('ebAddInput');
+    if (!el) return;
+    var v = el.value.trim();
+    if (!v) return;
+    ebAdd(v, '', '');
+    el.value = '';
+    ebRender();
+  }
+
+  function ebClearGrad() {
+    var list = ebLoad().filter(function (r) { return !r.g; });
+    ebSave(list);
+    ebRender();
+  }
+
+  function ebClearAll() {
+    if (!confirm('確定要清空整個錯字本嗎？此動作無法復原。')) return;
+    ebSave([]);
+    ebResetSession();
+    ebRender();
+  }
+
+  // Enter 手動加入
+  (function () {
+    if (typeof document === 'undefined' || !document.getElementById) return;
+    var el = document.getElementById('ebAddInput');
+    if (el && document.addEventListener) {
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); ebAddManual(); }
+      });
+    }
+  })();
 
   /* ---- 列印與複習模式 ---- */
   function toggleReview() {

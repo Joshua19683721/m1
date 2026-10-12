@@ -327,6 +327,230 @@
     /* 打字練習面板 */
     .type-panel { background:#f0fdfa; border:2px solid #99f6e4; border-radius:12px;
       padding:16px 20px; margin-top:14px; text-align:left; }
+
+    /* 單字結構與詞性對照面板 */
+    .word-pos-panel {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 800px;
+      max-height: 80vh;
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .word-pos-panel[open] { display: flex; }
+    .word-pos-header {
+      background: var(--primary);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .word-pos-header h3 { margin: 0; font-size: 1.1rem; }
+    .word-pos-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 8px;
+    }
+    .word-pos-close:hover { opacity: 0.7; }
+    .word-pos-body {
+      padding: 20px;
+      overflow-y: auto;
+      max-height: 60vh;
+    }
+    .word-pos-sentence {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .word-pos-sentence:last-child { border-bottom: none; margin-bottom: 0; }
+    .word-pos-sentence-header {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    .word-pos-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .word-pos-table th,
+    .word-pos-table td {
+      padding: 8px 10px;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+      vertical-align: top;
+    }
+    .word-pos-table th {
+      background: #f8fafc;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+    .word-pos-table td { font-size: 0.85rem; }
+    .word-pos-table tr:nth-child(even) td { background: #f8fafc; }
+    .word-pos-table .pos-tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: white;
+    }
+    .pos-VERB { background: #047857; }
+    .pos-NOUN { background: #f59e0b; }
+    .pos-PROPN { background: #8b5cf6; }
+    .pos-PREP { background: #0f766e; }
+    .pos-ADV { background: #6d28d9; }
+    .pos-NUM { background: #dc2626; }
+    .pos-SCONJ { background: #0ea5e9; }
+    .pos-PRON { background: #ec4899; }
+    .pos-DET { background: #64748b; }
+    .pos-ADJ { background: #14b8a6; }
+    .pos-AUX { background: #f97316; }
+    .pos-DET { background: #64748b; }
+    .pos-PART { background: #84cc16; }
+    .pos-PRON { background: #ec4899; }
+    .pos-INTJ { background: #f43f5e; }
+    .pos-PHRASE { background: #b45309; }
+    .pos-LINKER { background: #6d28d9; }
+    .pos-CONJ { background: #0ea5e9; }
+    .pos-TO { background: #7c3aed; }
+    .pos-BE { background: #f97316; }
+    .pos-X { background: #94a3b8; }
+    .pos-unknown { background: #94a3b8; }
+    .word-pos-table .func-tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+    /* 每個片語的「句法功能」標題列（其下逐字一列） */
+    .word-pos-table tr.wpos-func-row td {
+      background: #f1f5f9;
+      border-top: 2px solid var(--primary);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 7px 10px;
+      white-space: normal;
+      word-break: break-word;
+    }
+    .word-pos-table tr.wpos-func-row:first-child td { border-top: none; }
+    .wpos-func-chip {
+      display: inline-block;
+      padding: 2px 7px;
+      margin-right: 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--primary);
+      vertical-align: middle;
+    }
+    .wpos-func-text {
+      font-weight: 600;
+      color: #0f172a;
+      font-size: 0.88rem;
+      vertical-align: middle;
+    }
+    .word-pos-table tr.wpos-func-row + tr td { border-top: none; }
+    .wpos-func-row .pos-tag { margin: 0 8px 0 4px; }
+    .wpos-func-chip.muted { background: #94a3b8; }
+    .word-pos-table tr.wpos-func-plain td {
+      background: #f8fafc;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .wpos-func-plain .wpos-func-text { font-weight: 500; color: #475569; }
+    .word-pos-empty {
+      text-align: center;
+      color: #94a3b8;
+      padding: 40px 20px;
+      font-size: 0.95rem;
+    }
+
+    /* ---- 錯字本（SRS 間隔重複）---- */
+    .errbook-panel {
+      background: #fff7ed;
+      border: 2px solid #fdba74;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    .errbook-head { display: flex; flex-wrap: wrap; gap: 10px;
+      align-items: center; margin-bottom: 12px; }
+    .errbook-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .eb-chip { background:#fff; border:1px solid #fed7aa; border-radius:14px;
+      padding:3px 10px; font-size:0.8rem; color:#9a3412; }
+    .eb-chip b { color:#c2410c; }
+    .eb-list { max-height: 260px; overflow-y: auto; }
+    .eb-row { display:flex; align-items:center; gap:10px; background:#fff;
+      border:1px solid #fed7aa; border-radius:8px; padding:7px 10px;
+      margin-bottom:6px; font-size:0.88rem; }
+    .eb-word { font-weight:700; color:#9a3412; min-width:110px; }
+    .eb-ctx { flex:1; color:#57534e; overflow:hidden; text-overflow:ellipsis;
+      white-space:nowrap; }
+    .eb-meter { width:74px; height:7px; background:#ffedd5; border-radius:4px;
+      overflow:hidden; flex:none; }
+    .eb-meter i { display:block; height:100%; background:#f97316; }
+    .eb-due { font-size:0.75rem; color:#c2410c; min-width:66px; text-align:right; }
+    .eb-grad { background:#f0fdf4; border-color:#86efac; }
+    .eb-grad .eb-word { color:#15803d; }
+    .eb-empty { text-align:center; color:#a8a29e; padding:26px 10px; font-size:0.92rem; }
+    /* 複習抽認卡 */
+    .eb-card { background:#fff; border:2px dashed #fb923c; border-radius:10px;
+      padding:16px; margin-top:10px; }
+    .eb-card-q { font-size:1.35rem; font-weight:700; color:#9a3412;
+      text-align:center; letter-spacing:.5px; }
+    .eb-card-ctx { text-align:center; color:#57534e; margin-top:6px;
+      font-size:0.95rem; min-height:1.6em; }
+    .eb-card-a { display:none; text-align:center; margin-top:10px;
+      padding-top:10px; border-top:1px solid #fed7aa; }
+    .eb-card-a.show { display:block; }
+    .eb-card-a .eb-mean { font-weight:700; color:#c2410c; font-size:1.05rem; }
+    .eb-card-a .eb-tip { color:#78716c; font-size:0.85rem; margin-top:4px; }
+    .eb-btns { display:flex; gap:10px; justify-content:center; margin-top:12px;
+      flex-wrap:wrap; }
+    .eb-btn { border:none; border-radius:18px; padding:8px 18px; cursor:pointer;
+      font-size:0.9rem; font-weight:600; }
+    .eb-btn.show { background:#0ea5e9; color:#fff; }
+    .eb-btn.show:hover { background:#0284c7; }
+    .eb-btn.no { background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; }
+    .eb-btn.no:hover { background:#fecaca; }
+    .eb-btn.yes { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
+    .eb-btn.yes:hover { background:#bbf7d0; }
+    .eb-btn.ghost2 { background:#fff; color:#9a3412; border:1px solid #fdba74; }
+    .eb-progress { height:9px; background:#ffedd5; border-radius:5px;
+      overflow:hidden; margin-top:12px; }
+    .eb-progress i { display:block; height:100%; background:#22c55e;
+      transition:width .3s; }
+    .eb-streak { text-align:center; font-size:0.85rem; color:#16a34a;
+      margin-top:6px; font-weight:600; }
+    .eb-add { display:flex; gap:8px; margin-top:10px; }
+    .eb-add input { flex:1; border:1px solid #fdba74; border-radius:8px;
+      padding:7px 10px; font-size:0.9rem; }
+    .eb-add input:focus { outline:2px solid #fb923c; border-color:transparent; }
+    .eb-tip-box { background:#fffbeb; border:1px dashed #f59e0b; border-radius:8px;
+      padding:9px 12px; font-size:0.82rem; color:#92400e; margin-top:10px; }
+    @media print {
+      .errbook-panel, .word-pos-panel, .tool-row { display:none !important; }
+    }
     .type-panel[hidden] { display:none; }
     .type-head { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
       font-size:.92rem; color:#134e4a; }

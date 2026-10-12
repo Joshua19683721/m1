@@ -1,4 +1,4 @@
-# run every check in one go (14 checks)
+# run every check in one go (15 checks)
 $ErrorActionPreference = "Continue"
 Write-Output "=== 1. BUILD ==="
 python build.py 2>&1 | Select-Object -First 1
@@ -41,3 +41,7 @@ node test_rate.js 2>&1 | Select-Object -Last 1
 Write-Output ""
 Write-Output "=== 14. READING PAGE (node) ==="
 node test_reading.js 2>&1 | Select-Object -Last 1
+Write-Output ""
+Write-Output "=== 15. ERROR NOTEBOOK / SRS (node) ==="
+node test_eb.js 2>&1 | Select-Object -Last 1
+Write-Output ""
